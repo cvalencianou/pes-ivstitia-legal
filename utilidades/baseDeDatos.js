@@ -14,4 +14,4 @@ const executePreparedStatement = async (preparedStatement, values) => {
     return result
 }
 
-module.exports = executePreparedStatement
+module.exports = { executePreparedStatement }
