@@ -11,6 +11,9 @@ const executePreparedStatement = async (preparedStatement, values) => {
     })
 
     const [result] = await connection.execute(preparedStatement, values)
+
+    connection.end()
+
     return result
 }
 

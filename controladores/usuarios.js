@@ -2,8 +2,10 @@ const httpError = require('http-errors')
 const { StatusCodes } = require('http-status-codes')
 const bcrypt = require('bcrypt')
 const Usuario = require('../modelos/Usuario')
+const { crearJWT } = require('../middleware/autenticacion')
 
 const crearUsuario = async (req, res) => {
+
     const { correo, contrasena } = req.body
 
     const usuario = new Usuario()
@@ -14,27 +16,40 @@ const crearUsuario = async (req, res) => {
 
     if ((await usuario.registrar(correo, await bcrypt.hash(contrasena, Number(process.env.BCRYPT_SALT_ROUNDS)))).affectedRows === 1) {
         res.status(StatusCodes.CREATED).json({
-            mesanje: `USUARIO CREADO POR ${req.user.id}`
+            mesanje: `USUARIO CREADO`
         })
     }
-
 }
 
 const iniciarSesion = async (req, res) => {
 
     const { correo, contrasena } = req.body
 
-    if (!correo || !contrasena || correo < 4 || correo > 45 || contrasena < 8 || contrasena > 60 || !correo.match(/[^\s@]+@[^\s@]+\.[^\s@]+/)) {
+    if (!correo || !contrasena || correo.length < 4 || correo.length > 45 || contrasena.length < 8
+        || contrasena.length > 60 || !correo.match(/[^\s@]+@[^\s@]+\.[^\s@]+/)) {
         throw new httpError(StatusCodes.BAD_REQUEST, 'POR FAVOR BRINDAR VALORES VÁLIDOS')
     }
 
     const usuario = new Usuario()
 
-    if ((await usuario.buscarPorCorreo(correo))[0].length === 0) {
+    const resultado = await usuario.iniciarSesion(correo)
+
+    if (resultado[0].length === 0) {
         throw new httpError(StatusCodes.CONFLICT, 'NO EXISTE USUARIO')
     }
 
-    if ((await usuario.iniciarSesion(correo))[0][0].contrasena === contrasena) {
+    if (await bcrypt.compare(contrasena, resultado[0][0].contrasena)) {
+        res.cookie('jwt',
+            await crearJWT({
+                id: resultado[0][0].id,
+                administrador: resultado[0][0].administrador
+            }),
+            {
+                httpOnly: true,
+                secure: true,
+                sameSite: true
+            })
+
         res.status(StatusCodes.OK).json({
             mensaje: 'CREDENCIALES CORRECTAS'
         })

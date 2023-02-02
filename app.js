@@ -1,10 +1,12 @@
 const express = require('express')
 const app = express()
 require('express-async-errors')
+var cookieParser = require('cookie-parser')
 const manejoErrores = require('./middleware/manejoErrores')
 const usuarios = require('./rutas/usuarios')
 const calculos = require('./rutas/calculos')
 
+app.use(cookieParser())
 app.use(express.json())
 app.use(express.static('./vistas'))
 

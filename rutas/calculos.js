@@ -1,11 +1,11 @@
 const express = require('express')
 const { StatusCodes } = require('http-status-codes')
-const { verificarJWT } = require('../middleware/autenticacion')
+const { verificarJWT, verificarAdministrador } = require('../middleware/autenticacion')
 const router = express.Router()
 
-router.get('/', verificarJWT, (req, res) => {
+router.get('/', verificarJWT, verificarAdministrador, (req, res) => {
     res.status(StatusCodes.OK).json({
-        mensaje: `DATA DE USUARIO ${req.user.id}`
+        mensaje: `DATA DE USUARIO ${req.user.administrador}`
     })
 })
 
