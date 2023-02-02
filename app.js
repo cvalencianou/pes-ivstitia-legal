@@ -6,7 +6,7 @@ const manejoErrores = require('./middleware/manejoErrores')
 const usuarios = require('./rutas/usuarios')
 const calculos = require('./rutas/calculos')
 
-app.use(cookieParser())
+app.use(cookieParser('secret'))
 app.use(express.json())
 app.use(express.static('./vistas'))
 

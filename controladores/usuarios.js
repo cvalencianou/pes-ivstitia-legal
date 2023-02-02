@@ -47,7 +47,8 @@ const iniciarSesion = async (req, res) => {
             {
                 httpOnly: true,
                 secure: true,
-                sameSite: true
+                sameSite: true,
+                signed: true
             })
 
         res.status(StatusCodes.OK).json({

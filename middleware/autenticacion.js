@@ -13,11 +13,11 @@ const crearJWT = async (payload) => {
 
 const verificarJWT = async (req, res, next) => {
 
-    if (!req.cookies.jwt) {
+    if (!req.signedCookies.jwt) {
         throw new httpError(StatusCodes.UNAUTHORIZED, 'JWT NO VÁLIDO')
     }
 
-    jsonwebtoken.verify(req.cookies.jwt, process.env.JWT_SECRET, (err, decoded) => {
+    jsonwebtoken.verify(req.signedCookies.jwt, process.env.JWT_SECRET, (err, decoded) => {
         if (decoded) {
             req.user = {
                 id: decoded.id,
@@ -25,6 +25,7 @@ const verificarJWT = async (req, res, next) => {
             }
             next()
         } else {
+            console.log(err)
             throw new httpError(StatusCodes.UNAUTHORIZED, 'JWT NO VÁLIDO')
         }
     })
