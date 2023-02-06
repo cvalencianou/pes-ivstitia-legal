@@ -1,0 +1,49 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Cinzel';
+}
+
+header nav {
+    background-color: #20344d;
+}
+
+header nav img {
+    width: 3%;
+    margin-top: 5px;
+    margin-left: 5px;
+    border-radius: 5px;
+}
+
+main {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10%;
+}
+
+main nav {
+    width: 80%;
+    border-style: solid;
+    border-color: grey;
+    border-radius: 5px;
+    padding: 2%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+main nav a {
+    display: inline;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+main nav a button{
+    width: 45%;
+    margin: 1%;
+    padding: 2%;
+}
+
+main nav a button:hover{
+    font-weight: bolder;
+}

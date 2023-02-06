@@ -1,0 +1,59 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Cinzel';
+}
+
+nav {
+    max-width: 100%;
+    max-height: 4%;
+    background-color: #20344d;
+}
+
+nav img {
+    width: 3%;
+    margin-top: 5px;
+    margin-left: 5px;
+    border-radius: 5px;
+}
+
+main {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+main * {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 20%;
+}
+
+form {
+    width: 50%;
+    min-width: 300px;
+    border-style: solid;
+    border-radius: 5px;
+    border-color: gray;
+}
+
+form input {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    padding: 5px;
+}
+
+main a {
+    display: block;
+    width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+}

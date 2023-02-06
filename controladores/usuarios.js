@@ -52,7 +52,8 @@ const iniciarSesion = async (req, res) => {
             })
 
         res.status(StatusCodes.OK).json({
-            mensaje: 'CREDENCIALES CORRECTAS'
+            mensaje: 'CREDENCIALES CORRECTAS',
+            administrador: resultado[0][0].administrador
         })
     }
     else {
