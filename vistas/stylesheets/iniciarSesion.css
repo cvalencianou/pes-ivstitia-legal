@@ -1,19 +1,17 @@
 * {
     margin: 0;
     padding: 0;
-    font-family: 'Cinzel';
 }
 
 nav {
-    max-width: 100%;
-    max-height: 4%;
+    max-height: 6%;
     background-color: #20344d;
 }
 
 nav img {
     width: 3%;
-    margin-top: 5px;
-    margin-left: 5px;
+    margin-top: 0.3%;
+    margin-left: 0.3%;
     border-radius: 5px;
 }
 
@@ -23,37 +21,100 @@ main {
     margin-right: auto;
 }
 
-main * {
-    margin-left: auto;
-    margin-right: auto;
-}
-
 h1 {
+    font-size: 2vw;
     text-align: center;
     margin-top: 20%;
+    margin-bottom: 5%;
+    font-family: 'Cinzel';
 }
 
 form {
     width: 50%;
-    min-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
     border-style: solid;
     border-radius: 5px;
     border-color: gray;
 }
 
 form input {
+    width: 80%;
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 80%;
-    margin-top: 10px;
-    margin-bottom: 5px;
-    padding: 5px;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    padding: 3%;
+    box-sizing: border-box;
+    font-size: 1vw;
+}
+
+form input[type='submit'] {
+    font-family: 'Cinzel';
 }
 
 main a {
     display: block;
-    width: 200px;
+    margin-top: 5%;
+    margin-bottom: 3%;
     margin-left: auto;
     margin-right: auto;
+    text-align: center;
+    font-size: 1.5vw;
+    font-family: 'Cinzel';
+}
+
+@media screen and (max-width: 1080px) {
+
+    nav img {
+        width: 7%;
+    }
+
+    form input {
+        font-size: 3vw;
+    }
+
+    h1 {
+        font-size: 6vw;
+    }
+
+    main {
+        width: 70%;
+    }
+
+    main a {
+        font-size: 3vw;
+    }
+
+    form {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+
+    nav img {
+        width: 10%;
+    }
+
+    form input {
+        font-size: 4vw;
+    }
+
+    h1 {
+        font-size: 8vw;
+    }
+
+    main {
+        width: 80%;
+    }
+
+    main a {
+        font-size: 5vw;
+    }
+
+    form {
+        width: 100%;
+    }
 }

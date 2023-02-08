@@ -2,7 +2,7 @@ CREATE DATABASE  IF NOT EXISTS `ivstitia_legal` /*!40100 DEFAULT CHARACTER SET u
 USE `ivstitia_legal`;
 -- MySQL dump 10.13  Distrib 8.0.31, for Win64 (x86_64)
 --
--- Host: 192.168.100.157    Database: ivstitia_legal
+-- Host: 10.0.0.72    Database: ivstitia_legal
 -- ------------------------------------------------------
 -- Server version	8.0.32
 
@@ -95,7 +95,7 @@ CREATE TABLE `usuarios` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   UNIQUE KEY `correo_electronico_UNIQUE` (`correo`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -104,7 +104,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES (1,'admin@email.com','$2b$10$P0eRxhVIOttGKG8iLnZ9gej67zlB5bRCyfyB12KQZTyeztnR1CfGq',1);
+INSERT INTO `usuarios` VALUES (1,'admin@email.com','$2b$10$P0eRxhVIOttGKG8iLnZ9gej67zlB5bRCyfyB12KQZTyeztnR1CfGq',1),(2,'usuario@email.com','$2b$10$T2lfuKa8ukQd1utnjI/f9e6QTL3wctMfjVtH6i1i2qlZQ33a7G1nm',0);
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -256,4 +256,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-02-06 23:05:26
+-- Dump completed on 2023-02-08 10:28:13
