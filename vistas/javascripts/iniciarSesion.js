@@ -1,3 +1,14 @@
+window.onload = () => {
+    const dialogo = document.getElementById('dialogo')
+    const cerrar = document.getElementById('cerrar')
+
+    cerrar.addEventListener('click', () => {
+        dialogo.close()
+        document.getElementById('contrasena').value = ''
+    })
+}
+
+
 const iniciarSesion = async () => {
     const correo = document.getElementById('correo').value
     const contrasena = document.getElementById('contrasena').value
@@ -22,20 +33,16 @@ const iniciarSesion = async () => {
             window.location.replace('inicio.html')
             break;
         case 400:
-            document.getElementById('errores').innerHTML = data.mensaje
-            document.getElementById('correo').style.borderColor = 'red'
-            document.getElementById('contrasena').style.borderColor = 'red'
-            break;
         case 401:
-            document.getElementById('errores').innerHTML = data.mensaje
-            document.getElementById('correo').style.borderColor = 'red'
-            document.getElementById('contrasena').style.borderColor = 'red'
-            break;
         case 409:
-            document.getElementById('errores').innerHTML = data.mensaje
             document.getElementById('correo').style.borderColor = 'red'
             document.getElementById('contrasena').style.borderColor = 'red'
+            document.getElementById('error').innerHTML = data.mensaje
+            document.getElementById('dialogo').showModal()
             break;
     }
 
 }
+
+
+
