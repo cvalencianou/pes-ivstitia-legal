@@ -8,7 +8,7 @@ const calculos = require('./rutas/calculos')
 const clientes = require('./rutas/clientes')
 
 app.use(express.json())
-app.use(cookieParser('secret'))
+app.use(cookieParser(String(process.env.COOKIE_SECRET)))
 app.use(express.static('./vistas'))
 
 app.use('/api/v1/usuarios', usuarios)

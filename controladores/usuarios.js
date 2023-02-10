@@ -61,4 +61,16 @@ const iniciarSesion = async (req, res) => {
     }
 }
 
-module.exports = { crearUsuario, iniciarSesion }
+const cerrarSesion = async (req, res) => {
+    res.clearCookie('jwt', {
+        httpOnly: true,
+        secure: true,
+        sameSite: true,
+        signed: true
+    })
+    res.status(StatusCodes.OK).json({
+        mensaje: 'CERRÓ SESIÓN'
+    })
+}
+
+module.exports = { crearUsuario, iniciarSesion, cerrarSesion }
