@@ -1,6 +1,7 @@
 const httpError = require('http-errors')
 const { StatusCodes } = require('http-status-codes')
 const jsonwebtoken = require('jsonwebtoken')
+const Usuario = require('../modelos/Usuario')
 
 const crearJWT = async (payload) => {
 
@@ -25,7 +26,6 @@ const verificarJWT = async (req, res, next) => {
             }
             next()
         } else {
-            console.log(err)
             throw new httpError(StatusCodes.UNAUTHORIZED, 'JWT NO VÁLIDO')
         }
     })
@@ -33,7 +33,9 @@ const verificarJWT = async (req, res, next) => {
 
 const verificarAdministrador = async (req, res, next) => {
 
-    if (req.user.administrador === 1) {
+    const usuario = new Usuario()
+
+    if ((await usuario.verificarAdministrador(req.user.id))[0][0].administrador === 1 && req.user.administrador === 1) {
         next()
     } else {
         throw new httpError(StatusCodes.UNAUTHORIZED, 'SOLO ADMINISTRADORES')
