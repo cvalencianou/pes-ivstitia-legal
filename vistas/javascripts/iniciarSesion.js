@@ -15,6 +15,7 @@ const iniciarSesion = async () => {
 
     const resultado = await fetch('/api/v1/usuarios/auth', {
         method: 'POST',
+        redirect: 'follow',
         headers: {
             'Content-Type': 'application/json'
         },
@@ -29,12 +30,15 @@ const iniciarSesion = async () => {
 
     switch (status) {
         case 200:
+            sessionStorage.setItem('autenticado', data.autenticado)
             sessionStorage.setItem('administrador', data.administrador)
             window.location.replace('inicio.html')
             break;
-        case 400:
-        case 401:
-        case 409:
+        case 307:
+            sessionStorage.setItem('correo', correo)
+            window.location.assign('/cambiar-contrasena.html')
+        break;
+        default:
             document.getElementById('correo').style.borderColor = 'red'
             document.getElementById('contrasena').style.borderColor = 'red'
             document.getElementById('error').innerHTML = data.mensaje

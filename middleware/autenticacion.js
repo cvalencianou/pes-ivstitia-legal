@@ -35,7 +35,7 @@ const verificarAdministrador = async (req, res, next) => {
 
     const usuario = new Usuario()
 
-    if ((await usuario.verificarAdministrador(req.user.id))[0][0].administrador === 1 && req.user.administrador === 1) {
+    if ((await usuario.verificarAdministrador(req.user.id))[0][0]['administrador'] === 1 && req.user['administrador'] === 1) {
         next()
     } else {
         throw new httpError(StatusCodes.UNAUTHORIZED, 'SOLO ADMINISTRADORES')

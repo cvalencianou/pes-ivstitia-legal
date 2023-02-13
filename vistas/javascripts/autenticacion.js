@@ -1,24 +1,34 @@
 window.onload = async () => {
     validarRol()
+}
+
+window.onpageshow = async () => {
     validarSesion()
 }
 
-window.addEventListener('pageshow', () => {
+window.onchange = async () => {
     validarSesion()
-})
+}
+
+window.onunload = async () => {
+    validarSesion()
+}
 
 const cerrarSesion = async () => {
 
-    fetch('/api/v1/usuarios/auth', {
+    sessionStorage.removeItem('autenticado')
+    sessionStorage.removeItem('administrador')
+
+    await fetch('/api/v1/usuarios/auth', {
         method: 'GET'
     })
 
-    sessionStorage.removeItem('administrador')
-    window.location.replace('index.html')
+    window.location.replace('iniciar-sesion.html')
 }
 
 const validarSesion = async () => {
-    if (!sessionStorage.getItem('administrador')) {
+
+    if (!sessionStorage.getItem('autenticado') || sessionStorage.getItem('autenticado') != 'true') {
         window.location.replace('iniciar-sesion.html')
     }
 }

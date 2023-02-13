@@ -5,6 +5,7 @@ class Usuario {
     correo
     contrasena
     administrador
+    contrasenaConfigurada
 
     async buscarPorCorreo(correo) {
         return await executePreparedStatement('CALL usuarios_buscar_por_correo(?)', [correo])
@@ -14,8 +15,8 @@ class Usuario {
         return await executePreparedStatement('CALL usuarios_registrar(?,?)', [correo, contrasena])
     }
 
-    async iniciarSesion(correo) {
-        return await executePreparedStatement('CALL usuarios_iniciar_sesion(?)', [correo])
+    async validarCredenciales(correo) {
+        return await executePreparedStatement('CALL usuarios_validar_credenciales(?)', [correo])
     }
 
     async obtenerUsuarios() {
@@ -32,6 +33,14 @@ class Usuario {
 
     async actualizar(id, correo, administrador) {
         return await executePreparedStatement('CALL usuarios_actualizar(?,?,?)', [id, correo, administrador])
+    }
+
+    async restablecerContrasena(id, contrasena) {
+        return await executePreparedStatement('CALL usuarios_restablecer_contrasena(?,?)', [id, contrasena])
+    }
+
+    async cambiarContrasena(id, contrasenaNueva) {
+        return await executePreparedStatement('CALL usuarios_cambiar_contrasena(?,?)', [id, contrasenaNueva])
     }
 }
 

@@ -1,0 +1,42 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+nav {
+    background-color: #20344d;
+}
+
+nav img {
+    width: 3%;
+    margin-top: 0.3%;
+    margin-left: 0.3%;
+    border-radius: 5px;
+}
+
+dialog {
+    width: 25%;
+    margin: auto;
+    padding: 3%;
+    border-radius: 5px;
+}
+
+dialog p {
+    text-align: center;
+    font-size: larger;
+    font-family: 'Cinzel';
+    font-weight: bold;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+dialog button {
+    display: block;
+    width: 50%;
+    padding: 3%;
+    font-family: 'Cinzel';
+    font-weight: bold;
+    margin: 3%;
+    margin-left: auto;
+    margin-right: auto;
+}
