@@ -33,7 +33,7 @@ const crearUsuario = async (req, res) => {
         })
 
         enviarCorreo({
-            from: 'IvstitiaLegal <cristian.valenciano@ulatina.net>',
+            from: `IvstitiaLegal <${process.env.EMAIL_USER}>`,
             to: `Nuevo Usuario <${correo}>`,
             subject: 'Nuevo Usuario IvstitiaLegal',
             text: `Bienvenido a la aplicación IvstitiaLegal \n
@@ -175,7 +175,7 @@ const restablecerContrasena = async (req, res) => {
         })
 
         enviarCorreo({
-            from: 'IvstitiaLegal <cristian.valenciano@ulatina.net>',
+            from: `IvstitiaLegal <${process.env.EMAIL_USER}>`,
             to: `Usuario <${correo}>`,
             subject: 'Recuperación de credenciales IvstitiaLegal',
             text: `Sus credenciales han sido recuperadas \n
