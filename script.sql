@@ -1,8 +1,6 @@
-CREATE DATABASE  IF NOT EXISTS `ivstitia_legal` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `ivstitia_legal`;
 -- MySQL dump 10.13  Distrib 8.0.31, for Win64 (x86_64)
 --
--- Host: 10.0.0.72    Database: ivstitia_legal
+-- Host: 192.168.100.157    Database: ivstitia_legal
 -- ------------------------------------------------------
 -- Server version	8.0.32
 
@@ -109,9 +107,13 @@ INSERT INTO `usuarios` VALUES (1,'cvalencianou@gmail.com','$2b$10$/XcCVn/0ho5DbI
 UNLOCK TABLES;
 
 --
+-- Dumping events for database 'ivstitia_legal'
+--
+
+--
 -- Dumping routines for database 'ivstitia_legal'
 --
-/*!50003 DROP PROCEDURE IF EXISTS `actualizar_cliente` */;
+/*!50003 DROP PROCEDURE IF EXISTS `clientes_actualizar` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -121,7 +123,7 @@ UNLOCK TABLES;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`%` PROCEDURE `actualizar_cliente`(par_cliente_id int, par_usuario_id int, par_nombre varchar(100), par_cedula varchar(15), par_correo varchar(45), par_numero_fisico varchar(15), par_numero_movil varchar(15), par_direccion varchar(200), par_tipo_cedula_id int)
+CREATE DEFINER=`root`@`%` PROCEDURE `clientes_actualizar`(par_cliente_id int, par_usuario_id int, par_nombre varchar(100), par_cedula varchar(15), par_correo varchar(45), par_numero_fisico varchar(15), par_numero_movil varchar(15), par_direccion varchar(200), par_tipo_cedula_id int)
 BEGIN
 UPDATE clientes
 SET usuario_id = par_usuario_id, nombre = par_nombre, cedula = par_cedula, correo = par_correo, numero_fisico = par_numero_fisico, numero_movil = par_numero_movil, direccion = par_direccion, usuario_id = par_usuario_id, tipo_cedula_id = par_tipo_cedula_id
@@ -132,7 +134,7 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `crear_cliente` */;
+/*!50003 DROP PROCEDURE IF EXISTS `clientes_filtrar` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -142,47 +144,51 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`%` PROCEDURE `crear_cliente`(par_nombre varchar(100), par_cedula varchar(15), par_correo varchar(45), par_numero_fisico varchar(15), par_numero_movil varchar(15), par_direccion varchar(200), par_usuario_id int, par_tipo_cedula_id int)
+CREATE DEFINER=`root`@`%` PROCEDURE `clientes_filtrar`(par_usuario_id int, par_dato_cliente varchar(200))
+BEGIN
+SELECT clientes.id, nombre, cedula, correo, numero_fisico, numero_movil, direccion, tipo_cedula_id FROM clientes 
+INNER JOIN tipo_cedula ON clientes.tipo_cedula_id = tipo_cedula.id
+WHERE usuario_id = par_usuario_id && (correo LIKE CONCAT('%', par_dato_cliente, '%') || cedula LIKE CONCAT('%', par_dato_cliente, '%') || nombre LIKE CONCAT('%', par_dato_cliente, '%') || numero_fisico LIKE CONCAT('%', par_dato_cliente, '%') || numero_movil LIKE CONCAT('%', par_dato_cliente, '%') || direccion LIKE CONCAT('%', par_dato_cliente, '%') || tipo_cedula_id LIKE CONCAT('%', par_dato_cliente, '%'));
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `clientes_obtener` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`%` PROCEDURE `clientes_obtener`(par_usuario_id int)
+BEGIN
+SELECT clientes.id, nombre, cedula, correo, numero_fisico, numero_movil, direccion, tipo_cedula_id, tipo FROM clientes 
+INNER JOIN tipo_cedula ON clientes.tipo_cedula_id = tipo_cedula.id
+WHERE usuario_id = par_usuario_id;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `cliente_crear` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`%` PROCEDURE `cliente_crear`(par_nombre varchar(100), par_cedula varchar(15), par_correo varchar(45), par_numero_fisico varchar(15), par_numero_movil varchar(15), par_direccion varchar(200), par_usuario_id int, par_tipo_cedula_id int)
 BEGIN
 INSERT INTO clientes(nombre, cedula, correo, numero_fisico, numero_movil, direccion, usuario_id, tipo_cedula_id) VALUES (par_nombre, par_cedula, par_correo, par_numero_fisico, par_numero_movil, par_direccion, par_usuario_id, par_tipo_cedula_id);
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `filtro_clientes` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`%` PROCEDURE `filtro_clientes`(par_usuario_id int, par_dato_cliente varchar(200))
-BEGIN
-SELECT nombre, cedula, correo, numero_fisico, numero_movil, direccion, tipo_cedula_id FROM clientes WHERE usuario_id = par_usuario_id && (correo LIKE CONCAT('%', par_dato_cliente, '%') || cedula LIKE CONCAT('%', par_dato_cliente, '%') || nombre LIKE CONCAT('%', par_dato_cliente, '%') || numero_fisico LIKE CONCAT('%', par_dato_cliente, '%') || numero_movil LIKE CONCAT('%', par_dato_cliente, '%') || direccion LIKE CONCAT('%', par_dato_cliente, '%') || tipo_cedula_id LIKE CONCAT('%', par_dato_cliente, '%'));
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `obtener_clientes` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`%` PROCEDURE `obtener_clientes`(par_usuario_id int)
-BEGIN
-SELECT nombre, cedula, correo, numero_fisico, numero_movil, direccion, tipo_cedula_id FROM clientes WHERE usuario_id = par_usuario_id;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -408,4 +414,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-02-13 17:31:55
+-- Dump completed on 2023-02-14 12:39:11
