@@ -8,7 +8,6 @@
     <title>Iniciar sesión - IvstitiaLegal</title>
     <link rel="stylesheet" href="stylesheets/iniciarSesion.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cinzel">
-    <script src="javascripts/iniciarSesion.js"></script>
 </head>
 
 <body>
@@ -19,17 +18,18 @@
     </header>
     <main>
         <h1>Iniciar Sesión</h1>
-        <form onsubmit="iniciarSesion(); return false">
+        <form id="form-iniciar-sesion">
             <input type="email" id="correo" placeholder="Correo electrónico" required>
             <input type="password" id="contrasena" placeholder="Contraseña" minlength="8" required>
             <input type="submit" value="Iniciar Sesión">
         </form>
         <a href="restablecer-contrasena.html">¿Olvidaste contraseña?</a>
         <dialog id="dialogo">
-            <p id="error"></p>
+            <p id="mensaje"></p>
             <button id="cerrar">CERRAR</button>
         </dialog>
     </main>
+    <script src="javascripts/iniciarSesion.js"></script>
 </body>
 
 </html>

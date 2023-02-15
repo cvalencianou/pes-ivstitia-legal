@@ -25,7 +25,8 @@ const verificarJWT = async (req, res, next) => {
                 administrador: decoded.administrador
             }
             next()
-        } else {
+        }
+        else {
             throw new httpError(StatusCodes.UNAUTHORIZED, 'JWT NO VÁLIDO')
         }
     })
@@ -37,7 +38,8 @@ const verificarAdministrador = async (req, res, next) => {
 
     if ((await usuario.verificarAdministrador(req.user.id))[0][0]['administrador'] === 1 && req.user['administrador'] === 1) {
         next()
-    } else {
+    }
+    else {
         throw new httpError(StatusCodes.UNAUTHORIZED, 'SOLO ADMINISTRADORES')
     }
 }

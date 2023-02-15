@@ -1,15 +1,15 @@
-window.onload = () => {
-    const dialogo = document.getElementById('dialogo')
-    const cerrar = document.getElementById('cerrar')
+document.getElementById('cerrar').addEventListener('click', () => {
+    document.getElementById('dialogo').close()
+    document.getElementById('contrasena').value = ''
+})
 
-    cerrar.addEventListener('click', () => {
-        dialogo.close()
-        document.getElementById('contrasena').value = ''
-    })
-}
-
+document.getElementById('form-iniciar-sesion').addEventListener('submit', (event) => {
+    event.preventDefault()
+    iniciarSesion()
+})
 
 const iniciarSesion = async () => {
+
     const correo = document.getElementById('correo').value
     const contrasena = document.getElementById('contrasena').value
 
@@ -37,15 +37,14 @@ const iniciarSesion = async () => {
         case 307:
             sessionStorage.setItem('correo', correo)
             window.location.assign('/cambiar-contrasena.html')
-        break;
+            break;
         default:
             document.getElementById('correo').style.borderColor = 'red'
             document.getElementById('contrasena').style.borderColor = 'red'
-            document.getElementById('error').innerHTML = data.mensaje
+            document.getElementById('mensaje').innerHTML = data.mensaje
             document.getElementById('dialogo').showModal()
             break;
     }
-
 }
 
 

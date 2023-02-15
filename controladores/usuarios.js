@@ -39,7 +39,7 @@ const crearUsuario = async (req, res) => {
             text: `Bienvenido a la aplicación IvstitiaLegal \n
             Sus credenciales son: \n
             Correo electrónico: ${correo} \n
-            Contraseña: ${contrasena} \n
+            Contraseña temporal: ${contrasena} \n
             Ingrese a través del siguiente enlace ${process.env.APP_LINK}`
         })
     }
@@ -181,7 +181,7 @@ const restablecerContrasena = async (req, res) => {
             text: `Sus credenciales han sido recuperadas \n
             Sus credenciales son: \n
             Correo electrónico: ${correo} \n
-            Contraseña: ${contrasena} \n
+            Contraseña temporal: ${contrasena} \n
             Ingrese a través del siguiente enlace ${process.env.APP_LINK}`
         })
     }
@@ -216,4 +216,25 @@ const cambiarContrasena = async (req, res) => {
     }
 }
 
-module.exports = { crearUsuario, iniciarSesion, cerrarSesion, obtenerUsuarios, actualizarUsuario, restablecerContrasena, cambiarContrasena }
+const eliminarUsuario = async (req, res) => {
+
+    const { id } = req.params
+
+    if (!id || isNaN(id)) {
+        throw new httpError(StatusCodes.BAD_REQUEST, 'POR FAVOR BRINDAR VALORES VÁLIDOS')
+    }
+
+    const usuario = new Usuario()
+
+    if ((await usuario.buscarPorId(id))[0].length !== 1) {
+        throw new httpError(StatusCodes.NOT_FOUND, 'NO EXISTE USUARIO')
+    }
+
+    if ((await usuario.eliminarPorId(id)).affectedRows === 1) {
+        res.status(StatusCodes.OK).json({
+            mensaje: 'USUARIO ELIMINADO'
+        })
+    }
+}
+
+module.exports = { crearUsuario, iniciarSesion, cerrarSesion, obtenerUsuarios, actualizarUsuario, restablecerContrasena, cambiarContrasena, eliminarUsuario }

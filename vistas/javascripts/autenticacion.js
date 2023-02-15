@@ -1,5 +1,9 @@
 window.onload = async () => {
     validarRol()
+
+    document.getElementById('cerrar-sesion').addEventListener('click', () => {
+        cerrarSesion()
+    })
 }
 
 window.onpageshow = async () => {
@@ -49,7 +53,7 @@ const validarRol = async () => {
         <a href=""><button>CLIENTES</button></a>
         <a href="administrar-calculos.html"><button>ADMINISTRAR CÁLCULOS</button></a>
         <a href="administrar-usuarios.html"><button>ADMINISTRAR USUARIOS</button></a>
-        <a><button onclick="cerrarSesion()">CERRAR SESIÓN</button></a>
+        <a><button id="cerrar-sesion"">CERRAR SESIÓN</button></a>
         `
         document.getElementById('enlaces').innerHTML = enlaces
     }
@@ -59,7 +63,7 @@ const validarRol = async () => {
         <a href="calculos.html"><button>CÁLCULOS</button></a>
         <a href=""><button>CASOS</button></a>
         <a href=""><button>CLIENTES</button></a>
-        <a><button onclick="cerrarSesion()">CERRAR SESIÓN</button></a>
+        <a><button id="cerrar-sesion"">CERRAR SESIÓN</button></a>
         `
         document.getElementById('enlaces').innerHTML = enlaces
     }

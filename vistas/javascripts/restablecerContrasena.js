@@ -1,4 +1,5 @@
 window.onload = () => {
+
     const dialogo = document.getElementById('dialogo')
     const cerrar = document.getElementById('cerrar')
 
@@ -9,6 +10,7 @@ window.onload = () => {
 }
 
 const restablecerContrasena = async () => {
+
     const correo = document.getElementById('correo').value
 
     const resultado = await fetch('/api/v1/usuarios/auth/restablecer',
@@ -35,5 +37,4 @@ const restablecerContrasena = async () => {
             document.getElementById('dialogo').showModal()
             break;
     }
-
 }

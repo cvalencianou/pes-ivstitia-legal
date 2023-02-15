@@ -17,6 +17,42 @@
             <nav id="enlaces"></nav>
         </nav>
     </header>
+    <main id="main-administrar-usuarios">
+        <h1>Administración de usuarios</h1>
+        <section>
+            <h2>Crear nuevo usuario</h2>
+            <button id="nuevo">Nuevo</button>
+            <dialog id="crear-usuario">
+                <form id="form-nuevo-usuario">
+                    <input type="email" id="nuevo-correo" required>
+                    <button type="submit">Enviar</button>
+                    <button id="cerrar" type="button">Cerrar</button>
+                </form>
+            </dialog>
+        </section>
+        <section>
+            <h2>Usuarios</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Correo</th>
+                        <th>Administrador</th>
+                        <th>Tareas</th>
+                    </tr>
+                </thead>
+                <tbody id="tabla-usuarios">
+
+                </tbody>
+                <dialog id="dialogo">
+                    <p id="mensaje"></p>
+                    <button id="cerrar-tabla">CERRAR</button>
+                </dialog>
+            </table>
+
+        </section>
+    </main>
+    <script src="javascripts/administrarUsuarios.js"></script>
 </body>
 
 </html>

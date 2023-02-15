@@ -42,6 +42,10 @@ class Usuario {
     async cambiarContrasena(id, contrasenaNueva) {
         return await executePreparedStatement('CALL usuarios_cambiar_contrasena(?,?)', [id, contrasenaNueva])
     }
+
+    async eliminarPorId(id) {
+        return await executePreparedStatement('CALL usuarios_eliminar_por_id(?)', [id])
+    }
 }
 
 module.exports = Usuario

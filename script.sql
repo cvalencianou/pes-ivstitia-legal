@@ -2,7 +2,7 @@ CREATE DATABASE  IF NOT EXISTS `ivstitia_legal` /*!40100 DEFAULT CHARACTER SET u
 USE `ivstitia_legal`;
 -- MySQL dump 10.13  Distrib 8.0.31, for Win64 (x86_64)
 --
--- Host: 192.168.100.157    Database: ivstitia_legal
+-- Host: 10.0.0.72    Database: ivstitia_legal
 -- ------------------------------------------------------
 -- Server version	8.0.32
 
@@ -95,7 +95,7 @@ CREATE TABLE `usuarios` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   UNIQUE KEY `correo_electronico_UNIQUE` (`correo`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -107,10 +107,6 @@ LOCK TABLES `usuarios` WRITE;
 INSERT INTO `usuarios` VALUES (1,'cvalencianou@gmail.com','$2b$10$/XcCVn/0ho5DbIqBgEnOcu7gv6CPJJKGvVRSp.o0/odQ6HkN97Goe',1,1),(3,'pfallas99@gmail.com','$2b$10$cAX98n8RSKxU7BS6fFBzQOSzsz.aHkLyHapgLEcaX0e2ZqiMPyihO',1,1);
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Dumping events for database 'ivstitia_legal'
---
 
 --
 -- Dumping routines for database 'ivstitia_legal'
@@ -273,6 +269,26 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `usuarios_eliminar_por_id` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`%` PROCEDURE `usuarios_eliminar_por_id`(par_id INT)
+BEGIN
+DELETE FROM clientes WHERE usuario_id = par_id;
+DELETE FROM usuarios WHERE id = par_id;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `usuarios_iniciar_sesion` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -406,6 +422,46 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `usuario_eliminar_por_id` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`%` PROCEDURE `usuario_eliminar_por_id`(par_id INT)
+BEGIN
+DELETE FROM clientes WHERE usuario_id = par_id;
+DELETE FROM usuarios WHERE id = par_id;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `usuario_eliminar_usuario` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb3 */ ;
+/*!50003 SET character_set_results = utf8mb3 */ ;
+/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`%` PROCEDURE `usuario_eliminar_usuario`(par_id INT)
+BEGIN
+DELETE FROM clientes WHERE usuario_id = par_id;
+DELETE FROM usuarios WHERE id = par_id;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -416,4 +472,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-02-14 13:18:37
+-- Dump completed on 2023-02-15 13:14:37
