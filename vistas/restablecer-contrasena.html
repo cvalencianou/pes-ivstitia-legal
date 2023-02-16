@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Restablecer Contraseña - IvstitiaLegal</title>
     <link rel="stylesheet" href="stylesheets/restablecerContrasena.css">
-    <script src="javascripts/restablecerContrasena.js"></script>
+    <link rel="stylesheet" href="stylesheets/general.css">    
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cinzel">
 </head>
 
@@ -19,15 +19,16 @@
     </header>
     <main>
         <h1>Restablecer contraseña</h1>
-        <form onsubmit="restablecerContrasena(); return false">
+        <form id="form-restablecer-contrasena">
             <input type="email" id="correo" placeholder="Correo electrónico" required>
-            <button>Restablecer</button>
+            <input type="submit" value="Restablecer">
         </form>
         <dialog id="dialogo">
             <p id="error"></p>
             <button id="cerrar">CERRAR</button>
         </dialog>
     </main>
+    <script src="javascripts/restablecerContrasena.js"></script>
 </body>
 
 </html>

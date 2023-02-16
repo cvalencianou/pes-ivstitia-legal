@@ -1,19 +1,43 @@
-document.getElementById('nuevo').addEventListener('click', () => {
-    document.getElementById('crear-usuario').showModal();
-})
+window.onpageshow = async () => {
 
-document.getElementById('cerrar').addEventListener('click', () => {
-    document.getElementById('crear-usuario').close()
-})
+    document.getElementById('form-nuevo-usuario').addEventListener('submit', (event) => {
+        event.preventDefault()
+        registrarUsuario()
+    })
 
-document.getElementById('form-nuevo-usuario').addEventListener('submit', (event) => {
-    event.preventDefault()
-    registrarUsuario()
-})
+    document.getElementById('cerrar-dialogo-nuevo-usuario').addEventListener('click', () => {
+        document.getElementById('dialogo-nuevo-usuario').close()
+    })
 
-document.getElementById('cerrar-tabla').addEventListener('click', () => {
-    document.getElementById('dialogo').close()
-})
+    document.getElementById('cerrar-tabla-usuarios').addEventListener('click', () => {
+        document.getElementById('dialogo-tabla-usuarios').close()
+    })
+
+    document.getElementById('tabla-usuarios').addEventListener('click', (event) => {
+
+        if (event.target.type !== 'submit') {
+            return
+        }
+        if (event.target.innerHTML === 'Actualizar') {
+            actualizarUsuario(event.target.value)
+        }
+        else if (event.target.innerHTML === 'Eliminar') {
+
+            document.getElementById('eliminar-tabla-usuarios').addEventListener('click', () => {
+                eliminarUsuario(event.target.value)
+                document.getElementById('dialogo-eliminar-tabla-usuarios').close()
+            })
+
+            document.getElementById('eliminar-cancelar-tabla-usuarios').addEventListener('click', () => {
+                document.getElementById('dialogo-eliminar-tabla-usuarios').close()
+            })
+
+            document.getElementById('dialogo-eliminar-tabla-usuarios').showModal()
+        }
+    })
+
+    obtenerUsuarios()
+}
 
 const registrarUsuario = async () => {
 
@@ -34,19 +58,16 @@ const registrarUsuario = async () => {
 
     switch (status) {
         case 201:
-            document.getElementById('crear-usuario').innerHTML = data.mensaje +
-                `<button id="cerrar" type="button">Cerrar</button>`
-            document.getElementById('cerrar').addEventListener('click', () => {
-                document.getElementById('crear-usuario').close()
-            })
+            document.getElementById('nuevo-correo').value = ''
+            document.getElementById('mensaje-dialogo-nuevo-usuario').innerHTML = data.mensaje
+            document.getElementById('dialogo-nuevo-usuario').showModal()
+            obtenerUsuarios()
             break;
 
         default:
-            document.getElementById('crear-usuario').innerHTML = data.mensaje +
-                `<button id="cerrar" type="button">Cerrar</button>`
-            document.getElementById('cerrar').addEventListener('click', () => {
-                document.getElementById('crear-usuario').close()
-            })
+            document.getElementById('nuevo-correo').style.borderColor = 'red'
+            document.getElementById('mensaje-dialogo-nuevo-usuario').innerHTML = data.mensaje
+            document.getElementById('dialogo-nuevo-usuario').showModal()
             break;
     }
 }
@@ -66,8 +87,8 @@ const obtenerUsuarios = async () => {
                 datosTabla +=
                     `
                 <tr id="${usuario.id}">
-                    <td>${usuario.id}</td>
-                    <td contenteditable="true">${usuario.correo}</td>
+                    <td class="id-usuario">${usuario.id}</td>
+                    <td class="correo-usuario" contenteditable="true">${usuario.correo}</td>
                     </td>
                     <td>
                         <select name="select-administrador" id="select-administrador">
@@ -91,21 +112,6 @@ const obtenerUsuarios = async () => {
     }
 }
 
-obtenerUsuarios()
-
-document.getElementById('tabla-usuarios').addEventListener('click', (event) => {
-
-    if (event.target.type !== 'submit') {
-        return
-    }
-    if (event.target.innerHTML === 'Actualizar') {
-        actualizarUsuario(event.target.value)
-    }
-    else if (event.target.innerHTML === 'Eliminar') {
-        eliminarUsuario(event.target.value)
-    }
-})
-
 const actualizarUsuario = async (id) => {
 
     const fila = document.getElementById(id)
@@ -128,13 +134,14 @@ const actualizarUsuario = async (id) => {
 
     switch (status) {
         case 200:
-            document.getElementById('mensaje').innerHTML = data.mensaje
-            document.getElementById('dialogo').showModal()
+            document.getElementById('mensaje-dialogo-tabla-usuarios').innerHTML = data.mensaje
+            document.getElementById('dialogo-tabla-usuarios').showModal()
+            obtenerUsuarios()
             break;
 
         default:
-            document.getElementById('mensaje').innerHTML = data.mensaje
-            document.getElementById('dialogo').showModal()
+            document.getElementById('mensaje-dialogo-tabla-usuarios').innerHTML = data.mensaje
+            document.getElementById('dialogo-tabla-usuarios').showModal()
             obtenerUsuarios()
             break;
     }
@@ -151,14 +158,14 @@ const eliminarUsuario = async (id) => {
 
     switch (status) {
         case 200:
-            document.getElementById('mensaje').innerHTML = data.mensaje
-            document.getElementById('dialogo').showModal()
+            document.getElementById('mensaje-dialogo-tabla-usuarios').innerHTML = data.mensaje
+            document.getElementById('dialogo-tabla-usuarios').showModal()
             obtenerUsuarios()
             break;
 
         default:
-            document.getElementById('mensaje').innerHTML = data.mensaje
-            document.getElementById('dialogo').showModal()
+            document.getElementById('mensaje-dialogo-tabla-usuarios').innerHTML = data.mensaje
+            document.getElementById('dialogo-tabla-usuarios').showModal()
             break;
     }
 }

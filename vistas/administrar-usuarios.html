@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -7,7 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Administrar Usuarios - IvstitiaLegal</title>
     <link rel="stylesheet" href="stylesheets/administrarUsuarios.css">
+    <link rel="stylesheet" href="stylesheets/general.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cinzel">
     <script src="javascripts/autenticacion.js"></script>
+    <script src="javascripts/administrarUsuarios.js"></script>
 </head>
 
 <body>
@@ -21,38 +24,43 @@
         <h1>Administración de usuarios</h1>
         <section>
             <h2>Crear nuevo usuario</h2>
-            <button id="nuevo">Nuevo</button>
-            <dialog id="crear-usuario">
-                <form id="form-nuevo-usuario">
-                    <input type="email" id="nuevo-correo" required>
-                    <button type="submit">Enviar</button>
-                    <button id="cerrar" type="button">Cerrar</button>
-                </form>
+            <form id="form-nuevo-usuario">
+                <input type="email" id="nuevo-correo" placeholder="Correo electrónico" required>
+                <input type="submit" value="Crear usuario">
+            </form>
+            <dialog id="dialogo-nuevo-usuario" class="dialogo-nuevo-usuario">
+                <p id="mensaje-dialogo-nuevo-usuario"></p>
+                <button id="cerrar-dialogo-nuevo-usuario">CERRAR</button>
             </dialog>
         </section>
         <section>
             <h2>Usuarios</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Correo</th>
-                        <th>Administrador</th>
-                        <th>Tareas</th>
-                    </tr>
-                </thead>
-                <tbody id="tabla-usuarios">
+            <div class="tabla-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Correo</th>
+                            <th>Administrador</th>
+                            <th>Tareas</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla-usuarios">
 
-                </tbody>
-                <dialog id="dialogo">
-                    <p id="mensaje"></p>
-                    <button id="cerrar-tabla">CERRAR</button>
+                    </tbody>
+                </table>
+                <dialog id="dialogo-tabla-usuarios" class="dialogo-tabla-usuarios">
+                    <p id="mensaje-dialogo-tabla-usuarios"></p>
+                    <button id="cerrar-tabla-usuarios">CERRAR</button>
                 </dialog>
-            </table>
-
+                <dialog id="dialogo-eliminar-tabla-usuarios" class="dialogo-tabla-usuarios">
+                    <p>¿Está seguro que desea eliminar usuario?</p>
+                    <button id="eliminar-tabla-usuarios">ELIMINAR</button>
+                    <button id="eliminar-cancelar-tabla-usuarios">CANCELAR</button>
+                </dialog>
+            </div>
         </section>
     </main>
-    <script src="javascripts/administrarUsuarios.js"></script>
 </body>
 
 </html>

@@ -1,17 +1,30 @@
-* {
-    margin: 0;
-    padding: 0;
+main {
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10%;
 }
 
-nav {
-    background-color: #20344d;
+h1 {
+    text-align: center;
+    font-family: 'Cinzel';
+    font-size: 1.5vw;
 }
 
-nav img {
-    width: 3%;
-    margin-top: 0.3%;
-    margin-left: 0.3%;
-    border-radius: 5px;
+form input {
+    width: 70%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    padding: 3%;
+    box-sizing: border-box;
+    font-size: 1.2vw;
+}
+
+form input[type='submit'] {
+    font-family: 'Cinzel';
 }
 
 dialog {
@@ -39,4 +52,49 @@ dialog button {
     margin: 3%;
     margin-left: auto;
     margin-right: auto;
+}
+
+@media only screen and (max-width: 1000px) {
+    main {
+        width: 70%;
+        margin-top: 18%;
+    }
+
+    h1 {
+        font-size: 3vw;
+    }
+
+    form input {
+        font-size: 3vw;
+        padding: 2%;
+    }
+
+    dialog {
+        width: 40%;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    main {
+        width: 90%;
+        margin-top: 28%;
+    }
+
+    h1 {
+        font-size: 7vw;
+    }
+
+    form input {
+        width: 80%;
+        font-size: 5vw;
+        padding: 5%;
+    }
+
+    dialog {
+        width: 80%;
+    }
+
+    dialog p {
+        font-size: 5vw;
+    }
 }

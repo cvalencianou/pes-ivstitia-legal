@@ -1,12 +1,18 @@
-document.getElementById('cerrar').addEventListener('click', () => {
-    document.getElementById('dialogo').close()
-    document.getElementById('contrasena').value = ''
-})
+window.onpageshow = async () => {
+    if (sessionStorage.getItem('autenticado') && sessionStorage.getItem('administrador')) {
+        window.location.replace('inicio')
+    }
 
-document.getElementById('form-iniciar-sesion').addEventListener('submit', (event) => {
-    event.preventDefault()
-    iniciarSesion()
-})
+    document.getElementById('cerrar').addEventListener('click', () => {
+        document.getElementById('dialogo').close()
+        document.getElementById('contrasena').value = ''
+    })
+
+    document.getElementById('form-iniciar-sesion').addEventListener('submit', (event) => {
+        event.preventDefault()
+        iniciarSesion()
+    })
+}
 
 const iniciarSesion = async () => {
 

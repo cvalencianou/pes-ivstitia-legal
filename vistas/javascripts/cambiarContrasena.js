@@ -1,3 +1,15 @@
+window.onpageshow = async () => {
+
+    if (!sessionStorage.getItem('correo')) {
+        window.location.replace('iniciar-sesion')
+    }
+
+    document.getElementById('form-cambiar-contrasena').addEventListener('submit', (event) => {
+        event.preventDefault()
+        cambiarContrasena()
+    })
+}
+
 const cambiarContrasena = async () => {
 
     const correo = sessionStorage.getItem('correo')

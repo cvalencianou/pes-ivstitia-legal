@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cambiar Contraseña - IvstitiaLegal</title>
     <link rel="stylesheet" href="stylesheets/cambiarContrasena.css">
+    <link rel="stylesheet" href="stylesheets/general.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cinzel">
     <script src="javascripts/cambiarContrasena.js"></script>
 </head>
 
@@ -18,15 +20,15 @@
     </header>
     <main>
         <h1>Cambiar contraseña</h1>
-        <form onsubmit="cambiarContrasena(); return false">
-            <label for="contrasena-actual">Ingrese contraseña actual</label>
+        <form id="form-cambiar-contrasena">
+            <label for="contrasena-actual">Ingrese contraseña temporal</label>
             <input type="password" name="contrasena-actual" id="contrasena-actual" placeholder="Contraseña actual"
                 minlength="8" maxlength="60" required>
             <label for="contrasena-nueva">Ingrese contraseña nueva</label>
             <input type="password" name="contrasena-nueva" id="contrasena-nueva" placeholder="Contraseña nueva"
                 minlength="8" maxlength="60" required>
-            <button>Cambiar contraseña</button>
-        </form>
+            <input type="submit" value="Cambiar">
+        </form> 
         <dialog id="dialogo">
             <p id="error"></p>
             <button id="cerrar">CERRAR</button>

@@ -1,17 +1,40 @@
-* {
-    margin: 0;
-    padding: 0;
+main {
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5%;
 }
 
-nav {
-    background-color: #20344d;
+h1 {
+    font-family: 'Cinzel';
+    font-size: 2vw;
+    text-align: center;
+    margin-bottom: 10%;
 }
 
-nav img {
-    width: 3%;
-    margin-top: 0.3%;
-    margin-left: 0.3%;
-    border-radius: 5px;
+form label {
+    font-family: 'Cinzel';
+    font-size: 1.8vw;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+form input {
+    width: 70%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    padding: 3%;
+    box-sizing: border-box;
+    font-size: 1.2vw;
+}
+
+form input[type='submit'] {
+    font-family: 'Cinzel';
 }
 
 dialog {
@@ -32,11 +55,80 @@ dialog p {
 
 dialog button {
     display: block;
-    width: 50%;
+    width: 60%;
     padding: 3%;
     font-family: 'Cinzel';
     font-weight: bold;
     margin: 3%;
     margin-left: auto;
     margin-right: auto;
+}
+
+@media only screen and (max-width: 1000px) {
+    main {
+        width: 70%;
+        margin-top: 10%;
+    }
+
+    h1 {
+        font-size: 3vw;
+        margin-bottom: 15%;
+    }
+
+    form label {
+        font-size: 3vw;
+    }
+
+    form input {
+        font-size: 3vw;
+        padding: 2%;
+    }
+
+    dialog {
+        width: 50%;
+    }
+
+    dialog p {
+        padding: 5%;
+        font-size: 3.5vw;
+    }
+
+    dialog button {
+        width: 70%;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    main {
+        width: 90%;
+        margin-top: 15%;
+    }
+
+    h1 {
+        font-size: 7vw;
+        margin-bottom: 20%;
+    }
+
+    form input {
+        width: 90%;
+        font-size: 5vw;
+        padding: 5%;
+    }
+
+    form label {
+        font-size: 5vw;
+    }
+
+    dialog {
+        width: 80%;
+    }
+
+    dialog p {
+        padding: 5%;
+        font-size: 5vw;
+    }
+
+    dialog button {
+        width: 80%;
+    }
 }
