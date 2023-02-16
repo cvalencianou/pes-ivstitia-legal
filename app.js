@@ -9,7 +9,9 @@ const clientes = require('./rutas/clientes')
 
 app.use(express.json())
 app.use(cookieParser(String(process.env.COOKIE_SECRET)))
-app.use(express.static('./vistas'))
+app.use(express.static('./vistas', {
+    extensions: ['html']
+}))
 
 app.use('/api/v1/usuarios', usuarios)
 app.use('/api/v1/calculos', calculos)

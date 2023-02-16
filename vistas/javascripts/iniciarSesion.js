@@ -32,11 +32,11 @@ const iniciarSesion = async () => {
         case 200:
             sessionStorage.setItem('autenticado', data.autenticado)
             sessionStorage.setItem('administrador', data.administrador)
-            window.location.replace('inicio.html')
+            window.location.replace('inicio')
             break;
         case 307:
             sessionStorage.setItem('correo', correo)
-            window.location.assign('/cambiar-contrasena.html')
+            window.location.assign('/cambiar-contrasena')
             break;
         default:
             document.getElementById('correo').style.borderColor = 'red'

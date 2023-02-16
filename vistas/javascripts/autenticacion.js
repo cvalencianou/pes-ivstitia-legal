@@ -27,13 +27,13 @@ const cerrarSesion = async () => {
         method: 'GET'
     })
 
-    window.location.replace('iniciar-sesion.html')
+    window.location.replace('iniciar-sesion')
 }
 
 const validarSesion = async () => {
 
     if (!sessionStorage.getItem('autenticado') || sessionStorage.getItem('autenticado') != 'true') {
-        window.location.replace('iniciar-sesion.html')
+        window.location.replace('iniciar-sesion')
     }
 }
 
@@ -42,17 +42,17 @@ const validarRol = async () => {
     const tipoUsuario = sessionStorage.getItem('administrador')
 
     if (!tipoUsuario) {
-        return window.location.replace('iniciar-sesion.html')
+        return window.location.replace('iniciar-sesion')
     }
 
     if (Number(tipoUsuario) === 1) {
         const enlaces =
             `
-        <a href="calculos.html"><button>CÁLCULOS</button></a>
+        <a href="calculos"><button>CÁLCULOS</button></a>
         <a href=""><button>CASOS</button></a>
         <a href=""><button>CLIENTES</button></a>
-        <a href="administrar-calculos.html"><button>ADMINISTRAR CÁLCULOS</button></a>
-        <a href="administrar-usuarios.html"><button>ADMINISTRAR USUARIOS</button></a>
+        <a href="administrar-calculos"><button>ADMINISTRAR CÁLCULOS</button></a>
+        <a href="administrar-usuarios"><button>ADMINISTRAR USUARIOS</button></a>
         <a><button id="cerrar-sesion"">CERRAR SESIÓN</button></a>
         `
         document.getElementById('enlaces').innerHTML = enlaces
@@ -60,7 +60,7 @@ const validarRol = async () => {
     else {
         const enlaces =
             `
-        <a href="calculos.html"><button>CÁLCULOS</button></a>
+        <a href="calculos"><button>CÁLCULOS</button></a>
         <a href=""><button>CASOS</button></a>
         <a href=""><button>CLIENTES</button></a>
         <a><button id="cerrar-sesion"">CERRAR SESIÓN</button></a>

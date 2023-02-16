@@ -5,7 +5,7 @@ window.onload = () => {
 
     cerrar.addEventListener('click', () => {
         dialogo.close()
-        window.location.replace('iniciar-sesion.html')
+        window.location.replace('iniciar-sesion')
     })
 }
 

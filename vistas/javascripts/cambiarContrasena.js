@@ -27,7 +27,7 @@ const cambiarContrasena = async () => {
             sessionStorage.removeItem('correo')
             cerrar.onclick = () => {
                 dialogo.close()
-                window.location.replace('/iniciar-sesion.html')
+                window.location.replace('/iniciar-sesion')
             }
             document.getElementById('error').innerHTML = data.mensaje
             document.getElementById('dialogo').showModal()
