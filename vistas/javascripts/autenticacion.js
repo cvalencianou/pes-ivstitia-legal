@@ -50,7 +50,7 @@ const validarRol = async () => {
             `
         <a href="calculos"><button>CÁLCULOS</button></a>
         <a href=""><button>CASOS</button></a>
-        <a href=""><button>CLIENTES</button></a>
+        <a href="clientes"><button>CLIENTES</button></a>
         <a href="administrar-calculos"><button>ADMINISTRAR CÁLCULOS</button></a>
         <a href="administrar-usuarios"><button>ADMINISTRAR USUARIOS</button></a>
         <a><button id="cerrar-sesion"">CERRAR SESIÓN</button></a>
@@ -62,7 +62,7 @@ const validarRol = async () => {
             `
         <a href="calculos"><button>CÁLCULOS</button></a>
         <a href=""><button>CASOS</button></a>
-        <a href=""><button>CLIENTES</button></a>
+        <a href="clientes"><button>CLIENTES</button></a>
         <a><button id="cerrar-sesion"">CERRAR SESIÓN</button></a>
         `
         document.getElementById('enlaces').innerHTML = enlaces
