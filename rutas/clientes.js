@@ -1,10 +1,10 @@
 const express = require('express')
 const router = express.Router()
 const { verificarJWT } = require('../middleware/autenticacion')
-const { obtenerClientes, filtro, crearCliente, actualizarCliente } = require('../controladores/clientes')
+const { obtenerClientes, filtrarClientes, crearCliente, actualizarCliente } = require('../controladores/clientes')
 
 router.get('/', verificarJWT, obtenerClientes)
-router.get('/filter', verificarJWT, filtro)
+router.get('/filtro', verificarJWT, filtrarClientes)
 router.post('/', verificarJWT, crearCliente)
 router.put('/', verificarJWT, actualizarCliente)
 
