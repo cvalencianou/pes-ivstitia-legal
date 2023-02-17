@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,7 +9,9 @@
     <link rel="stylesheet" href="stylesheets/clientes.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cinzel">
     <script src="javascripts/autenticacion.js"></script>
+    <script src="javascripts/clientes.js"></script>
 </head>
+
 <body>
     <header>
         <nav>
@@ -16,6 +19,12 @@
             <nav id="enlaces"></nav>
         </nav>
     </header>
-    <button onclick="window.location.href = 'cliente-crear'">CREAR CLIENTE</button>
+    <a href="crear-cliente"><button>CREAR CLIENTE</button></a>
+
+    <main>
+        <ul id="lista-clientes">
+        </ul>
+    </main>
 </body>
+
 </html>
