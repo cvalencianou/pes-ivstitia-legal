@@ -5,8 +5,8 @@ class Acto {
     id
     nombre
 
-    async obtenerTodos() {
-        return await executePreparedStatement('CALL actos_obtener_todos()', [])
+    async obtenerPorIdRegistro(id) {
+        return await executePreparedStatement('CALL actos_obtener_por_id_registro(?)', [id])
     }
 }
 

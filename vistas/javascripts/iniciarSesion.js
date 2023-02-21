@@ -1,4 +1,5 @@
 window.onpageshow = async () => {
+
     if (sessionStorage.getItem('autenticado') && sessionStorage.getItem('administrador')) {
         window.location.replace('inicio')
     }
@@ -21,7 +22,6 @@ const iniciarSesion = async () => {
 
     const resultado = await fetch('/api/v1/usuarios/auth', {
         method: 'POST',
-        redirect: 'follow',
         headers: {
             'Content-Type': 'application/json'
         },
@@ -31,25 +31,22 @@ const iniciarSesion = async () => {
         })
     })
 
-    const status = resultado.status
-    const data = await resultado.json()
+    const datos = await resultado.json()
 
-    switch (status) {
-        case 200:
-            sessionStorage.setItem('autenticado', data.autenticado)
-            sessionStorage.setItem('administrador', data.administrador)
-            window.location.replace('inicio')
-            break;
-        case 307:
-            sessionStorage.setItem('correo', correo)
-            window.location.assign('/cambiar-contrasena')
-            break;
-        default:
-            document.getElementById('correo').style.borderColor = 'red'
-            document.getElementById('contrasena').style.borderColor = 'red'
-            document.getElementById('mensaje').innerHTML = data.mensaje
-            document.getElementById('dialogo').showModal()
-            break;
+    if (resultado.status === 200) {
+        sessionStorage.setItem('autenticado', datos.autenticado)
+        sessionStorage.setItem('administrador', datos.administrador)
+        window.location.replace('inicio')
+    }
+    else if (resultado.status === 307) {
+        sessionStorage.setItem('correo', correo)
+        window.location.assign('/cambiar-contrasena')
+    }
+    else {
+        document.getElementById('correo').style.borderColor = 'red'
+        document.getElementById('contrasena').style.borderColor = 'red'
+        document.getElementById('mensaje').innerHTML = datos.mensaje
+        document.getElementById('dialogo').showModal()
     }
 }
 

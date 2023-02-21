@@ -45,6 +45,18 @@ main a {
     text-align: center;
     font-size: 1.3vw;
     font-family: 'Cinzel';
+    text-decoration: none;
+}
+
+main a,
+main a:visited,
+main a:hover,
+main a:active {
+    color: inherit;
+}
+
+main a:hover {
+    font-weight: bold;
 }
 
 dialog {

@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="stylesheets/calculos.css">
     <link rel="stylesheet" href="stylesheets/general.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cinzel">
+    <script src="javascripts/calculos.js"></script>
     <script src="javascripts/autenticacion.js"></script>
 </head>
 
@@ -22,7 +23,7 @@
     <main>
         <h1>Cálculos</h1>
         <section id="calculos" class="calculos">
-            <form action="">
+            <form id="form-calculos">
                 <label for="registros">Seleccione registro</label>
                 <select name="registros" id="registros"></select>
                 <label for="actos">Seleccione acto</label>
@@ -31,6 +32,10 @@
                 <input type="number" id="monto-calculo" required>
                 <input type="submit" value="Calcular">
             </form>
+            <dialog id="dialogo">
+                <p id="mensaje"></p>
+                <button id="cerrar">Cerrar</button>
+            </dialog>
         </section><section id="resultados" class="resultados">
             <h2>Resultado</h2>
         </section>

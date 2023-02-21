@@ -44,6 +44,7 @@ const registrarUsuario = async () => {
     const correo = document.getElementById('nuevo-correo').value
 
     const resultado = await fetch('/api/v1/usuarios', {
+
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -53,22 +54,19 @@ const registrarUsuario = async () => {
         })
     })
 
-    const status = resultado.status
-    const data = await resultado.json()
+    const datos = await resultado.json()
 
-    switch (status) {
-        case 201:
-            document.getElementById('nuevo-correo').value = ''
-            document.getElementById('mensaje-dialogo-nuevo-usuario').innerHTML = data.mensaje
-            document.getElementById('dialogo-nuevo-usuario').showModal()
-            obtenerUsuarios()
-            break;
+    if (resultado.status === 201) {
 
-        default:
-            document.getElementById('nuevo-correo').style.borderColor = 'red'
-            document.getElementById('mensaje-dialogo-nuevo-usuario').innerHTML = data.mensaje
-            document.getElementById('dialogo-nuevo-usuario').showModal()
-            break;
+        document.getElementById('nuevo-correo').value = ''
+        document.getElementById('mensaje-dialogo-nuevo-usuario').innerHTML = datos.mensaje
+        document.getElementById('dialogo-nuevo-usuario').showModal()
+        obtenerUsuarios()
+    } else {
+
+        document.getElementById('nuevo-correo').style.borderColor = 'red'
+        document.getElementById('mensaje-dialogo-nuevo-usuario').innerHTML = datos.mensaje
+        document.getElementById('dialogo-nuevo-usuario').showModal()
     }
 }
 
@@ -76,16 +74,15 @@ const obtenerUsuarios = async () => {
 
     const resultado = await fetch('/api/v1/usuarios')
 
-    const status = resultado.status
-    const data = await resultado.json()
+    const datos = await resultado.json()
 
+    if (resultado.status === 200) {
 
-    switch (status) {
-        case 200:
-            let datosTabla = ''
-            data.mensaje.forEach(usuario => {
-                datosTabla +=
-                    `
+        let listaUsuarios = ''
+
+        datos.mensaje.forEach(usuario => {
+            listaUsuarios +=
+                `
                 <tr id="${usuario.id}">
                     <td class="id-usuario">${usuario.id}</td>
                     <td class="correo-usuario" contenteditable="true">${usuario.correo}</td>
@@ -102,13 +99,13 @@ const obtenerUsuarios = async () => {
                     </td>
                 </tr>
                 `
-            })
+        })
 
-            document.getElementById('tabla-usuarios').innerHTML = datosTabla
-            break;
+        document.getElementById('tabla-usuarios').innerHTML = listaUsuarios
+    } else {
 
-        default:
-            break;
+        document.getElementById('mensaje-dialogo-tabla-usuarios').innerHTML = data.mensaje
+        document.getElementById('dialogo-tabla-usuarios').showModal()
     }
 }
 
@@ -129,21 +126,16 @@ const actualizarUsuario = async (id) => {
         })
     })
 
-    const status = resultado.status
-    const data = await resultado.json()
+    const datos = await resultado.json()
 
-    switch (status) {
-        case 200:
-            document.getElementById('mensaje-dialogo-tabla-usuarios').innerHTML = data.mensaje
-            document.getElementById('dialogo-tabla-usuarios').showModal()
-            obtenerUsuarios()
-            break;
-
-        default:
-            document.getElementById('mensaje-dialogo-tabla-usuarios').innerHTML = data.mensaje
-            document.getElementById('dialogo-tabla-usuarios').showModal()
-            obtenerUsuarios()
-            break;
+    if (resultado.status === 200) {
+        document.getElementById('mensaje-dialogo-tabla-usuarios').innerHTML = datos.mensaje
+        document.getElementById('dialogo-tabla-usuarios').showModal()
+        obtenerUsuarios()
+    } else {
+        document.getElementById('mensaje-dialogo-tabla-usuarios').innerHTML = datos.mensaje
+        document.getElementById('dialogo-tabla-usuarios').showModal()
+        obtenerUsuarios()
     }
 }
 
@@ -153,19 +145,14 @@ const eliminarUsuario = async (id) => {
         method: 'DELETE'
     })
 
-    const status = resultado.status
-    const data = await resultado.json()
+    const datos = await resultado.json()
 
-    switch (status) {
-        case 200:
-            document.getElementById('mensaje-dialogo-tabla-usuarios').innerHTML = data.mensaje
-            document.getElementById('dialogo-tabla-usuarios').showModal()
-            obtenerUsuarios()
-            break;
-
-        default:
-            document.getElementById('mensaje-dialogo-tabla-usuarios').innerHTML = data.mensaje
-            document.getElementById('dialogo-tabla-usuarios').showModal()
-            break;
+    if (resultado.status === 200) {
+        document.getElementById('mensaje-dialogo-tabla-usuarios').innerHTML = datos.mensaje
+        document.getElementById('dialogo-tabla-usuarios').showModal()
+        obtenerUsuarios()
+    } else {
+        document.getElementById('mensaje-dialogo-tabla-usuarios').innerHTML = datos.mensaje
+        document.getElementById('dialogo-tabla-usuarios').showModal()
     }
 }

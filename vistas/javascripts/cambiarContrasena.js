@@ -28,31 +28,24 @@ const cambiarContrasena = async () => {
         })
     })
 
-    const status = resultado.status
-    const data = await resultado.json()
+    const datos = await resultado.json()
 
-    const dialogo = document.getElementById('dialogo')
-    const cerrar = document.getElementById('cerrar')
-
-    switch (status) {
-        case 200:
-            sessionStorage.removeItem('correo')
-            cerrar.onclick = () => {
-                dialogo.close()
-                window.location.replace('/iniciar-sesion')
-            }
-            document.getElementById('error').innerHTML = data.mensaje
-            document.getElementById('dialogo').showModal()
-            break;
-        default:
-            cerrar.onclick = () => {
-                dialogo.close()
-            }
-            document.getElementById('contrasena-actual').value = ''
-            document.getElementById('contrasena-nueva').value = ''
-            document.getElementById('contrasena-actual').style.borderColor = 'red'
-            document.getElementById('error').innerHTML = data.mensaje
-            document.getElementById('dialogo').showModal()
-            break;
+    if (resultado.status === 200) {
+        sessionStorage.removeItem('correo')
+        document.getElementById('cerrar').onclick = () => {
+            document.getElementById('dialogo').close()
+            window.location.replace('/iniciar-sesion')
+        }
+        document.getElementById('error').innerHTML = datos.mensaje
+        document.getElementById('dialogo').showModal()
+    } else {
+        document.getElementById('cerrar').onclick = () => {
+            document.getElementById('dialogo').close()
+        }
+        document.getElementById('contrasena-actual').value = ''
+        document.getElementById('contrasena-nueva').value = ''
+        document.getElementById('contrasena-actual').style.borderColor = 'red'
+        document.getElementById('error').innerHTML = datos.mensaje
+        document.getElementById('dialogo').showModal()
     }
 }
