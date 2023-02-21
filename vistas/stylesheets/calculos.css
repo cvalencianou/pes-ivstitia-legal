@@ -1,0 +1,15 @@
+.calculos, .resultados {
+    max-width: 50%;
+    display: inline-block;
+}
+
+
+.calculos {
+    width: 50%;
+    background-color: aquamarine;
+}
+
+.resultados {
+    width: 50%;
+    background-color: blanchedalmond;
+}

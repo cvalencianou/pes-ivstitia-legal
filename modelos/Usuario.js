@@ -1,6 +1,7 @@
 const { executePreparedStatement } = require('../utilidades/baseDeDatos')
 
 class Usuario {
+
     id
     correo
     contrasena
@@ -19,8 +20,8 @@ class Usuario {
         return await executePreparedStatement('CALL usuarios_validar_credenciales(?)', [correo])
     }
 
-    async obtenerUsuarios() {
-        return await executePreparedStatement('CALL usuarios_obtener_usuarios()', [])
+    async obtenerTodos() {
+        return await executePreparedStatement('CALL usuarios_obtener_todos()', [])
     }
 
     async verificarAdministrador(id) {

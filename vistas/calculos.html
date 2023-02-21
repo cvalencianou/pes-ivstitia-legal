@@ -14,9 +14,27 @@
 
 <body>
     <header>
+        <nav>
             <a href="inicio"><img src="images/logo_ivstitia_legal.jpg" alt=""></a>
             <nav id="enlaces" class="nav-herramientas"></nav>
+        </nav>
     </header>
+    <main>
+        <h1>Cálculos</h1>
+        <section id="calculos" class="calculos">
+            <form action="">
+                <label for="registros">Seleccione registro</label>
+                <select name="registros" id="registros"></select>
+                <label for="actos">Seleccione acto</label>
+                <select name="actos" id="actos"></select>
+                <label for="monto-calculo">Ingrese monto cálculo</label>
+                <input type="number" id="monto-calculo" required>
+                <input type="submit" value="Calcular">
+            </form>
+        </section><section id="resultados" class="resultados">
+            <h2>Resultado</h2>
+        </section>
+    </main>
 </body>
 
 </html>

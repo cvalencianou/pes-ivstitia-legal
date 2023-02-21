@@ -110,7 +110,7 @@ const obtenerUsuarios = async (req, res) => {
 
     const usuario = new Usuario()
 
-    const resultado = await usuario.obtenerUsuarios()
+    const resultado = await usuario.obtenerTodos()
 
     res.status(StatusCodes.OK).json({
         mensaje: resultado[0]
