@@ -42,7 +42,7 @@ CREATE TABLE `actos` (
 
 LOCK TABLES `actos` WRITE;
 /*!40000 ALTER TABLE `actos` DISABLE KEYS */;
-INSERT INTO `actos` VALUES (1,'Compraventa',1),(2,'Inscripción',2),(3,'Empresa individual',3),(4,'Solicitud de inscripción',4);
+INSERT INTO `actos` VALUES (1,'Traspaso de inmuebles',1),(2,'Inscripción',2),(3,'Empresa individual',3),(4,'Solicitud de inscripción',4);
 /*!40000 ALTER TABLE `actos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -80,32 +80,6 @@ CREATE TABLE `clientes` (
 LOCK TABLES `clientes` WRITE;
 /*!40000 ALTER TABLE `clientes` DISABLE KEYS */;
 /*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `honorarios`
---
-
-DROP TABLE IF EXISTS `honorarios`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `honorarios` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `monto` decimal(10,2) NOT NULL,
-  `porcentaje` decimal(10,2) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `id_UNIQUE` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `honorarios`
---
-
-LOCK TABLES `honorarios` WRITE;
-/*!40000 ALTER TABLE `honorarios` DISABLE KEYS */;
-INSERT INTO `honorarios` VALUES (1,60500.00,0.00),(2,11000000.00,2.00),(3,16500000.00,1.50),(4,33000000.00,1.25),(5,0.00,1.00);
-/*!40000 ALTER TABLE `honorarios` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -161,21 +135,22 @@ INSERT INTO `tipo_cedula` VALUES (1,'Física'),(2,'Jurídica');
 UNLOCK TABLES;
 
 --
--- Table structure for table `tributos`
+-- Table structure for table `tributos_honorarios`
 --
 
-DROP TABLE IF EXISTS `tributos`;
+DROP TABLE IF EXISTS `tributos_honorarios`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `tributos` (
+CREATE TABLE `tributos_honorarios` (
   `id` int NOT NULL AUTO_INCREMENT,
   `registro` decimal(10,2) NOT NULL,
   `agrario` decimal(10,2) NOT NULL,
-  `fiscal` decimal(10,2) NOT NULL,
-  `archivo` decimal(10,2) NOT NULL,
-  `abogado` decimal(10,2) NOT NULL,
+  `fiscal` json NOT NULL,
+  `archivo` json NOT NULL,
+  `abogado` json NOT NULL,
   `municipal` decimal(10,2) NOT NULL,
   `traspaso` decimal(10,2) NOT NULL,
+  `honorarios` json NOT NULL,
   `id_acto` int NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
@@ -185,13 +160,13 @@ CREATE TABLE `tributos` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `tributos`
+-- Dumping data for table `tributos_honorarios`
 --
 
-LOCK TABLES `tributos` WRITE;
-/*!40000 ALTER TABLE `tributos` DISABLE KEYS */;
-INSERT INTO `tributos` VALUES (1,5.00,1.50,0.00,0.00,0.00,2.00,1.50,1);
-/*!40000 ALTER TABLE `tributos` ENABLE KEYS */;
+LOCK TABLES `tributos_honorarios` WRITE;
+/*!40000 ALTER TABLE `tributos_honorarios` DISABLE KEYS */;
+INSERT INTO `tributos_honorarios` VALUES (1,5.00,1.50,'[{\"id\": 1, \"hasta\": 25000, \"monto\": 12.5}, {\"id\": 2, \"hasta\": 75000, \"monto\": 25}, {\"id\": 3, \"hasta\": 100000, \"monto\": 31.25}, {\"id\": 4, \"hasta\": 250000, \"monto\": 62.5}, {\"id\": 5, \"hasta\": 500000, \"monto\": 125}, {\"id\": 6, \"hasta\": 1000000, \"monto\": 156.25}, {\"id\": 7, \"hasta\": 1500000, \"monto\": 312.5}, {\"id\": 8, \"hasta\": 0, \"monto\": 625}]','[{\"id\": 1, \"hasta\": 100000, \"monto\": 10}, {\"id\": 2, \"hasta\": 0, \"monto\": 20}]','[{\"id\": 1, \"hasta\": 250000, \"monto\": 0}, {\"id\": 2, \"hasta\": 1000000, \"monto\": 1100}, {\"id\": 3, \"hasta\": 5000000, \"monto\": 2200}, {\"id\": 4, \"hasta\": 25000000, \"monto\": 5500}, {\"id\": 5, \"hasta\": 50000000, \"monto\": 11000}, {\"id\": 6, \"hasta\": 100000000, \"monto\": 16500}, {\"id\": 7, \"hasta\": 500000000, \"monto\": 27500}, {\"id\": 8, \"hasta\": 0, \"monto\": 55000}]',2.00,1.50,'[{\"id\": 1, \"monto\": \"60500.00\", \"porcentaje\": \"0.00\"}, {\"id\": 2, \"monto\": \"11000000.00\", \"porcentaje\": \"2.00\"}, {\"id\": 3, \"monto\": \"16500000.00\", \"porcentaje\": \"1.50\"}, {\"id\": 4, \"monto\": \"33000000.00\", \"porcentaje\": \"1.25\"}, {\"id\": 5, \"monto\": \"0.00\", \"porcentaje\": \"1.00\"}]',1);
+/*!40000 ALTER TABLE `tributos_honorarios` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -346,25 +321,6 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `honorarios_obtener_montos` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`%` PROCEDURE `honorarios_obtener_montos`()
-BEGIN
-SELECT id, monto, porcentaje FROM honorarios;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `registros_obtener_todos` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -384,6 +340,25 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `tributos_honorarios_obtener_por_id_acto` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`%` PROCEDURE `tributos_honorarios_obtener_por_id_acto`(par_id INT)
+BEGIN
+SELECT id, registro, agrario, fiscal, archivo, abogado, municipal, traspaso, honorarios FROM tributos_honorarios WHERE id_acto = par_id;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `tributos_obtener_por_id_acto` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -396,7 +371,7 @@ DELIMITER ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`%` PROCEDURE `tributos_obtener_por_id_acto`(par_id INT)
 BEGIN
-SELECT id, registro, agrario, fiscal, archivo, abogado, municipal, traspaso FROM tributos WHERE id_acto = par_id;
+SELECT id, registro, agrario, fiscal, archivo, abogado, municipal, traspaso, honorarios FROM tributos WHERE id_acto = par_id;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -604,4 +579,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-02-21 20:08:49
+-- Dump completed on 2023-02-22 10:34:32
