@@ -69,8 +69,9 @@ const obtenerActosPorIdRegistro = async () => {
 }
 
 const realizarCalculo = async () => {
+
     const acto = document.getElementById('actos').value
-    const monto = document.getElementById('monto-calculo').value
+    const montoConsulta = document.getElementById('monto-calculo').value
 
     const resultado = await fetch(`/api/v1/calculos/${acto}`, {
         method: 'POST',
@@ -78,16 +79,27 @@ const realizarCalculo = async () => {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            monto: monto
+            montoConsulta: montoConsulta
         })
     })
 
     const datos = await resultado.json()
 
     if (resultado.status === 200) {
-
+        document.getElementById('resultado-calculo').innerHTML =
+            `
+        REGISTRO: ${datos.mensaje.registro} <br>
+        AGRARIO: ${datos.mensaje.agrario} <br>
+        FISCAL: ${datos.mensaje.fiscal} <br>
+        ARCHIVO: ${datos.mensaje.archivo} <br>
+        ABOGADO: ${datos.mensaje.abogado} <br>
+        MUNICIPAL: ${datos.mensaje.municipal} <br>
+        TRASPASO: ${datos.mensaje.traspaso} <br>
+        HONORARIOS: ${datos.mensaje.honorarios} <br>
+        `
     }
     else {
-
+        document.getElementById('mensaje').innerHTML = datos.mensaje
+        document.getElementById('dialogo').showModal()
     }
 }

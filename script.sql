@@ -83,6 +83,32 @@ LOCK TABLES `clientes` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `honorarios`
+--
+
+DROP TABLE IF EXISTS `honorarios`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `honorarios` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `monto` decimal(10,2) NOT NULL,
+  `porcentaje` decimal(10,2) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `honorarios`
+--
+
+LOCK TABLES `honorarios` WRITE;
+/*!40000 ALTER TABLE `honorarios` DISABLE KEYS */;
+INSERT INTO `honorarios` VALUES (1,60500.00,0.00),(2,11000000.00,2.00),(3,16500000.00,1.50),(4,33000000.00,1.25),(5,0.00,1.00);
+/*!40000 ALTER TABLE `honorarios` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `registros`
 --
 
@@ -132,6 +158,40 @@ LOCK TABLES `tipo_cedula` WRITE;
 /*!40000 ALTER TABLE `tipo_cedula` DISABLE KEYS */;
 INSERT INTO `tipo_cedula` VALUES (1,'Física'),(2,'Jurídica');
 /*!40000 ALTER TABLE `tipo_cedula` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tributos`
+--
+
+DROP TABLE IF EXISTS `tributos`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tributos` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `registro` decimal(10,2) NOT NULL,
+  `agrario` decimal(10,2) NOT NULL,
+  `fiscal` decimal(10,2) NOT NULL,
+  `archivo` decimal(10,2) NOT NULL,
+  `abogado` decimal(10,2) NOT NULL,
+  `municipal` decimal(10,2) NOT NULL,
+  `traspaso` decimal(10,2) NOT NULL,
+  `id_acto` int NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`),
+  UNIQUE KEY `id_acto_UNIQUE` (`id_acto`),
+  CONSTRAINT `fk_tributos_actos` FOREIGN KEY (`id_acto`) REFERENCES `actos` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tributos`
+--
+
+LOCK TABLES `tributos` WRITE;
+/*!40000 ALTER TABLE `tributos` DISABLE KEYS */;
+INSERT INTO `tributos` VALUES (1,5.00,1.50,0.00,0.00,0.00,2.00,1.50,1);
+/*!40000 ALTER TABLE `tributos` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -286,6 +346,25 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `honorarios_obtener_montos` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`%` PROCEDURE `honorarios_obtener_montos`()
+BEGIN
+SELECT id, monto, porcentaje FROM honorarios;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `registros_obtener_todos` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -299,6 +378,25 @@ DELIMITER ;;
 CREATE DEFINER=`root`@`%` PROCEDURE `registros_obtener_todos`()
 BEGIN
 SELECT id, nombre FROM registros;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `tributos_obtener_por_id_acto` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`%` PROCEDURE `tributos_obtener_por_id_acto`(par_id INT)
+BEGIN
+SELECT id, registro, agrario, fiscal, archivo, abogado, municipal, traspaso FROM tributos WHERE id_acto = par_id;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -506,4 +604,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-02-21 11:26:55
+-- Dump completed on 2023-02-21 20:08:49
