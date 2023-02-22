@@ -28,12 +28,13 @@ CREATE TABLE `actos` (
   `id` int NOT NULL AUTO_INCREMENT,
   `nombre` varchar(45) NOT NULL,
   `id_registro` int NOT NULL,
+  `tributos_general` json NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   UNIQUE KEY `nombre_UNIQUE` (`nombre`),
   KEY `fk_acto_registro_idx` (`id_registro`),
   CONSTRAINT `fk_acto_registro` FOREIGN KEY (`id_registro`) REFERENCES `registros` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,7 +43,7 @@ CREATE TABLE `actos` (
 
 LOCK TABLES `actos` WRITE;
 /*!40000 ALTER TABLE `actos` DISABLE KEYS */;
-INSERT INTO `actos` VALUES (1,'Traspaso de inmuebles',1),(2,'Inscripción',2),(3,'Empresa individual',3),(4,'Solicitud de inscripción',4);
+INSERT INTO `actos` VALUES (1,'Inscripción de Aeronave',1,'{\"fiscal\": [{\"id\": 1, \"hasta\": 25000, \"monto\": 12.5}, {\"id\": 2, \"hasta\": 75000, \"monto\": 25}, {\"id\": 3, \"hasta\": 100000, \"monto\": 31.25}, {\"id\": 4, \"hasta\": 250000, \"monto\": 62.5}, {\"id\": 5, \"hasta\": 500000, \"monto\": 125}, {\"id\": 6, \"hasta\": 1000000, \"monto\": 156.25}, {\"id\": 7, \"hasta\": 1500000, \"monto\": 312.5}, {\"id\": 8, \"hasta\": 0, \"monto\": 625}], \"abogado\": [{\"id\": 1, \"hasta\": 250000, \"monto\": 0}, {\"id\": 2, \"hasta\": 1000000, \"monto\": 1100}, {\"id\": 3, \"hasta\": 5000000, \"monto\": 2200}, {\"id\": 4, \"hasta\": 25000000, \"monto\": 5500}, {\"id\": 5, \"hasta\": 50000000, \"monto\": 11000}, {\"id\": 6, \"hasta\": 100000000, \"monto\": 16500}, {\"id\": 7, \"hasta\": 500000000, \"monto\": 27500}, {\"id\": 8, \"hasta\": 0, \"monto\": 55000}], \"agrario\": \"3.00\", \"archivo\": [{\"id\": 1, \"hasta\": 100000, \"monto\": 10}, {\"id\": 2, \"hasta\": 0, \"monto\": 20}], \"cruzRoja\": 500, \"registro\": \"5.00\", \"traspaso\": \"1.50\", \"municipal\": \"0.00\", \"honorarios\": [{\"id\": 1, \"monto\": \"60500.00\", \"porcentaje\": \"0.00\"}, {\"id\": 2, \"monto\": \"11000000.00\", \"porcentaje\": \"2.00\"}, {\"id\": 3, \"monto\": \"16500000.00\", \"porcentaje\": \"1.50\"}, {\"id\": 4, \"monto\": \"33000000.00\", \"porcentaje\": \"1.25\"}, {\"id\": 5, \"monto\": \"0.00\", \"porcentaje\": \"1.00\"}]}'),(2,'Traspaso de Inmuebles',3,'null'),(9,'4',1,'null'),(11,'1234',1,'null'),(12,'sexy',1,'{\"fiscal\": [{\"id\": 1, \"hasta\": 25000, \"monto\": 12.5}, {\"id\": 2, \"hasta\": 75000, \"monto\": 25}, {\"id\": 3, \"hasta\": 100000, \"monto\": 31.25}, {\"id\": 4, \"hasta\": 250000, \"monto\": 62.5}, {\"id\": 5, \"hasta\": 500000, \"monto\": 125}, {\"id\": 6, \"hasta\": 1000000, \"monto\": 156.25}, {\"id\": 7, \"hasta\": 1500000, \"monto\": 312.5}, {\"id\": 8, \"hasta\": 0, \"monto\": 625}], \"abogado\": [{\"id\": 1, \"hasta\": 250000, \"monto\": 0}, {\"id\": 2, \"hasta\": 1000000, \"monto\": 1100}, {\"id\": 3, \"hasta\": 5000000, \"monto\": 2200}, {\"id\": 4, \"hasta\": 25000000, \"monto\": 5500}, {\"id\": 5, \"hasta\": 50000000, \"monto\": 11000}, {\"id\": 6, \"hasta\": 100000000, \"monto\": 16500}, {\"id\": 7, \"hasta\": 500000000, \"monto\": 27500}, {\"id\": 8, \"hasta\": 0, \"monto\": 55000}], \"agrario\": \"3.00\", \"archivo\": [{\"id\": 1, \"hasta\": 100000, \"monto\": 10}, {\"id\": 2, \"hasta\": 0, \"monto\": 20}], \"cruzRoja\": 500, \"registro\": \"5.00\", \"traspaso\": \"1.50\", \"municipal\": \"0.00\", \"honorarios\": [{\"id\": 1, \"monto\": \"60500.00\", \"porcentaje\": \"0.00\"}, {\"id\": 2, \"monto\": \"11000000.00\", \"porcentaje\": \"2.00\"}, {\"id\": 3, \"monto\": \"16500000.00\", \"porcentaje\": \"1.50\"}, {\"id\": 4, \"monto\": \"33000000.00\", \"porcentaje\": \"1.25\"}, {\"id\": 5, \"monto\": \"0.00\", \"porcentaje\": \"1.00\"}], \"faunaSilvestre\": 1125.5, \"parquesNacionales\": 500}'),(14,'ZULU',15,'{\"fiscal\": [{\"id\": 1, \"hasta\": 25000, \"monto\": 12.5}, {\"id\": 2, \"hasta\": 75000, \"monto\": 25}, {\"id\": 3, \"hasta\": 100000, \"monto\": 31.25}, {\"id\": 4, \"hasta\": 250000, \"monto\": 62.5}, {\"id\": 5, \"hasta\": 500000, \"monto\": 125}, {\"id\": 6, \"hasta\": 1000000, \"monto\": 156.25}, {\"id\": 7, \"hasta\": 1500000, \"monto\": 312.5}, {\"id\": 8, \"hasta\": 0, \"monto\": 625}], \"abogado\": [{\"id\": 1, \"hasta\": 250000, \"monto\": 0}, {\"id\": 2, \"hasta\": 1000000, \"monto\": 1100}, {\"id\": 3, \"hasta\": 5000000, \"monto\": 2200}, {\"id\": 4, \"hasta\": 25000000, \"monto\": 5500}, {\"id\": 5, \"hasta\": 50000000, \"monto\": 11000}, {\"id\": 6, \"hasta\": 100000000, \"monto\": 16500}, {\"id\": 7, \"hasta\": 500000000, \"monto\": 27500}, {\"id\": 8, \"hasta\": 0, \"monto\": 55000}], \"agrario\": \"3.00\", \"archivo\": [{\"id\": 1, \"hasta\": 100000, \"monto\": 10}, {\"id\": 2, \"hasta\": 0, \"monto\": 20}], \"cruzRoja\": 500, \"registro\": \"5.00\", \"traspaso\": \"1.50\", \"municipal\": \"0.00\", \"honorarios\": [{\"id\": 1, \"monto\": \"60500.00\", \"porcentaje\": \"0.00\"}, {\"id\": 2, \"monto\": \"11000000.00\", \"porcentaje\": \"2.00\"}, {\"id\": 3, \"monto\": \"16500000.00\", \"porcentaje\": \"1.50\"}, {\"id\": 4, \"monto\": \"33000000.00\", \"porcentaje\": \"1.25\"}, {\"id\": 5, \"monto\": \"0.00\", \"porcentaje\": \"1.00\"}], \"faunaSilvestre\": 1125.5, \"parquesNacionales\": 500}');
 /*!40000 ALTER TABLE `actos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -95,7 +96,7 @@ CREATE TABLE `registros` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `nombre_UNIQUE` (`nombre`),
   UNIQUE KEY `id_UNIQUE` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -104,7 +105,7 @@ CREATE TABLE `registros` (
 
 LOCK TABLES `registros` WRITE;
 /*!40000 ALTER TABLE `registros` DISABLE KEYS */;
-INSERT INTO `registros` VALUES (1,'Bienes Inmuebles'),(2,'Bienes Muebles'),(3,'Personas Jurídicas'),(4,'Propiedad Intelectual');
+INSERT INTO `registros` VALUES (1,'Aeronaves'),(2,'Asociaciones'),(3,'Bienes Inmuebles'),(4,'Catastro Nacional'),(5,'Certificaciones'),(6,'Concesiones'),(7,'Derechos de Autor'),(8,'DGTD Timbre Fiscal'),(9,'Entero de Timbres'),(10,'Impuesto Tributación Directa'),(11,'Marca Comercial'),(12,'Marcas de Ganado'),(13,'Mercantil y Personas'),(14,'Ministerio de Trabajo S.S.'),(15,'Patentes'),(16,'Placas'),(17,'Prendas'),(18,'Registro de Busques o Naval'),(19,'Vehículos');
 /*!40000 ALTER TABLE `registros` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -143,14 +144,17 @@ DROP TABLE IF EXISTS `tributos_honorarios`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tributos_honorarios` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `registro` decimal(10,2) NOT NULL,
-  `agrario` decimal(10,2) NOT NULL,
-  `fiscal` json NOT NULL,
-  `archivo` json NOT NULL,
-  `abogado` json NOT NULL,
-  `municipal` decimal(10,2) NOT NULL,
-  `traspaso` decimal(10,2) NOT NULL,
-  `honorarios` json NOT NULL,
+  `registro` decimal(10,2) DEFAULT NULL,
+  `agrario` decimal(10,2) DEFAULT NULL,
+  `fiscal` json DEFAULT NULL,
+  `archivo` json DEFAULT NULL,
+  `abogado` json DEFAULT NULL,
+  `municipal` decimal(10,2) DEFAULT NULL,
+  `traspaso` decimal(10,2) DEFAULT NULL,
+  `parques_nacionales` decimal(10,2) DEFAULT NULL,
+  `fauna_silvestre` decimal(10,2) DEFAULT NULL,
+  `cruz_roja` decimal(10,2) DEFAULT NULL,
+  `honorarios` json DEFAULT NULL,
   `id_acto` int NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
@@ -165,7 +169,7 @@ CREATE TABLE `tributos_honorarios` (
 
 LOCK TABLES `tributos_honorarios` WRITE;
 /*!40000 ALTER TABLE `tributos_honorarios` DISABLE KEYS */;
-INSERT INTO `tributos_honorarios` VALUES (1,5.00,1.50,'[{\"id\": 1, \"hasta\": 25000, \"monto\": 12.5}, {\"id\": 2, \"hasta\": 75000, \"monto\": 25}, {\"id\": 3, \"hasta\": 100000, \"monto\": 31.25}, {\"id\": 4, \"hasta\": 250000, \"monto\": 62.5}, {\"id\": 5, \"hasta\": 500000, \"monto\": 125}, {\"id\": 6, \"hasta\": 1000000, \"monto\": 156.25}, {\"id\": 7, \"hasta\": 1500000, \"monto\": 312.5}, {\"id\": 8, \"hasta\": 0, \"monto\": 625}]','[{\"id\": 1, \"hasta\": 100000, \"monto\": 10}, {\"id\": 2, \"hasta\": 0, \"monto\": 20}]','[{\"id\": 1, \"hasta\": 250000, \"monto\": 0}, {\"id\": 2, \"hasta\": 1000000, \"monto\": 1100}, {\"id\": 3, \"hasta\": 5000000, \"monto\": 2200}, {\"id\": 4, \"hasta\": 25000000, \"monto\": 5500}, {\"id\": 5, \"hasta\": 50000000, \"monto\": 11000}, {\"id\": 6, \"hasta\": 100000000, \"monto\": 16500}, {\"id\": 7, \"hasta\": 500000000, \"monto\": 27500}, {\"id\": 8, \"hasta\": 0, \"monto\": 55000}]',2.00,1.50,'[{\"id\": 1, \"monto\": \"60500.00\", \"porcentaje\": \"0.00\"}, {\"id\": 2, \"monto\": \"11000000.00\", \"porcentaje\": \"2.00\"}, {\"id\": 3, \"monto\": \"16500000.00\", \"porcentaje\": \"1.50\"}, {\"id\": 4, \"monto\": \"33000000.00\", \"porcentaje\": \"1.25\"}, {\"id\": 5, \"monto\": \"0.00\", \"porcentaje\": \"1.00\"}]',1);
+INSERT INTO `tributos_honorarios` VALUES (1,5.00,3.00,'[{\"id\": 1, \"hasta\": 25000, \"monto\": 12.5}, {\"id\": 2, \"hasta\": 75000, \"monto\": 25}, {\"id\": 3, \"hasta\": 100000, \"monto\": 31.25}, {\"id\": 4, \"hasta\": 250000, \"monto\": 62.5}, {\"id\": 5, \"hasta\": 500000, \"monto\": 125}, {\"id\": 6, \"hasta\": 1000000, \"monto\": 156.25}, {\"id\": 7, \"hasta\": 1500000, \"monto\": 312.5}, {\"id\": 8, \"hasta\": 0, \"monto\": 625}]','[{\"id\": 1, \"hasta\": 100000, \"monto\": 10}, {\"id\": 2, \"hasta\": 0, \"monto\": 20}]','[{\"id\": 1, \"hasta\": 250000, \"monto\": 0}, {\"id\": 2, \"hasta\": 1000000, \"monto\": 1100}, {\"id\": 3, \"hasta\": 5000000, \"monto\": 2200}, {\"id\": 4, \"hasta\": 25000000, \"monto\": 5500}, {\"id\": 5, \"hasta\": 50000000, \"monto\": 11000}, {\"id\": 6, \"hasta\": 100000000, \"monto\": 16500}, {\"id\": 7, \"hasta\": 500000000, \"monto\": 27500}, {\"id\": 8, \"hasta\": 0, \"monto\": 55000}]',0.00,1.50,NULL,NULL,NULL,'[{\"id\": 1, \"monto\": \"60500.00\", \"porcentaje\": \"0.00\"}, {\"id\": 2, \"monto\": \"11000000.00\", \"porcentaje\": \"2.00\"}, {\"id\": 3, \"monto\": \"16500000.00\", \"porcentaje\": \"1.50\"}, {\"id\": 4, \"monto\": \"33000000.00\", \"porcentaje\": \"1.25\"}, {\"id\": 5, \"monto\": \"0.00\", \"porcentaje\": \"1.00\"}]',1);
 /*!40000 ALTER TABLE `tributos_honorarios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -201,6 +205,44 @@ UNLOCK TABLES;
 --
 -- Dumping routines for database 'ivstitia_legal'
 --
+/*!50003 DROP PROCEDURE IF EXISTS `actos_crear` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`%` PROCEDURE `actos_crear`(par_nombre VARCHAR(45), par_id_registro INT, par_tribs JSON)
+BEGIN
+INSERT INTO actos (nombre, id_registro, tributos_general) VALUES (par_nombre, par_id_registro, par_tribs) ;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `actos_eliminar_por_id` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`%` PROCEDURE `actos_eliminar_por_id`(par_id INT)
+BEGIN
+DELETE FROM actos WHERE id = par_id;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `actos_obtener_por_id_registro` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -214,6 +256,25 @@ DELIMITER ;;
 CREATE DEFINER=`root`@`%` PROCEDURE `actos_obtener_por_id_registro`(par_id INT)
 BEGIN
 SELECT id, nombre FROM actos WHERE id_registro = par_id;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `actos_obtener_tributos` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`%` PROCEDURE `actos_obtener_tributos`(par_id INT)
+BEGIN
+SELECT tributos_general FROM actos WHERE id = par_id;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -321,6 +382,25 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `registros_crear` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`%` PROCEDURE `registros_crear`(par_nombre VARCHAR(45))
+BEGIN
+INSERT INTO registros (nombre) VALUES (par_nombre);
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `registros_obtener_todos` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -334,25 +414,6 @@ DELIMITER ;;
 CREATE DEFINER=`root`@`%` PROCEDURE `registros_obtener_todos`()
 BEGIN
 SELECT id, nombre FROM registros;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `tributos_honorarios_obtener_por_id_acto` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`%` PROCEDURE `tributos_honorarios_obtener_por_id_acto`(par_id INT)
-BEGIN
-SELECT id, registro, agrario, fiscal, archivo, abogado, municipal, traspaso, honorarios FROM tributos_honorarios WHERE id_acto = par_id;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -579,4 +640,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-02-22 10:34:32
+-- Dump completed on 2023-02-22 15:53:14
