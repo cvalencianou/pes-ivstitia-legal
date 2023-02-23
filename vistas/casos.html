@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clientes</title>
+    <link rel="stylesheet" href="stylesheets/clientes.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cinzel">
+    <script src="javascripts/autenticacion.js"></script>
+    <script src="javascripts/casos.js"></script>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a href="inicio"><img src="images/logo_ivstitia_legal.jpg" alt=""></a>
+            <nav id="enlaces"></nav>
+        </nav>
+    </header>
+    
+    <div class="buscarCaso">
+        <input type="text" id="datoCaso" placeholder="Buscar" required> 
+        <input type="submit" value="Buscar">
+        <a href="crear-caso" id="btnCrearCaso"><button>CREAR CASO</button></a>
+    </div>
+
+    <main>
+        <ul id="lista-casos">
+        </ul>
+    </main>
+</body>
+
+</html>
