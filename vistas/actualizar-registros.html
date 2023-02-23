@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actualizar Registros - IvstitiaLegal</title>
+    <link rel="stylesheet" href="stylesheets/general.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cinzel">
+    <script src="javascripts/autenticacion.js"></script>
+    <script src="javascripts/actualizarRegistros.js"></script>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a href="inicio"><img src="images/logo_ivstitia_legal.jpg" alt=""></a>
+            <nav id="enlaces"></nav>
+        </nav>
+    </header>
+    <main>
+        <section id="seccion-tabla-registros">
+            <h2>Registros</h2>
+            <div >
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nombre</th>
+                            <th>Tareas</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla-registros">
+
+                    </tbody>
+                </table>
+                <dialog id="dialogo-1">
+                    <p id="mensaje-1"></p>
+                    <button id="cerrar-1">CERRAR</button>
+                </dialog>
+                <dialog id="dialogo-2">
+                    <p>¿Está seguro que desea eliminar registro?</p>
+                    <button id="eliminar-2">ELIMINAR</button>
+                    <button id="cancelar-2">CANCELAR</button>
+                </dialog>
+            </div>
+        </section>
+        <section id="seccion-actualizar-registro">
+            <form id="form-actualizar-registro">
+                <label for="id-nuevo-registro"></label>
+                <p id="id-nuevo-registro"></p>
+                <label for="nombre-registro">Nombre Registro</label>
+                <input type="text" id="nuevo-nombre-registro" placeholder="Nombre registro">
+                <input type="submit">
+            </form>
+            <dialog id="dialogo-3">
+                <p id="mensaje-3"></p>
+                <button id="cerrar-3">CERRAR</button>
+            </dialog>
+        </section>
+    </main>
+</body>
+
+</html>

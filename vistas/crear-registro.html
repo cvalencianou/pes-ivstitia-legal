@@ -1,16 +1,15 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Administrar Cálculos - IvstitiaLegal</title>
-    <link rel="stylesheet" href="stylesheets/administrarCalculos.css">
+    <title>Crear Registro - IvstitiaLegal</title>
     <link rel="stylesheet" href="stylesheets/general.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cinzel">
     <script src="javascripts/autenticacion.js"></script>
-    <script src="javascripts/administrarCalculos.js"></script>
+    <script src="javascripts/crearRegistro.js"></script>
 </head>
 
 <body>
@@ -20,12 +19,18 @@
             <nav id="enlaces"></nav>
         </nav>
     </header>
-    <h1>Administración de cálculos</h1>
     <main>
-        <a href="crear-registro">Crear Registro</a>
-        <a href="actualizar-registros">Actualizar Registros</a>
-        <a href="crear-acto">Crear Acto</a>
-        <a href="actualizar-actos">Actualizar Actos</a>
+        <h1>Crear registro</h1>
+        <section>
+            <form id="form-registro">
+                <input type="text" id="nuevo-registro" required>
+                <input type="submit" value="Crear Registro">
+            </form>
+            <dialog id="dialogo-1">
+                <p id="mensaje-1"></p>
+                <button id="cerrar-1">CERRAR</button>
+            </dialog>
+        </section>
     </main>
 </body>
 

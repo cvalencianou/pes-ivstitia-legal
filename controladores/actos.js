@@ -99,7 +99,7 @@ const actualizarActo = async (req, res) => {
         })
     }
     else {
-        res.status(StatusCodes.OK).json({
+        res.status(StatusCodes.CONFLICT).json({
             mensaje: 'ACTO NO ACTUALIZADO'
         })
     }
