@@ -2,7 +2,7 @@ CREATE DATABASE  IF NOT EXISTS `ivstitia_legal` /*!40100 DEFAULT CHARACTER SET u
 USE `ivstitia_legal`;
 -- MySQL dump 10.13  Distrib 8.0.31, for Win64 (x86_64)
 --
--- Host: 192.168.100.157    Database: ivstitia_legal
+-- Host: 10.0.0.72    Database: ivstitia_legal
 -- ------------------------------------------------------
 -- Server version	8.0.32
 
@@ -304,31 +304,6 @@ LOCK TABLES `tipo_proceso` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `tipo_proceso`
---
-
-DROP TABLE IF EXISTS `tipo_proceso`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `tipo_proceso` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(45) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `nombre_UNIQUE` (`nombre`),
-  UNIQUE KEY `id_UNIQUE` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `tipo_proceso`
---
-
-LOCK TABLES `tipo_proceso` WRITE;
-/*!40000 ALTER TABLE `tipo_proceso` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tipo_proceso` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `usuarios`
 --
 
@@ -356,10 +331,6 @@ LOCK TABLES `usuarios` WRITE;
 INSERT INTO `usuarios` VALUES (1,'cvalencianou@gmail.com','$2b$10$8x6myfFFiyUz1r19YE9gtOTmoTvqxmyic6qK7Za6KA99ZP7PFJMGq',1,1),(2,'pfallas99@gmail.com','$2b$10$cAX98n8RSKxU7BS6fFBzQOSzsz.aHkLyHapgLEcaX0e2ZqiMPyihO',1,1);
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Dumping events for database 'ivstitia_legal'
---
 
 --
 -- Dumping routines for database 'ivstitia_legal'
@@ -818,4 +789,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-02-22 15:53:14
+-- Dump completed on 2023-02-22 18:58:38
