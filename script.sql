@@ -468,8 +468,8 @@ DELIMITER ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`%` PROCEDURE `casos_obtener`(par_usuario_id int)
 BEGIN
-	SELECT id, nombre, despacho, tipo_proceso_id, estado_id, lugar_estado_proceso_id, usuario_id FROM casos
-    INNER JOIN tipo_proceso_id ON casos.tipo_proceso_id = tipo_proceso.id
+	SELECT casos.id, casos.nombre, casos.despacho, casos.tipo_proceso_id, casos.estado_id, casos.lugar_estado_proceso_id, usuario_id FROM casos
+    INNER JOIN tipo_proceso ON casos.tipo_proceso_id = tipo_proceso.id
     INNER JOIN estado ON casos.estado_id = estado.id
     INNER JOIN lugar_estado_proceso ON casos.lugar_estado_proceso_id = lugar_estado_proceso.id
     WHERE usuario_id = par_usuario_id;
@@ -819,4 +819,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-02-22 23:04:20
+-- Dump completed on 2023-02-22 23:17:28
