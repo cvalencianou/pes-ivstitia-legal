@@ -3,10 +3,9 @@ window.onpageshow = async () => {
 }
 
 const obtenerClientes = async () => {
-    
+
     const resultado = await fetch('/api/v1/clientes')
 
-    const status = resultado.status
     const data = await resultado.json()
 
     switch (resultado.status) {
@@ -15,14 +14,11 @@ const obtenerClientes = async () => {
 
             data.mensaje.forEach(cliente => {
                 listaClientes +=
-                `
+                    `
                 <li>
-                Nombre: ${cliente.nombre} <br><br>
-                Cedula: ${cliente.cedula} <br><br>
-                Correo: ${cliente.correo} <br><br>
-                Teléfono movil: ${cliente.movil} <br><br>
-                Teléfono físico: ${cliente.fisico} <br><br>
-                Dirección: ${cliente.direccion} <br><br><br><br>
+                Nombre: ${cliente.nombre}  Cedula: ${cliente.cedula}  <br><br>
+                Teléfono movil: ${cliente.telefonoMovil} Teléfono físico: ${cliente.telefonoFisico} <br><br>
+                Correo: ${cliente.correo}    Dirección: ${cliente.direccion} 
                 </li>
                 `
             });
@@ -30,7 +26,39 @@ const obtenerClientes = async () => {
             document.getElementById('lista-clientes').innerHTML = listaClientes
 
             break;
-    
+
+        default:
+            alert(data.mensaje)
+            break;
+    }
+
+}
+
+const filtrarClientes = async () => {
+
+    const resultado = await fetch('/api/v1/clientes/filtro')
+
+    const data = await resultado.json()
+
+    switch (resultado.status) {
+        case 200:
+            let listaClientes = ''
+
+            data.mensaje.forEach(cliente => {
+                listaClientes +=
+                    `
+                <li>
+                Nombre: ${cliente.nombre}  Cedula: ${cliente.cedula}  <br><br>
+                Teléfono movil: ${cliente.telefonoMovil} Teléfono físico: ${cliente.telefonoFisico} <br><br>
+                Correo: ${cliente.correo}    Dirección: ${cliente.direccion} 
+                </li>
+                `
+            });
+
+            document.getElementById('lista-clientes').innerHTML = listaClientes
+
+            break;
+
         default:
             alert(data.mensaje)
             break;

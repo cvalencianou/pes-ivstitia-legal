@@ -4,17 +4,17 @@ const Cliente = require('../modelos/Cliente')
 
 const crearCliente = async (req, res) => {
     const usuarioId = req.user.id
-    const { nombre, cedula, tipoCedula, correo, numeroFisico, numeroMovil, direccion } = req.body
+    const { nombre, cedula, tipoCedula, correo, telefonoMovil, telefonoFisico, direccion } = req.body
 
-    if (!usuarioId || !nombre || !cedula || !tipoCedula || !correo || !numeroMovil || !direccion) {
+    if (!usuarioId || !nombre || !cedula || !tipoCedula || !correo || !telefonoMovil || !direccion) {
         throw new httpError(StatusCodes.BAD_REQUEST, 'POR FAVOR BRINDAR TODOS LOS DATOS!')
     }
 
-    if (typeof usuarioId !== 'number' || typeof nombre !== 'string' || typeof cedula !== 'string' || typeof numeroFisico !== 'string' || typeof correo !== 'string' || typeof numeroMovil !== 'string' || typeof direccion !== 'string') {
+    if (typeof usuarioId !== 'number' || typeof nombre !== 'string' || typeof cedula !== 'string' || typeof telefonoFisico !== 'string' || typeof correo !== 'string' || typeof telefonoMovil !== 'string' || typeof direccion !== 'string') {
         throw new httpError(StatusCodes.BAD_REQUEST, 'POR FAVOR BRINDAR DATOS VALIDOS 1!')
     }
 
-    if (isNaN(cedula) || isNaN(numeroFisico) || isNaN(numeroMovil)) {
+    if (isNaN(cedula) || isNaN(telefonoFisico) || isNaN(telefonoMovil)) {
         throw new httpError(StatusCodes.BAD_REQUEST, 'POR FAVOR BRINDAR DATOS VALIDOS numeros!')
     }
 
@@ -27,7 +27,7 @@ const crearCliente = async (req, res) => {
         throw new httpError(StatusCodes.CONFLICT, 'YA EXISTE USUARIO')
     }
 
-    if ((await cliente.crearCliente(usuarioId, nombre, cedula, correo, numeroFisico, numeroMovil, direccion, tipoCedula)).affectedRows === 1) {
+    if ((await cliente.crearCliente(usuarioId, nombre, cedula, correo, telefonoMovil, telefonoFisico, direccion, tipoCedula)).affectedRows === 1) {
         res.status(StatusCodes.CREATED).json({
             mensaje: `CLIENTE CREADO`
         })
@@ -71,7 +71,6 @@ const filtrarClientes = async (req, res) => {
     })
 }
 
-
 const actualizarCliente = async (req, res) => {
     const usuarioId = req.user.id
     //const clienteId = req.
@@ -98,6 +97,5 @@ const actualizarCliente = async (req, res) => {
         })
     }
 }
-
 
 module.exports = { obtenerClientes, filtrarClientes, crearCliente, actualizarCliente }

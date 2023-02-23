@@ -15,14 +15,34 @@ header nav img {
     border-radius: 5px;
 }
 
-#enlaces{
+#enlaces {
     margin-top: 1.5%;
     margin-right: 1%;
     float: right
 }
 
-li{
-    margin-left: 3%;
-    margin-top: 4%;
+li {
+    list-style-type: none;
+    border: 2px #20344d;
+    margin-top: 2%;
+    padding: 1%;
 
+}
+
+#btnCrearCliente {
+    margin-top: 1.5%;
+    margin-right: 1%;
+    float: right;
+}
+
+#buscarCliente {
+    margin-top: 1.5%;
+    margin-right: 1%;
+    align-items: center;
+}
+
+.buscarCliente {
+    margin-top: 1.5%;
+    margin-right: 1%;
+    text-align: center;
 }

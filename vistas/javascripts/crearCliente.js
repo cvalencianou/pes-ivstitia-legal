@@ -13,8 +13,8 @@ const crearCliente = async() =>{
     const tipoCedula = document.getElementById('tipo-cedula').value
     const cedula = document.getElementById('cedula').value
     const correo = document.getElementById('correo').value
-    const fisico = document.getElementById('fisico').value
-    const movil = document.getElementById('movil').value
+    const telefonoFisico = document.getElementById('telefonoFisico').value
+    const telefonoMovil = document.getElementById('telefonoMovil').value
     const direccion = document.getElementById('direccion').value
 
     const resultado = await fetch('/api/v1/clientes', {
@@ -26,8 +26,8 @@ const crearCliente = async() =>{
             nombre: nombreCliente,
             cedula: cedula,
             correo: correo,
-            numeroFisico: fisico,
-            numeroMovil: movil,
+            telefonoFisico: telefonoFisico,
+            telefonoMovil: telefonoMovil,
             direccion: direccion,
             tipoCedula: tipoCedula            
         })
