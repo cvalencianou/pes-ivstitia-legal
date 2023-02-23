@@ -6,7 +6,7 @@ const { crearActo, obtenerActosPorIdRegistro, calcularActo, actualizarActo, elim
 router.post('/calculo/:id', calcularActo)
 router.post('/', verificarJWT, verificarAdministrador, crearActo)
 router.get('/:id', verificarJWT, obtenerPorId)
-router.get('/registro/:id', verificarJWT, obtenerActosPorIdRegistro)
+router.get('/registro/:idRegistro', verificarJWT, obtenerActosPorIdRegistro)
 router.put('/:id', verificarJWT, verificarAdministrador, actualizarActo)
 router.delete('/:id', verificarJWT, verificarAdministrador, eliminarActo)
 

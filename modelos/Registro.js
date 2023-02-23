@@ -20,6 +20,14 @@ class Registro {
     eliminarPorId = async (id) => {
         return await executePreparedStatement('CALL registros_eliminar_por_id(?)', [id])
     }
+
+    buscarPorNombre = async (nombre) => {
+        return await executePreparedStatement('CALL registros_buscar_por_nombre(?)', [nombre])
+    }
+
+    buscarPorId = async (id) => {
+        return await executePreparedStatement('CALL registros_buscar_por_id(?)', [id])
+    }
 }
 
 module.exports = Registro

@@ -6,41 +6,58 @@ const crearRegistro = async (req, res) => {
 
     const { nombre } = req.body
 
-    new Registro().crear(nombre)
-
-    res.status(StatusCodes.CREATED).json({
-        mensaje: 'REGISTRO CREADO'
-    })
-}
-
-const obtenerRegistros = async (req, res) => {
-
-    const resultado = await new Registro().obtenerTodos()
-
-    if (resultado[0].length > 0) {
-        res.status(StatusCodes.OK).json({
-            mensaje: resultado[0]
-        })
-    }
-    else {
-        res.status(StatusCodes.NOT_FOUND).json({
-            mensaje: 'NO HAY REGISTROS'
-        })
-    }
-}
-
-const actualizarRegistro = async (req, res) => {
-    const { id } = req.params
-
-    const { nombre } = req.body
-
-    if (!id || !nombre) {
+    if (!nombre || nombre.length < 1 || nombre.length > 45) {
         throw new httpError(StatusCodes.BAD_REQUEST, 'POR FAVOR BRINDAR VALORES VÁLIDOS')
     }
 
     const registro = new Registro()
 
+    if ((await registro.buscarPorNombre(nombre))[0].length > 0) {
+        throw new httpError(StatusCodes.CONFLICT, 'NOMBRE REGISTRO YA EXISTE')
+    }
 
+    if ((await registro.crear(nombre)).affectedRows === 1) {
+        res.status(StatusCodes.CREATED).json({
+            mensaje: 'REGISTRO CREADO'
+        })
+    }
+    else {
+        throw new httpError(StatusCodes.CONFLICT, 'REGISTRO NO CREADO')
+    }
+}
+
+const obtenerRegistros = async (req, res) => {
+
+    const registros = (await new Registro().obtenerTodos())[0]
+
+    if (registros.length > 0) {
+        res.status(StatusCodes.OK).json({
+            mensaje: registros
+        })
+    }
+    else {
+        throw new httpError(StatusCodes.NOT_FOUND, 'NO HAY REGISTROS')
+    }
+}
+
+const actualizarRegistro = async (req, res) => {
+
+    const { id } = req.params
+    const { nombre } = req.body
+
+    if (!id || isNaN(id) || !nombre || nombre.length < 1 || nombre.length > 45) {
+        throw new httpError(StatusCodes.BAD_REQUEST, 'POR FAVOR BRINDAR VALORES VÁLIDOS')
+    }
+
+    const registro = new Registro()
+
+    if ((await registro.buscarPorId(id))[0].length === 0) {
+        throw new httpError(StatusCodes.NOT_FOUND, 'ID REGISTRO NO EXISTE')
+    }
+
+    if ((await registro.buscarPorNombre(nombre))[0].length > 0) {
+        throw new httpError(StatusCodes.CONFLICT, 'NOMBRE REGISTRO YA EXISTE')
+    }
 
     if ((await registro.actualizarPorId(id, nombre)).affectedRows === 1) {
         res.status(StatusCodes.OK).json({
@@ -48,21 +65,24 @@ const actualizarRegistro = async (req, res) => {
         })
     }
     else {
-        res.status(StatusCodes.CONFLICT).json({
-            mensaje: 'REGISTRO NO ACTUALIZADO'
-        })
+        throw new httpError(StatusCodes.CONFLICT, 'REGISTRO NO ACTUALIZADO')
     }
 }
 
 
 const eliminarRegistro = async (req, res) => {
+
     const { id } = req.params
 
-    if (!id) {
+    if (!id || isNaN(id)) {
         throw new httpError(StatusCodes.BAD_REQUEST, 'POR FAVOR BRINDAR VALORES VÁLIDOS')
     }
+
     const registro = new Registro()
 
+    if ((await registro.buscarPorId(id))[0].length === 0) {
+        throw new httpError(StatusCodes.NOT_FOUND, 'ID REGISTRO NO EXISTE')
+    }
 
     if ((await registro.eliminarPorId(id)).affectedRows === 1) {
         res.status(StatusCodes.OK).json({
@@ -70,9 +90,7 @@ const eliminarRegistro = async (req, res) => {
         })
     }
     else {
-        res.status(StatusCodes.CONFLICT).json({
-            mensaje: 'REGISTRO NO ELIMINADO'
-        })
+        throw new httpError(StatusCodes.CONFLICT, 'REGISTRO NO ELIMINADO')
     }
 }
 

@@ -18,7 +18,7 @@ const crearUsuario = async (req, res) => {
     const usuario = new Usuario()
 
     if ((await usuario.buscarPorCorreo(correo))[0].length === 1) {
-        throw new httpError(StatusCodes.CONFLICT, 'YA EXISTE USUARIO')
+        throw new httpError(StatusCodes.CONFLICT, 'USUARIO YA EXISTE')
     }
 
     const contrasena = generator.generate({
@@ -42,6 +42,9 @@ const crearUsuario = async (req, res) => {
             Contraseña temporal: ${contrasena} \n
             Ingrese a través del siguiente enlace ${process.env.APP_LINK}`
         })
+    }
+    else {
+        throw new httpError(StatusCodes.CONFLICT, 'USUARIO NO CREADO')
     }
 }
 
@@ -108,13 +111,15 @@ const cerrarSesion = async (req, res) => {
 
 const obtenerUsuarios = async (req, res) => {
 
-    const usuario = new Usuario()
+    const resultado = await new Usuario().obtenerTodos()
 
-    const resultado = await usuario.obtenerTodos()
-
-    res.status(StatusCodes.OK).json({
-        mensaje: resultado[0]
-    })
+    if (resultado[0].length > 0) {
+        res.status(StatusCodes.OK).json({
+            mensaje: resultado[0]
+        })
+    } else {
+        throw new httpError(StatusCodes.NOT_FOUND, 'NO HAY USUARIOS')
+    }
 }
 
 const actualizarUsuario = async (req, res) => {
@@ -144,6 +149,9 @@ const actualizarUsuario = async (req, res) => {
         res.status(StatusCodes.OK).json({
             mensaje: "USUARIO ACTUALIZADO"
         })
+    }
+    else {
+        throw new httpError(StatusCodes.CONFLICT, 'USUARIO NO ACTUALIZADO')
     }
 }
 
@@ -185,6 +193,9 @@ const restablecerContrasena = async (req, res) => {
             Ingrese a través del siguiente enlace ${process.env.APP_LINK}`
         })
     }
+    else {
+        throw new httpError(StatusCodes.CONFLICT, 'CREDENCIALES NO RECUPERADAS')
+    }
 }
 
 const cambiarContrasena = async (req, res) => {
@@ -214,6 +225,9 @@ const cambiarContrasena = async (req, res) => {
             mensaje: 'CONTRASEÑA CAMBIADA'
         })
     }
+    else {
+        throw new httpError(StatusCodes.CONFLICT, 'CONTRASEÑA NO CAMBIADA')
+    }
 }
 
 const eliminarUsuario = async (req, res) => {
@@ -234,6 +248,9 @@ const eliminarUsuario = async (req, res) => {
         res.status(StatusCodes.OK).json({
             mensaje: 'USUARIO ELIMINADO'
         })
+    }
+    else {
+        throw new httpError(StatusCodes.CONFLICT, 'USUARIO NO ELIMINADO')
     }
 }
 

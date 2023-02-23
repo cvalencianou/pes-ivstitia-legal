@@ -1,7 +1,6 @@
 const express = require('express')
 const router = express.Router()
 const { verificarJWT, verificarAdministrador } = require('../middleware/autenticacion')
-
 const { crearRegistro, obtenerRegistros, actualizarRegistro, eliminarRegistro } = require('../controladores/registros')
 
 router.post('/', verificarJWT, verificarAdministrador, crearRegistro)

@@ -31,10 +31,9 @@ CREATE TABLE `actos` (
   `tributos_general` json NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
-  UNIQUE KEY `nombre_UNIQUE` (`nombre`),
   KEY `fk_acto_registro_idx` (`id_registro`),
   CONSTRAINT `fk_acto_registro` FOREIGN KEY (`id_registro`) REFERENCES `registros` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -43,7 +42,7 @@ CREATE TABLE `actos` (
 
 LOCK TABLES `actos` WRITE;
 /*!40000 ALTER TABLE `actos` DISABLE KEYS */;
-INSERT INTO `actos` VALUES (1,'COMPRAVENTA',1,'{\"x\": 100, \"fiscal\": [{\"id\": 1, \"hasta\": 25000, \"monto\": 12.5}, {\"id\": 2, \"hasta\": 75000, \"monto\": 25}, {\"id\": 3, \"hasta\": 100000, \"monto\": 31.25}, {\"id\": 4, \"hasta\": 250000, \"monto\": 62.5}, {\"id\": 5, \"hasta\": 500000, \"monto\": 125}, {\"id\": 6, \"hasta\": 1000000, \"monto\": 156.25}, {\"id\": 7, \"hasta\": 1500000, \"monto\": 312.5}, {\"id\": 8, \"hasta\": 0, \"monto\": 625}], \"agrario\": \"3.00\", \"archivo\": [{\"id\": 1, \"hasta\": 100000, \"monto\": 10}, {\"id\": 2, \"hasta\": 0, \"monto\": 20}], \"registro\": \"5.00\"}');
+INSERT INTO `actos` VALUES (11,'xx',6,'{\"id\": 2}');
 /*!40000 ALTER TABLE `actos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -241,7 +240,7 @@ CREATE TABLE `registros` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `nombre_UNIQUE` (`nombre`),
   UNIQUE KEY `id_UNIQUE` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -250,7 +249,7 @@ CREATE TABLE `registros` (
 
 LOCK TABLES `registros` WRITE;
 /*!40000 ALTER TABLE `registros` DISABLE KEYS */;
-INSERT INTO `registros` VALUES (1,'Bienes Inmuebles!');
+INSERT INTO `registros` VALUES (6,'MUEBLES');
 /*!40000 ALTER TABLE `registros` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -331,7 +330,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES (1,'cvalencianou@gmail.com','$2b$10$8x6myfFFiyUz1r19YE9gtOTmoTvqxmyic6qK7Za6KA99ZP7PFJMGq',1,1),(2,'pfallas99@gmail.com','$2b$10$cAX98n8RSKxU7BS6fFBzQOSzsz.aHkLyHapgLEcaX0e2ZqiMPyihO',1,1);
+INSERT INTO `usuarios` VALUES (1,'cvalencianou@gmail.com','$2b$10$NJ4p.vKUYRrsRrdBBO6GK.mMqR/LibooPZl7OLDgm4kdnjFM.Hg1i',1,1),(2,'pfallas99@gmail.com','$2b$10$cAX98n8RSKxU7BS6fFBzQOSzsz.aHkLyHapgLEcaX0e2ZqiMPyihO',1,1);
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -351,6 +350,25 @@ DELIMITER ;;
 CREATE DEFINER=`root`@`%` PROCEDURE `actos_actualizar_por_id`(par_id INT,par_nombre VARCHAR(45),par_tributos_general JSON)
 BEGIN
 UPDATE actos SET nombre = par_nombre, tributos_general = par_tributos_general WHERE id = par_id;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `actos_buscar_por_nombre_id_registro` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`%` PROCEDURE `actos_buscar_por_nombre_id_registro`(par_nombre VARCHAR(45), par_id_registro INT)
+BEGIN
+SELECT id, nombre FROM actos WHERE id_registro =  par_id_registro AND nombre = par_nombre;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -407,7 +425,7 @@ DELIMITER ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`%` PROCEDURE `actos_obtener_por_id`(par_id INT)
 BEGIN
-SELECT id, nombre, tributos_general FROM actos WHERE id = par_id;
+SELECT id, nombre, tributos_general, id_registro FROM actos WHERE id = par_id;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -589,6 +607,44 @@ DELIMITER ;;
 CREATE DEFINER=`root`@`%` PROCEDURE `registros_actualizar_por_id`(par_id INT, par_nombre VARCHAR(45))
 BEGIN
 UPDATE registros SET nombre = par_nombre WHERE id = par_id;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `registros_buscar_por_id` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`%` PROCEDURE `registros_buscar_por_id`(par_id INT)
+BEGIN
+SELECT id, nombre FROM registros WHERE id = par_id;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `registros_buscar_por_nombre` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`%` PROCEDURE `registros_buscar_por_nombre`(par_nombre VARCHAR(45))
+BEGIN
+SELECT id, nombre FROM registros WHERE nombre = par_nombre;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -854,4 +910,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-02-23 10:45:21
+-- Dump completed on 2023-02-23 14:05:55

@@ -25,6 +25,10 @@ class Acto {
         return await executePreparedStatement('CALL actos_eliminar_por_id(?)', [id])
     }
 
+    buscarPorNombreIdRegistro = async (nombre, idRegistro) => {
+        return await executePreparedStatement('CALL actos_buscar_por_nombre_id_registro(?,?)', [nombre, idRegistro])
+    }
+
     realizarCalculo = async (acto, montoConsulta) => {
 
         const tributosHonorarios = (await executePreparedStatement('CALL actos_obtener_tributos(?)', [acto]))[0][0]['tributos_general']
@@ -59,6 +63,10 @@ class Acto {
 
     calcularFiscal = async (montoConsulta, timbre) => {
 
+        if (!timbre) {
+            return 0
+        }
+
         for (let index = 0; index < timbre.length; index++) {
 
             if (montoConsulta <= timbre[index].hasta) {
@@ -72,6 +80,10 @@ class Acto {
 
     calcularArchivo = async (montoConsulta, timbre) => {
 
+        if (!timbre) {
+            return 0
+        }
+
         for (let index = 0; index < timbre.length; index++) {
 
             if (montoConsulta <= timbre[index].hasta) {
@@ -84,6 +96,10 @@ class Acto {
     }
 
     calcularAbogado = async (montoConsulta, timbre) => {
+
+        if (!timbre) {
+            return 0
+        }
 
         for (let index = 0; index < timbre.length; index++) {
 
@@ -117,6 +133,10 @@ class Acto {
     }
 
     calcularHonorarios = async (montoConsulta, honorario) => {
+
+        if (!honorario) {
+            return 0
+        }
 
         let totalHonorarios = 0
         let contador = 1
