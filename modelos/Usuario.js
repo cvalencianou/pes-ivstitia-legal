@@ -8,43 +8,43 @@ class Usuario {
     administrador
     contrasenaConfigurada
 
-    async buscarPorCorreo(correo) {
+    buscarPorCorreo = async (correo) => {
         return await executePreparedStatement('CALL usuarios_buscar_por_correo(?)', [correo])
     }
 
-    async registrar(correo, contrasena) {
+    registrar = async (correo, contrasena) => {
         return await executePreparedStatement('CALL usuarios_registrar(?,?)', [correo, contrasena])
     }
 
-    async validarCredenciales(correo) {
+    validarCredenciales = async (correo) => {
         return await executePreparedStatement('CALL usuarios_validar_credenciales(?)', [correo])
     }
 
-    async obtenerTodos() {
+    obtenerTodos = async () => {
         return await executePreparedStatement('CALL usuarios_obtener_todos()', [])
     }
 
-    async verificarAdministrador(id) {
+    verificarAdministrador = async (id) => {
         return await executePreparedStatement('CALL usuarios_verificar_administrador(?)', [id])
     }
 
-    async buscarPorId(id) {
+    buscarPorId = async (id) => {
         return await executePreparedStatement('CALL usuarios_buscar_por_id(?)', [id])
     }
 
-    async actualizar(id, correo, administrador) {
+    actualizar = async (id, correo, administrador) => {
         return await executePreparedStatement('CALL usuarios_actualizar(?,?,?)', [id, correo, administrador])
     }
 
-    async restablecerContrasena(id, contrasena) {
+    restablecerContrasena = async (id, contrasena) => {
         return await executePreparedStatement('CALL usuarios_restablecer_contrasena(?,?)', [id, contrasena])
     }
 
-    async cambiarContrasena(id, contrasenaNueva) {
+    cambiarContrasena = async (id, contrasenaNueva) => {
         return await executePreparedStatement('CALL usuarios_cambiar_contrasena(?,?)', [id, contrasenaNueva])
     }
 
-    async eliminarPorId(id) {
+    eliminarPorId = async (id) => {
         return await executePreparedStatement('CALL usuarios_eliminar_por_id(?)', [id])
     }
 }

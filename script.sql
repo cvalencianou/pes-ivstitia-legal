@@ -34,7 +34,7 @@ CREATE TABLE `actos` (
   UNIQUE KEY `nombre_UNIQUE` (`nombre`),
   KEY `fk_acto_registro_idx` (`id_registro`),
   CONSTRAINT `fk_acto_registro` FOREIGN KEY (`id_registro`) REFERENCES `registros` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -43,8 +43,74 @@ CREATE TABLE `actos` (
 
 LOCK TABLES `actos` WRITE;
 /*!40000 ALTER TABLE `actos` DISABLE KEYS */;
-INSERT INTO `actos` VALUES (1,'Inscripción de Aeronave',1,'{\"fiscal\": [{\"id\": 1, \"hasta\": 25000, \"monto\": 12.5}, {\"id\": 2, \"hasta\": 75000, \"monto\": 25}, {\"id\": 3, \"hasta\": 100000, \"monto\": 31.25}, {\"id\": 4, \"hasta\": 250000, \"monto\": 62.5}, {\"id\": 5, \"hasta\": 500000, \"monto\": 125}, {\"id\": 6, \"hasta\": 1000000, \"monto\": 156.25}, {\"id\": 7, \"hasta\": 1500000, \"monto\": 312.5}, {\"id\": 8, \"hasta\": 0, \"monto\": 625}], \"abogado\": [{\"id\": 1, \"hasta\": 250000, \"monto\": 0}, {\"id\": 2, \"hasta\": 1000000, \"monto\": 1100}, {\"id\": 3, \"hasta\": 5000000, \"monto\": 2200}, {\"id\": 4, \"hasta\": 25000000, \"monto\": 5500}, {\"id\": 5, \"hasta\": 50000000, \"monto\": 11000}, {\"id\": 6, \"hasta\": 100000000, \"monto\": 16500}, {\"id\": 7, \"hasta\": 500000000, \"monto\": 27500}, {\"id\": 8, \"hasta\": 0, \"monto\": 55000}], \"agrario\": \"3.00\", \"archivo\": [{\"id\": 1, \"hasta\": 100000, \"monto\": 10}, {\"id\": 2, \"hasta\": 0, \"monto\": 20}], \"cruzRoja\": 500, \"registro\": \"5.00\", \"traspaso\": \"1.50\", \"municipal\": \"0.00\", \"honorarios\": [{\"id\": 1, \"monto\": \"60500.00\", \"porcentaje\": \"0.00\"}, {\"id\": 2, \"monto\": \"11000000.00\", \"porcentaje\": \"2.00\"}, {\"id\": 3, \"monto\": \"16500000.00\", \"porcentaje\": \"1.50\"}, {\"id\": 4, \"monto\": \"33000000.00\", \"porcentaje\": \"1.25\"}, {\"id\": 5, \"monto\": \"0.00\", \"porcentaje\": \"1.00\"}]}'),(2,'Traspaso de Inmuebles',3,'null'),(9,'4',1,'null'),(11,'1234',1,'null'),(12,'sexy',1,'{\"fiscal\": [{\"id\": 1, \"hasta\": 25000, \"monto\": 12.5}, {\"id\": 2, \"hasta\": 75000, \"monto\": 25}, {\"id\": 3, \"hasta\": 100000, \"monto\": 31.25}, {\"id\": 4, \"hasta\": 250000, \"monto\": 62.5}, {\"id\": 5, \"hasta\": 500000, \"monto\": 125}, {\"id\": 6, \"hasta\": 1000000, \"monto\": 156.25}, {\"id\": 7, \"hasta\": 1500000, \"monto\": 312.5}, {\"id\": 8, \"hasta\": 0, \"monto\": 625}], \"abogado\": [{\"id\": 1, \"hasta\": 250000, \"monto\": 0}, {\"id\": 2, \"hasta\": 1000000, \"monto\": 1100}, {\"id\": 3, \"hasta\": 5000000, \"monto\": 2200}, {\"id\": 4, \"hasta\": 25000000, \"monto\": 5500}, {\"id\": 5, \"hasta\": 50000000, \"monto\": 11000}, {\"id\": 6, \"hasta\": 100000000, \"monto\": 16500}, {\"id\": 7, \"hasta\": 500000000, \"monto\": 27500}, {\"id\": 8, \"hasta\": 0, \"monto\": 55000}], \"agrario\": \"3.00\", \"archivo\": [{\"id\": 1, \"hasta\": 100000, \"monto\": 10}, {\"id\": 2, \"hasta\": 0, \"monto\": 20}], \"cruzRoja\": 500, \"registro\": \"5.00\", \"traspaso\": \"1.50\", \"municipal\": \"0.00\", \"honorarios\": [{\"id\": 1, \"monto\": \"60500.00\", \"porcentaje\": \"0.00\"}, {\"id\": 2, \"monto\": \"11000000.00\", \"porcentaje\": \"2.00\"}, {\"id\": 3, \"monto\": \"16500000.00\", \"porcentaje\": \"1.50\"}, {\"id\": 4, \"monto\": \"33000000.00\", \"porcentaje\": \"1.25\"}, {\"id\": 5, \"monto\": \"0.00\", \"porcentaje\": \"1.00\"}], \"faunaSilvestre\": 1125.5, \"parquesNacionales\": 500}'),(14,'ZULU',15,'{\"fiscal\": [{\"id\": 1, \"hasta\": 25000, \"monto\": 12.5}, {\"id\": 2, \"hasta\": 75000, \"monto\": 25}, {\"id\": 3, \"hasta\": 100000, \"monto\": 31.25}, {\"id\": 4, \"hasta\": 250000, \"monto\": 62.5}, {\"id\": 5, \"hasta\": 500000, \"monto\": 125}, {\"id\": 6, \"hasta\": 1000000, \"monto\": 156.25}, {\"id\": 7, \"hasta\": 1500000, \"monto\": 312.5}, {\"id\": 8, \"hasta\": 0, \"monto\": 625}], \"abogado\": [{\"id\": 1, \"hasta\": 250000, \"monto\": 0}, {\"id\": 2, \"hasta\": 1000000, \"monto\": 1100}, {\"id\": 3, \"hasta\": 5000000, \"monto\": 2200}, {\"id\": 4, \"hasta\": 25000000, \"monto\": 5500}, {\"id\": 5, \"hasta\": 50000000, \"monto\": 11000}, {\"id\": 6, \"hasta\": 100000000, \"monto\": 16500}, {\"id\": 7, \"hasta\": 500000000, \"monto\": 27500}, {\"id\": 8, \"hasta\": 0, \"monto\": 55000}], \"agrario\": \"3.00\", \"archivo\": [{\"id\": 1, \"hasta\": 100000, \"monto\": 10}, {\"id\": 2, \"hasta\": 0, \"monto\": 20}], \"cruzRoja\": 500, \"registro\": \"5.00\", \"traspaso\": \"1.50\", \"municipal\": \"0.00\", \"honorarios\": [{\"id\": 1, \"monto\": \"60500.00\", \"porcentaje\": \"0.00\"}, {\"id\": 2, \"monto\": \"11000000.00\", \"porcentaje\": \"2.00\"}, {\"id\": 3, \"monto\": \"16500000.00\", \"porcentaje\": \"1.50\"}, {\"id\": 4, \"monto\": \"33000000.00\", \"porcentaje\": \"1.25\"}, {\"id\": 5, \"monto\": \"0.00\", \"porcentaje\": \"1.00\"}], \"faunaSilvestre\": 1125.5, \"parquesNacionales\": 500}');
+INSERT INTO `actos` VALUES (1,'BOEING 777',1,'{\"fiscal\": [{\"id\": 1, \"hasta\": 25000, \"monto\": 12.5}, {\"id\": 2, \"hasta\": 75000, \"monto\": 25}, {\"id\": 3, \"hasta\": 100000, \"monto\": 31.25}, {\"id\": 4, \"hasta\": 250000, \"monto\": 62.5}, {\"id\": 5, \"hasta\": 500000, \"monto\": 125}, {\"id\": 6, \"hasta\": 1000000, \"monto\": 156.25}, {\"id\": 7, \"hasta\": 1500000, \"monto\": 312.5}, {\"id\": 8, \"hasta\": 0, \"monto\": 625}], \"abogado\": [{\"id\": 1, \"hasta\": 250000, \"monto\": 0}, {\"id\": 2, \"hasta\": 1000000, \"monto\": 1100}, {\"id\": 3, \"hasta\": 5000000, \"monto\": 2200}, {\"id\": 4, \"hasta\": 25000000, \"monto\": 5500}, {\"id\": 5, \"hasta\": 50000000, \"monto\": 11000}, {\"id\": 6, \"hasta\": 100000000, \"monto\": 16500}, {\"id\": 7, \"hasta\": 500000000, \"monto\": 27500}, {\"id\": 8, \"hasta\": 0, \"monto\": 55000}], \"agrario\": \"3.00\", \"archivo\": [{\"id\": 1, \"hasta\": 100000, \"monto\": 10}, {\"id\": 2, \"hasta\": 0, \"monto\": 20}], \"cruzRoja\": 500, \"registro\": \"5.00\", \"traspaso\": \"1.50\", \"municipal\": \"0.00\", \"honorarios\": [{\"id\": 1, \"monto\": \"60500.00\", \"porcentaje\": \"0.00\"}, {\"id\": 2, \"monto\": \"11000000.00\", \"porcentaje\": \"2.00\"}, {\"id\": 3, \"monto\": \"16500000.00\", \"porcentaje\": \"1.50\"}, {\"id\": 4, \"monto\": \"33000000.00\", \"porcentaje\": \"1.25\"}, {\"id\": 5, \"monto\": \"0.00\", \"porcentaje\": \"1.00\"}]}'),(24,'2',29,'{\"fiscal\": [{\"id\": 1, \"hasta\": 25000, \"monto\": 12.5}, {\"id\": 2, \"hasta\": 75000, \"monto\": 25}, {\"id\": 3, \"hasta\": 100000, \"monto\": 31.25}, {\"id\": 4, \"hasta\": 250000, \"monto\": 62.5}, {\"id\": 5, \"hasta\": 500000, \"monto\": 125}, {\"id\": 6, \"hasta\": 1000000, \"monto\": 156.25}, {\"id\": 7, \"hasta\": 1500000, \"monto\": 312.5}, {\"id\": 8, \"hasta\": 0, \"monto\": 625}], \"abogado\": [{\"id\": 1, \"hasta\": 250000, \"monto\": 0}, {\"id\": 2, \"hasta\": 1000000, \"monto\": 1100}, {\"id\": 3, \"hasta\": 5000000, \"monto\": 2200}, {\"id\": 4, \"hasta\": 25000000, \"monto\": 5500}, {\"id\": 5, \"hasta\": 50000000, \"monto\": 11000}, {\"id\": 6, \"hasta\": 100000000, \"monto\": 16500}, {\"id\": 7, \"hasta\": 500000000, \"monto\": 27500}, {\"id\": 8, \"hasta\": 0, \"monto\": 55000}], \"agrario\": \"3.00\", \"archivo\": [{\"id\": 1, \"hasta\": 100000, \"monto\": 10}, {\"id\": 2, \"hasta\": 0, \"monto\": 20}], \"cruzRoja\": 500, \"registro\": \"5.00\", \"traspaso\": \"1.50\", \"municipal\": \"0.00\", \"honorarios\": [{\"id\": 1, \"monto\": \"60500.00\", \"porcentaje\": \"0.00\"}, {\"id\": 2, \"monto\": \"11000000.00\", \"porcentaje\": \"2.00\"}, {\"id\": 3, \"monto\": \"16500000.00\", \"porcentaje\": \"1.50\"}, {\"id\": 4, \"monto\": \"33000000.00\", \"porcentaje\": \"1.25\"}, {\"id\": 5, \"monto\": \"0.00\", \"porcentaje\": \"1.00\"}], \"faunaSilvestre\": 1125.5, \"parquesNacionales\": 500}'),(25,'3',29,'{\"fiscal\": [{\"id\": 1, \"hasta\": 25000, \"monto\": 12.5}, {\"id\": 2, \"hasta\": 75000, \"monto\": 25}, {\"id\": 3, \"hasta\": 100000, \"monto\": 31.25}, {\"id\": 4, \"hasta\": 250000, \"monto\": 62.5}, {\"id\": 5, \"hasta\": 500000, \"monto\": 125}, {\"id\": 6, \"hasta\": 1000000, \"monto\": 156.25}, {\"id\": 7, \"hasta\": 1500000, \"monto\": 312.5}, {\"id\": 8, \"hasta\": 0, \"monto\": 625}], \"abogado\": [{\"id\": 1, \"hasta\": 250000, \"monto\": 0}, {\"id\": 2, \"hasta\": 1000000, \"monto\": 1100}, {\"id\": 3, \"hasta\": 5000000, \"monto\": 2200}, {\"id\": 4, \"hasta\": 25000000, \"monto\": 5500}, {\"id\": 5, \"hasta\": 50000000, \"monto\": 11000}, {\"id\": 6, \"hasta\": 100000000, \"monto\": 16500}, {\"id\": 7, \"hasta\": 500000000, \"monto\": 27500}, {\"id\": 8, \"hasta\": 0, \"monto\": 55000}], \"agrario\": \"3.00\", \"archivo\": [{\"id\": 1, \"hasta\": 100000, \"monto\": 10}, {\"id\": 2, \"hasta\": 0, \"monto\": 20}], \"cruzRoja\": 500, \"registro\": \"5.00\", \"traspaso\": \"1.50\", \"municipal\": \"0.00\", \"honorarios\": [{\"id\": 1, \"monto\": \"60500.00\", \"porcentaje\": \"0.00\"}, {\"id\": 2, \"monto\": \"11000000.00\", \"porcentaje\": \"2.00\"}, {\"id\": 3, \"monto\": \"16500000.00\", \"porcentaje\": \"1.50\"}, {\"id\": 4, \"monto\": \"33000000.00\", \"porcentaje\": \"1.25\"}, {\"id\": 5, \"monto\": \"0.00\", \"porcentaje\": \"1.00\"}], \"faunaSilvestre\": 1125.5, \"parquesNacionales\": 500}'),(26,'4',29,'{\"fiscal\": [{\"id\": 1, \"hasta\": 25000, \"monto\": 12.5}, {\"id\": 2, \"hasta\": 75000, \"monto\": 25}, {\"id\": 3, \"hasta\": 100000, \"monto\": 31.25}, {\"id\": 4, \"hasta\": 250000, \"monto\": 62.5}, {\"id\": 5, \"hasta\": 500000, \"monto\": 125}, {\"id\": 6, \"hasta\": 1000000, \"monto\": 156.25}, {\"id\": 7, \"hasta\": 1500000, \"monto\": 312.5}, {\"id\": 8, \"hasta\": 0, \"monto\": 625}], \"abogado\": [{\"id\": 1, \"hasta\": 250000, \"monto\": 0}, {\"id\": 2, \"hasta\": 1000000, \"monto\": 1100}, {\"id\": 3, \"hasta\": 5000000, \"monto\": 2200}, {\"id\": 4, \"hasta\": 25000000, \"monto\": 5500}, {\"id\": 5, \"hasta\": 50000000, \"monto\": 11000}, {\"id\": 6, \"hasta\": 100000000, \"monto\": 16500}, {\"id\": 7, \"hasta\": 500000000, \"monto\": 27500}, {\"id\": 8, \"hasta\": 0, \"monto\": 55000}], \"agrario\": \"3.00\", \"archivo\": [{\"id\": 1, \"hasta\": 100000, \"monto\": 10}, {\"id\": 2, \"hasta\": 0, \"monto\": 20}], \"cruzRoja\": 500, \"registro\": \"5.00\", \"traspaso\": \"1.50\", \"municipal\": \"0.00\", \"honorarios\": [{\"id\": 1, \"monto\": \"60500.00\", \"porcentaje\": \"0.00\"}, {\"id\": 2, \"monto\": \"11000000.00\", \"porcentaje\": \"2.00\"}, {\"id\": 3, \"monto\": \"16500000.00\", \"porcentaje\": \"1.50\"}, {\"id\": 4, \"monto\": \"33000000.00\", \"porcentaje\": \"1.25\"}, {\"id\": 5, \"monto\": \"0.00\", \"porcentaje\": \"1.00\"}], \"faunaSilvestre\": 1125.5, \"parquesNacionales\": 500}');
 /*!40000 ALTER TABLE `actos` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `caso_cliente`
+--
+
+DROP TABLE IF EXISTS `caso_cliente`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `caso_cliente` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `caso_id` int NOT NULL,
+  `cliente_id` int NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`),
+  KEY `caso_id_idx` (`caso_id`),
+  KEY `cliente_id_idx` (`cliente_id`),
+  CONSTRAINT `cliente_id` FOREIGN KEY (`cliente_id`) REFERENCES `clientes` (`id`),
+  CONSTRAINT `id_caso` FOREIGN KEY (`caso_id`) REFERENCES `casos` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `caso_cliente`
+--
+
+LOCK TABLES `caso_cliente` WRITE;
+/*!40000 ALTER TABLE `caso_cliente` DISABLE KEYS */;
+/*!40000 ALTER TABLE `caso_cliente` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `casos`
+--
+
+DROP TABLE IF EXISTS `casos`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `casos` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(45) NOT NULL,
+  `despacho` varchar(45) NOT NULL,
+  `tipo_proceso_id` int NOT NULL,
+  `estado_id` int NOT NULL,
+  `lugar_estado_proceso_id` int NOT NULL,
+  `usuario_id` int NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`),
+  KEY `tipo_proceso_id_idx` (`tipo_proceso_id`),
+  KEY `estado_id_idx` (`estado_id`),
+  KEY `lugar_estado_proceso_id_idx` (`lugar_estado_proceso_id`),
+  KEY `id_usuario_idx` (`usuario_id`),
+  CONSTRAINT `estado_id` FOREIGN KEY (`estado_id`) REFERENCES `estado` (`id`),
+  CONSTRAINT `id_usuario` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`),
+  CONSTRAINT `lugar_estado_proceso_id` FOREIGN KEY (`lugar_estado_proceso_id`) REFERENCES `lugar_estado_proceso` (`id`),
+  CONSTRAINT `tipo_proceso_id` FOREIGN KEY (`tipo_proceso_id`) REFERENCES `tipo_proceso` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `casos`
+--
+
+LOCK TABLES `casos` WRITE;
+/*!40000 ALTER TABLE `casos` DISABLE KEYS */;
+/*!40000 ALTER TABLE `casos` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -84,6 +150,83 @@ LOCK TABLES `clientes` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `estado`
+--
+
+DROP TABLE IF EXISTS `estado`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `estado` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(45) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`),
+  UNIQUE KEY `nombre_UNIQUE` (`nombre`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `estado`
+--
+
+LOCK TABLES `estado` WRITE;
+/*!40000 ALTER TABLE `estado` DISABLE KEYS */;
+/*!40000 ALTER TABLE `estado` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `lugar_estado_proceso`
+--
+
+DROP TABLE IF EXISTS `lugar_estado_proceso`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `lugar_estado_proceso` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(45) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `nombre_UNIQUE` (`nombre`),
+  UNIQUE KEY `id_UNIQUE` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `lugar_estado_proceso`
+--
+
+LOCK TABLES `lugar_estado_proceso` WRITE;
+/*!40000 ALTER TABLE `lugar_estado_proceso` DISABLE KEYS */;
+/*!40000 ALTER TABLE `lugar_estado_proceso` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `notas_casos`
+--
+
+DROP TABLE IF EXISTS `notas_casos`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `notas_casos` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nota` varchar(1000) NOT NULL,
+  `caso_id` int NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`),
+  KEY `caso_id_idx` (`caso_id`),
+  CONSTRAINT `caso_id` FOREIGN KEY (`caso_id`) REFERENCES `casos` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `notas_casos`
+--
+
+LOCK TABLES `notas_casos` WRITE;
+/*!40000 ALTER TABLE `notas_casos` DISABLE KEYS */;
+/*!40000 ALTER TABLE `notas_casos` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `registros`
 --
 
@@ -96,7 +239,7 @@ CREATE TABLE `registros` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `nombre_UNIQUE` (`nombre`),
   UNIQUE KEY `id_UNIQUE` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -105,7 +248,7 @@ CREATE TABLE `registros` (
 
 LOCK TABLES `registros` WRITE;
 /*!40000 ALTER TABLE `registros` DISABLE KEYS */;
-INSERT INTO `registros` VALUES (1,'Aeronaves'),(2,'Asociaciones'),(3,'Bienes Inmuebles'),(4,'Catastro Nacional'),(5,'Certificaciones'),(6,'Concesiones'),(7,'Derechos de Autor'),(8,'DGTD Timbre Fiscal'),(9,'Entero de Timbres'),(10,'Impuesto Tributación Directa'),(11,'Marca Comercial'),(12,'Marcas de Ganado'),(13,'Mercantil y Personas'),(14,'Ministerio de Trabajo S.S.'),(15,'Patentes'),(16,'Placas'),(17,'Prendas'),(18,'Registro de Busques o Naval'),(19,'Vehículos');
+INSERT INTO `registros` VALUES (29,'222'),(1,'Aeronaves'),(27,'ALPHA'),(2,'Asociaciones'),(3,'Bienes Inmuebles'),(4,'Catastro Nacional'),(5,'Certificaciones'),(6,'Concesiones'),(7,'Derechos de Autor'),(8,'DGTD Timbre Fiscal'),(9,'Entero de Timbres'),(26,'HOLA1234'),(10,'Impuesto Tributación Directa'),(11,'Marca Comercial'),(12,'Marcas de Ganado'),(13,'Mercantil y Personas'),(14,'Ministerio de Trabajo S.S.'),(15,'Patentes'),(16,'Placas'),(17,'Prendas'),(18,'Registro de Busques o Naval'),(19,'Vehículos');
 /*!40000 ALTER TABLE `registros` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -136,41 +279,28 @@ INSERT INTO `tipo_cedula` VALUES (1,'Física'),(2,'Jurídica');
 UNLOCK TABLES;
 
 --
--- Table structure for table `tributos_honorarios`
+-- Table structure for table `tipo_proceso`
 --
 
-DROP TABLE IF EXISTS `tributos_honorarios`;
+DROP TABLE IF EXISTS `tipo_proceso`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `tributos_honorarios` (
+CREATE TABLE `tipo_proceso` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `registro` decimal(10,2) DEFAULT NULL,
-  `agrario` decimal(10,2) DEFAULT NULL,
-  `fiscal` json DEFAULT NULL,
-  `archivo` json DEFAULT NULL,
-  `abogado` json DEFAULT NULL,
-  `municipal` decimal(10,2) DEFAULT NULL,
-  `traspaso` decimal(10,2) DEFAULT NULL,
-  `parques_nacionales` decimal(10,2) DEFAULT NULL,
-  `fauna_silvestre` decimal(10,2) DEFAULT NULL,
-  `cruz_roja` decimal(10,2) DEFAULT NULL,
-  `honorarios` json DEFAULT NULL,
-  `id_acto` int NOT NULL,
+  `nombre` varchar(45) NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `id_UNIQUE` (`id`),
-  UNIQUE KEY `id_acto_UNIQUE` (`id_acto`),
-  CONSTRAINT `fk_tributos_actos` FOREIGN KEY (`id_acto`) REFERENCES `actos` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  UNIQUE KEY `nombre_UNIQUE` (`nombre`),
+  UNIQUE KEY `id_UNIQUE` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `tributos_honorarios`
+-- Dumping data for table `tipo_proceso`
 --
 
-LOCK TABLES `tributos_honorarios` WRITE;
-/*!40000 ALTER TABLE `tributos_honorarios` DISABLE KEYS */;
-INSERT INTO `tributos_honorarios` VALUES (1,5.00,3.00,'[{\"id\": 1, \"hasta\": 25000, \"monto\": 12.5}, {\"id\": 2, \"hasta\": 75000, \"monto\": 25}, {\"id\": 3, \"hasta\": 100000, \"monto\": 31.25}, {\"id\": 4, \"hasta\": 250000, \"monto\": 62.5}, {\"id\": 5, \"hasta\": 500000, \"monto\": 125}, {\"id\": 6, \"hasta\": 1000000, \"monto\": 156.25}, {\"id\": 7, \"hasta\": 1500000, \"monto\": 312.5}, {\"id\": 8, \"hasta\": 0, \"monto\": 625}]','[{\"id\": 1, \"hasta\": 100000, \"monto\": 10}, {\"id\": 2, \"hasta\": 0, \"monto\": 20}]','[{\"id\": 1, \"hasta\": 250000, \"monto\": 0}, {\"id\": 2, \"hasta\": 1000000, \"monto\": 1100}, {\"id\": 3, \"hasta\": 5000000, \"monto\": 2200}, {\"id\": 4, \"hasta\": 25000000, \"monto\": 5500}, {\"id\": 5, \"hasta\": 50000000, \"monto\": 11000}, {\"id\": 6, \"hasta\": 100000000, \"monto\": 16500}, {\"id\": 7, \"hasta\": 500000000, \"monto\": 27500}, {\"id\": 8, \"hasta\": 0, \"monto\": 55000}]',0.00,1.50,NULL,NULL,NULL,'[{\"id\": 1, \"monto\": \"60500.00\", \"porcentaje\": \"0.00\"}, {\"id\": 2, \"monto\": \"11000000.00\", \"porcentaje\": \"2.00\"}, {\"id\": 3, \"monto\": \"16500000.00\", \"porcentaje\": \"1.50\"}, {\"id\": 4, \"monto\": \"33000000.00\", \"porcentaje\": \"1.25\"}, {\"id\": 5, \"monto\": \"0.00\", \"porcentaje\": \"1.00\"}]',1);
-/*!40000 ALTER TABLE `tributos_honorarios` ENABLE KEYS */;
+LOCK TABLES `tipo_proceso` WRITE;
+/*!40000 ALTER TABLE `tipo_proceso` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tipo_proceso` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -205,6 +335,25 @@ UNLOCK TABLES;
 --
 -- Dumping routines for database 'ivstitia_legal'
 --
+/*!50003 DROP PROCEDURE IF EXISTS `actos_actualizar_por_id` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`%` PROCEDURE `actos_actualizar_por_id`(par_id INT,par_nombre VARCHAR(45),par_tributos_general JSON)
+BEGIN
+UPDATE actos SET nombre = par_nombre, tributos_general = par_tributos_general WHERE id = par_id;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `actos_crear` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -237,6 +386,25 @@ DELIMITER ;;
 CREATE DEFINER=`root`@`%` PROCEDURE `actos_eliminar_por_id`(par_id INT)
 BEGIN
 DELETE FROM actos WHERE id = par_id;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `actos_obtener_por_id` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`%` PROCEDURE `actos_obtener_por_id`(par_id INT)
+BEGIN
+SELECT id, nombre, tributos_general FROM actos WHERE id = par_id;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -414,25 +582,6 @@ DELIMITER ;;
 CREATE DEFINER=`root`@`%` PROCEDURE `registros_obtener_todos`()
 BEGIN
 SELECT id, nombre FROM registros;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `tributos_obtener_por_id_acto` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`%` PROCEDURE `tributos_obtener_por_id_acto`(par_id INT)
-BEGIN
-SELECT id, registro, agrario, fiscal, archivo, abogado, municipal, traspaso, honorarios FROM tributos WHERE id_acto = par_id;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -640,4 +789,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-02-22 15:53:14
+-- Dump completed on 2023-02-22 18:58:38

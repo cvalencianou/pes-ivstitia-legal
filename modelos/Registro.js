@@ -1,11 +1,15 @@
 const { executePreparedStatement } = require('../utilidades/baseDeDatos')
 
 class Registro {
-    
+
     id
     nombre
 
-    async obtenerTodos() {
+    crear = async (nombre) => {
+        return await executePreparedStatement('CALL registros_crear(?)', [nombre])
+    }
+
+    obtenerTodos = async () => {
         return await executePreparedStatement('CALL registros_obtener_todos()', [])
     }
 }

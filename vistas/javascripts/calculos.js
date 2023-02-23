@@ -18,7 +18,7 @@ window.onpageshow = async () => {
 
 const obtenerRegistros = async () => {
 
-    const resultado = await fetch('/api/v1/calculos/registros')
+    const resultado = await fetch('/api/v1/registros')
 
     const datos = await resultado.json()
 
@@ -45,7 +45,7 @@ const obtenerRegistros = async () => {
 
 const obtenerActosPorIdRegistro = async () => {
 
-    const resultado = await fetch(`/api/v1/calculos/actos/registro/${document.getElementById('registros').value}`)
+    const resultado = await fetch(`/api/v1/actos/registro/${document.getElementById('registros').value}`)
 
     const datos = await resultado.json()
 
@@ -73,7 +73,7 @@ const realizarCalculo = async () => {
     const acto = document.getElementById('actos').value
     const montoConsulta = document.getElementById('monto-calculo').value
 
-    const resultado = await fetch(`/api/v1/calculos/${acto}`, {
+    const resultado = await fetch(`/api/v1/actos/calculo/${acto}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -84,7 +84,7 @@ const realizarCalculo = async () => {
     })
 
     const datos = await resultado.json()
-
+    console.log(datos)
     if (resultado.status === 200) {
         document.getElementById('resultado-calculo').innerHTML =
             `

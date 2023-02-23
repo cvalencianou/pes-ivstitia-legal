@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modificar Actos - IvstitiaLegal</title>
+    <link rel="stylesheet" href="stylesheets/general.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cinzel">
+    <script src="javascripts/autenticacion.js"></script>
+    <script src="javascripts/modificarActo.js"></script>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a href="inicio"><img src="images/logo_ivstitia_legal.jpg" alt=""></a>
+            <nav id="enlaces"></nav>
+        </nav>
+    </header>
+    <main>
+        <section id="seccion-actos">
+            <h2>Tabla actos</h2>
+            <select name="registros-tabla" id="registros-tabla"></select>
+            <div class="tabla-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nombre</th>
+                            <th>Tareas</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla-actos">
+
+                    </tbody>
+                </table>
+                <dialog id="dialogo-1" >
+                    <p id="mensaje-1"></p>
+                    <button id="cerrar-1">CERRAR</button>
+                </dialog>
+                <dialog id="dialogo-2" >
+                    <p id="mensaje-2">¿Está seguro que desea eliminar acto?</p>
+                    <button id="eliminar-2">ELIMINAR</button>
+                    <button id="cancelar-2">CANCELAR</button>
+                </dialog>
+                <dialog id="dialogo-3" >
+                    <p id="mensaje-3"></p>
+                    <button id="cerrar-3">CERRAR</button>
+                </dialog>
+            </div>
+        </section>
+        <section id="seccion-modificar-acto">
+            <form id="form-modificar-acto">
+                <label for="nombre-acto">Nombre Acto</label>
+                <input type="text" id="nombre-acto" required>
+                <label for="tributos-acto">Tributos Acto</label>
+                <textarea name="" id="tributos-acto" cols="150" rows="30" required></textarea>
+                <input type="submit" value="Actualizar">
+            </form>
+            <dialog id="dialogo-4" >
+                <p id="mensaje-4"></p>
+                <button id="cerrar-4">CERRAR</button>
+            </dialog>
+        </section>
+    </main>
+</body>
+
+</html>
