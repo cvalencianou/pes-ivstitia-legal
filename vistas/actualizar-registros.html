@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="stylesheets/general.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cinzel">
     <script src="javascripts/autenticacion.js"></script>
+    <link rel="stylesheet" href="stylesheets/actualizarRegistros.css">
     <script src="javascripts/actualizarRegistros.js"></script>
 </head>
 
@@ -20,41 +21,43 @@
         </nav>
     </header>
     <main>
-        <section id="seccion-tabla-registros">
-            <h2>Registros</h2>
-            <div >
-                <table>
-                    <thead>
+        <h1 class="titulo-principal">Registros</h1>
+        <section id="seccion-tabla-registros" class="seccion-tabla-registros">
+            <h2>Tabla de Registros</h2>
+            <div>
+                <table class="tabla-registros">
+                    <thead class="tabla-head">
                         <tr>
                             <th>Id</th>
                             <th>Nombre</th>
                             <th>Tareas</th>
                         </tr>
                     </thead>
-                    <tbody id="tabla-registros">
+                    <tbody id="tabla-registros" class="tabla-cuerpo">
 
                     </tbody>
                 </table>
-                <dialog id="dialogo-1">
+                <dialog id="dialogo-1" class="dialogo-general dialogo-1">
                     <p id="mensaje-1"></p>
                     <button id="cerrar-1">CERRAR</button>
                 </dialog>
-                <dialog id="dialogo-2">
+                <dialog id="dialogo-2" class="dialogo-general dialogo-2">
                     <p>¿Está seguro que desea eliminar registro?</p>
                     <button id="eliminar-2">ELIMINAR</button>
                     <button id="cancelar-2">CANCELAR</button>
                 </dialog>
             </div>
         </section>
-        <section id="seccion-actualizar-registro">
-            <form id="form-actualizar-registro">
+        <section id="seccion-actualizar-registro" class="seccion-actualizar-registro">
+            <h2>Actualizar Registro</h2>
+            <form id="form-actualizar-registro" class="form-actualizar-registro">
                 <label for="id-nuevo-registro"></label>
                 <p id="id-nuevo-registro"></p>
-                <label for="nombre-registro">Nombre Registro</label>
+                <label for="nombre-registro">Cambie el nombre</label>
                 <input type="text" id="nuevo-nombre-registro" placeholder="Nombre registro">
-                <input type="submit">
+                <input type="submit" value="Actualizar Registro">
             </form>
-            <dialog id="dialogo-3">
+            <dialog id="dialogo-3" class="dialogo-general dialogo-3">
                 <p id="mensaje-3"></p>
                 <button id="cerrar-3">CERRAR</button>
             </dialog>

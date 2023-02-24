@@ -1,0 +1,80 @@
+.main {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.titulo-principal {
+    font-family: 'Cinzel';
+    font-size: 2.6vw;
+    text-align: center;
+    margin-top: 5%;
+}
+
+.enlaces-administrar-calculos {
+    display: grid;
+    grid-template-columns: 45% 45%;
+    justify-content: space-evenly;
+    margin-bottom: 3%;
+    border-style: solid;
+    border-color: grey;
+    border-radius: 5px;
+    margin-top: 5%;
+}
+
+.enlaces-administrar-calculos a {
+    margin: 3%;
+}
+
+.enlaces-administrar-calculos a button {
+    font-family: 'Cinzel';
+    font-size: 1.3vw;
+    width: 100%;
+    padding: 2%;
+}
+
+.enlaces-administrar-calculos a button:hover {
+    font-weight: bolder;
+}
+
+@media screen and (max-width: 1000px) {
+
+    .titulo-principal {
+        font-size: 4vw;
+    }
+
+    .main {
+        width: 80%;
+    }
+
+    .enlaces-administrar-calculos a {
+        margin: 5%;
+    }
+
+    .enlaces-administrar-calculos a button {
+        font-size: 2.5vw;
+    }
+}
+
+@media screen and (max-width: 600px) {
+
+    .titulo-principal {
+        font-size: 5.5vw;
+    }
+
+    .main {
+        width: 85%;
+    }
+
+    .enlaces-administrar-calculos {
+        grid-template-columns: 100%
+    }
+
+    .enlaces-administrar-calculos a {
+        margin: 4%;
+    }
+
+    .enlaces-administrar-calculos a button {
+        font-size: 5vw;
+    }
+}

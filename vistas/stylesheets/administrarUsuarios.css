@@ -38,6 +38,11 @@ table {
     width: 100%;
     margin-left: auto;
     margin-right: auto;
+    border-collapse: collapse;
+}
+
+table tr {
+    border-bottom: 1px solid #20344d;
 }
 
 th {
@@ -53,18 +58,23 @@ th {
 .id-usuario {
     font-size: 1.3vw;
     font-family: 'Cinzel';
+    margin: 1%;
+    text-align: center;
 }
 
 .correo-usuario {
     font-size: 1.3vw;
+    margin: 1%;
+    text-align: center;
 }
 
 tr td button {
-    width: 48%;
+    width: 46%;
     font-family: 'Cinzel';
     font-size: 1vw;
     margin-left: auto;
     margin-right: auto;
+    margin: 1%;
 }
 
 td select {
@@ -145,6 +155,7 @@ td select {
     }
 
     .id-usuario {
+        width: 6%;
         text-align: center;
         font-size: 3vw;
     }
@@ -233,6 +244,7 @@ td select {
     }
 
     .id-usuario {
+        width: 6%;
         text-align: center;
         font-size: 6vw;
     }

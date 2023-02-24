@@ -26,15 +26,19 @@ const crearRegistro = async () => {
         document.getElementById('nuevo-registro').value = ''
         document.getElementById('mensaje-1').innerHTML = datos.mensaje
         document.getElementById('dialogo-1').showModal()
+        document.getElementById('cerrar-1').addEventListener('click', () => {
+            document.getElementById('dialogo-1').close()
+            window.location.replace('administrar-calculos')
+        })
     } else {
 
         document.getElementById('nuevo-registro').style.borderColor = 'red'
         document.getElementById('mensaje-1').innerHTML = datos.mensaje
         document.getElementById('dialogo-1').showModal()
+        document.getElementById('cerrar-1').addEventListener('click', () => {
+            document.getElementById('dialogo-1').close()
+        })
     }
 
-    document.getElementById('cerrar-1').addEventListener('click', () => {
-        document.getElementById('dialogo-1').close()
-        window.location.replace('administrar-calculos')
-    })
+
 }

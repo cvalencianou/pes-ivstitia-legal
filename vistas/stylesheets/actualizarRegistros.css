@@ -1,0 +1,346 @@
+.titulo-principal {
+    font-family: 'Cinzel';
+    font-size: 3vw;
+    text-align: center;
+    margin-top: 3%;
+}
+
+.seccion-tabla-registros {
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.seccion-tabla-registros h2 {
+    font-family: 'Cinzel';
+    font-size: 2vw;
+    text-align: center;
+    margin-top: 1%;
+}
+
+.tabla-registros {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tabla-head {
+    font-size: 1.5vw;
+    font-family: 'Cinzel';
+    color: white;
+    background-color: #763940;
+    padding: 1%;
+
+}
+
+.tabla-head tr th {
+    border-style: solid;
+    border-color: #20344d;
+}
+
+.tabla-id-registro {
+    text-align: center;
+    font-size: 1.5vw;
+    font-family: 'Cinzel';
+}
+
+.tabla-nombre-registro {
+    text-align: center;
+    font-size: 1vw;
+}
+
+.tabla-cuerpo tr {
+    border-bottom: 1px solid #20344d;
+}
+
+.tabla-cuerpo td button {
+    width: 49%;
+    font-size: 1vw;
+    font-family: 'Cinzel';
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.tabla-cuerpo td button:hover {
+    font-weight: bold;
+}
+
+.dialogo-general {
+    margin: auto;
+    width: 35%;
+    font-size: 1.5vw;
+    border-radius: 5px;
+    font-family: 'Cinzel';
+    text-align: center;
+}
+
+.dialogo-general p {
+    padding: 3%;
+}
+
+.dialogo-general button {
+    font-family: 'Cinzel';
+}
+
+.dialogo-general button:hover {
+    font-weight: bold;
+}
+
+.dialogo-1 {
+    width: 30%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.dialogo-1 button {
+    width: 70%;
+    font-size: 1vw;
+    margin-left: 3%;
+    margin-bottom: 3%;
+    padding: 2%;
+}
+
+.dialogo-2 {
+
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.dialogo-2 button {
+    width: 44%;
+    font-size: 1vw;
+    margin-left: 3%;
+    margin-bottom: 3%;
+    padding: 2%;
+}
+
+.seccion-actualizar-registro {
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.seccion-actualizar-registro h2 {
+    font-family: 'Cinzel';
+    font-size: 2vw;
+    text-align: center;
+}
+
+.form-actualizar-registro * {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.form-actualizar-registro input {
+    box-sizing: border-box;
+    width: 40%;
+    font-size: 1.3vw;
+    padding: 1%;
+}
+
+.form-actualizar-registro label {
+    text-align: center;
+    font-family: 'Cinzel';
+    font-size: 1.6vw;
+}
+
+.form-actualizar-registro input[type="submit"] {
+    font-family: 'Cinzel';
+}
+
+.dialogo-3 button {
+    width: 70%;
+    font-size: 1vw;
+    margin-left: 3%;
+    margin-bottom: 3%;
+    padding: 2%;
+}
+
+
+@media screen and (max-width: 1000px) {
+    .titulo-principal {
+        font-size: 8vw;
+        margin-top: 5%;
+    }
+
+    .seccion-tabla-registros {
+        width: 85%;
+    }
+
+    .seccion-tabla-registros h2 {
+        font-size: 5vw;
+        margin-top: 2%;
+        margin-bottom: 2%;
+    }
+
+    .tabla-head tr th {
+        font-size: 3vw;
+        padding: 2%;
+    }
+
+    .tabla-id-registro {
+        font-size: 4vw;
+    }
+
+    .tabla-nombre-registro {
+        font-size: 3.5vw;
+    }
+
+    .tabla-cuerpo td button {
+        width: 48%;
+        padding: 3%;
+        font-size: 2.5vw;
+        margin-bottom: 3%;
+        margin-top: 3%;
+    }
+
+    .dialogo-general {
+        width: 65%;
+        font-size: 5.5vw;
+    }
+
+    .dialogo-general p {
+        padding: 5%;
+    }
+
+    .dialogo-1 button {
+        width: 90%;
+        font-size: 4vw;
+        margin-left: 5%;
+        margin-bottom: 3%;
+        padding: 2%;
+    }
+
+    .dialogo-2 button {
+        display: block;
+        width: 90%;
+        font-size: 4vw;
+        margin-left: 5%;
+        margin-bottom: 3%;
+        padding: 2%;
+    }
+
+    .seccion-actualizar-registro {
+        width: 70%;
+    }
+
+    .seccion-actualizar-registro h2 {
+        font-size: 5vw;
+    }
+
+    .form-actualizar-registro * {
+        margin-top: 2%;
+        margin-bottom: 2%;
+    }
+
+    .form-actualizar-registro input {
+        width: 100%;
+        font-size: 3.5vw;
+        padding: 3%;
+    }
+
+    .form-actualizar-registro label {
+        font-size: 4vw;
+    }
+
+    .dialogo-3 button {
+        width: 60%;
+        font-size: 4vw;
+        padding: 2%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .titulo-principal {
+        font-size: 10vw;
+        margin-top: 5%;
+    }
+
+    .seccion-tabla-registros {
+        width: 95%;
+    }
+
+    .seccion-tabla-registros h2 {
+        font-size: 6vw;
+        margin-top: 2%;
+    }
+
+    .tabla-head tr th {
+        font-size: 5vw;
+        padding: 3%;
+    }
+
+    .tabla-id-registro {
+        font-size: 6vw;
+    }
+
+    .tabla-nombre-registro {
+        font-size: 6vw;
+    }
+
+    .tabla-cuerpo td button {
+        display: block;
+        width: 90%;
+        padding: 4%;
+        font-size: 5vw;
+        margin-bottom: 3%;
+        margin-top: 3%;
+    }
+
+    .dialogo-general {
+        width: 80%;
+        font-size: 8vw;
+    }
+
+    .dialogo-general p {
+        padding: 5%;
+    }
+
+    .dialogo-1 button {
+        width: 90%;
+        font-size: 5vw;
+        margin-left: 5%;
+        margin-bottom: 3%;
+        padding: 4%;
+    }
+
+    .dialogo-2 button {
+        display: block;
+        width: 90%;
+        font-size: 5vw;
+        margin-left: 5%;
+        margin-bottom: 3%;
+        padding: 4%;
+    }
+
+    .seccion-actualizar-registro {
+        width: 90%;
+    }
+
+    .seccion-actualizar-registro h2 {
+        font-size: 7vw;
+    }
+
+    .form-actualizar-registro * {
+        margin-top: 2%;
+        margin-bottom: 2%;
+    }
+
+    .form-actualizar-registro input {
+        width: 100%;
+        font-size: 5vw;
+        padding: 3%;
+    }
+
+    .form-actualizar-registro label {
+        font-size: 6vw;
+    }
+
+    .dialogo-3 button {
+        width: 80%;
+        font-size: 6vw;
+        padding: 4%;
+    }
+}

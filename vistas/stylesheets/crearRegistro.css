@@ -1,0 +1,151 @@
+.titulo-principal {
+    font-family: 'Cinzel';
+    font-size: 2.6vw;
+    text-align: center;
+    margin-top: 5%;
+}
+
+.seccion-nuevo-registro {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.form-registro input {
+    width: 40%;
+    padding: 2%;
+    font-size: 1vw;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 3%;
+    display: block;
+    box-sizing: border-box;
+}
+
+.form-registro label {
+    margin-top: 3%;
+    font-size: 1.5vw;
+    font-family: 'Cinzel';
+    display: block;
+    text-align: center;
+}
+
+.form-registro input[type='submit'] {
+    font-family: 'Cinzel';
+}
+
+.form-registro input[type='submit']:hover {
+    font-weight: bold;
+}
+
+.dialogo-nuevo-registro {
+    margin: auto;
+    width: 30%;
+    font-size: 1.5vw;
+    border-radius: 5px;
+}
+
+.dialogo-nuevo-registro p {
+    font-family: 'Cinzel';
+    font-size: 1.5vw;
+    text-align: center;
+    margin: 3%;
+    padding: 1%;
+}
+
+.dialogo-nuevo-registro button {
+    width: 80%;
+    font-family: 'Cinzel';
+    font-size: 1.5vw;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 3%;
+    padding: 1%;
+}
+
+.dialogo-nuevo-registro button:hover {
+    font-weight: bold;
+}
+
+@media screen and (max-width: 1000px) {
+    .titulo-principal {
+        font-size: 4vw;
+        margin-top: 4%;
+    }
+
+    .seccion-nuevo-registro {
+        width: 70%;
+    }
+
+    .form-registro input {
+        width: 60%;
+        padding: 2%;
+        font-size: 2vw;
+        margin-top: 3%;
+    }
+
+    .form-registro label {
+        margin-top: 3%;
+        font-size: 3vw;
+    }
+
+    .dialogo-nuevo-registro {
+        width: 50%;
+        border-radius: 5px;
+    }
+
+    .dialogo-nuevo-registro p {
+        font-size: 3vw;
+        margin: 3%;
+        padding: 2%;
+    }
+
+    .dialogo-nuevo-registro button {
+        width: 80%;
+        font-size: 3vw;
+        margin-bottom: 3%;
+        padding: 2%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .titulo-principal {
+        font-size: 7vw;
+        margin-top: 5%;
+    }
+
+    .seccion-nuevo-registro {
+        width: 90%;
+    }
+
+    .form-registro input {
+        width: 80%;
+        padding: 4%;
+        font-size: 4vw;
+        margin-top: 5%;
+    }
+
+    .form-registro label {
+        margin-top: 5%;
+        font-size: 5vw;
+    }
+
+    .dialogo-nuevo-registro {
+        width: 85%;
+        border-radius: 5px;
+    }
+
+    .dialogo-nuevo-registro p {
+        font-size: 7vw;
+        margin: 5%;
+        padding: 2%;
+    }
+
+    .dialogo-nuevo-registro button {
+        width: 80%;
+        font-size: 7vw;
+        margin-bottom: 5%;
+        padding: 2%;
+    }
+}

@@ -12,16 +12,16 @@ window.onpageshow = async () => {
         }
         else if (event.target.innerHTML === 'Eliminar') {
 
+            document.getElementById('dialogo-2').showModal()
+
             document.getElementById('eliminar-2').addEventListener('click', () => {
                 eliminarRegistro(event.target.value)
-                document.getElementById('dialogo-2').close()
+                // document.getElementById('dialogo-2').close()
             })
 
             document.getElementById('cancelar-2').addEventListener('click', () => {
                 document.getElementById('dialogo-2').close()
             })
-
-            document.getElementById('dialogo-2').showModal()
         }
     })
 
@@ -42,9 +42,9 @@ const obtenerRegistros = async () => {
             listaRegistros +=
                 `
                 <tr id="${registro.id}">
-                    <td >${registro.id}</td>
-                    <td >${registro.nombre}</td>
-                    <td>
+                    <td class="tabla-id-registro">${registro.id}</td>
+                    <td class="tabla-nombre-registro">${registro.nombre}</td>
+                    <td class="tabla-contenedor-botones">
                         <button value="${registro.id}">Actualizar</button>
                         <button value="${registro.id}">Eliminar</button>
                     </td>
@@ -55,8 +55,11 @@ const obtenerRegistros = async () => {
         document.getElementById('tabla-registros').innerHTML = listaRegistros
     } else {
 
-        document.getElementById('mensaje-1').innerHTML = data.mensaje
+        document.getElementById('mensaje-1').innerHTML = datos.mensaje
         document.getElementById('dialogo-1').showModal()
+        document.getElementById('cerrar-1').addEventListener('click', () => {
+            document.getElementById('dialogo-1').close()
+        })
     }
 }
 
@@ -76,7 +79,7 @@ const actualizarRegistro = async (id) => {
 
     const nombre = document.getElementById('nuevo-nombre-registro').value
 
-   const resultado = await fetch(`/api/v1/registros/${id}`, {
+    const resultado = await fetch(`/api/v1/registros/${id}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
@@ -117,7 +120,7 @@ const eliminarRegistro = async (id) => {
         document.getElementById('dialogo-1').showModal()
         document.getElementById('cerrar-1').addEventListener('click', () => {
             document.getElementById('dialogo-1').close()
-            obtenerActosPorIdRegistro()
+            return obtenerRegistros()
         })
     } else {
         document.getElementById('mensaje-1').innerHTML = datos.mensaje
