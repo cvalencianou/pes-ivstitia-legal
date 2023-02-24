@@ -55,7 +55,9 @@ const actualizarRegistro = async (req, res) => {
         throw new httpError(StatusCodes.NOT_FOUND, 'ID REGISTRO NO EXISTE')
     }
 
-    if ((await registro.buscarPorNombre(nombre))[0][0].id !== Number(id)) {
+    const resultado = (await registro.buscarPorNombre(nombre))[0]
+
+    if (resultado.length === 1 && resultado[0].id !== Number(id)) {
         throw new httpError(StatusCodes.CONFLICT, 'NOMBRE REGISTRO YA EXISTE')
     }
 
