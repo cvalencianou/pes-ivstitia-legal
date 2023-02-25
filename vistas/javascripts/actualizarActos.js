@@ -82,7 +82,7 @@ const obtenerActosPorIdRegistro = async () => {
                 `
                 <tr id="${acto.id}">
                     <td class="id-usuario">${acto.id}</td>
-                    <td class="correo-usuario" contenteditable="true">${acto.nombre}</td>
+                    <td class="correo-usuario">${acto.nombre}</td>
                
                     <td>
                         <button value="${acto.id}">Actualizar</button>

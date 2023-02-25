@@ -1,0 +1,137 @@
+.titulo-principal {
+    font-family: 'Cinzel';
+    font-weight: 8vw;
+    text-align: center;
+    margin-top: 3%;
+}
+
+.seccion-actos {
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.titulo-seccion-actos {
+    font-family: 'Cinzel';
+    font-weight: 6vw;
+    text-align: center;
+}
+
+.select-registro * {
+    display: block;
+    font-family: 'Cinzel';
+    font-weight: 4vw;
+}
+
+.select-registro label {
+    text-align: center;
+}
+
+.select-registro select {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.tabla-actualizar-actos {
+    width: 100%;
+    border-collapse: collapse;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.tabla-head {
+    font-size: 1.5vw;
+    font-family: 'Cinzel';
+    color: white;
+    background-color: #763940;
+    padding: 1%;
+
+}
+
+.tabla-head tr th {
+    border-style: solid;
+    border-color: #20344d;
+}
+
+.tabla-cuerpo tr {
+    border-bottom: 1px solid #20344d;
+}
+
+.id-usuario {
+    text-align: center;
+    font-size: 1.5vw;
+    font-family: 'Cinzel';
+}
+
+.correo-usuario {
+    width: 40%;
+    text-align: center;
+    word-wrap: break-word;
+    font-size: 1vw;
+}
+
+.tabla-cuerpo td button {
+    width: 49%;
+    font-size: 1vw;
+    font-family: 'Cinzel';
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.tabla-cuerpo td button:hover {
+    font-weight: bold;
+}
+
+.form-modificar-acto * {
+    display: block;
+}
+
+.form-modificar-acto label {
+    font-family: 'Cinzel';
+    text-align: center;
+    font-size: 2vw;
+}
+
+.form-modificar-acto input {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.form-modificar-acto input[type='submit'] {
+    font-family: 'Cinzel';
+    font-size: 2vw;
+    margin-top: 3%;
+    margin-bottom: 3%;
+}
+
+.dialogo-general p {
+    padding: 3%;
+}
+
+.dialogo-general button {
+    font-family: 'Cinzel';
+}
+
+.dialogo-general button:hover {
+    font-weight: bold;
+}
+
+.dialogo-1 {
+    width: 30%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.dialogo-1 button {
+    width: 70%;
+    font-size: 1vw;
+    margin-left: 3%;
+    margin-bottom: 3%;
+    padding: 2%;
+}
+
+.seccion-modificar-acto {
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+}
