@@ -1,6 +1,6 @@
-window.onpageshow = async () => {   
+window.onpageshow = async () => {
 
-    document.getElementById('form-acto').addEventListener('submit', (event) => {
+    document.getElementById('form-crear-acto').addEventListener('submit', (event) => {
         event.preventDefault()
         crearActo()
     })
@@ -11,7 +11,7 @@ window.onpageshow = async () => {
 const crearActo = async () => {
 
     const nombre = document.getElementById('nuevo-acto').value
-    const registro = document.getElementById('registros').value
+    const idRegistro = document.getElementById('registros').value
     const tributosHonorarios = document.getElementById('tributos-honorarios').value
 
     const resultado = await fetch('/api/v1/actos', {
@@ -21,7 +21,7 @@ const crearActo = async () => {
         },
         body: JSON.stringify({
             nombre: nombre,
-            registro: registro,
+            idRegistro: idRegistro,
             tributosHonorarios: tributosHonorarios
         })
     })
@@ -34,17 +34,22 @@ const crearActo = async () => {
         document.getElementById('mensaje-1').innerHTML = datos.mensaje
         document.getElementById('dialogo-1').showModal()
         obtenerRegistros()
+        document.getElementById('cerrar-1').addEventListener('click', () => {
+            document.getElementById('dialogo-1').close()
+            window.location.replace('administrar-calculos')
+        })
     } else {
 
         document.getElementById('nuevo-acto').style.borderColor = 'red'
+        document.getElementById('tributos-honorarios').style.borderColor = 'red'
         document.getElementById('mensaje-1').innerHTML = datos.mensaje
         document.getElementById('dialogo-1').showModal()
+        document.getElementById('cerrar-1').addEventListener('click', () => {
+            document.getElementById('dialogo-1').close()
+        })
     }
 
-    document.getElementById('cerrar-1').addEventListener('click', () => {
-        document.getElementById('dialogo-1').close()
-        window.location.replace('administrar-calculos')
-    })
+
 
 }
 
@@ -68,7 +73,7 @@ const obtenerRegistros = async () => {
         document.getElementById('registros').innerHTML = listaRegistros
     }
     else {
-        document.getElementById('mensaje-2').innerHTML = datos.mensaje
-        document.getElementById('dialogo-2').showModal()
+        document.getElementById('mensaje-1').innerHTML = datos.mensaje
+        document.getElementById('dialogo-1').showModal()
     }
 }

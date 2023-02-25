@@ -161,7 +161,7 @@
 }
 
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 850px) {
     .titulo-principal {
         font-size: 8vw;
         margin-top: 5%;
@@ -254,7 +254,7 @@
     }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 400px) {
     .titulo-principal {
         font-size: 10vw;
         margin-top: 5%;

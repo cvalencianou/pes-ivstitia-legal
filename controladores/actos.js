@@ -12,6 +12,12 @@ const crearActo = async (req, res) => {
         throw new httpError(StatusCodes.BAD_REQUEST, 'POR FAVOR BRINDAR VALORES VÁLIDOS')
     }
 
+    try {
+        JSON.parse(tributosHonorarios)
+    } catch (error) {
+        throw new httpError(StatusCodes.BAD_REQUEST, 'POR FAVOR BRINDAR VALORES VÁLIDOS')
+    }
+
     if ((await new Registro().buscarPorId(idRegistro))[0].length === 0) {
         throw new httpError(StatusCodes.NOT_FOUND, 'ID REGISTRO NO EXISTE')
     }
@@ -22,7 +28,7 @@ const crearActo = async (req, res) => {
         throw new httpError(StatusCodes.CONFLICT, 'ACTO YA EXISTE PARA REGISTRO')
     }
 
-    if ((await acto.crear(nombre, idRegistro, JSON.stringify(tributosHonorarios))).affectedRows === 1) {
+    if ((await acto.crear(nombre, idRegistro, tributosHonorarios)).affectedRows === 1) {
         res.status(StatusCodes.CREATED).json({
             mensaje: 'ACTO CREADO'
         })

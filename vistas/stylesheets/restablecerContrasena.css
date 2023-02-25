@@ -54,7 +54,7 @@ dialog button {
     margin-right: auto;
 }
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 850px) {
     main {
         width: 70%;
         margin-top: 18%;
@@ -74,7 +74,7 @@ dialog button {
     }
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 400px) {
     main {
         width: 90%;
         margin-top: 28%;

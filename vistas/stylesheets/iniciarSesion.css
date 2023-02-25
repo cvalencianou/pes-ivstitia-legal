@@ -87,7 +87,7 @@ dialog button {
 }
 
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 850px) {
 
 
     main {
@@ -126,7 +126,7 @@ dialog button {
     }
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 400px) {
 
     form input {
         font-size: 5vw;

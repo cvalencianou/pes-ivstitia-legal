@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="stylesheets/general.css">
     <script src="javascripts/general.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cinzel">
+    <link rel="stylesheet" href="stylesheets/crearActo.css">
     <script src="javascripts/crearActo.js"></script>
 </head>
 
@@ -20,15 +21,14 @@
         </nav>
     </header>
     <main>
-
+        <h1 class="titulo-principal">Crear Actos</h1>
         <section>
-            <h2>Crear Acto</h2>
-            <form id="form-acto">
+            <form id="form-crear-acto" class="form-crear-acto">
                 <label for="registros">Seleccione registro</label>
                 <select name="registros" id="registros"></select>
+                <label for="registros">Ingrese nombre de acto</label>
                 <input type="text" id="nuevo-acto" placeholder="Nombre Acto" required>
-                <textarea name="tributos-honorarios" id="tributos-honorarios" style="display:block" cols="150"
-                    rows="25">
+                <textarea name="tributos-honorarios" id="tributos-honorarios" rows="20">
                      {
                         "registro": "5.00",
                         "agrario": "3.00",
@@ -53,7 +53,7 @@
                 </textarea>
                 <input type="submit" value="Crear Acto">
             </form>
-            <dialog id="dialogo-1">
+            <dialog id="dialogo-1" class="dialogo-1">
                 <p id="mensaje-1"></p>
                 <button id="cerrar-1">CERRAR</button>
             </dialog>
