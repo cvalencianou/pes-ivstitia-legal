@@ -8,6 +8,10 @@ window.onload = async () => {
     })
 }
 
+window.onpageshow = async () => {
+    validarSesion()
+}
+
 window.onunload = async () => {
     validarSesion()
 }

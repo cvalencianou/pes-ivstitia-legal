@@ -6,8 +6,10 @@ window.onload = async () => {
     document.getElementById('cerrar-sesion').addEventListener('click', () => {
         cerrarSesion()
     })
+}
 
-
+window.onpageshow = async () => {
+    validarSesion()
 }
 
 window.onunload = async () => {
