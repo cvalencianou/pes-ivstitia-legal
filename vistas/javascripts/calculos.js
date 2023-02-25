@@ -4,14 +4,20 @@ window.onpageshow = async () => {
         obtenerActosPorIdRegistro()
     })
 
-    document.getElementById('form-calculos').addEventListener('submit', (event) => {
+    document.getElementById('form-calcular').addEventListener('submit', (event) => {
         event.preventDefault()
         realizarCalculo()
     })
 
-    document.getElementById('cerrar').addEventListener('click', () => {
-        document.getElementById('dialogo').close()
+    document.getElementById('cerrar-1').addEventListener('click', () => {
+        document.getElementById('dialogo-1').close()
     })
+
+    document.getElementById('resultado-boton').addEventListener('click', () => {
+        window.location.assign('calculos')
+    })
+
+    document.getElementById('seccion-resultado').style.display = 'none'
 
     obtenerRegistros()
 }
@@ -38,8 +44,8 @@ const obtenerRegistros = async () => {
         obtenerActosPorIdRegistro()
     }
     else {
-        document.getElementById('mensaje').innerHTML = datos.mensaje
-        document.getElementById('dialogo').showModal()
+        document.getElementById('mensaje-1').innerHTML = datos.mensaje
+        document.getElementById('dialogo-1').showModal()
     }
 }
 
@@ -59,12 +65,13 @@ const obtenerActosPorIdRegistro = async () => {
           <option value="${acto.id}">${acto.nombre}</option>
           `
         })
-
+        document.getElementById('div-calcular').style.display = 'block'
         document.getElementById('actos').innerHTML = listaActos
     }
     else {
-        document.getElementById('mensaje').innerHTML = datos.mensaje
-        document.getElementById('dialogo').showModal()
+        document.getElementById('div-calcular').style.display = 'none'
+        document.getElementById('mensaje-1').innerHTML = datos.mensaje
+        document.getElementById('dialogo-1').showModal()
     }
 }
 
@@ -84,7 +91,7 @@ const realizarCalculo = async () => {
     })
 
     const datos = await resultado.json()
-    console.log(datos)
+
     if (resultado.status === 200) {
         document.getElementById('resultado-calculo').innerHTML =
             `
@@ -97,9 +104,12 @@ const realizarCalculo = async () => {
         TRASPASO: ${datos.mensaje.traspaso} <br>
         HONORARIOS: ${datos.mensaje.honorarios} <br>
         `
+
+        document.getElementById('seccion-calcular').style.display = 'none'
+        document.getElementById('seccion-resultado').style.display = 'block'
     }
     else {
-        document.getElementById('mensaje').innerHTML = datos.mensaje
-        document.getElementById('dialogo').showModal()
+        document.getElementById('mensaje-1').innerHTML = datos.mensaje
+        document.getElementById('dialogo-1').showModal()
     }
 }

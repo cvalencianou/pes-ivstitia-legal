@@ -37,6 +37,10 @@
     border-color: #20344d;
 }
 
+.tabla-cuerpo tr {
+    border-bottom: 1px solid #20344d;
+}
+
 .tabla-id-registro {
     text-align: center;
     font-size: 1.5vw;
@@ -44,12 +48,10 @@
 }
 
 .tabla-nombre-registro {
+    width: 40%;
     text-align: center;
+    word-wrap: break-word;
     font-size: 1vw;
-}
-
-.tabla-cuerpo tr {
-    border-bottom: 1px solid #20344d;
 }
 
 .tabla-cuerpo td button {
