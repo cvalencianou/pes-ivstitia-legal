@@ -130,7 +130,7 @@ td select {
     width: 80%;
 }
 
-@media only screen and (max-width: 850px) {
+@media only screen and (max-width: 960px) {
     main {
         width: 85%;
     }
@@ -209,7 +209,7 @@ td select {
     }
 }
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 500px) {
 
     main {
         width: 95%;

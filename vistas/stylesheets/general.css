@@ -37,7 +37,7 @@
     background-color: #763940;
 }
 
-@media screen and (max-width: 850px) {
+@media screen and (max-width: 960px) {
 
     .nav-bar a {
         font-size: 4vw;
@@ -69,7 +69,7 @@
     }
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 500px) {
 
     .nav-bar a {
         font-size: 7vw;
