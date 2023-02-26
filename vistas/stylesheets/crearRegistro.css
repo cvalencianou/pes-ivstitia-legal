@@ -1,32 +1,49 @@
-.titulo-principal {
-    font-family: 'Cinzel';
-    font-size: 2.6vw;
-    text-align: center;
-    margin-top: 5%;
-}
-
-.seccion-nuevo-registro {
-    width: 50%;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.form-registro input {
-    width: 40%;
-    padding: 2%;
-    font-size: 1vw;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 3%;
-    display: block;
+* {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 
-.form-registro label {
-    margin-top: 3%;
-    font-size: 1.5vw;
+.titulo-principal {
+    font-size: 3vw;
     font-family: 'Cinzel';
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.seccion-nuevo-registro {
     display: block;
+    width: 30%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.form-registro {
+    margin-left: auto;
+    margin-right: auto;
+    border-style: solid;
+    border-radius: 5px;
+    border-color: gray;
+}
+
+.form-registro input {
+    width: 70%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    padding: 1%;
+    font-size: 1.5vw;
+}
+
+.form-registro label {
+    display: block;
+    font-size: 2vw;
+    font-family: 'Cinzel';
     text-align: center;
 }
 
@@ -39,29 +56,28 @@
 }
 
 .dialogo-nuevo-registro {
-    margin: auto;
     width: 30%;
-    font-size: 1.5vw;
+    margin: auto;
+    padding: 3%;
     border-radius: 5px;
 }
 
 .dialogo-nuevo-registro p {
-    font-family: 'Cinzel';
-    font-size: 1.5vw;
     text-align: center;
-    margin: 3%;
-    padding: 1%;
+    font-size: 1.5vw;
+    font-family: 'Cinzel';
 }
 
 .dialogo-nuevo-registro button {
-    width: 80%;
+    display: block;
+    width: 70%;
+    padding: 1%;
     font-family: 'Cinzel';
     font-size: 1.5vw;
-    display: block;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 3%;
-    padding: 1%;
+    margin-top: 5%;
+    margin-bottom: 5%;
 }
 
 .dialogo-nuevo-registro button:hover {
@@ -70,49 +86,50 @@
 
 @media screen and (max-width: 960px) {
     .titulo-principal {
-        font-size: 4vw;
+        font-size: 6vw;
         margin-top: 4%;
+        margin-bottom: 4%;
     }
 
     .seccion-nuevo-registro {
-        width: 70%;
+        width: 60%;
     }
 
     .form-registro input {
-        width: 60%;
+        width: 80%;
+        margin-top: 7.5%;
+        margin-bottom: 7.5%;
         padding: 2%;
-        font-size: 2vw;
-        margin-top: 3%;
-    }
-
-    .form-registro label {
-        margin-top: 3%;
         font-size: 3vw;
     }
 
+    .form-registro label {
+        font-size: 4vw;
+    }
+
     .dialogo-nuevo-registro {
-        width: 50%;
-        border-radius: 5px;
+        width: 60%;
+        padding: 9%;
     }
 
     .dialogo-nuevo-registro p {
         font-size: 3vw;
-        margin: 3%;
-        padding: 2%;
     }
 
     .dialogo-nuevo-registro button {
         width: 80%;
-        font-size: 3vw;
-        margin-bottom: 3%;
         padding: 2%;
+        font-size: 3vw;
+        margin-top: 7.5%;
+        margin-bottom: 7.5%;
     }
 }
 
 @media screen and (max-width: 500px) {
     .titulo-principal {
-        font-size: 7vw;
-        margin-top: 5%;
+        font-size: 9vw;
+        margin-top: 6%;
+        margin-bottom: 6%;
     }
 
     .seccion-nuevo-registro {
@@ -120,32 +137,31 @@
     }
 
     .form-registro input {
-        width: 80%;
-        padding: 4%;
-        font-size: 4vw;
-        margin-top: 5%;
+        width: 90%;
+        margin-top: 10%;
+        margin-bottom: 10%;
+        padding: 3%;
+        font-size: 4.5vw;
     }
 
     .form-registro label {
-        margin-top: 5%;
-        font-size: 5vw;
+        font-size: 6vw;
     }
 
     .dialogo-nuevo-registro {
-        width: 85%;
-        border-radius: 5px;
+        width: 90%;
+        padding: 9%;
     }
 
     .dialogo-nuevo-registro p {
-        font-size: 7vw;
-        margin: 5%;
-        padding: 2%;
+        font-size: 4.5vw;
     }
 
     .dialogo-nuevo-registro button {
-        width: 80%;
-        font-size: 7vw;
-        margin-bottom: 5%;
-        padding: 2%;
+        width: 90%;
+        padding: 3%;
+        font-size: 4.5vw;
+        margin-top: 10%;
+        margin-bottom: 10%;
     }
 }

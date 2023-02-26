@@ -1,42 +1,52 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 .titulo-principal {
+    font-size: 3vw;
     font-family: 'Cinzel';
-    font-weight: 8vw;
     text-align: center;
-    margin-top: 3%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2%;
+    margin-bottom: 2%;
 }
 
 .seccion-actos {
+    display: block;
     width: 40%;
     margin-left: auto;
     margin-right: auto;
 }
 
-.titulo-seccion-actos {
+.titulo-secundario {
     font-family: 'Cinzel';
-    font-weight: 6vw;
+    font-size: 2vw;
     text-align: center;
+    margin: 5%;
 }
 
-.select-registro * {
+label {
     display: block;
+    font-size: 2vw;
     font-family: 'Cinzel';
-    font-weight: 4vw;
-}
-
-.select-registro label {
     text-align: center;
 }
 
-.select-registro select {
+.select-registro {
+    width: 70%;
+    display: block;
     margin-left: auto;
     margin-right: auto;
+    font-family: 'Cinzel';
+    font-size: 1.5vw;
 }
 
 .tabla-actualizar-actos {
     width: 100%;
     border-collapse: collapse;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 .tabla-head {
@@ -45,7 +55,6 @@
     color: white;
     background-color: #763940;
     padding: 1%;
-
 }
 
 .tabla-head tr th {
@@ -67,7 +76,8 @@
     width: 40%;
     text-align: center;
     word-wrap: break-word;
-    font-size: 1vw;
+    font-size: 1.5vw;
+    font-family: 'Cinzel';
 }
 
 .tabla-cuerpo td button {
@@ -82,56 +92,226 @@
     font-weight: bold;
 }
 
-.form-modificar-acto * {
-    display: block;
+dialog {
+    width: 30%;
+    margin: auto;
+    padding: 3%;
+    border-radius: 5px;
 }
 
-.form-modificar-acto label {
-    font-family: 'Cinzel';
+dialog p {
     text-align: center;
-    font-size: 2vw;
+    font-size: 1.5vw;
+    font-family: 'Cinzel';
 }
 
-.form-modificar-acto input {
+dialog button {
+    display: block;
+    width: 70%;
+    padding: 1%;
+    font-family: 'Cinzel';
+    font-size: 1.5vw;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 5%;
+    margin-bottom: 5%;
 }
 
-.form-modificar-acto input[type='submit'] {
-    font-family: 'Cinzel';
-    font-size: 2vw;
-    margin-top: 3%;
-    margin-bottom: 3%;
-}
-
-.dialogo-general p {
-    padding: 3%;
-}
-
-.dialogo-general button {
-    font-family: 'Cinzel';
-}
-
-.dialogo-general button:hover {
-    font-weight: bold;
-}
-
-.dialogo-1 {
+.seccion-modificar-acto {
+    display: block;
     width: 30%;
     margin-left: auto;
     margin-right: auto;
 }
 
-.dialogo-1 button {
-    width: 70%;
-    font-size: 1vw;
-    margin-left: 3%;
-    margin-bottom: 3%;
-    padding: 2%;
-}
-
-.seccion-modificar-acto {
-    width: 40%;
+.form-modificar-acto {
     margin-left: auto;
     margin-right: auto;
+    border-style: solid;
+    border-radius: 5px;
+    border-color: gray;
+}
+
+.form-modificar-acto label {
+    display: block;
+    font-size: 2vw;
+    font-family: 'Cinzel';
+    text-align: center;
+}
+
+.form-modificar-acto input {
+    width: 70%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    padding: 1%;
+    font-size: 1.5vw;
+}
+
+.form-modificar-acto input[type='submit'] {
+    font-family: 'Cinzel';
+}
+
+.form-modificar-acto input[type='submit']:hover {
+    font-weight: bold;
+}
+
+@media screen and (max-width: 960px) {
+    .titulo-principal {
+        font-size: 6vw;
+        margin-top: 4%;
+        margin-bottom: 4%;
+    }
+
+    .seccion-actos {
+        width: 60%;
+    }
+
+    .titulo-secundario {
+        font-size: 4vw;
+        margin: 7.5%;
+    }
+
+    label {
+        font-size: 4vw;
+    }
+
+    .select-registro {
+        width: 80%;
+        font-size: 3vw;
+    }
+
+    .tabla-head {
+        font-size: 3vw;
+        padding: 2%;
+    }
+
+    .id-usuario {
+        font-size: 3vw;
+    }
+
+    .correo-usuario {
+        width: 40%;
+        font-size: 3vw;
+    }
+
+    .tabla-cuerpo td button {
+        width: 100%;
+        font-size: 2vw;
+        padding: 4%;
+    }
+
+    dialog {
+        width: 60%;
+        padding: 6%;
+    }
+
+    dialog p {
+        font-size: 3vw;
+    }
+
+    dialog button {
+        width: 80%;
+        padding: 2%;
+        font-size: 3vw;
+        margin-top: 7.5%;
+        margin-bottom: 7.5%;
+    }
+
+    .seccion-modificar-acto {
+        width: 60%;
+    }
+
+    .form-modificar-acto label {
+        font-size: 4vw;
+    }
+
+    .form-modificar-acto input {
+        width: 80%;
+        margin-top: 7.5%;
+        margin-bottom: 7.5%;
+        padding: 2%;
+        font-size: 3vw;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .titulo-principal {
+        font-size: 9vw;
+        margin-top: 6%;
+        margin-bottom: 6%;
+    }
+
+    .seccion-actos {
+        width: 90%;
+    }
+
+    .titulo-secundario {
+        font-size: 6vw;
+        margin: 10%;
+    }
+
+    label {
+        font-size: 6vw;
+    }
+
+    .select-registro {
+        width: 90%;
+        font-size: 4.5vw;
+    }
+
+    .tabla-head {
+        font-size: 4.5vw;
+        padding: 3%;
+    }
+
+    .id-usuario {
+        font-size: 4.5vw;
+    }
+
+    .correo-usuario {
+        width: 40%;
+        font-size: 4.5vw;
+    }
+
+    .tabla-cuerpo td button {
+        width: 100%;
+        font-size: 3vw;
+        padding: 6%;
+    }
+
+    dialog {
+        width: 90%;
+        padding: 9%;
+    }
+
+    dialog p {
+        font-size: 4.5vw;
+    }
+
+    dialog button {
+        width: 90%;
+        padding: 3%;
+        font-size: 4.5vw;
+        margin-top: 10%;
+        margin-bottom: 10%;
+    }
+
+    .seccion-modificar-acto {
+        width: 90%;
+    }
+
+    .form-modificar-acto label {
+        font-size: 6vw;
+    }
+
+    .form-modificar-acto input {
+        width: 90%;
+        margin-top: 10%;
+        margin-bottom: 10%;
+        padding: 3%;
+        font-size: 4.5vw;
+    }
 }

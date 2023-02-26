@@ -1,34 +1,55 @@
-main {
-    width: 40%;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.titulo-principal {
+    font-size: 3vw;
+    font-family: 'Cinzel';
+    text-align: center;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 10%;
+    margin-top: 2%;
+    margin-bottom: 2%;
 }
 
-h1 {
-    text-align: center;
-    font-family: 'Cinzel';
-    font-size: 1.5vw;
+.seccion-restablecer-contrasena {
+    display: block;
+    width: 30%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-form input {
+.form-restablecer-contrasena {
+    margin-left: auto;
+    margin-right: auto;
+    border-style: solid;
+    border-radius: 5px;
+    border-color: gray;
+}
+
+.form-restablecer-contrasena input {
     width: 70%;
     display: block;
     margin-left: auto;
     margin-right: auto;
     margin-top: 5%;
     margin-bottom: 5%;
-    padding: 3%;
-    box-sizing: border-box;
-    font-size: 1.2vw;
+    padding: 1%;
+    font-size: 1.5vw;
 }
 
-form input[type='submit'] {
+.form-restablecer-contrasena input[type='submit'] {
     font-family: 'Cinzel';
 }
 
+.form-restablecer-contrasena input[type='submit']:hover {
+    font-weight: bold;
+}
+
 dialog {
-    width: 25%;
+    width: 30%;
     margin: auto;
     padding: 3%;
     border-radius: 5px;
@@ -36,65 +57,92 @@ dialog {
 
 dialog p {
     text-align: center;
-    font-size: larger;
+    font-size: 1.5vw;
     font-family: 'Cinzel';
-    font-weight: bold;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 dialog button {
     display: block;
-    width: 50%;
-    padding: 3%;
+    width: 70%;
+    padding: 1%;
     font-family: 'Cinzel';
-    font-weight: bold;
-    margin: 3%;
+    font-size: 1.5vw;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 5%;
+    margin-bottom: 5%;
 }
 
 @media only screen and (max-width: 960px) {
-    main {
-        width: 70%;
-        margin-top: 18%;
+    .titulo-principal {
+        font-size: 6vw;
+        margin-top: 4%;
+        margin-bottom: 4%;
     }
 
-    h1 {
-        font-size: 3vw;
+    .seccion-restablecer-contrasena {
+        width: 60%;
     }
 
-    form input {
-        font-size: 3vw;
+    .form-restablecer-contrasena input {
+        width: 80%;
+        margin-top: 10%;
+        margin-bottom: 10%;
         padding: 2%;
+        font-size: 3vw;
     }
 
     dialog {
-        width: 40%;
+        width: 60%;
+        padding: 6%;
+    }
+
+    dialog p {
+        font-size: 3vw;
+    }
+
+    dialog button {
+        width: 80%;
+        padding: 2%;
+        font-size: 3vw;
+        margin-top: 10%;
+        margin-bottom: 10%;
     }
 }
 
 @media only screen and (max-width: 500px) {
-    main {
+    .titulo-principal {
+        font-size: 9vw;
+        margin-top: 6%;
+        margin-bottom: 6%;
+    }
+
+    .seccion-restablecer-contrasena {
         width: 90%;
-        margin-top: 28%;
     }
 
-    h1 {
-        font-size: 7vw;
-    }
-
-    form input {
-        width: 80%;
-        font-size: 5vw;
-        padding: 5%;
+    .form-restablecer-contrasena input {
+        width: 90%;
+        margin-top: 15%;
+        margin-bottom: 15%;
+        padding: 3%;
+        font-size: 4.5vw;
     }
 
     dialog {
-        width: 80%;
+        width: 90%;
+        padding: 9%;
     }
 
     dialog p {
-        font-size: 5vw;
+        font-size: 4.5vw;
+    }
+
+    dialog button {
+        width: 90%;
+        padding: 3%;
+        font-size: 4.5vw;
+        margin-top: 15%;
+        margin-bottom: 15%;
     }
 }

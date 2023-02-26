@@ -1,81 +1,105 @@
-main {
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.titulo-principal {
+    font-size: 3vw;
+    font-family: 'Cinzel';
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.seccion-menu-opciones {
+    display: block;
     width: 50%;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 10%;
 }
 
-main h1 {
-    text-align: center;
-    font-family: 'Cinzel';
-}
-
-main nav {
+.nav-opciones {
+    display: grid;
+    grid-template-columns: 48% 48%;
+    justify-content: space-evenly;
     margin-left: auto;
     margin-right: auto;
     border-style: solid;
     border-color: grey;
     border-radius: 5px;
-    padding: 2%;
 }
 
-main nav {
-    display: grid;
-    grid-template-columns: 45% 45%;
-    justify-content: space-evenly;
-    margin-bottom: 3%;
+.nav-opciones a {
+    margin-top: 5%;
+    margin-bottom: 5%;
 }
 
-main nav a {
-    margin: 3%;
-}
-
-main nav a button {
+.nav-opciones a button {
     font-family: 'Cinzel';
-    font-size: 1.3vw;
+    font-size: 1.5vw;
     width: 100%;
-    padding: 2%;
+    padding: 1%;
 }
 
-main nav a button:hover {
+.nav-opciones a button:hover {
     font-weight: bolder;
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 960px) {
 
-    main {
-        width: 80%;
+    .titulo-principal {
+        font-size: 6vw;
+        margin-top: 4%;
+        margin-bottom: 4%;
     }
 
-    main nav a {
-        margin: 4%;
+    .seccion-menu-opciones {
+        width: 60%;
     }
 
-    main nav {
-        grid-template-columns: 50% 50%;
+    .nav-opciones {
+        grid-template-columns: 100%;
     }
 
-    main nav a button {
-        font-size: 2.5vw;
+    .nav-opciones a {
+        margin: 5%;
+    }
+
+    .nav-opciones a button {
+        font-size: 3vw;
+        width: 100%;
+        padding: 2%;
     }
 }
 
 @media screen and (max-width: 500px) {
 
 
-    main {
-        width: 70%;
+    .titulo-principal {
+        font-size: 9vw;
+        margin-top: 6%;
+        margin-bottom: 6%;
     }
 
-    main nav a {
+    .seccion-menu-opciones {
+        width: 90%;
+    }
+
+    .nav-opciones {
+        grid-template-columns: 100%;
+    }
+
+    .nav-opciones a {
         margin: 5%;
     }
 
-    main nav {
-        grid-template-columns: 100%
+    .nav-opciones a button {
+        font-size: 4.5vw;
+        width: 100%;
+        padding: 3%;
     }
 
-    main nav a button {
-        font-size: 4vw;
-    }
 }

@@ -1,36 +1,46 @@
-.main {
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.titulo-principal {
+    font-size: 3vw;
+    font-family: 'Cinzel';
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.seccion-menu-calculos {
+    display: block;
     width: 50%;
     margin-left: auto;
     margin-right: auto;
 }
 
-.titulo-principal {
-    font-family: 'Cinzel';
-    font-size: 2.6vw;
-    text-align: center;
-    margin-top: 5%;
-}
-
 .enlaces-administrar-calculos {
     display: grid;
-    grid-template-columns: 45% 45%;
+    grid-template-columns: 48% 48%;
     justify-content: space-evenly;
-    margin-bottom: 3%;
+    margin-left: auto;
+    margin-right: auto;
     border-style: solid;
     border-color: grey;
     border-radius: 5px;
-    margin-top: 5%;
 }
 
 .enlaces-administrar-calculos a {
-    margin: 3%;
+    margin: 5%;
 }
 
 .enlaces-administrar-calculos a button {
     font-family: 'Cinzel';
-    font-size: 1.3vw;
+    font-size: 1.5vw;
     width: 100%;
-    padding: 2%;
+    padding: 1%;
 }
 
 .enlaces-administrar-calculos a button:hover {
@@ -38,43 +48,54 @@
 }
 
 @media screen and (max-width: 960px) {
-
     .titulo-principal {
-        font-size: 4vw;
+        font-size: 6vw;
+        margin-top: 4%;
+        margin-bottom: 4%;
     }
 
-    .main {
-        width: 80%;
-    }
-
-    .enlaces-administrar-calculos a {
-        margin: 5%;
-    }
-
-    .enlaces-administrar-calculos a button {
-        font-size: 2.5vw;
-    }
-}
-
-@media screen and (max-width: 500px) {
-
-    .titulo-principal {
-        font-size: 5.5vw;
-    }
-
-    .main {
-        width: 85%;
+    .seccion-menu-calculos {
+        width: 60%;
     }
 
     .enlaces-administrar-calculos {
-        grid-template-columns: 100%
+        grid-template-columns: 100%;
     }
 
     .enlaces-administrar-calculos a {
-        margin: 4%;
+        margin-top: 5%;
+        margin-bottom: 5%;
     }
 
     .enlaces-administrar-calculos a button {
-        font-size: 5vw;
+        font-size: 3vw;
+        padding: 2%;
+    }
+
+}
+
+@media screen and (max-width: 500px) {
+    .titulo-principal {
+        font-size: 9vw;
+        margin-top: 6%;
+        margin-bottom: 6%;
+    }
+
+    .seccion-menu-calculos {
+        width: 90%;
+    }
+
+    .enlaces-administrar-calculos {
+        grid-template-columns: 100%;
+    }
+
+    .enlaces-administrar-calculos a {
+        margin-top: 7.5%;
+        margin-bottom: 7.5%;
+    }
+
+    .enlaces-administrar-calculos a button {
+        font-size: 4.5vw;
+        padding: 3%;
     }
 }

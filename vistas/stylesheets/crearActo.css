@@ -1,39 +1,68 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 .titulo-principal {
-    font-family: 'Cinzel';
     font-size: 3vw;
+    font-family: 'Cinzel';
     text-align: center;
-    margin-top: 1%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2%;
+    margin-bottom: 2%;
 }
 
 .seccion-crear-acto {
-    width: 40%;
+    display: block;
+    width: 30%;
     margin-left: auto;
     margin-right: auto;
 }
 
 .form-crear-acto {
-    width: 100%;
     margin-left: auto;
     margin-right: auto;
+    border-style: solid;
+    border-radius: 5px;
+    border-color: gray;
 }
 
 .form-crear-acto label {
     display: block;
-    font-family: 'Cinzel';
     font-size: 2vw;
+    font-family: 'Cinzel';
     text-align: center;
-    margin-top: 1%;
 }
 
 .form-crear-acto select {
+    width: 70%;
     display: block;
     margin-left: auto;
     margin-right: auto;
     font-family: 'Cinzel';
     font-size: 1.5vw;
-    width: 35%;
+}
+
+.form-crear-acto input {
+    width: 70%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5%;
+    margin-bottom: 5%;
     padding: 1%;
-    box-sizing: border-box;
+    font-size: 1.5vw;
+}
+
+.form-crear-acto textarea {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    width: 90%;
 }
 
 .form-crear-acto input[type='submit'] {
@@ -46,65 +75,140 @@
     font-weight: bold;
 }
 
-.form-crear-acto input {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    font-size: 1.5vw;
-    width: 35%;
-    padding: 1%;
-    box-sizing: border-box;
-}
-
-.form-crear-acto textarea {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 5%;
-    margin-bottom: 5%;
-    width: 100%;
-}
-
 .dialogo-1 {
     width: 30%;
     margin: auto;
+    padding: 3%;
     border-radius: 5px;
 }
 
 .dialogo-1 p {
-    font-family: 'Cinzel';
-    font-size: 1.5vw;
     text-align: center;
-    padding: 1%;
+    font-size: 1.5vw;
+    font-family: 'Cinzel';
 }
 
 .dialogo-1 button {
-    width: 80%;
     display: block;
-    margin-left: auto;
-    margin-right: auto;
+    width: 70%;
+    padding: 1%;
     font-family: 'Cinzel';
     font-size: 1.5vw;
-    padding: 1%;
-    margin-bottom: 3%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5%;
+    margin-bottom: 5%;
 }
+
 
 @media screen and (max-width: 960px) {
     .titulo-principal {
         font-size: 6vw;
+        margin-top: 4%;
+        margin-bottom: 4%;
     }
 
     .seccion-crear-acto {
         width: 60%;
     }
+
+    .form-crear-acto label {
+        font-size: 4vw;
+    }
+
+    .form-crear-acto select {
+        width: 80%;
+        font-size: 3vw;
+    }
+
+    .form-crear-acto input {
+        width: 80%;
+        margin-top: 7.5%;
+        margin-bottom: 7.5%;
+        padding: 2%;
+        font-size: 3vw;
+    }
+
+    .form-crear-acto textarea {
+        margin-top: 7.5%;
+        margin-bottom: 7.5%;
+    }
+
+    .form-crear-acto input[type='submit'] {
+        font-size: 3vw;
+        margin-bottom: 6%;
+    }
+
+    .dialogo-1 {
+        width: 60%;
+        padding: 6%;
+    }
+
+    .dialogo-1 p {
+        font-size: 3vw;
+    }
+
+    .dialogo-1 button {
+        width: 80%;
+        padding: 2%;
+        font-size: 3vw;
+        margin-top: 7.5%;
+        margin-bottom: 7.5%;
+    }
 }
 
 @media screen and (max-width: 500px) {
     .titulo-principal {
-        font-size: 8vw;
+        font-size: 9vw;
+        margin-top: 6%;
+        margin-bottom: 6%;
     }
 
     .seccion-crear-acto {
         width: 90%;
+    }
+
+    .form-crear-acto label {
+        font-size: 6vw;
+    }
+
+    .form-crear-acto select {
+        width: 90%;
+        font-size: 4.5vw;
+    }
+
+    .form-crear-acto input {
+        width: 90%;
+        margin-top: 10%;
+        margin-bottom: 10%;
+        padding: 3%;
+        font-size: 4.5vw;
+    }
+
+    .form-crear-acto textarea {
+        margin-top: 10%;
+        margin-bottom: 10%;
+    }
+
+    .form-crear-acto input[type='submit'] {
+        font-size: 4.5vw;
+        margin-bottom: 9%;
+    }
+
+    .dialogo-1 {
+        width: 90%;
+        padding: 9%;
+    }
+
+    .dialogo-1 p {
+        font-size: 4.5vw;
+    }
+
+    .dialogo-1 button {
+        width: 90%;
+        padding: 3%;
+        font-size: 4.5vw;
+        margin-top: 10%;
+        margin-bottom: 10%;
     }
 }
