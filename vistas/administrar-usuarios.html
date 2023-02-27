@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Administrar Usuarios - IvstitiaLegal</title> 
+    <title>Administrar Usuarios - IvstitiaLegal</title>
     <link rel="stylesheet" href="stylesheets/administrarUsuarios.css">
     <script src="javascripts/administrarUsuarios.js"></script>
     <script src="javascripts/general.js"></script>
@@ -19,46 +19,47 @@
         <nav class="nav-bar" id="nav-bar"></nav>
     </header>
     <main id="main-administrar-usuarios">
-        <h1>Administración de usuarios</h1>
-        <section>
-            <h2>Crear nuevo usuario</h2>
-            <form id="form-nuevo-usuario">
+        <h1 class="titulo-principal">Administración de usuarios</h1>
+        <section class="seccion-crear-usuario">
+            <h2 class="titulo-secundario">Crear nuevo usuario</h2>
+            <form id="form-nuevo-usuario" class="form-nuevo-usuario">
                 <input type="email" id="nuevo-correo" placeholder="Correo electrónico" required>
                 <input type="submit" value="Crear usuario">
             </form>
-            <dialog id="dialogo-nuevo-usuario" class="dialogo-nuevo-usuario">
-                <p id="mensaje-dialogo-nuevo-usuario"></p>
-                <button id="cerrar-dialogo-nuevo-usuario">CERRAR</button>
+        </section>
+        <section class="seccion-administrar-usuarios">
+            <h2 class="titulo-secundario">Tabla de Usuarios</h2>
+            <table class="tabla-administrar-usuarios">
+                <thead class="tabla-head">
+                    <tr>
+                        <th>Id</th>
+                        <th>Correo</th>
+                        <th>Tareas</th>
+                    </tr>
+                </thead>
+                <tbody id="tabla-usuarios" class="tabla-cuerpo"></tbody>
+            </table>
+            <dialog id="dialogo-eliminar-tabla-usuarios" class="dialogo-tabla-usuarios">
+                <p>¿Está seguro que desea eliminar usuario?</p>
+                <button id="eliminar-tabla-usuarios">ELIMINAR</button>
+                <button id="eliminar-cancelar-tabla-usuarios">CANCELAR</button>
             </dialog>
         </section>
-        <section>
-            <h2>Usuarios</h2>
-            <div class="tabla-responsive">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Id</th>
-                            <th>Correo</th>
-                            <th>Administrador</th>
-                            <th>Tareas</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tabla-usuarios">
-
-                    </tbody>
-                </table>
-                <dialog id="dialogo-tabla-usuarios" class="dialogo-tabla-usuarios">
-                    <p id="mensaje-dialogo-tabla-usuarios"></p>
-                    <button id="cerrar-tabla-usuarios">CERRAR</button>
-                </dialog>
-                <dialog id="dialogo-eliminar-tabla-usuarios" class="dialogo-tabla-usuarios">
-                    <p>¿Está seguro que desea eliminar usuario?</p>
-                    <button id="eliminar-tabla-usuarios">ELIMINAR</button>
-                    <button id="eliminar-cancelar-tabla-usuarios">CANCELAR</button>
-                </dialog>
-            </div>
-        </section>
     </main>
+    <section id="seccion-actualizar-usuario" class="seccion-actualizar-usuario">
+        <h2 class="titulo-secundario">Actualizar Usuario</h2>
+        <form id="form-actualizar-usuario" class="form-actualizar-usuario">
+            <label for="correo">Ingrese correo electrónico</label>
+            <input type="email" name="correo" id="correo" placeholder="Correo electrónico" required>
+            <label for="rol">Seleccione si es administrador</label>
+            <select name="rol" id="rol"></select>
+            <input type="submit" value="Actualizar">
+        </form>
+    </section>
+    <dialog id="dialogo-1" class="dialogo-1">
+        <p id="mensaje-1"></p>
+        <button id="cerrar-1">CERRAR</button>
+    </dialog>
 </body>
 
 </html>

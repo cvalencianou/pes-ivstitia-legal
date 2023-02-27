@@ -1,299 +1,301 @@
-main {
-    width: 60%;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.titulo-principal {
+    font-size: 3vw;
+    font-family: 'Cinzel';
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.titulo-secundario {
+    font-family: 'Cinzel';
+    font-size: 2vw;
+    text-align: center;
+    margin: 5%;
+}
+
+.seccion-crear-usuario {
+    display: block;
+    width: 40%;
     margin-left: auto;
     margin-right: auto;
 }
 
-h1,
-h2 {
+.form-nuevo-usuario {
+    margin-left: auto;
+    margin-right: auto;
+    border-style: solid;
+    border-radius: 5px;
+    border-color: gray;
+}
+
+.form-nuevo-usuario input {
+    width: 70%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    padding: 1%;
+    font-size: 1.5vw;
+}
+
+.form-nuevo-usuario label {
+    display: block;
+    font-size: 2vw;
     font-family: 'Cinzel';
     text-align: center;
 }
 
-h1 {
-    margin-top: 3%;
-    margin-bottom: 3%;
-}
-
-form {
-    margin-top: 1%;
-    margin-bottom: 3%;
-}
-
-form input {
-    width: 30%;
-    display: inline;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 1.5%;
-    box-sizing: border-box;
-    font-size: 1vw;
-}
-
-form input[type='submit'] {
+.form-nuevo-usuario input[type='submit'] {
     font-family: 'Cinzel';
+    font-size: 1.5vw;
+    margin-bottom: 3%;
 }
 
-table {
-    width: 100%;
+.form-nuevo-usuario input[type='submit']:hover {
+    font-weight: bold;
+}
+
+.seccion-administrar-usuarios {
+    display: block;
+    width: 40%;
     margin-left: auto;
     margin-right: auto;
-    border-collapse: collapse;
 }
 
-table tr {
+.tabla-administrar-usuarios {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 5%;
+}
+
+.tabla-head {
+    font-size: 1.5vw;
+    font-family: 'Cinzel';
+    color: white;
+    background-color: #763940;
+    padding: 1%;
+}
+
+.tabla-head tr th {
+    border-style: solid;
+    border-color: #20344d;
+}
+
+.tabla-cuerpo tr {
     border-bottom: 1px solid #20344d;
 }
 
-th {
-    padding: 1%;
-    color: white;
-    background-color: #763940;
-    border-style: solid;
-    border-color: #20344d;
-    font-size: 1.2vw;
-    font-family: 'Cinzel';
-}
-
 .id-usuario {
-    font-size: 1.3vw;
-    font-family: 'Cinzel';
-    margin: 1%;
     text-align: center;
+    font-size: 1.5vw;
+    font-family: 'Cinzel';
 }
 
 .correo-usuario {
-    font-size: 1.3vw;
-    margin: 1%;
+    width: 40%;
+    text-align: center;
+    word-break: break-all;
+    font-size: 1.5vw;
+    font-family: 'Cinzel';
+}
+
+.tabla-cuerpo td button {
+    width: 49%;
+    font-size: 1vw;
+    font-family: 'Cinzel';
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.tabla-cuerpo td button:hover {
+    font-weight: bold;
+}
+
+
+.seccion-actualizar-usuario {
+    display: block;
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.form-actualizar-usuario {
+    margin-left: auto;
+    margin-right: auto;
+    border-style: solid;
+    border-radius: 5px;
+    border-color: gray;
+}
+
+.form-actualizar-usuario input {
+    width: 70%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    padding: 1%;
+    font-size: 1.5vw;
+}
+
+.form-actualizar-usuario label {
+    display: block;
+    font-size: 2vw;
+    font-family: 'Cinzel';
     text-align: center;
 }
 
-tr td button {
-    width: 46%;
-    font-family: 'Cinzel';
-    font-size: 1vw;
+.form-actualizar-usuario select {
+    width: 70%;
+    display: block;
     margin-left: auto;
     margin-right: auto;
-    margin: 1%;
+    font-family: 'Cinzel';
+    font-size: 1.5vw;
 }
 
-td select {
+.form-actualizar-usuario input[type='submit'] {
+    font-family: 'Cinzel';
+    font-size: 1.5vw;
+    margin-bottom: 3%;
+}
+
+.form-actualizar-usuario input[type='submit']:hover {
+    font-weight: bold;
+}
+
+dialog {
+    width: 30%;
+    margin: auto;
+    padding: 3%;
+    border-radius: 5px;
+}
+
+dialog p {
+    text-align: center;
+    font-size: 1.5vw;
+    font-family: 'Cinzel';
+}
+
+dialog button {
     display: block;
     width: 70%;
+    padding: 1%;
     font-family: 'Cinzel';
-    font-size: 1vw;
+    font-size: 1.5vw;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 5%;
+    margin-bottom: 5%;
 }
 
-.dialogo-nuevo-usuario {
-    padding: 5%;
-    margin: auto;
-    width: 20%;
-}
-
-.dialogo-nuevo-usuario p {
-    font-family: 'Cinzel';
-    font-size: 1.3vw;
-    text-align: center;
-    margin-bottom: 3%;
-}
-
-.dialogo-nuevo-usuario button {
-    display: block;
-    font-family: 'Cinzel';
-    font-size: 1.3vw;
-    margin-left: auto;
-    margin-right: auto;
-    width: 80%;
-}
-
-.dialogo-tabla-usuarios {
-    padding: 5%;
-    margin: auto;
-    width: 20%;
-}
-
-.dialogo-tabla-usuarios p {
-    font-family: 'Cinzel';
-    font-size: 1.3vw;
-    text-align: center;
-    margin-bottom: 3%;
-}
-
-.dialogo-tabla-usuarios button {
-    display: block;
-    font-family: 'Cinzel';
-    font-size: 1.3vw;
-    margin-left: auto;
-    margin-right: auto;
-    width: 80%;
-}
-
-@media only screen and (max-width: 960px) {
-    main {
-        width: 85%;
-    }
-
-    form input {
-        display: block;
-        width: 70%;
-        padding: 2%;
-        font-size: 3vw;
-        margin-left: auto;
-        margin-right: auto;
-        margin-bottom: 2%;
-    }
-
-    table {
-        width: 100%;
-    }
-
-    th {
-        padding: 1%;
-        font-size: 2.5vw;
-    }
-
-    .id-usuario {
-        width: 6%;
-        text-align: center;
-        font-size: 3vw;
-    }
-
-    .correo-usuario {
-        font-size: 2.5vw;
-    }
-
-    tr {
-        border-style: solid;
-    }
-
-    tr td button {
-        width: 100%;
-        padding: 5%;
-        display: block;
-        font-size: 2vw;
-    }
-
-    td select {
-        width: 70%;
-        font-size: 3vw;
-    }
-
-    .dialogo-nuevo-usuario {
-        width: 40%;
-    }
-
-    .dialogo-nuevo-usuario p {
-        font-size: 3vw;
-    }
-
-    .dialogo-nuevo-usuario button {
-        padding: 2%;
-        font-size: 3vw;
-        width: 50%;
-    }
-
-    .dialogo-tabla-usuarios {
-        width: 40%;
-    }
-
-    .dialogo-tabla-usuarios p {
-        font-size: 3vw;
-    }
-
-    .dialogo-tabla-usuarios button {
-        padding: 2%;
-        font-size: 3vw;
-        width: 50%;
-    }
-}
+@media only screen and (max-width: 960px) {}
 
 @media only screen and (max-width: 500px) {
-
-    main {
-        width: 95%;
+    .titulo-principal {
+        font-size: 9vw;
+        margin-top: 6%;
+        margin-bottom: 6%;
     }
 
-    h2 {
-        margin-bottom: 3%;
+    .titulo-secundario {
+        font-size: 6vw;
+        margin: 10%;
     }
 
-    form input {
-        display: block;
+    .seccion-crear-usuario {
         width: 90%;
+    }
+
+    .form-nuevo-usuario input {
+        width: 90%;
+        margin-top: 10%;
+        margin-bottom: 10%;
         padding: 3%;
-        font-size: 5vw;
-        margin-left: auto;
-        margin-right: auto;
-        margin-bottom: 2%;
+        font-size: 4.5vw;
     }
 
-    .tabla-responsive {
-        overflow-x: auto;
+    .form-nuevo-usuario label {
+        font-size: 6vw;
     }
 
-    table {
-        width: 200%;
-        margin-bottom: 5%;
+    .form-nuevo-usuario input[type='submit'] {
+        font-size: 4.5vw;
+        margin-bottom: 9%;
     }
 
-    th {
-        padding: 1%;
-        font-size: 5vw;
+    .seccion-administrar-usuarios {
+        width: 90%;
+    }
+
+    .tabla-head {
+        font-size: 4.5vw;
+        padding: 3%;
     }
 
     .id-usuario {
-        width: 6%;
-        text-align: center;
-        font-size: 6vw;
+        font-size: 4.5vw;
     }
 
     .correo-usuario {
-        font-size: 6vw;
+        font-size: 4.5vw;
     }
 
-    tr {
-        border-style: solid;
-    }
-
-    tr td button {
+    .tabla-cuerpo td button {
         width: 100%;
-        padding: 5%;
-        display: block;
+        font-size: 3vw;
+        padding: 6%;
+    }
+
+    .seccion-actualizar-usuario {
+        width: 90%;
+    }
+
+    .form-actualizar-usuario input {
+        width: 90%;
+        margin-top: 10%;
+        margin-bottom: 10%;
+        padding: 3%;
+        font-size: 4.5vw;
+    }
+
+    .form-actualizar-usuario label {
         font-size: 6vw;
     }
 
-    td select {
-        width: 80%;
-        font-size: 6vw;
+    .form-actualizar-usuario select {
+        width: 90%;
+        font-size: 4.5vw;
     }
 
-    .dialogo-nuevo-usuario {
-        width: 70%;
+    .form-actualizar-usuario input[type='submit'] {
+        font-size: 4.5vw;
+        margin-bottom: 9%;
     }
 
-    .dialogo-nuevo-usuario p {
-        font-size: 8vw;
+    dialog {
+        width: 90%;
+        padding: 9%;
     }
 
-    .dialogo-nuevo-usuario button {
-        padding: 4%;
-        font-size: 6vw;
-        width: 80%;
+    dialog p {
+        font-size: 4.5vw;
     }
 
-    .dialogo-tabla-usuarios {
-        width: 70%;
-    }
-
-    .dialogo-tabla-usuarios p {
-        font-size: 8vw;
-    }
-
-    .dialogo-tabla-usuarios button {
-        padding: 4%;
-        font-size: 6vw;
-        width: 80%;
+    dialog button {
+        width: 90%;
+        padding: 3%;
+        font-size: 4.5vw;
+        margin-top: 10%;
+        margin-bottom: 10%;
     }
 }

@@ -1,16 +1,14 @@
 window.onpageshow = async () => {
 
+    document.getElementById('seccion-actualizar-usuario').style.display = 'none'
+
     document.getElementById('form-nuevo-usuario').addEventListener('submit', (event) => {
         event.preventDefault()
         registrarUsuario()
     })
 
-    document.getElementById('cerrar-dialogo-nuevo-usuario').addEventListener('click', () => {
-        document.getElementById('dialogo-nuevo-usuario').close()
-    })
-
-    document.getElementById('cerrar-tabla-usuarios').addEventListener('click', () => {
-        document.getElementById('dialogo-tabla-usuarios').close()
+    document.getElementById('cerrar-1').addEventListener('click', () => {
+        document.getElementById('dialogo-1').close()
     })
 
     document.getElementById('tabla-usuarios').addEventListener('click', (event) => {
@@ -19,7 +17,7 @@ window.onpageshow = async () => {
             return
         }
         if (event.target.innerHTML === 'Actualizar') {
-            actualizarUsuario(event.target.value)
+            abrirActualizarUsuario(event.target.value)
         }
         else if (event.target.innerHTML === 'Eliminar') {
 
@@ -59,14 +57,14 @@ const registrarUsuario = async () => {
     if (resultado.status === 201) {
 
         document.getElementById('nuevo-correo').value = ''
-        document.getElementById('mensaje-dialogo-nuevo-usuario').innerHTML = datos.mensaje
-        document.getElementById('dialogo-nuevo-usuario').showModal()
+        document.getElementById('mensaje-1').innerHTML = datos.mensaje
+        document.getElementById('dialogo-1').showModal()
         obtenerUsuarios()
     } else {
 
         document.getElementById('nuevo-correo').style.borderColor = 'red'
-        document.getElementById('mensaje-dialogo-nuevo-usuario').innerHTML = datos.mensaje
-        document.getElementById('dialogo-nuevo-usuario').showModal()
+        document.getElementById('mensaje-1').innerHTML = datos.mensaje
+        document.getElementById('dialogo-1').showModal()
     }
 }
 
@@ -85,17 +83,17 @@ const obtenerUsuarios = async () => {
                 `
                 <tr id="${usuario.id}">
                     <td class="id-usuario">${usuario.id}</td>
-                    <td class="correo-usuario" contenteditable="true">${usuario.correo}</td>
-                    </td>
-                    <td>
-                        <select name="select-administrador" id="select-administrador">
-                        <option value="1" ${usuario.administrador === 1 ? 'selected' : ''}>Sí</option>
-                        <option value="0" ${usuario.administrador === 0 ? 'selected' : ''}>No</option>
-                        </select>
-                    </td>
+                    <td class="correo-usuario">${usuario.correo}</td>
+                    </td>                    
                     <td>
                         <button value="${usuario.id}">Actualizar</button>
                         <button value="${usuario.id}">Eliminar</button>
+                    </td>
+                    <td style="display:none">
+                    <select name="select-administrador" id="select-administrador">
+                    <option value="0" ${usuario.administrador === 0 ? 'selected' : ''}>No</option>
+                    <option value="1" ${usuario.administrador === 1 ? 'selected' : ''}>Sí</option>                    
+                    </select>
                     </td>
                 </tr>
                 `
@@ -104,16 +102,30 @@ const obtenerUsuarios = async () => {
         document.getElementById('tabla-usuarios').innerHTML = listaUsuarios
     } else {
 
-        document.getElementById('mensaje-dialogo-tabla-usuarios').innerHTML = data.mensaje
-        document.getElementById('dialogo-tabla-usuarios').showModal()
+        document.getElementById('mensaje1').innerHTML = datos.mensaje
+        document.getElementById('dialogo-1').showModal()
     }
+}
+
+const abrirActualizarUsuario = async (id) => {
+
+    document.getElementById('main-administrar-usuarios').style.display = 'none'
+    document.getElementById('seccion-actualizar-usuario').style.display = 'block'
+
+    document.getElementById('correo').value = document.getElementById(id).children.item(1).innerHTML
+    document.getElementById('rol').innerHTML = document.getElementById(id).children.item(3).children.item(0).innerHTML
+
+    document.getElementById('form-actualizar-usuario').addEventListener('submit', (event) => {
+        event.preventDefault()
+        actualizarUsuario(id)
+    })
 }
 
 const actualizarUsuario = async (id) => {
 
-    const fila = document.getElementById(id)
-    const correo = fila.children.item(1).innerHTML
-    const administrador = fila.children.item(2).children.item(0).value
+
+    const correo = document.getElementById('correo').value
+    const administrador = document.getElementById('rol').value
 
     const resultado = await fetch(`/api/v1/usuarios/${id}`, {
         method: 'PUT',
@@ -129,13 +141,19 @@ const actualizarUsuario = async (id) => {
     const datos = await resultado.json()
 
     if (resultado.status === 200) {
-        document.getElementById('mensaje-dialogo-tabla-usuarios').innerHTML = datos.mensaje
-        document.getElementById('dialogo-tabla-usuarios').showModal()
-        obtenerUsuarios()
+        document.getElementById('mensaje-1').innerHTML = datos.mensaje
+        document.getElementById('dialogo-1').showModal()
+        document.getElementById('cerrar-1').addEventListener('click', () => {
+            window.location.assign('administrar-usuarios')
+        })
+
     } else {
-        document.getElementById('mensaje-dialogo-tabla-usuarios').innerHTML = datos.mensaje
-        document.getElementById('dialogo-tabla-usuarios').showModal()
-        obtenerUsuarios()
+        document.getElementById('correo').style.borderColor = 'red'
+        document.getElementById('mensaje-1').innerHTML = datos.mensaje
+        document.getElementById('dialogo-1').showModal()
+        document.getElementById('cerrar-1').addEventListener('click', () => {
+            document.getElementById('dialogo-1').close()
+        })
     }
 }
 
@@ -148,11 +166,11 @@ const eliminarUsuario = async (id) => {
     const datos = await resultado.json()
 
     if (resultado.status === 200) {
-        document.getElementById('mensaje-dialogo-tabla-usuarios').innerHTML = datos.mensaje
-        document.getElementById('dialogo-tabla-usuarios').showModal()
+        document.getElementById('mensaje-1').innerHTML = datos.mensaje
+        document.getElementById('dialogo-1').showModal()
         obtenerUsuarios()
     } else {
-        document.getElementById('mensaje-dialogo-tabla-usuarios').innerHTML = datos.mensaje
-        document.getElementById('dialogo-tabla-usuarios').showModal()
+        document.getElementById('mensaje-1').innerHTML = datos.mensaje
+        document.getElementById('dialogo-1').showModal()
     }
 }
