@@ -198,7 +198,105 @@ dialog button {
     margin-bottom: 5%;
 }
 
-@media only screen and (max-width: 960px) {}
+@media only screen and (max-width: 960px) {
+    .titulo-principal {
+        font-size: 6vw;
+        margin-top: 4%;
+        margin-bottom: 4%;
+    }
+
+    .titulo-secundario {
+        font-size: 4vw;
+        margin: 7.5%;
+    }
+
+    .seccion-crear-usuario {
+        width: 60%;
+    }
+
+    .form-nuevo-usuario input {
+        width: 80%;
+        margin-top: 7.5%;
+        margin-bottom: 7.5%;
+        padding: 2%;
+        font-size: 3vw;
+    }
+
+    .form-nuevo-usuario label {
+        font-size: 4vw;
+    }
+
+    .form-nuevo-usuario input[type='submit'] {
+        font-size: 3vw;
+        margin-bottom: 6%;
+    }
+
+    .seccion-administrar-usuarios {
+        width: 60%;
+    }
+
+    .tabla-head {
+        font-size: 3vw;
+        padding: 2%;
+    }
+
+    .id-usuario {
+        font-size: 3vw;
+    }
+
+    .correo-usuario {
+        font-size: 3vw;
+    }
+
+    .tabla-cuerpo td button {
+        width: 100%;
+        font-size: 3vw;
+        padding: 4%;
+    }
+
+    .seccion-actualizar-usuario {
+        width: 60%;
+    }
+
+    .form-actualizar-usuario input {
+        width: 80%;
+        margin-top: 7.5%;
+        margin-bottom: 7.5%;
+        padding: 2%;
+        font-size: 3vw;
+    }
+
+    .form-actualizar-usuario label {
+        font-size: 4vw;
+    }
+
+    .form-actualizar-usuario select {
+        width: 80%;
+        font-size: 3vw;
+    }
+
+    .form-actualizar-usuario input[type='submit'] {
+        font-size: 3vw;
+        margin-bottom: 6%;
+    }
+
+    dialog {
+        width: 60%;
+        padding: 6%;
+    }
+
+    dialog p {
+        font-size: 3vw;
+    }
+
+    dialog button {
+        width: 80%;
+        padding: 2%;
+        font-size: 3vw;
+        margin-top: 7.5%;
+        margin-bottom: 7.5%;
+    }
+}
 
 @media only screen and (max-width: 500px) {
     .titulo-principal {
