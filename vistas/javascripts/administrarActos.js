@@ -136,12 +136,12 @@ const abrirActualizarActo = async (id) => {
 
 const actualizarActo = async (id) => {
     const nombre = document.getElementById('nombre-acto').value
-    const tributosGeneral = document.getElementById('tributos-acto').value
+    const tributosHonorarios = document.getElementById('tributos-acto').value
 
-    console.log(id + '' + nombre + ' ' + tributosGeneral)
+    console.log(id + '' + nombre + ' ' + tributosHonorarios)
 
     try {
-        JSON.parse(tributosGeneral)
+        JSON.parse(tributosHonorarios)
     } catch (error) {
         alert('ERROR FORMATO JSON')
         return
@@ -154,7 +154,7 @@ const actualizarActo = async (id) => {
         },
         body: JSON.stringify({
             nombre: nombre,
-            tributosGeneral: tributosGeneral
+            tributosHonorarios: tributosHonorarios
         })
     })
 

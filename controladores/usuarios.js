@@ -36,11 +36,14 @@ const crearUsuario = async (req, res) => {
             from: `IvstitiaLegal <${process.env.EMAIL_USER}>`,
             to: `Nuevo Usuario <${correo}>`,
             subject: 'Nuevo Usuario IvstitiaLegal',
-            text: `Bienvenido a la aplicación IvstitiaLegal \n
-            Sus credenciales son: \n
-            Correo electrónico: ${correo} \n
-            Contraseña temporal: ${contrasena} \n
-            Ingrese a través del siguiente enlace ${process.env.APP_LINK}`
+            html:
+                `
+            <h1>Bienvenido a IvstitiaLegal</h1>
+            <p>Sus credenciales son:</p>
+            <p>Correo electrónico: <b>${correo}</b></p>
+            <p>Contraseña temporal: <b>${contrasena}</b></p>
+            <p>Ingrese a través del siguiente enlace: <a href="${process.env.APP_LINK}">Ir a IvstitiaLegal</a></p>
+            `
         })
     }
     else {
@@ -185,12 +188,15 @@ const restablecerContrasena = async (req, res) => {
         enviarCorreo({
             from: `IvstitiaLegal <${process.env.EMAIL_USER}>`,
             to: `Usuario <${correo}>`,
-            subject: 'Recuperación de credenciales IvstitiaLegal',
-            text: `Sus credenciales han sido recuperadas \n
-            Sus credenciales son: \n
-            Correo electrónico: ${correo} \n
-            Contraseña temporal: ${contrasena} \n
-            Ingrese a través del siguiente enlace ${process.env.APP_LINK}`
+            subject: 'Recuperación de Credenciales IvstitiaLegal',
+            html:
+                `
+            <h1>Sus credenciales han sido recuperadas</h1>
+            <p>Sus credenciales son:</p>
+            <p>Correo electrónico: <b>${correo}</b></p>
+            <p>Contraseña temporal: <b>${contrasena}</b></p>
+            <p>Ingrese a través del siguiente enlace: <a href="${process.env.APP_LINK}">Ir a IvstitiaLegal</a></p>
+            `
         })
     }
     else {
