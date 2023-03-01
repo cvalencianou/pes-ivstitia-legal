@@ -95,14 +95,25 @@ const realizarCalculo = async () => {
     if (resultado.status === 200) {
         document.getElementById('resultado-calculo').innerHTML =
             `
-        REGISTRO: ${datos.mensaje.registro} <br>
-        AGRARIO: ${datos.mensaje.agrario} <br>
-        FISCAL: ${datos.mensaje.fiscal} <br>
-        ARCHIVO: ${datos.mensaje.archivo} <br>
-        ABOGADO: ${datos.mensaje.abogado} <br>
-        MUNICIPAL: ${datos.mensaje.municipal} <br>
-        TRASPASO: ${datos.mensaje.traspaso} <br>
-        HONORARIOS: ${datos.mensaje.honorarios} <br>
+        REGISTRO: ${datos.mensaje.registro || 0} <br>
+        AGRARIO: ${datos.mensaje.agrario || 0} <br>
+        FISCAL: ${datos.mensaje.fiscal || 0} <br>
+        ARCHIVO: ${datos.mensaje.archivo || 0} <br>
+        ABOGADO: ${datos.mensaje.abogado || 0} <br>
+        MUNICIPAL: ${datos.mensaje.municipal || 0} <br>
+        TRASPASO: ${datos.mensaje.traspaso || 0} <br>
+        HONORARIOS: ${datos.mensaje.honorarios || 0} <br>
+        TOTAL: ${(datos.mensaje.registro || 0) + (datos.mensaje.agrario || 0) + (datos.mensaje.fiscal || 0)
+            + (datos.mensaje.archivo || 0) + (datos.mensaje.abogado || 0) + (datos.mensaje.municipal || 0) +
+            (datos.mensaje.traspaso || 0)
+            }<br>
+        TOTAL DESCUENTO BCR: ${((datos.mensaje.registro || 0) + (datos.mensaje.agrario || 0) + (datos.mensaje.fiscal || 0)
+            + (datos.mensaje.archivo || 0) + (datos.mensaje.abogado || 0) + (datos.mensaje.municipal || 0) +
+            (datos.mensaje.traspaso || 0)) * 0.94
+            }
+        TOTAL HONORARIOS: ${datos.mensaje.honorarios + datos.mensaje.honorarios * 0.13}
+        TOTAL HONORARIOS IVA:${datos.mensaje.honorarios * 0.13}
+        
         `
 
         document.getElementById('seccion-calcular').style.display = 'none'

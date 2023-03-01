@@ -53,7 +53,15 @@ class Acto {
     }
 
     calcularRegistro = async (montoConsulta, timbre) => {
-        return (montoConsulta / 1000) * timbre
+
+        const monto = (montoConsulta / 1000) * timbre
+
+        if (monto < 2000) {
+            return 2000
+        }
+        else {
+            return (montoConsulta / 1000) * timbre
+        }
     }
 
     calcularAgrario = async (montoConsulta, timbre) => {
@@ -164,6 +172,13 @@ class Acto {
             }
             contador++
         } while (montoConsulta - honorario[contador - 1].monto > 0)
+
+        if (honorario[5]) {
+
+            const cancelacion = (totalHonorarios * honorario[5].porcentaje)
+
+            return cancelacion > 60500 ? cancelacion : 60500
+        }
 
         return totalHonorarios > 60500 ? totalHonorarios : 60500
     }
