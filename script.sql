@@ -2,7 +2,7 @@ CREATE DATABASE  IF NOT EXISTS `ivstitia_legal` /*!40100 DEFAULT CHARACTER SET u
 USE `ivstitia_legal`;
 -- MySQL dump 10.13  Distrib 8.0.31, for Win64 (x86_64)
 --
--- Host: 10.0.0.72    Database: ivstitia_legal
+-- Host: 192.168.100.157    Database: ivstitia_legal
 -- ------------------------------------------------------
 -- Server version	8.0.32
 
@@ -123,8 +123,8 @@ CREATE TABLE `clientes` (
   `nombre` varchar(100) NOT NULL,
   `cedula` varchar(15) NOT NULL,
   `correo` varchar(45) NOT NULL,
-  `numero_fisico` varchar(15) DEFAULT NULL,
-  `numero_movil` varchar(15) NOT NULL,
+  `telefono_movil` varchar(15) NOT NULL,
+  `telefono_fisico` varchar(15) DEFAULT NULL,
   `direccion` varchar(200) NOT NULL,
   `usuario_id` int NOT NULL,
   `tipo_cedula_id` int NOT NULL,
@@ -332,6 +332,10 @@ LOCK TABLES `usuarios` WRITE;
 INSERT INTO `usuarios` VALUES (1,'cvalencianou@gmail.com','$2b$10$NJ4p.vKUYRrsRrdBBO6GK.mMqR/LibooPZl7OLDgm4kdnjFM.Hg1i',1,1),(2,'pfallas99@gmail.com','$2b$10$cAX98n8RSKxU7BS6fFBzQOSzsz.aHkLyHapgLEcaX0e2ZqiMPyihO',1,1);
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Dumping events for database 'ivstitia_legal'
+--
 
 --
 -- Dumping routines for database 'ivstitia_legal'
@@ -909,4 +913,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-02-23 20:07:29
+-- Dump completed on 2023-03-01 14:01:46
