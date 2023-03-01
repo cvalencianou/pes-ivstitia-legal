@@ -529,9 +529,9 @@ DELIMITER ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`%` PROCEDURE `clientes_filtrar`(par_usuario_id int, par_dato_cliente varchar(200))
 BEGIN
-SELECT clientes.id, nombre, cedula, correo, numero_fisico, numero_movil, direccion, tipo_cedula_id FROM clientes 
+SELECT clientes.id, nombre, cedula, correo, telefono_movil, telefono_fisico, direccion, tipo_cedula_id FROM clientes 
 INNER JOIN tipo_cedula ON clientes.tipo_cedula_id = tipo_cedula.id
-WHERE usuario_id = par_usuario_id && (correo LIKE CONCAT('%', par_dato_cliente, '%') || cedula LIKE CONCAT('%', par_dato_cliente, '%') || nombre LIKE CONCAT('%', par_dato_cliente, '%') || numero_fisico LIKE CONCAT('%', par_dato_cliente, '%') || numero_movil LIKE CONCAT('%', par_dato_cliente, '%') || direccion LIKE CONCAT('%', par_dato_cliente, '%') || tipo_cedula_id LIKE CONCAT('%', par_dato_cliente, '%'));
+WHERE usuario_id = par_usuario_id && (correo LIKE CONCAT('%', par_dato_cliente, '%') || cedula LIKE CONCAT('%', par_dato_cliente, '%') || nombre LIKE CONCAT('%', par_dato_cliente, '%') || telefono_movil LIKE CONCAT('%', par_dato_cliente, '%') || telefono_fisico LIKE CONCAT('%', par_dato_cliente, '%') || direccion LIKE CONCAT('%', par_dato_cliente, '%') || tipo_cedula_id LIKE CONCAT('%', par_dato_cliente, '%'));
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -550,7 +550,7 @@ DELIMITER ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`%` PROCEDURE `clientes_obtener`(par_usuario_id int)
 BEGIN
-SELECT clientes.id, nombre, cedula, correo, numero_fisico, numero_movil, direccion, tipo_cedula_id, tipo FROM clientes 
+SELECT clientes.id, nombre, cedula, correo, telefono_movil, telefono_fisico, direccion, tipo_cedula_id, tipo FROM clientes 
 INNER JOIN tipo_cedula ON clientes.tipo_cedula_id = tipo_cedula.id
 WHERE usuario_id = par_usuario_id;
 END ;;
@@ -588,9 +588,9 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`%` PROCEDURE `cliente_crear`(par_nombre varchar(100), par_cedula varchar(15), par_correo varchar(45), par_numero_fisico varchar(15), par_numero_movil varchar(15), par_direccion varchar(200), par_usuario_id int, par_tipo_cedula_id int)
+CREATE DEFINER=`root`@`%` PROCEDURE `cliente_crear`(par_nombre varchar(100), par_cedula varchar(15), par_correo varchar(45), par_telefono_movil varchar(15), par_telefono_fisico varchar(15), par_direccion varchar(200), par_usuario_id int, par_tipo_cedula_id int)
 BEGIN
-INSERT INTO clientes(nombre, cedula, correo, numero_fisico, numero_movil, direccion, usuario_id, tipo_cedula_id) VALUES (par_nombre, par_cedula, par_correo, par_numero_fisico, par_numero_movil, par_direccion, par_usuario_id, par_tipo_cedula_id);
+INSERT INTO clientes(nombre, cedula, correo, telefono_movil, telefono_fisico, direccion, usuario_id, tipo_cedula_id) VALUES (par_nombre, par_cedula, par_correo, par_telefono_movil, par_telefono_fisico, par_direccion, par_usuario_id, par_tipo_cedula_id);
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -913,4 +913,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-03-01 14:01:46
+-- Dump completed on 2023-03-01 14:12:34
