@@ -161,9 +161,14 @@ const actualizarActo = async (id) => {
     const datos = await resultado.json()
 
     if (resultado.status === 200) {
-        alert('ACTUALIZADOOO')
+        document.getElementById('mensaje-4').innerHTML = datos.mensaje
+        document.getElementById('dialogo-4').showModal()
+        document.getElementById('cerrar-4').addEventListener('click', () => {
+            window.location.assign('administrar-actos')
+        })
     } else {
-
+        document.getElementById('mensaje-4').innerHTML = datos.mensaje
+        document.getElementById('dialogo-4').showModal()
     }
 }
 
