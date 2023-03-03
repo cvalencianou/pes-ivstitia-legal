@@ -86,6 +86,12 @@ const actualizarActo = async (req, res) => {
         throw new httpError(StatusCodes.BAD_REQUEST, 'POR FAVOR BRINDAR VALORES VÁLIDOS')
     }
 
+    try {
+        JSON.parse(tributosHonorarios)
+    } catch (error) {
+        throw new httpError(StatusCodes.BAD_REQUEST, 'POR FAVOR BRINDAR VALORES VÁLIDOS')
+    }
+
     const acto = new Acto()
 
     const resultado = (await acto.obtenerPorId(id))[0]

@@ -158,6 +158,7 @@ dialog button {
     margin-bottom: 1%;
     width: 60%;
     font-size: 1.5vw;
+    padding: 1%;
 }
 
 .timbre-multiple-titulo {
@@ -169,7 +170,7 @@ dialog button {
 .timbre-multiple-titulo input {
     display: block;
     margin-left: auto;
-    margin-right: auto;    
+    margin-right: auto;
 }
 
 .timbre-multiple-titulo p {
@@ -187,7 +188,7 @@ dialog button {
     margin-right: auto;
 }
 
-.timbre-multiple div input{
+.timbre-multiple div input {
     width: 48%;
     padding: 3%;
     display: inline-block;
@@ -233,12 +234,11 @@ dialog button {
         padding: 2%;
     }
 
-    .id-usuario {
+    .id-acto {
         font-size: 3vw;
     }
 
-    .correo-usuario {
-        width: 40%;
+    .nombre-acto {
         font-size: 3vw;
     }
 
@@ -269,6 +269,10 @@ dialog button {
         width: 60%;
     }
 
+    .form-modificar-acto {
+        margin-bottom: 7.5%;
+    }
+
     .form-modificar-acto label {
         font-size: 4vw;
     }
@@ -278,6 +282,33 @@ dialog button {
         margin-top: 7.5%;
         margin-bottom: 7.5%;
         padding: 2%;
+        font-size: 3vw;
+    }
+
+    .tributo-unico input {
+        margin-top: 2%;
+        margin-bottom: 2%;
+        width: 80%;
+        font-size: 3vw;
+    }
+
+    .timbre-multiple-titulo {
+        width: 80%;
+    }
+
+    .timbre-multiple-titulo p {
+        width: 48%;
+        font-size: 3vw;
+    }
+
+    .timbre-multiple {
+        width: 80%;
+    }
+
+    .timbre-multiple div input {
+        width: 48%;
+        padding: 2%;
+        margin-bottom: 2%;
         font-size: 3vw;
     }
 }
@@ -312,12 +343,11 @@ dialog button {
         padding: 3%;
     }
 
-    .id-usuario {
+    .id-acto {
         font-size: 4.5vw;
     }
 
-    .correo-usuario {
-        width: 40%;
+    .nombre-acto {
         font-size: 4.5vw;
     }
 
@@ -348,6 +378,10 @@ dialog button {
         width: 90%;
     }
 
+    .form-modificar-acto {
+        margin-bottom: 10%;
+    }
+
     .form-modificar-acto label {
         font-size: 6vw;
     }
@@ -357,6 +391,33 @@ dialog button {
         margin-top: 10%;
         margin-bottom: 10%;
         padding: 3%;
+        font-size: 4.5vw;
+    }
+
+    .tributo-unico input {
+        margin-top: 3%;
+        margin-bottom: 3%;
+        width: 90%;
+        font-size: 4.5vw;
+    }
+
+    .timbre-multiple-titulo {
+        width: 90%;
+    }
+
+    .timbre-multiple-titulo p {
+        width: 48%;
+        font-size: 4.5vw;
+    }
+
+    .timbre-multiple {
+        width: 90%;
+    }
+
+    .timbre-multiple div input {
+        width: 48%;
+        padding: 3%;
+        margin-bottom: 3%;
         font-size: 4.5vw;
     }
 }
