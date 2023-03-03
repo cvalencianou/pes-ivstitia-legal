@@ -153,7 +153,7 @@ const calcularActo = async (req, res) => {
 
     const acto = new Acto()
 
-    if ((await acto.obtenerPorId(id))[0].length === 0) {
+    if (!await acto.obtenerPorId(id)) {
         throw new httpError(StatusCodes.NOT_FOUND, 'ACTO NO EXISTE')
     }
 
