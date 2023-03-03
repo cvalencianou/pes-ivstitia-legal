@@ -8,22 +8,11 @@ class Acto {
 
     crear = async (nombre, idRegistro, tributosHonorarios) => {
 
-        const registro = tributosHonorarios.registro
-        const agrario = tributosHonorarios.agrario
-        const fiscal = tributosHonorarios.fiscal
-        const archivo = tributosHonorarios.archivo
-        const abogado = tributosHonorarios.abogado
-        const municipal = tributosHonorarios.municipal
-        const parquesNacionales = tributosHonorarios.parquesNacionales
-        const faunaSilvestre = tributosHonorarios.faunaSilvestre
-        const cruzRoja = tributosHonorarios.cruzRoja
-        const traspaso = tributosHonorarios.traspaso
-        const honorarios = tributosHonorarios.honorarios
-        const adicionalPlacas = tributosHonorarios.adicionalPlacas
+        const acto = (await executePreparedStatement('CALL actos_crear(?,?)',
+            [nombre, idRegistro]))[0][0]
 
-        return await executePreparedStatement('CALL actos_crear(?,?,?,?,?,?,?,?,?,?,?,?,?,?)',
-            [nombre, idRegistro, registro, agrario, fiscal, archivo, abogado, municipal, parquesNacionales,
-                faunaSilvestre, cruzRoja, traspaso, honorarios, adicionalPlacas])
+        return await new TributosHonorarios()
+            .crearPorIdActo(acto['LAST_INSERT_ID()'], tributosHonorarios)
     }
 
     obtenerTodosPorIdRegistro = async (id) => {
@@ -63,6 +52,9 @@ class Acto {
     }
 
     eliminarPorId = async (id) => {
+
+        await new TributosHonorarios().eliminarPorIdActo(id)
+
         return await executePreparedStatement('CALL actos_eliminar_por_id(?)', [id])
     }
 
