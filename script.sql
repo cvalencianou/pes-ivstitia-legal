@@ -2,7 +2,7 @@ CREATE DATABASE  IF NOT EXISTS `ivstitia_legal` /*!40100 DEFAULT CHARACTER SET u
 USE `ivstitia_legal`;
 -- MySQL dump 10.13  Distrib 8.0.31, for Win64 (x86_64)
 --
--- Host: 192.168.100.157    Database: ivstitia_legal
+-- Host: 10.0.0.72    Database: ivstitia_legal
 -- ------------------------------------------------------
 -- Server version	8.0.32
 
@@ -28,12 +28,11 @@ CREATE TABLE `actos` (
   `id` int NOT NULL AUTO_INCREMENT,
   `nombre` varchar(45) NOT NULL,
   `id_registro` int NOT NULL,
-  `tributos_general` json NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   KEY `fk_acto_registro_idx` (`id_registro`),
   CONSTRAINT `fk_acto_registro` FOREIGN KEY (`id_registro`) REFERENCES `registros` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -239,7 +238,7 @@ CREATE TABLE `registros` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `nombre_UNIQUE` (`nombre`),
   UNIQUE KEY `id_UNIQUE` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -248,7 +247,7 @@ CREATE TABLE `registros` (
 
 LOCK TABLES `registros` WRITE;
 /*!40000 ALTER TABLE `registros` DISABLE KEYS */;
-INSERT INTO `registros` VALUES (42,'Bienes Inmuebles2'),(40,'caca'),(43,'sss');
+INSERT INTO `registros` VALUES (44,'AERONAVES');
 /*!40000 ALTER TABLE `registros` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -305,6 +304,44 @@ INSERT INTO `tipo_proceso` VALUES (2,'Divorcio'),(1,'Traspaso de poder');
 UNLOCK TABLES;
 
 --
+-- Table structure for table `tributos_honorarios`
+--
+
+DROP TABLE IF EXISTS `tributos_honorarios`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tributos_honorarios` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `registro` decimal(8,2) DEFAULT NULL,
+  `agrario` decimal(8,2) DEFAULT NULL,
+  `fiscal` json DEFAULT NULL,
+  `archivo` json DEFAULT NULL,
+  `abogado` json DEFAULT NULL,
+  `municipal` decimal(8,2) DEFAULT NULL,
+  `parques_nacionales` decimal(8,2) DEFAULT NULL,
+  `fauna_silvestre` decimal(8,2) DEFAULT NULL,
+  `cruz_roja` decimal(8,2) DEFAULT NULL,
+  `traspaso` decimal(8,2) DEFAULT NULL,
+  `honorarios` json DEFAULT NULL,
+  `adicional_placas` decimal(8,2) DEFAULT NULL,
+  `id_acto` int NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_acto_UNIQUE` (`id_acto`),
+  UNIQUE KEY `id_UNIQUE` (`id`),
+  CONSTRAINT `fk_tributos_honorarios_actos` FOREIGN KEY (`id_acto`) REFERENCES `actos` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tributos_honorarios`
+--
+
+LOCK TABLES `tributos_honorarios` WRITE;
+/*!40000 ALTER TABLE `tributos_honorarios` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tributos_honorarios` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `usuarios`
 --
 
@@ -334,10 +371,6 @@ INSERT INTO `usuarios` VALUES (1,'cvalencianou@gmail.com','$2b$10$NJ4p.vKUYRrsRr
 UNLOCK TABLES;
 
 --
--- Dumping events for database 'ivstitia_legal'
---
-
---
 -- Dumping routines for database 'ivstitia_legal'
 --
 /*!50003 DROP PROCEDURE IF EXISTS `actos_actualizar_por_id` */;
@@ -350,9 +383,9 @@ UNLOCK TABLES;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`%` PROCEDURE `actos_actualizar_por_id`(par_id INT,par_nombre VARCHAR(45),par_tributos_general JSON)
+CREATE DEFINER=`root`@`%` PROCEDURE `actos_actualizar_por_id`(par_id INT,par_nombre VARCHAR(45))
 BEGIN
-UPDATE actos SET nombre = par_nombre, tributos_general = par_tributos_general WHERE id = par_id;
+UPDATE actos SET nombre = par_nombre WHERE id = par_id;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -388,9 +421,29 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`%` PROCEDURE `actos_crear`(par_nombre VARCHAR(45), par_id_registro INT, par_tribs JSON)
+CREATE DEFINER=`root`@`%` PROCEDURE `actos_crear`(
+par_nombre VARCHAR(45), 
+par_id_registro INT, 
+par_registro DECIMAL(8,2), 
+par_agrario DECIMAL(8,2), 
+par_fiscal JSON,
+par_archivo JSON,
+ par_abogado JSON, 
+ par_municipal DECIMAL(8,2), 
+ par_parques_nacionales DECIMAL(8,2),
+ par_fauna_silvestre DECIMAL(8,2),
+ par_cruz_roja DECIMAL(8,2),
+par_traspaso DECIMAL(8,2),
+par_honorarios JSON,
+ par_adicional_placas DECIMAL(8,2))
 BEGIN
-INSERT INTO actos (nombre, id_registro, tributos_general) VALUES (par_nombre, par_id_registro, par_tribs) ;
+INSERT INTO actos (nombre, id_registro) VALUES (par_nombre, par_id_registro);
+
+SET @id_acto = LAST_INSERT_ID();
+
+INSERT INTO tributos_honorarios (registro, agrario, fiscal, archivo, abogado, municipal, parques_nacionales, fauna_silvestre, cruz_roja, traspaso, honorarios, adicional_placas, id_acto)
+VALUES (par_registro, par_agrario , par_fiscal ,par_archivo , par_abogado , par_municipal , par_parques_nacionales , par_fauna_silvestre , par_cruz_roja, par_traspaso ,
+par_honorarios , par_adicional_placas, @id_acto) ;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -409,6 +462,7 @@ DELIMITER ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`%` PROCEDURE `actos_eliminar_por_id`(par_id INT)
 BEGIN
+DELETE FROM tributos_honorarios WHERE id_acto = par_id;
 DELETE FROM actos WHERE id = par_id;
 END ;;
 DELIMITER ;
@@ -428,7 +482,7 @@ DELIMITER ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`%` PROCEDURE `actos_obtener_por_id`(par_id INT)
 BEGIN
-SELECT id, nombre, tributos_general, id_registro FROM actos WHERE id = par_id;
+SELECT id, nombre, id_registro FROM actos WHERE id = par_id;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -448,25 +502,6 @@ DELIMITER ;;
 CREATE DEFINER=`root`@`%` PROCEDURE `actos_obtener_por_id_registro`(par_id INT)
 BEGIN
 SELECT id, nombre FROM actos WHERE id_registro = par_id;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `actos_obtener_tributos` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`%` PROCEDURE `actos_obtener_tributos`(par_id INT)
-BEGIN
-SELECT tributos_general FROM actos WHERE id = par_id;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -712,6 +747,70 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `tributos_honorarios_actualizar_por_id_acto` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`%` PROCEDURE `tributos_honorarios_actualizar_por_id_acto`(
+par_id_acto INT,
+par_registro DECIMAL(8,2), 
+par_agrario DECIMAL(8,2), 
+par_fiscal JSON,
+par_archivo JSON,
+ par_abogado JSON, 
+ par_municipal DECIMAL(8,2), 
+ par_parques_nacionales DECIMAL(8,2),
+ par_fauna_silvestre DECIMAL(8,2),
+ par_cruz_roja DECIMAL(8,2),
+par_traspaso DECIMAL(8,2),
+par_honorarios JSON,
+ par_adicional_placas DECIMAL(8,2))
+BEGIN
+UPDATE tributos_honorarios 
+SET registro= par_registro,
+ agrario=par_agrario,
+ fiscal=par_fiscal, 
+ archivo=par_archivo, 
+ abogado=par_abogado, 
+ municipal=par_municipal, 
+ parques_nacionales=par_parques_nacionales,
+ fauna_silvestre=par_fauna_silvestre, 
+ cruz_roja=par_cruz_roja,
+ traspaso=par_traspaso,
+ honorarios=par_honorarios, 
+ adicional_placas=par_adicional_placas
+ WHERE id_acto = par_id_acto;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `tributos_honorarios_obtener_por_id_acto` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`%` PROCEDURE `tributos_honorarios_obtener_por_id_acto`(par_id_acto INT)
+BEGIN
+SELECT registro, agrario, fiscal, archivo, abogado, municipal, parques_nacionales, fauna_silvestre, cruz_roja, traspaso, honorarios, adicional_placas FROM tributos_honorarios;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `usuarios_actualizar` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -913,4 +1012,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-03-01 14:12:34
+-- Dump completed on 2023-03-03 15:19:40

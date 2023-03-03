@@ -1,12 +1,29 @@
 const { executePreparedStatement } = require('../utilidades/baseDeDatos')
+const TributosHonorarios = require('./TributosHonorarios')
 
 class Acto {
 
     id
     nombre
 
-    crear = async (nombre, id, objetoTributosHonorarios) => {
-        return await executePreparedStatement('CALL actos_crear(?,?,?)', [nombre, id, objetoTributosHonorarios])
+    crear = async (nombre, idRegistro, tributosHonorarios) => {
+
+        const registro = tributosHonorarios.registro
+        const agrario = tributosHonorarios.agrario
+        const fiscal = tributosHonorarios.fiscal
+        const archivo = tributosHonorarios.archivo
+        const abogado = tributosHonorarios.abogado
+        const municipal = tributosHonorarios.municipal
+        const parquesNacionales = tributosHonorarios.parquesNacionales
+        const faunaSilvestre = tributosHonorarios.faunaSilvestre
+        const cruzRoja = tributosHonorarios.cruzRoja
+        const traspaso = tributosHonorarios.traspaso
+        const honorarios = tributosHonorarios.honorarios
+        const adicionalPlacas = tributosHonorarios.adicionalPlacas
+
+        return await executePreparedStatement('CALL actos_crear(?,?,?,?,?,?,?,?,?,?,?,?,?,?)',
+            [nombre, idRegistro, registro, agrario, fiscal, archivo, abogado, municipal, parquesNacionales,
+                faunaSilvestre, cruzRoja, traspaso, honorarios, adicionalPlacas])
     }
 
     obtenerTodosPorIdRegistro = async (id) => {
@@ -14,11 +31,35 @@ class Acto {
     }
 
     obtenerPorId = async (id) => {
-        return await executePreparedStatement('CALL actos_obtener_por_id(?)', [id])
+
+        const tributosHonorarios = (await new TributosHonorarios().obtenerPorIdActo(id))[0][0]
+        const acto = (await executePreparedStatement('CALL actos_obtener_por_id(?)', [id]))[0][0]
+
+        acto['tributosHonorarios'] = tributosHonorarios
+
+        return acto
     }
 
-    actualizarPorId = async (id, nombre, tributosGeneral) => {
-        return await executePreparedStatement('CALL actos_actualizar_por_id(?,?,?)', [id, nombre, tributosGeneral])
+    actualizarPorId = async (id, nombre, tributosHonorarios) => {
+
+        const registro = tributosHonorarios.registro || null
+        const agrario = tributosHonorarios.agrario || null
+        const fiscal = tributosHonorarios.fiscal || null
+        const archivo = tributosHonorarios.archivo || null
+        const abogado = tributosHonorarios.abogado || null
+        const municipal = tributosHonorarios.municipal || null
+        const parquesNacionales = tributosHonorarios.parquesNacionales || null
+        const faunaSilvestre = tributosHonorarios.faunaSilvestre || null
+        const cruzRoja = tributosHonorarios.cruzRoja || null
+        const traspaso = tributosHonorarios.traspaso || null
+        const honorarios = tributosHonorarios.honorarios || null
+        const adicionalPlacas = tributosHonorarios.adicionalPlacas || null
+
+        await new TributosHonorarios().actualizarPorIdActo(id, registro, agrario, fiscal, archivo,
+            abogado, municipal, parquesNacionales, faunaSilvestre, cruzRoja, traspaso, honorarios,
+            adicionalPlacas)
+
+        return await executePreparedStatement('CALL actos_actualizar_por_id(?,?)', [id, nombre])
     }
 
     eliminarPorId = async (id) => {
@@ -29,9 +70,9 @@ class Acto {
         return await executePreparedStatement('CALL actos_buscar_por_nombre_id_registro(?,?)', [nombre, idRegistro])
     }
 
-    realizarCalculo = async (acto, montoConsulta) => {
+    realizarCalculo = async (id, montoConsulta) => {
 
-        const tributosHonorarios = (await executePreparedStatement('CALL actos_obtener_tributos(?)', [acto]))[0][0]['tributos_general']
+        const tributosHonorarios = (await new TributosHonorarios().obtenerPorIdActo(id))[0][0]
 
         let respuesta = {}
 

@@ -28,7 +28,9 @@ const crearActo = async (req, res) => {
         throw new httpError(StatusCodes.CONFLICT, 'ACTO YA EXISTE PARA REGISTRO')
     }
 
-    if ((await acto.crear(nombre, idRegistro, tributosHonorarios)).affectedRows === 1) {
+    const resultado = await acto.crear(nombre, idRegistro, JSON.parse(tributosHonorarios))
+
+    if ((resultado).affectedRows === 1) {
         res.status(StatusCodes.CREATED).json({
             mensaje: 'ACTO CREADO'
         })
@@ -67,9 +69,9 @@ const obtenerPorId = async (req, res) => {
 
     const resultado = await new Acto().obtenerPorId(id)
 
-    if (resultado[0].length > 0) {
+    if (resultado) {
         res.status(StatusCodes.OK).json({
-            mensaje: resultado[0]
+            mensaje: resultado
         })
     }
     else {
@@ -94,19 +96,19 @@ const actualizarActo = async (req, res) => {
 
     const acto = new Acto()
 
-    const resultado = (await acto.obtenerPorId(id))[0]
+    const resultado = (await acto.obtenerPorId(id))
 
-    if (resultado.length === 0) {
+    if (!resultado) {
         throw new httpError(StatusCodes.NOT_FOUND, 'ACTO NO EXISTE')
     }
 
-    const resultadoNombre = (await acto.buscarPorNombreIdRegistro(nombre, resultado[0]['id_registro']))[0]
+    const resultadoNombre = (await acto.buscarPorNombreIdRegistro(nombre, resultado['id_registro']))[0]
 
-    if (resultadoNombre.length === 1 && resultado[0].id !== resultadoNombre[0].id) {
+    if (resultadoNombre.length === 1 && resultado.id !== resultadoNombre[0].id) {
         throw new httpError(StatusCodes.CONFLICT, 'NOMBRE ACTO PARA REGISTRO YA EXISTE')
     }
 
-    if ((await acto.actualizarPorId(id, nombre, tributosHonorarios)).affectedRows === 1) {
+    if ((await acto.actualizarPorId(id, nombre,  JSON.parse(tributosHonorarios))).affectedRows === 1) {
         res.status(StatusCodes.OK).json({
             mensaje: 'ACTO ACTUALIZADO'
         })
@@ -126,7 +128,7 @@ const eliminarActo = async (req, res) => {
 
     const acto = new Acto()
 
-    if ((await acto.obtenerPorId(id))[0].length === 0) {
+    if (!(await acto.obtenerPorId(id))) {
         throw new httpError(StatusCodes.NOT_FOUND, 'ACTO NO EXISTE')
     }
 
