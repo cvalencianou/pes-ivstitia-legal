@@ -24,32 +24,208 @@
             <form id="form-crear-acto" class="form-crear-acto">
                 <label for="registros">Seleccione registro</label>
                 <select name="registros" id="registros"></select>
-                <label for="registros">Ingrese nombre de acto</label>
-                <input type="text" id="nuevo-acto" placeholder="Nombre Acto" required>
-                <textarea name="tributos-honorarios" id="tributos-honorarios" rows="15">
-                     {
-                        "registro": "5.00",
-                        "agrario": "3.00",
-                        "fiscal": [{ "id": 1, "hasta": 25000, "monto": 12.5 }, { "id": 2, "hasta": 75000, "monto": 25 }, 
-                        { "id": 3, "hasta": 100000, "monto": 31.25 }, { "id": 4, "hasta": 250000, "monto": 62.5 },
-                         { "id": 5, "hasta": 500000, "monto": 125 }, { "id": 6, "hasta": 1000000, "monto": 156.25 },
-                          { "id": 7, "hasta": 1500000, "monto": 312.5 }, { "id": 8, "hasta": 0, "monto": 625 }],
-                        "archivo": [{ "id": 1, "hasta": 100000, "monto": 10 }, { "id": 2, "hasta": 0, "monto": 20 }],
-                        "abogado": [{ "id": 1, "hasta": 250000, "monto": 0 }, { "id": 2, "hasta": 1000000, "monto": 1100 },
-                         { "id": 3, "hasta": 5000000, "monto": 2200 }, { "id": 4, "hasta": 25000000, "monto": 5500 },
-                          { "id": 5, "hasta": 50000000, "monto": 11000 }, { "id": 6, "hasta": 100000000, "monto": 16500 },
-                           { "id": 7, "hasta": 500000000, "monto": 27500 }, { "id": 8, "hasta": 0, "monto": 55000 }],
-                        "municipal": "0.00",
-                        "traspaso": "1.50",
-                        "honorarios": [{ "id": 1, "monto": "60500.00", "porcentaje": "0.00" }, { "id": 2, "monto": "11000000.00", "porcentaje": "2.00" },
-                         { "id": 3, "monto": "16500000.00", "porcentaje": "1.50" }, { "id": 4, "monto": "33000000.00", "porcentaje": "1.25" },
-                          { "id": 5, "monto": "0.00", "porcentaje": "1.00" }],
-                        "parquesNacionales": 500,
-                        "faunaSilvestre": 1125.50,
-                        "cruzRoja": 500
-                    }
-                </textarea>
-                <input type="submit" value="Crear Acto">
+
+                <div class="tributo-unico">
+                    <label for="registros">Ingrese nombre de acto</label>
+                    <input type="text" id="nuevo-acto" placeholder="Nombre Acto" required>
+                </div>
+
+
+                <div class="tributo-unico">
+                    <label for="timbre-registro">Timbre de registro</label>
+                    <input type="checkbox" name="" id="check-registro" checked>
+                    <input type="number" name="" id="timbre-registro" value="5">
+                </div>
+
+                <div class="tributo-unico">
+                    <label for="timbre-agrario">Timbre agrario</label>
+                    <input type="checkbox" name="" id="check-agrario" checked>
+                    <input type="number" name="" id="timbre-agrario" value="3">
+                </div>
+
+
+                <div class="timbre-multiple-titulo">
+                    <label for="">Timbre fiscal</label>
+                    <input type="checkbox" name="" id="check-fiscal" checked>
+                    <div>
+                        <p>Monto c/1000</p>
+                        <p>Hasta</p>
+                    </div>
+                </div>
+                <div class="timbre-multiple" id="lista-timbre-fiscal">
+                    <div>
+                        <input type="number" value="12.5">
+                        <input type="number" value="25000">
+                    </div>
+                    <div>
+                        <input type="number" value="25">
+                        <input type="number" value="75000">
+                    </div>
+                    <div>
+                        <input type="number" value="31.25">
+                        <input type="number" value="100000">
+                    </div>
+                    <div>
+                        <input type="number" value="62.5">
+                        <input type="number" value="250000">
+                    </div>
+                    <div>
+                        <input type="number" value="125">
+                        <input type="number" value="500000">
+                    </div>
+                    <div>
+                        <input type="number" value="156.25">
+                        <input type="number" value="1000000">
+                    </div>
+                    <div>
+                        <input type="number" value="312.50">
+                        <input type="number" value="1500000">
+                    </div>
+                    <div>
+                        <input type="number" value="625">
+                        <input type="number" value="0">
+                    </div>
+                </div>
+
+
+
+                <div class="timbre-multiple-titulo">
+                    <label for="">Timbre de archivo</label>
+                    <input type="checkbox" name="" id="check-archivo" checked>
+                    <div>
+                        <p>Monto c/1000</p>
+                        <p>Hasta</p>
+                    </div>
+                </div>
+                <div class="timbre-multiple" id="lista-timbre-archivo">
+                    <div>
+                        <input type="number" value="10">
+                        <input type="number" value="100000">
+                    </div>
+                    <div>
+                        <input type="number" value="20">
+                        <input type="number" value="0">
+                    </div>
+                </div>
+
+                <div class="timbre-multiple-titulo">
+                    <label for="">Timbre de abogado</label>
+                    <input type="checkbox" name="" id="check-abogado" checked>
+                    <div>
+                        <p>Monto c/1000</p>
+                        <p>Hasta</p>
+                    </div>
+                </div>
+                <div class="timbre-multiple" id="lista-timbre-abogado">
+                    <div>
+                        <input type="number" value="0">
+                        <input type="number" value="250000">
+                    </div>
+                    <div>
+                        <input type="number" value="1100">
+                        <input type="number" value="1000000">
+                    </div>
+                    <div>
+                        <input type="number" value="2200">
+                        <input type="number" value="5000000">
+                    </div>
+                    <div>
+                        <input type="number" value="5500">
+                        <input type="number" value="25000000">
+                    </div>
+                    <div>
+                        <input type="number" value="11000">
+                        <input type="number" value="50000000">
+                    </div>
+                    <div>
+                        <input type="number" value="16500">
+                        <input type="number" value="100000000">
+                    </div>
+                    <div>
+                        <input type="number" value="27500">
+                        <input type="number" value="500000000">
+                    </div>
+                    <div>
+                        <input type="number" value="55000">
+                        <input type="number" value="0">
+                    </div>
+                </div>
+
+                <div class="tributo-unico">
+                    <label for="">Timbre municipal</label>
+                    <input type="checkbox" name="" id="check-municipal" checked>
+                    <input type="number" name="" id="timbre-municipal" value="2">
+                </div>
+
+                <div class="tributo-unico">
+                    <label for="">Timbre parques nacionales</label>
+                    <input type="checkbox" name="" id="check-parques-nacionales" checked>
+                    <input type="number" name="" id="timbre-parques-nacionales" value="500">
+                </div>
+
+                <div class="tributo-unico">
+                    <label for="">Timbre fauna silvestre</label>
+                    <input type="checkbox" name="" id="check-fauna-silvestre" checked>
+                    <input type="number" name="" id="timbre-fauna-silvestre" value="1125.5">
+                </div>
+
+                <div class="tributo-unico">
+                    <label for="">Timbre cruz roja</label>
+                    <input type="checkbox" name="" id="check-cruz-roja" checked>
+                    <input type="number" name="" id="timbre-cruz-roja" value="500">
+                </div>
+
+                <div class="tributo-unico">
+                    <label for="">Impuesto de traspaso</label>
+                    <input type="checkbox" name="" id="check-traspaso" checked>
+                    <input type="number" name="" id="impuesto-traspaso" value="1.5">
+                </div>
+
+
+                <div class="timbre-multiple-titulo">
+                    <label for="">Honorarios</label>
+                    <input type="checkbox" name="" id="check-honorarios" checked>
+                    <div>
+                        <p>Monto</p>
+                        <p>Porcentaje</p>
+                    </div>
+                </div>
+                <div class="timbre-multiple" id="lista-honorarios">
+                    <div>
+                        <input type="number" value="60500">
+                        <input type="number" value="0">
+                    </div>
+                    <div>
+                        <input type="number" value="11000000">
+                        <input type="number" value="2">
+                    </div>
+                    <div>
+                        <input type="number" value="16500000">
+                        <input type="number" value="1.5">
+                    </div>
+                    <div>
+                        <input type="number" value="33000000">
+                        <input type="number" value="1.25">
+                    </div>
+                    <div>
+                        <input type="number" value="0">
+                        <input type="number" value="1">
+                    </div>
+                </div>
+
+                <div class="tributo-unico">
+                    <label for="">¿Honorarios se pagan a la mitad u otro porcentaje?</label>
+                    <input type="checkbox" name="" id="check-honorarios-mitad" checked>
+                    <input type="number" value="0.5" id="honorarios-mitad">
+                </div>
+
+                <div class="tributo-unico">
+                    <label for="">Adicional Placas</label>
+                    <input type="checkbox" name="" id="check-adicional-placas" checked>
+                    <input type="number" name="" id="adicional-placas" value="17600">
+                </div>
+
+                <input type="submit" value="Crear Acto" >
             </form>
             <dialog id="dialogo-1" class="dialogo-1">
                 <p id="mensaje-1"></p>

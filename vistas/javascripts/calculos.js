@@ -93,27 +93,31 @@ const realizarCalculo = async () => {
     const datos = await resultado.json()
 
     if (resultado.status === 200) {
+
         document.getElementById('resultado-calculo').innerHTML =
             `
-        REGISTRO: ${datos.mensaje.registro || 0} <br>
-        AGRARIO: ${datos.mensaje.agrario || 0} <br>
-        FISCAL: ${datos.mensaje.fiscal || 0} <br>
-        ARCHIVO: ${datos.mensaje.archivo || 0} <br>
-        ABOGADO: ${datos.mensaje.abogado || 0} <br>
-        MUNICIPAL: ${datos.mensaje.municipal || 0} <br>
-        TRASPASO: ${datos.mensaje.traspaso || 0} <br>
-        HONORARIOS: ${datos.mensaje.honorarios || 0} <br>
-        TOTAL: ${(datos.mensaje.registro || 0) + (datos.mensaje.agrario || 0) + (datos.mensaje.fiscal || 0)
-            + (datos.mensaje.archivo || 0) + (datos.mensaje.abogado || 0) + (datos.mensaje.municipal || 0) +
-            (datos.mensaje.traspaso || 0)
-            }<br>
-        TOTAL DESCUENTO BCR: ${((datos.mensaje.registro || 0) + (datos.mensaje.agrario || 0) + (datos.mensaje.fiscal || 0)
-            + (datos.mensaje.archivo || 0) + (datos.mensaje.abogado || 0) + (datos.mensaje.municipal || 0) +
-            (datos.mensaje.traspaso || 0)) * 0.94
-            }
-        TOTAL HONORARIOS: ${datos.mensaje.honorarios + datos.mensaje.honorarios * 0.13}
-        TOTAL HONORARIOS IVA:${datos.mensaje.honorarios * 0.13}
-        
+            <h2>Tributos</h2>
+            ${datos.mensaje.registro ? `TIMBRE DE REGISTRO: ${datos.mensaje.registro}<br>` : ''}
+            ${datos.mensaje.agrario ? `TIMBRE AGRARIO: ${datos.mensaje.agrario}<br>` : ''}
+            ${datos.mensaje.fiscal ? `TIMBRE FISCAL: ${datos.mensaje.fiscal}<br>` : ''}
+            ${datos.mensaje.archivo ? `TIMBRE DE ARCHIVO: ${datos.mensaje.archivo}<br>` : ''}
+            ${datos.mensaje.abogado ? `TIMBRE DE ABOGADO: ${datos.mensaje.abogado}<br>` : ''}
+            ${datos.mensaje.municipal ? `TIMBRE MUNICIPAL: ${datos.mensaje.municipal}<br>` : ''}
+            ${datos.mensaje.parquesNacionales ? `TIMBRE DE PARQUES NACIONALES: ${datos.mensaje.parquesNacionales}<br>` : ''}
+            ${datos.mensaje.faunaSilvestre ? `TIMBRE DE FAUNA SILVESTRE: ${datos.mensaje.faunaSilvestre}<br>` : ''}
+            ${datos.mensaje.cruzRoja ? `TIMBRE DE CRUZ ROJA: ${datos.mensaje.cruzRoja}<br>` : ''}
+            <h2>Impuestos</h2>
+            ${datos.mensaje.traspaso ? `IMPUESTO TRASPASO: ${datos.mensaje.traspaso}<br>` : ''}
+            <h2>Honorarios</h2>
+            ${datos.mensaje.honorarios ? `HONORARIOS: ${datos.mensaje.honorarios}<br>` : ''}
+            <h2>Montos Adicionales</h2>
+            ${datos.mensaje.adicionalPlacas ? `ADICIONAL PLACAS: ${datos.mensaje.adicionalPlacas}<br>` : ''}
+            <h2>Totales</h2>
+            ${datos.mensaje.totalTributos ? `TOTAL TRIBUTOS: ${Math.round(datos.mensaje.totalTributos * 100) / 100}<br>` : ''}
+            ${datos.mensaje.totalTributosConDescuento ? `TOTAL TRIBUTOS CON DESCUENTO: ${Math.round(datos.mensaje.totalTributosConDescuento * 100) / 100}<br>` : ''}
+            ${datos.mensaje.totalHonorarios ? `TOTAL HONORARIOS: ${Math.round(datos.mensaje.totalHonorarios * 100) / 100}<br>` : ''}
+            ${datos.mensaje.totalHonorariosConIVA ? `TOTAL HONORARIOS CON IVA: ${Math.round(datos.mensaje.totalHonorariosConIVA * 100) / 100}<br>` : ''}
+              
         `
 
         document.getElementById('seccion-calcular').style.display = 'none'

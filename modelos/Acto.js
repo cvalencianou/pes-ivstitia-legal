@@ -33,23 +33,46 @@ class Acto {
 
         const tributosHonorarios = (await executePreparedStatement('CALL actos_obtener_tributos(?)', [acto]))[0][0]['tributos_general']
 
-        let respuesta
+        let respuesta = {}
 
-        const x = {
+        respuesta['registro'] = Number(await this.calcularRegistro(montoConsulta, tributosHonorarios.registro))
+        respuesta['agrario'] = Number(await this.calcularAgrario(montoConsulta, tributosHonorarios.agrario))
+        respuesta['fiscal'] = Number(await this.calcularFiscal(montoConsulta, tributosHonorarios.fiscal))
+        respuesta['archivo'] = Number(await this.calcularArchivo(montoConsulta, tributosHonorarios.archivo))
+        respuesta['abogado'] = Number(await this.calcularAbogado(montoConsulta, tributosHonorarios.abogado))
+        respuesta['municipal'] = Number(await this.calcularMunicipal(montoConsulta, tributosHonorarios.municipal))
+        respuesta['parquesNacionales'] = Number(await this.calcularParquesNacionales(montoConsulta, tributosHonorarios.parquesNacionales))
+        respuesta['faunaSilvestre'] = Number(await this.calcularFaunaSilvestre(montoConsulta, tributosHonorarios.faunaSilvestre))
+        respuesta['cruzRoja'] = Number(await this.calcularCruzRoja(montoConsulta, tributosHonorarios.cruzRoja))
+        respuesta['traspaso'] = Number(await this.calcularTraspaso(montoConsulta, tributosHonorarios.traspaso))
+        respuesta['honorarios'] = Number(await this.calcularHonorarios(montoConsulta, tributosHonorarios.honorarios))
+        respuesta['adicionalPlacas'] = Number(await this.calcularAdicionalPlacas(montoConsulta, tributosHonorarios.adicionalPlacas))
 
-            registro: await this.calcularRegistro(montoConsulta, tributosHonorarios.registro),
-            agrario: await this.calcularAgrario(montoConsulta, tributosHonorarios.agrario),
-            fiscal: await this.calcularFiscal(montoConsulta, tributosHonorarios.fiscal),
-            archivo: await this.calcularArchivo(montoConsulta, tributosHonorarios.archivo),
-            abogado: await this.calcularAbogado(montoConsulta, tributosHonorarios.abogado),
-            municipal: await this.calcularMunicipal(montoConsulta, tributosHonorarios.municipal),
-            traspaso: await this.calcularTraspaso(montoConsulta, tributosHonorarios.traspaso),
-            parquesNacionales: await this.calcularParquesNacionales(montoConsulta, tributosHonorarios.parquesNacionales),
-            faunaSilvestre: await this.calcularFaunaSilvestre(montoConsulta, tributosHonorarios.faunaSilvestre),
-            cruzRoja: await this.calcularCruzRoja(montoConsulta, tributosHonorarios.cruzRoja),
-            honorarios: await this.calcularHonorarios(montoConsulta, tributosHonorarios.honorarios)
+        respuesta['timbresSinDescuento'] = Number(((respuesta['registro'] || 0) + (respuesta['fiscal'] || 0)
+            + (respuesta['archivo'] || 0) + (respuesta['abogado'] || 0) + (respuesta['municipal'] || 0)
+            + (respuesta['parquesNacionales'] || 0) + (respuesta['faunaSilvestre'] || 0) + (respuesta['cruzRoja'] || 0)
+            + (respuesta['adicionalPlacas'] || 0) + (respuesta['agrario'] || 0)))
+
+        respuesta['timbresConDescuento'] = Number(((respuesta['registro'] || 0) + (respuesta['fiscal'] || 0)
+            + (respuesta['archivo'] || 0) + (respuesta['abogado'] || 0) + (respuesta['municipal'] || 0)
+            + (respuesta['parquesNacionales'] || 0) + (respuesta['faunaSilvestre'] || 0) + (respuesta['cruzRoja'] || 0)
+            + (respuesta['adicionalPlacas'] || 0)))
+
+        respuesta['totalTributos'] = Number((respuesta['timbresSinDescuento'] + (respuesta['traspaso'] || 0)))
+
+        respuesta['totalTributosConDescuento'] = Number((respuesta['timbresSinDescuento'] -
+            (respuesta['timbresConDescuento'] * 0.06) + (respuesta['traspaso'] || 0)))
+
+        respuesta['totalHonorarios'] = Number(respuesta['honorarios'])
+        respuesta['totalHonorariosConIVA'] = (respuesta['honorarios'] * 1.13)
+
+        for (const valor in respuesta) {
+            if (!respuesta[valor]) {
+                delete respuesta[valor]
+            }
         }
-        return x
+
+        return respuesta
     }
 
     calcularRegistro = async (montoConsulta, timbre) => {
@@ -181,6 +204,10 @@ class Acto {
         }
 
         return totalHonorarios > 60500 ? totalHonorarios : 60500
+    }
+
+    calcularAdicionalPlacas = async (montoConsulta, monto) => {
+        return monto
     }
 }
 

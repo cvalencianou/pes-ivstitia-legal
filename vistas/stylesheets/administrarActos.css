@@ -66,13 +66,13 @@ label {
     border-bottom: 1px solid #20344d;
 }
 
-.id-usuario {
+.id-acto {
     text-align: center;
     font-size: 1.5vw;
     font-family: 'Cinzel';
 }
 
-.correo-usuario {
+.nombre-acto {
     width: 40%;
     text-align: center;
     word-wrap: break-word;
@@ -147,6 +147,51 @@ dialog button {
     margin-top: 5%;
     margin-bottom: 5%;
     padding: 1%;
+    font-size: 1.5vw;
+}
+
+.tributo-unico input {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    width: 60%;
+    font-size: 1.5vw;
+}
+
+.timbre-multiple-titulo {
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.timbre-multiple-titulo input {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;    
+}
+
+.timbre-multiple-titulo p {
+    width: 48%;
+    display: inline-block;
+    text-align: center;
+    font-family: 'Cinzel';
+    font-size: 1.5vw;
+}
+
+.timbre-multiple {
+    width: 60%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.timbre-multiple div input{
+    width: 48%;
+    padding: 3%;
+    display: inline-block;
+    margin-bottom: 1%;
     font-size: 1.5vw;
 }
 

@@ -143,8 +143,14 @@ const calcularActo = async (req, res) => {
         throw new httpError(StatusCodes.BAD_REQUEST, 'POR FAVOR BRINDAR VALORES VÁLIDOS')
     }
 
+    const acto = new Acto()
+
+    if ((await acto.obtenerPorId(id))[0].length === 0) {
+        throw new httpError(StatusCodes.NOT_FOUND, 'ACTO NO EXISTE')
+    }
+
     res.status(StatusCodes.OK).json({
-        mensaje: await new Acto().realizarCalculo(id, montoConsulta)
+        mensaje: await acto.realizarCalculo(id, montoConsulta)
     })
 
 }

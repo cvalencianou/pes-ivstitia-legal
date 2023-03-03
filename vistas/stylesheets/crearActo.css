@@ -16,7 +16,7 @@
 
 .seccion-crear-acto {
     display: block;
-    width: 30%;
+    width: 35%;
     margin-left: auto;
     margin-right: auto;
 }
@@ -24,20 +24,24 @@
 .form-crear-acto {
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 5%;
     border-style: solid;
     border-radius: 5px;
     border-color: gray;
 }
 
 .form-crear-acto label {
+    width: 100%;
     display: block;
     font-size: 2vw;
     font-family: 'Cinzel';
     text-align: center;
+    margin-top: 5%;
+
 }
 
 .form-crear-acto select {
-    width: 70%;
+    width: 60%;
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -45,30 +49,63 @@
     font-size: 1.5vw;
 }
 
-.form-crear-acto input {
-    width: 70%;
+.tributo-unico input {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 5%;
-    margin-bottom: 5%;
-    padding: 1%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    width: 60%;
     font-size: 1.5vw;
 }
 
-.form-crear-acto textarea {
+.timbre-multiple-titulo {
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.timbre-multiple-titulo input {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;    
+}
+
+.timbre-multiple-titulo p {
+    width: 48%;
+    display: inline-block;
+    text-align: center;
+    font-family: 'Cinzel';
+    font-size: 1.5vw;
+}
+
+.timbre-multiple {
+    width: 60%;
     display: block;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 5%;
-    margin-bottom: 5%;
-    width: 90%;
 }
+
+.timbre-multiple div input{
+    width: 48%;
+    padding: 3%;
+    display: inline-block;
+    margin-bottom: 1%;
+    font-size: 1.5vw;
+}
+
+
 
 .form-crear-acto input[type='submit'] {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 3%;
+    margin-bottom: 3%;
+    width: 50%;
+    padding: 3%;
     font-family: 'Cinzel';
     font-size: 1.5vw;
-    margin-bottom: 3%;
 }
 
 .form-crear-acto input[type='submit']:hover {
@@ -101,114 +138,6 @@
 }
 
 
-@media screen and (max-width: 960px) {
-    .titulo-principal {
-        font-size: 6vw;
-        margin-top: 4%;
-        margin-bottom: 4%;
-    }
+@media screen and (max-width: 960px) {}
 
-    .seccion-crear-acto {
-        width: 60%;
-    }
-
-    .form-crear-acto label {
-        font-size: 4vw;
-    }
-
-    .form-crear-acto select {
-        width: 80%;
-        font-size: 3vw;
-    }
-
-    .form-crear-acto input {
-        width: 80%;
-        margin-top: 7.5%;
-        margin-bottom: 7.5%;
-        padding: 2%;
-        font-size: 3vw;
-    }
-
-    .form-crear-acto textarea {
-        margin-top: 7.5%;
-        margin-bottom: 7.5%;
-    }
-
-    .form-crear-acto input[type='submit'] {
-        font-size: 3vw;
-        margin-bottom: 6%;
-    }
-
-    .dialogo-1 {
-        width: 60%;
-        padding: 6%;
-    }
-
-    .dialogo-1 p {
-        font-size: 3vw;
-    }
-
-    .dialogo-1 button {
-        width: 80%;
-        padding: 2%;
-        font-size: 3vw;
-        margin-top: 7.5%;
-        margin-bottom: 7.5%;
-    }
-}
-
-@media screen and (max-width: 500px) {
-    .titulo-principal {
-        font-size: 9vw;
-        margin-top: 6%;
-        margin-bottom: 6%;
-    }
-
-    .seccion-crear-acto {
-        width: 90%;
-    }
-
-    .form-crear-acto label {
-        font-size: 6vw;
-    }
-
-    .form-crear-acto select {
-        width: 90%;
-        font-size: 4.5vw;
-    }
-
-    .form-crear-acto input {
-        width: 90%;
-        margin-top: 10%;
-        margin-bottom: 10%;
-        padding: 3%;
-        font-size: 4.5vw;
-    }
-
-    .form-crear-acto textarea {
-        margin-top: 10%;
-        margin-bottom: 10%;
-    }
-
-    .form-crear-acto input[type='submit'] {
-        font-size: 4.5vw;
-        margin-bottom: 9%;
-    }
-
-    .dialogo-1 {
-        width: 90%;
-        padding: 9%;
-    }
-
-    .dialogo-1 p {
-        font-size: 4.5vw;
-    }
-
-    .dialogo-1 button {
-        width: 90%;
-        padding: 3%;
-        font-size: 4.5vw;
-        margin-top: 10%;
-        margin-bottom: 10%;
-    }
-}
+@media screen and (max-width: 500px) {}

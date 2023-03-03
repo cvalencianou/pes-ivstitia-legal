@@ -81,8 +81,8 @@ const obtenerActosPorIdRegistro = async () => {
             listaActos +=
                 `
                 <tr id="${acto.id}">
-                    <td class="id-usuario">${acto.id}</td>
-                    <td class="correo-usuario">${acto.nombre}</td>
+                    <td class="id-acto">${acto.id}</td>
+                    <td class="nombre-acto">${acto.nombre}</td>
                
                     <td>
                         <button value="${acto.id}">Actualizar</button>
@@ -126,7 +126,7 @@ const eliminarActo = async (id) => {
 const abrirActualizarActo = async (id) => {
     document.getElementById('seccion-actos').style.display = 'none'
     document.getElementById('seccion-modificar-acto').style.display = 'block'
-    obtenerActoPorId(id)
+    await obtenerActoPorId(id)
 
     document.getElementById('form-modificar-acto').addEventListener('submit', (event) => {
         event.preventDefault()
@@ -136,15 +136,80 @@ const abrirActualizarActo = async (id) => {
 
 const actualizarActo = async (id) => {
     const nombre = document.getElementById('nombre-acto').value
-    const tributosHonorarios = document.getElementById('tributos-acto').value
 
-    console.log(id + '' + nombre + ' ' + tributosHonorarios)
+    let acto = {}
 
-    try {
-        JSON.parse(tributosHonorarios)
-    } catch (error) {
-        alert('ERROR FORMATO JSON')
-        return
+    acto['registro'] = Number(document.getElementById('check-registro').checked ? document.getElementById('timbre-registro').value : 0)
+    acto['agrario'] = Number(document.getElementById('check-agrario').checked ? document.getElementById('timbre-agrario').value : 0)
+
+    const arrayFiscal = []
+    const listaFiscal = document.getElementById('lista-timbre-fiscal').children
+    for (let index = 0; index < listaFiscal.length; index++) {
+        arrayFiscal[index] = {
+            id: index + 1,
+            monto: Number(listaFiscal[index].children.item(0).value),
+            hasta: Number(listaFiscal[index].children.item(1).value)
+        }
+    }
+    acto['fiscal'] = document.getElementById('check-fiscal').checked ? arrayFiscal : 0
+
+    const arrayArchivo = []
+    const listaArchivo = document.getElementById('lista-timbre-archivo').children
+    for (let index = 0; index < listaArchivo.length; index++) {
+        arrayArchivo[index] = {
+            id: index + 1,
+            monto: Number(listaArchivo[index].children.item(0).value),
+            hasta: Number(listaArchivo[index].children.item(1).value)
+        }
+    }
+    acto['archivo'] = document.getElementById('check-archivo').checked ? arrayArchivo : 0
+
+    const arrayAbogado = []
+    const listaAbogado = document.getElementById('lista-timbre-abogado').children
+    for (let index = 0; index < listaAbogado.length; index++) {
+        arrayAbogado[index] = {
+            id: index + 1,
+            monto: Number(listaAbogado[index].children.item(0).value),
+            hasta: Number(listaAbogado[index].children.item(1).value)
+        }
+    }
+    acto['abogado'] = document.getElementById('check-abogado').checked ? arrayAbogado : 0
+
+    acto['municipal'] = Number(document.getElementById('check-municipal').checked ? document.getElementById('timbre-municipal').value : 0)
+    acto['parquesNacionales'] = Number(document.getElementById('check-parques-nacionales').checked ? document.getElementById('timbre-parques-nacionales').value : 0)
+    acto['faunaSilvestre'] = Number(document.getElementById('check-fauna-silvestre').checked ? document.getElementById('timbre-fauna-silvestre').value : 0)
+    acto['cruzRoja'] = Number(document.getElementById('check-cruz-roja').checked ? document.getElementById('timbre-cruz-roja').value : 0)
+    acto['traspaso'] = Number(document.getElementById('check-traspaso').checked ? document.getElementById('impuesto-traspaso').value : 0)
+
+    const arrayHonorarios = []
+    const listaHonorarios = document.getElementById('lista-honorarios').children
+    for (let index = 0; index < listaHonorarios.length; index++) {
+        arrayHonorarios[index] = {
+            id: index + 1,
+            monto: Number(listaHonorarios[index].children.item(0).value),
+            porcentaje: Number(listaHonorarios[index].children.item(1).value)
+        }
+    }
+    acto['honorarios'] = document.getElementById('check-honorarios').checked ? arrayHonorarios : 0
+
+    if (document.getElementById('check-honorarios-mitad').checked && acto['honorarios'].length > 0) {
+        acto['honorarios'].push(
+            {
+                id: 6,
+                porcentaje: Number(0.5)
+            }
+        )
+    }
+
+    acto['adicionalPlacas'] = Number(document.getElementById('check-adicional-placas').checked
+        && document.getElementById('check-honorarios').checked
+        ? document.getElementById('adicional-placas').value : 0)
+
+
+    for (const valor in acto) {
+        if (!acto[valor]) {
+            delete acto[valor]
+        }
     }
 
     const resultado = await fetch(`/api/v1/actos/${id}`, {
@@ -154,7 +219,7 @@ const actualizarActo = async (id) => {
         },
         body: JSON.stringify({
             nombre: nombre,
-            tributosHonorarios: tributosHonorarios
+            tributosHonorarios: acto
         })
     })
 
@@ -173,13 +238,98 @@ const actualizarActo = async (id) => {
 }
 
 const obtenerActoPorId = async (id) => {
+
     const resultado = await fetch(`/api/v1/actos/${id}`)
 
     const datos = (await resultado.json()).mensaje[0]
 
     if (resultado.status === 200) {
+
         document.getElementById('nombre-acto').value = datos.nombre
-        document.getElementById('tributos-acto').value = JSON.stringify(datos['tributos_general'])
+
+        datos['tributos_general'].registro ?
+            document.getElementById('timbre-registro').value = datos['tributos_general'].registro
+            : document.getElementById('check-registro').checked = false
+
+        datos['tributos_general'].agrario ?
+            document.getElementById('timbre-agrario').value = datos['tributos_general'].agrario
+            : document.getElementById('check-agrario').checked = false
+
+
+        if (datos['tributos_general'].fiscal) {
+            const listaFiscal = document.getElementById('lista-timbre-fiscal').children
+            const fiscal = datos['tributos_general'].fiscal
+            for (let index = 0; index < listaFiscal.length; index++) {
+                listaFiscal[index].children.item(0).value = fiscal[index].monto
+                listaFiscal[index].children.item(1).value = fiscal[index].hasta
+            }
+        } else {
+            document.getElementById('check-fiscal').checked = false
+        }
+
+        if (datos['tributos_general'].archivo) {
+            const listaArchivo = document.getElementById('lista-timbre-archivo').children
+            const archivoAlmacenado = datos['tributos_general'].archivo
+            for (let index = 0; index < listaArchivo.length; index++) {
+                listaArchivo[index].children.item(0).value = archivoAlmacenado[index].monto
+                listaArchivo[index].children.item(1).value = archivoAlmacenado[index].hasta
+            }
+        } else {
+            document.getElementById('check-archivo').checked = false
+        }
+
+        if (datos['tributos_general'].abogado) {
+            const listaAbogado = document.getElementById('lista-timbre-abogado').children
+            const abogadoAlmacenado = datos['tributos_general'].abogado
+            for (let index = 0; index < listaAbogado.length; index++) {
+                listaAbogado[index].children.item(0).value = abogadoAlmacenado[index].monto
+                listaAbogado[index].children.item(1).value = abogadoAlmacenado[index].hasta
+            }
+        } else {
+            document.getElementById('check-abogado').checked = false
+        }
+
+        datos['tributos_general'].municipal ?
+            document.getElementById('timbre-municipal').value = datos['tributos_general'].municipal
+            : document.getElementById('check-municipal').checked = false
+
+        datos['tributos_general'].parquesNacionales ?
+            document.getElementById('timbre-parques-nacionales').value = datos['tributos_general'].parquesNacionales
+            : document.getElementById('check-parques-nacionales').checked = false
+
+        datos['tributos_general'].faunaSilvestre ?
+            document.getElementById('timbre-fauna-silvestre').value = datos['tributos_general'].faunaSilvestre
+            : document.getElementById('check-fauna-silvestre').checked = false
+
+        datos['tributos_general'].cruzRoja ?
+            document.getElementById('timbre-cruz-roja').value = datos['tributos_general'].cruzRoja
+            : document.getElementById('check-cruz-roja').checked = false
+
+        datos['tributos_general'].traspaso ?
+            document.getElementById('impuesto-traspaso').value = datos['tributos_general'].traspaso
+            : document.getElementById('check-traspaso').checked = false
+
+
+        if (datos['tributos_general'].honorarios) {
+            const listaHonorarios = document.getElementById('lista-honorarios').children
+            const honorariosAlmacenado = datos['tributos_general'].honorarios
+            for (let index = 0; index < listaHonorarios.length; index++) {
+                listaHonorarios[index].children.item(0).value = honorariosAlmacenado[index].monto
+                listaHonorarios[index].children.item(1).value = honorariosAlmacenado[index].porcentaje
+            }
+        } else {
+            document.getElementById('check-honorarios').checked = false
+        }
+
+        datos['tributos_general'].honorarios && datos['tributos_general'].honorarios[5] ?
+            document.getElementById('honorarios-mitad').value = datos['tributos_general'].honorarios[5].porcentaje
+            : document.getElementById('check-honorarios-mitad').checked = false
+
+        datos['tributos_general'].adicionalPlacas ?
+            document.getElementById('adicional-placas').value = datos['tributos_general'].adicionalPlacas
+            : document.getElementById('check-adicional-placas').checked = false
+
+
     }
     else {
         document.getElementById('mensaje-4').innerHTML = datos.mensaje
