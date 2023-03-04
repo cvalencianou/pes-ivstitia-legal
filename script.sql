@@ -2,7 +2,7 @@ CREATE DATABASE  IF NOT EXISTS `ivstitia_legal` /*!40100 DEFAULT CHARACTER SET u
 USE `ivstitia_legal`;
 -- MySQL dump 10.13  Distrib 8.0.31, for Win64 (x86_64)
 --
--- Host: 10.0.0.72    Database: ivstitia_legal
+-- Host: 192.168.100.157    Database: ivstitia_legal
 -- ------------------------------------------------------
 -- Server version	8.0.32
 
@@ -84,6 +84,7 @@ CREATE TABLE `casos` (
   `id` int NOT NULL AUTO_INCREMENT,
   `nombre` varchar(45) NOT NULL,
   `despacho` varchar(45) NOT NULL,
+  `descripcion` varchar(300) NOT NULL,
   `tipo_proceso_id` int NOT NULL,
   `estado_id` int NOT NULL,
   `lugar_estado_proceso_id` int NOT NULL,
@@ -370,6 +371,10 @@ INSERT INTO `usuarios` VALUES (1,'cvalencianou@gmail.com','$2b$10$NJ4p.vKUYRrsRr
 UNLOCK TABLES;
 
 --
+-- Dumping events for database 'ivstitia_legal'
+--
+
+--
 -- Dumping routines for database 'ivstitia_legal'
 --
 /*!50003 DROP PROCEDURE IF EXISTS `actos_actualizar_por_id` */;
@@ -490,6 +495,26 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `casos_crear` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`%` PROCEDURE `casos_crear`(par_nombre varchar (100), par_despacho varchar (100), par_descripcion varchar (300), par_tipo_proceso_id INT, par_estado_id INT, par_lugar_estado_proceso_id INT, par_usuario_id INT)
+BEGIN
+	INSERT INTO casos (nombre, despacho, descripcion, estado_id, tipo_proceso_id, lugar_estado_proceso_id, usuario_id) 
+    VALUES (par_nombre, par_despacho, par_descripcion, par_tipo_proceso_id, par_estado_id, par_lugar_estado_proceso_id, par_usuario_id);
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `casos_obtener` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -507,6 +532,25 @@ BEGIN
     INNER JOIN estado ON casos.estado_id = estado.id
     INNER JOIN lugar_estado_proceso ON casos.lugar_estado_proceso_id = lugar_estado_proceso.id
     WHERE usuario_id = par_usuario_id;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `caso_buscar_por_nombre` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`%` PROCEDURE `caso_buscar_por_nombre`(par_usuario_id INT, par_nombre varchar (45))
+BEGIN
+	SELECT id, nombre FROM casos WHERE usuario_id = par_usuario_id && nombre = par_nombre;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1083,4 +1127,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-03-03 15:56:33
+-- Dump completed on 2023-03-03 21:47:03
