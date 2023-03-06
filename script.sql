@@ -99,7 +99,7 @@ CREATE TABLE `casos` (
   CONSTRAINT `id_usuario` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`),
   CONSTRAINT `lugar_estado_proceso_id` FOREIGN KEY (`lugar_estado_proceso_id`) REFERENCES `lugar_estado_proceso` (`id`),
   CONSTRAINT `tipo_proceso_id` FOREIGN KEY (`tipo_proceso_id`) REFERENCES `tipo_proceso` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -108,6 +108,7 @@ CREATE TABLE `casos` (
 
 LOCK TABLES `casos` WRITE;
 /*!40000 ALTER TABLE `casos` DISABLE KEYS */;
+INSERT INTO `casos` VALUES (6,'Traspaso Marta','Oficina','Trapaso de propiedad heredada',1,1,1,2);
 /*!40000 ALTER TABLE `casos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -135,7 +136,7 @@ CREATE TABLE `clientes` (
   KEY `tipo_cedula_id_idx` (`tipo_cedula_id`),
   CONSTRAINT `tipo_cedula_id` FOREIGN KEY (`tipo_cedula_id`) REFERENCES `tipo_cedula` (`id`),
   CONSTRAINT `usuario_id` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -144,6 +145,7 @@ CREATE TABLE `clientes` (
 
 LOCK TABLES `clientes` WRITE;
 /*!40000 ALTER TABLE `clientes` DISABLE KEYS */;
+INSERT INTO `clientes` VALUES (1,'Marta León','101110111','user@email.com','88888881','22222221','av Limon',2,1);
 /*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -290,7 +292,7 @@ CREATE TABLE `tipo_proceso` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `nombre_UNIQUE` (`nombre`),
   UNIQUE KEY `id_UNIQUE` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -299,7 +301,7 @@ CREATE TABLE `tipo_proceso` (
 
 LOCK TABLES `tipo_proceso` WRITE;
 /*!40000 ALTER TABLE `tipo_proceso` DISABLE KEYS */;
-INSERT INTO `tipo_proceso` VALUES (2,'Divorcio'),(1,'Traspaso de poder');
+INSERT INTO `tipo_proceso` VALUES (2,'Divorcio'),(3,'Matrimonio'),(1,'Traspaso de propiedad');
 /*!40000 ALTER TABLE `tipo_proceso` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1127,4 +1129,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-03-06 13:53:38
+-- Dump completed on 2023-03-06 15:49:04
