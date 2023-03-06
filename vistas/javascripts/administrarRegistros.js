@@ -16,7 +16,6 @@ window.onpageshow = async () => {
 
             document.getElementById('eliminar-2').addEventListener('click', () => {
                 eliminarRegistro(event.target.value)
-                // document.getElementById('dialogo-2').close()
             })
 
             document.getElementById('cancelar-2').addEventListener('click', () => {
@@ -54,11 +53,10 @@ const obtenerRegistros = async () => {
 
         document.getElementById('tabla-registros').innerHTML = listaRegistros
     } else {
-
         document.getElementById('mensaje-1').innerHTML = datos.mensaje
         document.getElementById('dialogo-1').showModal()
         document.getElementById('cerrar-1').addEventListener('click', () => {
-            document.getElementById('dialogo-1').close()
+            window.location.replace('administrar-calculos')
         })
     }
 }
@@ -94,15 +92,18 @@ const actualizarRegistro = async (id) => {
     if (resultado.status === 200) {
         document.getElementById('mensaje-3').innerHTML = datos.mensaje
         document.getElementById('dialogo-3').showModal()
+        document.getElementById('cerrar-3').addEventListener('click', () => {
+            document.getElementById('dialogo-3').close()
+            window.location.replace('administrar-registros')
+        })
     } else {
+        document.getElementById('nuevo-nombre-registro').style.borderColor = 'red'
         document.getElementById('mensaje-3').innerHTML = datos.mensaje
         document.getElementById('dialogo-3').showModal()
+        document.getElementById('cerrar-3').addEventListener('click', () => {
+            document.getElementById('dialogo-3').close()
+        })
     }
-
-    document.getElementById('cerrar-3').addEventListener('click', () => {
-        document.getElementById('dialogo-3').close()
-        window.location.replace('actualizar-registros')
-    })
 }
 
 const eliminarRegistro = async (id) => {
@@ -120,7 +121,7 @@ const eliminarRegistro = async (id) => {
         document.getElementById('dialogo-1').showModal()
         document.getElementById('cerrar-1').addEventListener('click', () => {
             document.getElementById('dialogo-1').close()
-            return obtenerRegistros()
+            window.location.replace('administrar-registros')
         })
     } else {
         document.getElementById('mensaje-1').innerHTML = datos.mensaje

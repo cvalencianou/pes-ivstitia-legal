@@ -103,17 +103,13 @@ const crearActo = async () => {
     const datos = await resultado.json()
 
     if (resultado.status === 201) {
-
-        document.getElementById('nuevo-acto').value = ''
         document.getElementById('mensaje-1').innerHTML = datos.mensaje
         document.getElementById('dialogo-1').showModal()
-        obtenerRegistros()
         document.getElementById('cerrar-1').addEventListener('click', () => {
-            document.getElementById('dialogo-1').close()
             window.location.replace('administrar-calculos')
         })
     } else {
-
+        document.getElementById('nuevo-acto').style.borderColor = 'red'
         document.getElementById('mensaje-1').innerHTML = datos.mensaje
         document.getElementById('dialogo-1').showModal()
         document.getElementById('cerrar-1').addEventListener('click', () => {
@@ -141,8 +137,11 @@ const obtenerRegistros = async () => {
 
         document.getElementById('registros').innerHTML = listaRegistros
     }
-    else {
+    else {        
         document.getElementById('mensaje-1').innerHTML = datos.mensaje
         document.getElementById('dialogo-1').showModal()
+        document.getElementById('cerrar-1').addEventListener('click', () => {
+            window.location.replace('administrar-calculos')
+        })
     }
 }

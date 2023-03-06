@@ -1,7 +1,6 @@
 window.onpageshow = async () => {
 
     await obtenerRegistros()
-    obtenerActosPorIdRegistro()
 
     document.getElementById('registros-tabla').addEventListener('change', () => {
         obtenerActosPorIdRegistro()
@@ -60,8 +59,12 @@ const obtenerRegistros = async () => {
         })
 
         document.getElementById('registros-tabla').innerHTML = listaRegistros
+        obtenerActosPorIdRegistro()
     }
     else {
+        document.getElementById('cerrar-1').addEventListener('click', () => {
+            window.location.replace('administrar-calculos')
+        })
         document.getElementById('mensaje-1').innerHTML = datos.mensaje
         document.getElementById('dialogo-1').showModal()
     }
@@ -95,6 +98,7 @@ const obtenerActosPorIdRegistro = async () => {
         document.getElementById('tabla-actos').innerHTML = listaActos
     }
     else {
+        document.getElementById('tabla-actos').innerHTML = ''
         document.getElementById('mensaje-1').innerHTML = datos.mensaje
         document.getElementById('dialogo-1').showModal()
     }
@@ -232,6 +236,7 @@ const actualizarActo = async (id) => {
             window.location.assign('administrar-actos')
         })
     } else {
+        document.getElementById('nombre-acto').style.borderColor = 'red'
         document.getElementById('mensaje-4').innerHTML = datos.mensaje
         document.getElementById('dialogo-4').showModal()
     }
