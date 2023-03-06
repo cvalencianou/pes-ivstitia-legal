@@ -4,28 +4,15 @@
     font-family: 'Cinzel';
 }
 
-header nav {
-    background-color: #20344d;
-}
-
-header nav img {
-    width: 3%;
-    margin-top: 5px;
-    margin-left: 5px;
-    border-radius: 5px;
-}
-
-#enlaces {
-    margin-top: 1.5%;
-    margin-right: 1%;
-    float: right
-}
 
 li {
     list-style-type: none;
-    border: 2px #20344d;
+    background: #e7e6e6 ;
+    padding: 5px;
     margin-top: 2%;
-    padding: 1%;
+    margin-left: 35px;
+    margin-right: 30%;
+
 
 }
 

@@ -6,7 +6,7 @@ class Cliente {
         return await executePreparedStatement('CALL clientes_obtener(?)', [usuarioId])
     }
     async filtrarClientes(usuarioId, datoCliente) {
-        return await executePreparedStatement('CALL filtrar_clientes(?,?)', [usuarioId, datoCliente])
+        return await executePreparedStatement('CALL clientes_filtrar(?,?)', [usuarioId, datoCliente])
     }
     async crearCliente(usuarioId, nombre, cedula, correo, telefonoMovil, telefonoFisico, direccion, tipoCedula) {
         return await executePreparedStatement('CALL cliente_crear(?,?,?,?,?,?,?,?)', [nombre, cedula, correo, , telefonoMovil, telefonoFisico, direccion, usuarioId, tipoCedula])

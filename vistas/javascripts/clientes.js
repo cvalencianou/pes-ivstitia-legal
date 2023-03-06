@@ -17,7 +17,7 @@ const obtenerClientes = async () => {
                     `
                 <li>
                 Nombre: ${cliente.nombre}  Cedula: ${cliente.cedula}  <br><br>
-                Teléfono movil: ${cliente.telefonoMovil} Teléfono físico: ${cliente.telefonoFisico} <br><br>
+                Teléfono movil: ${cliente.telefono_movil} Teléfono físico: ${cliente.telefono_fisico} <br><br>
                 Correo: ${cliente.correo}    Dirección: ${cliente.direccion} 
                 </li>
                 `

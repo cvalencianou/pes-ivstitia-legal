@@ -3,6 +3,7 @@ const { StatusCodes } = require('http-status-codes')
 const Cliente = require('../modelos/Cliente')
 
 const crearCliente = async (req, res) => {
+
     const usuarioId = req.user.id
     const { nombre, cedula, tipoCedula, correo, telefonoMovil, telefonoFisico, direccion } = req.body
 
@@ -23,7 +24,7 @@ const crearCliente = async (req, res) => {
     }
     const cliente = new Cliente()
 
-    if ((await cliente.buscarPorCedula(usuarioId,cedula))[0].length === 1) {
+    if ((await cliente.buscarPorCedula(usuarioId, cedula))[0].length === 1) {
         throw new httpError(StatusCodes.CONFLICT, 'YA EXISTE USUARIO')
     }
 
@@ -35,6 +36,7 @@ const crearCliente = async (req, res) => {
 }
 
 const obtenerClientes = async (req, res) => {
+
     const usuarioId = req.user.id
     const cliente = new Cliente()
 
@@ -51,16 +53,17 @@ const obtenerClientes = async (req, res) => {
 }
 
 const filtrarClientes = async (req, res) => {
+
     const usuarioId = req.user.id
     const datoCliente = req.query.datoCliente
-
-    const cliente = new Cliente()
-
-    const resultado = await cliente.filtrarClientes(usuarioId, datoCliente)
 
     if (!usuarioId || !datoCliente) {
         throw new httpError(StatusCodes.BAD_REQUEST, 'POR FAVOR BRINDAR TODOS LOS VALORES!')
     }
+
+    const cliente = new Cliente()
+
+    const resultado = await cliente.filtrarClientes(usuarioId, datoCliente)
 
     if (resultado[0].length === 0) {
         throw new httpError(StatusCodes.NOT_FOUND, `${datoCliente} no coincide con ningún cliente!`)
