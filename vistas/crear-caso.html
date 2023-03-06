@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar Caso - IvstitiaLegal</title>
+    <link rel="stylesheet" href="stylesheets/general.css">
+    <link rel="stylesheet" href="stylesheets/crearCaso.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cinzel">
+    <script src="javascripts/crearCaso.js"></script>
+    <script src="javascripts/general.js"></script>
+</head>
+
+<body>
+    <header>
+        <nav class="nav-bar" id="nav-bar"></nav>
+    </header>
+    <main>
+        <h1>Registrar Caso</h1> <br>
+        <p>Por favor ingresar la información que se le solicita acontinuación:</p> <br>
+        <form id="form-crear-caso">
+
+            <label for="nombre-caso">Nombre caso:</label>
+            <input type="text" id="nombre-caso" placeholder="Nombre del caso" required> <br>
+            
+            <label for="Despacho">Despacho:</label>
+            <input type="text" id="despacho" placeholder="Despacho del caso." required> <br>
+            
+            <label for="descripcion">Descripción:</label>
+            <input type="text" id="descripcion" placeholder="Descripción breve del caso" required> <br>
+            
+            <label for="tipo-proceso">Tipo proceso:</label>
+            <select name="tipo-proceso" id="tipo-proceso" required>
+                <option value="1">Traspaso de propiedad</option>
+                <option value="2">Divorcio</option>
+                <option value="3">Matrimonio</option>
+            </select> <br>
+            
+            <label for="estado">Estado: </label>
+            <select name="estado" id="estado" required>
+                <option value="1">En tramite</option>
+                <option value="2">En espera que ocurra una situación</option>
+                <option value="3">Con sentencia</option>
+                <option value="4">Con sentncia firme</option>
+            </select> <br>
+
+            <label for="lugar-estado-proceso">Lugar del estado proceso:</label>
+            <select name="lugar-estado-proceso" id="lugar-estado-proceso" required>
+                <option value="1">Juez normal</option>
+                <option value="2">Juez superior</option>
+                <option value="3">Juez del lugar de casación</option>
+            </select> <br>
+
+            <input type="submit" value="Crear caso">
+
+
+        </form>
+
+    </main>
+</body>
+
+</html>

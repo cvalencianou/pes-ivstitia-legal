@@ -18,9 +18,9 @@ const obtenerClientes = async () => {
                 <li>
                 Nombre caso: ${caso.nombre}  <br><br>
                 Despacho: ${caso.despacho}  <br><br>
-                Tipo proceso: ${caso.tipo_proceso_id} <br><br>
-                Estado: ${caso.estado_id} <br><br>
-                Lugar de estado proceso: ${caso.lugar_estado_proceso_id} 
+                Tipo proceso: ${caso.tipo_proceso} <br><br>
+                Estado: ${caso.estado} <br><br>
+                Lugar de estado proceso: ${caso.lugar_estado_proceso} 
                 </li>
                 `
             });
