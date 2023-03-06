@@ -5,6 +5,7 @@ class Acto {
 
     id
     nombre
+    idRegistro
 
     crear = async (nombre, idRegistro, tributosHonorarios) => {
 
@@ -15,8 +16,8 @@ class Acto {
             .crearPorIdActo(acto['LAST_INSERT_ID()'], tributosHonorarios)
     }
 
-    obtenerTodosPorIdRegistro = async (id) => {
-        return await executePreparedStatement('CALL actos_obtener_por_id_registro(?)', [id])
+    obtenerTodosPorIdRegistro = async (idRegistro) => {
+        return await executePreparedStatement('CALL actos_obtener_por_id_registro(?)', [idRegistro])
     }
 
     obtenerPorId = async (id) => {
@@ -31,22 +32,7 @@ class Acto {
 
     actualizarPorId = async (id, nombre, tributosHonorarios) => {
 
-        const registro = tributosHonorarios.registro || null
-        const agrario = tributosHonorarios.agrario || null
-        const fiscal = tributosHonorarios.fiscal || null
-        const archivo = tributosHonorarios.archivo || null
-        const abogado = tributosHonorarios.abogado || null
-        const municipal = tributosHonorarios.municipal || null
-        const parquesNacionales = tributosHonorarios.parquesNacionales || null
-        const faunaSilvestre = tributosHonorarios.faunaSilvestre || null
-        const cruzRoja = tributosHonorarios.cruzRoja || null
-        const traspaso = tributosHonorarios.traspaso || null
-        const honorarios = tributosHonorarios.honorarios || null
-        const adicionalPlacas = tributosHonorarios.adicionalPlacas || null
-
-        await new TributosHonorarios().actualizarPorIdActo(id, registro, agrario, fiscal, archivo,
-            abogado, municipal, parquesNacionales, faunaSilvestre, cruzRoja, traspaso, honorarios,
-            adicionalPlacas)
+        await new TributosHonorarios().actualizarPorIdActo(id, tributosHonorarios)
 
         return await executePreparedStatement('CALL actos_actualizar_por_id(?,?)', [id, nombre])
     }
