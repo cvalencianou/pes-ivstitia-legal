@@ -1,5 +1,12 @@
 window.onpageshow = async () => {
+
+    document.getElementById('buscarCliente').addEventListener('submit', (event) => {
+        event.preventDefault()
+        filtrarClientes()
+    })
+
     obtenerClientes()
+    
 }
 
 const obtenerClientes = async () => {
@@ -35,8 +42,9 @@ const obtenerClientes = async () => {
 }
 
 const filtrarClientes = async () => {
+    const datoCliente = document.getElementById('datoCliente').value
 
-    const resultado = await fetch('/api/v1/clientes/filtro')
+    const resultado = await fetch(`/api/v1/clientes/filtro?datoCliente=${datoCliente}`)
 
     const data = await resultado.json()
 

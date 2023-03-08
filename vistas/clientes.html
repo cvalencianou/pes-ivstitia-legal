@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="stylesheets/clientes.css">
     <link rel="stylesheet" href="stylesheets/general.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cinzel">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="javascripts/general.js"></script>
     <script src="javascripts/clientes.js"></script>
 </head>
@@ -18,11 +19,11 @@
         <nav class="nav-bar" id="nav-bar"></nav>
     </header>
     
-    <div class="buscarCliente">
+    <form class="buscarCliente" id="buscarCliente">
         <input type="text" id="datoCliente" placeholder="Buscar" required> 
         <input type="submit" value="Buscar">
-        <a href="crear-cliente" id="btnCrearCliente"><button>CREAR CLIENTE</button></a>
-    </div>
+    </form>
+     <a href="crear-cliente" id="btnCrearCliente"><button>CREAR CLIENTE</button></a>
 
     <main>
         <ul id="lista-clientes">

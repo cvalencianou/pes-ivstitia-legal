@@ -11,7 +11,7 @@ const crearCliente = async (req, res) => {
         throw new httpError(StatusCodes.BAD_REQUEST, 'POR FAVOR BRINDAR TODOS LOS DATOS!')
     }
 
-    if (typeof usuarioId !== 'number' || typeof nombre !== 'string' || typeof cedula !== 'string' || typeof telefonoFisico !== 'string' || typeof correo !== 'string' || typeof telefonoMovil !== 'string' || typeof direccion !== 'string') {
+    if (typeof usuarioId !== 'number' || typeof (nombre, cedula, telefonoFisico, telefonoMovil, correo, direccion )!== 'string') {
         throw new httpError(StatusCodes.BAD_REQUEST, 'POR FAVOR BRINDAR DATOS VALIDOS 1!')
     }
 
