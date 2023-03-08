@@ -40,10 +40,6 @@
     font-size: 1.5vw;
 }
 
-.form-restablecer-contrasena input[type='submit'] {
-    font-family: 'Cinzel';
-}
-
 .form-restablecer-contrasena input[type='submit']:hover {
     font-weight: bold;
 }
@@ -58,19 +54,21 @@ dialog {
 dialog p {
     text-align: center;
     font-size: 1.5vw;
-    font-family: 'Cinzel';
 }
 
 dialog button {
     display: block;
     width: 70%;
     padding: 1%;
-    font-family: 'Cinzel';
     font-size: 1.5vw;
     margin-left: auto;
     margin-right: auto;
     margin-top: 5%;
     margin-bottom: 5%;
+}
+
+dialog button:hover {
+    font-weight: bold;
 }
 
 @media only screen and (max-width: 960px) {

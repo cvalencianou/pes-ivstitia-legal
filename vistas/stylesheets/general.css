@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .nav-bar {
@@ -17,6 +18,7 @@
     padding: 14px 16px;
     text-decoration: none;
     font-size: 1.5vw;
+    font-family: 'Cinzel';
 }
 
 .nav-bar a:hover {
@@ -34,6 +36,7 @@
 }
 
 .logo {
+    font-weight: bolder;
     background-color: #763940;
 }
 

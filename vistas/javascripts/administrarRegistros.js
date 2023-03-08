@@ -43,7 +43,7 @@ const obtenerRegistros = async () => {
                 <tr id="${registro.id}">
                     <td class="tabla-id-registro">${registro.id}</td>
                     <td class="tabla-nombre-registro">${registro.nombre}</td>
-                    <td class="tabla-contenedor-botones">
+                    <td class="tabla-contenedor-botones tareas-registro">
                         <button value="${registro.id}">Actualizar</button>
                         <button value="${registro.id}">Eliminar</button>
                     </td>
@@ -63,6 +63,7 @@ const obtenerRegistros = async () => {
 
 const abrirActualizarRegistro = async (id) => {
     document.getElementById('seccion-tabla-registros').style.display = 'none'
+    document.getElementById('titulo-principal').style.display = 'none'
     document.getElementById('seccion-actualizar-registro').style.display = 'block'
 
     document.getElementById('nuevo-nombre-registro').value = document.getElementById(id).children.item(1).innerHTML

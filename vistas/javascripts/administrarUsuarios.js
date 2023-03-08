@@ -85,7 +85,7 @@ const obtenerUsuarios = async () => {
                     <td class="id-usuario">${usuario.id}</td>
                     <td class="correo-usuario">${usuario.correo}</td>
                     </td>                    
-                    <td>
+                    <td class="tareas-usuario">
                         <button value="${usuario.id}">Actualizar</button>
                         <button value="${usuario.id}">Eliminar</button>
                     </td>

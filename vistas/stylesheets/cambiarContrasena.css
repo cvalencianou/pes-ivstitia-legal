@@ -40,10 +40,6 @@
     font-size: 1.5vw;
 }
 
-.form-cambiar-contrasena input[type='submit'] {
-    font-family: 'Cinzel';
-}
-
 .form-cambiar-contrasena input[type='submit']:hover {
     font-weight: bold;
 }
@@ -51,7 +47,6 @@
 .form-cambiar-contrasena label {
     display: block;
     font-size: 1.5vw;
-    font-family: 'Cinzel';
     text-align: center;
 }
 
@@ -65,14 +60,12 @@ dialog {
 dialog p {
     text-align: center;
     font-size: 1.5vw;
-    font-family: 'Cinzel';
 }
 
 dialog button {
     display: block;
     width: 70%;
     padding: 1%;
-    font-family: 'Cinzel';
     font-size: 1.5vw;
     margin-left: auto;
     margin-right: auto;

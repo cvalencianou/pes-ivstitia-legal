@@ -22,8 +22,8 @@
 }
 
 .titulo-secundario {
-    font-family: 'Cinzel';
     font-size: 2vw;
+    font-family: 'Cinzel';
     text-align: center;
     margin: 5%;
 }
@@ -31,7 +31,6 @@
 label {
     display: block;
     font-size: 2vw;
-    font-family: 'Cinzel';
     text-align: center;
 }
 
@@ -40,8 +39,15 @@ label {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    font-family: 'Cinzel';
     font-size: 1.5vw;
+}
+
+.tabla-actos-titulos {
+    display: block;
+    font-size: 2vw;
+    text-align: center;
+    margin-top: 3%;
+    margin-bottom: 2%;
 }
 
 .tabla-actualizar-actos {
@@ -51,7 +57,6 @@ label {
 
 .tabla-head {
     font-size: 1.5vw;
-    font-family: 'Cinzel';
     color: white;
     background-color: #763940;
     padding: 1%;
@@ -69,7 +74,6 @@ label {
 .id-acto {
     text-align: center;
     font-size: 1.5vw;
-    font-family: 'Cinzel';
 }
 
 .nombre-acto {
@@ -77,13 +81,15 @@ label {
     text-align: center;
     word-wrap: break-word;
     font-size: 1.5vw;
-    font-family: 'Cinzel';
+}
+
+.tareas-acto {
+    width: 100%;
 }
 
 .tabla-cuerpo td button {
     width: 49%;
     font-size: 1vw;
-    font-family: 'Cinzel';
     margin-left: auto;
     margin-right: auto;
 }
@@ -102,19 +108,21 @@ dialog {
 dialog p {
     text-align: center;
     font-size: 1.5vw;
-    font-family: 'Cinzel';
 }
 
 dialog button {
     display: block;
     width: 70%;
     padding: 1%;
-    font-family: 'Cinzel';
     font-size: 1.5vw;
     margin-left: auto;
     margin-right: auto;
     margin-top: 5%;
     margin-bottom: 5%;
+}
+
+dialog button:hover {
+    font-weight: bold;
 }
 
 .seccion-modificar-acto {
@@ -135,7 +143,6 @@ dialog button {
 .form-modificar-acto label {
     display: block;
     font-size: 2vw;
-    font-family: 'Cinzel';
     text-align: center;
 }
 
@@ -177,7 +184,6 @@ dialog button {
     width: 48%;
     display: inline-block;
     text-align: center;
-    font-family: 'Cinzel';
     font-size: 1.5vw;
 }
 
@@ -196,10 +202,6 @@ dialog button {
     font-size: 1.5vw;
 }
 
-.form-modificar-acto input[type='submit'] {
-    font-family: 'Cinzel';
-}
-
 .form-modificar-acto input[type='submit']:hover {
     font-weight: bold;
 }
@@ -213,6 +215,7 @@ dialog button {
 
     .seccion-actos {
         width: 60%;
+        margin-bottom: 4%;
     }
 
     .titulo-secundario {
@@ -229,6 +232,12 @@ dialog button {
         font-size: 3vw;
     }
 
+    .tabla-actos-titulos {
+        font-size: 4vw;
+        margin-top: 6%;
+        margin-bottom: 4%;
+    }
+
     .tabla-head {
         font-size: 3vw;
         padding: 2%;
@@ -240,7 +249,7 @@ dialog button {
 
     .nombre-acto {
         font-size: 3vw;
-    }
+    }   
 
     .tabla-cuerpo td button {
         width: 100%;
@@ -322,6 +331,7 @@ dialog button {
 
     .seccion-actos {
         width: 90%;
+        margin-bottom: 6%;
     }
 
     .titulo-secundario {
@@ -336,6 +346,12 @@ dialog button {
     .select-registro {
         width: 90%;
         font-size: 4.5vw;
+    }
+
+    .tabla-actos-titulos {
+        font-size: 6vw;
+        margin-top: 9%;
+        margin-bottom: 6%;
     }
 
     .tabla-head {

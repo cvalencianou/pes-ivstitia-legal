@@ -46,22 +46,22 @@ const validarRol = async () => {
     if (Number(tipoUsuario) === 1) {
         const enlaces =
             `
-        <a href="calculos"><button>CÁLCULOS</button></a>
-        <a href="casos"><button>CASOS</button></a>
-        <a href="clientes"><button>CLIENTES</button></a>
-        <a href="administrar-calculos"><button>ADMINISTRAR CÁLCULOS</button></a>
-        <a href="administrar-usuarios"><button>ADMINISTRAR USUARIOS</button></a>
-        <a><button id="cerrar-sesion"">CERRAR SESIÓN</button></a>
+        <a href="calculos"><button>Cálculos</button></a>
+        <a href="casos"><button>Casos</button></a>
+        <a href="clientes"><button>Clientes</button></a>
+        <a href="administrar-calculos"><button>Administrar cálculos</button></a>
+        <a href="administrar-usuarios"><button>Administrar usuarios</button></a>
+        <a><button id="cerrar-sesion"">Cerrar sesión</button></a>
         `
         document.getElementById('enlaces').innerHTML = enlaces
     }
     else {
         const enlaces =
             `
-        <a href="calculos"><button>CÁLCULOS</button></a>
-        <a href="casos"><button>CASOS</button></a>
-        <a href="clientes"><button>CLIENTES</button></a>
-        <a><button id="cerrar-sesion"">CERRAR SESIÓN</button></a>
+        <a href="calculos"><button>Cálculos</button></a>
+        <a href="casos"><button>Casos</button></a>
+        <a href="clientes"><button>Clientes</button></a>
+        <a><button id="cerrar-sesion"">Cerrar sesión</button></a>
         `
         document.getElementById('enlaces').innerHTML = enlaces
     }

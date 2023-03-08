@@ -21,15 +21,15 @@
     <main id="main-administrar-usuarios">
         <h1 class="titulo-principal">Administración de usuarios</h1>
         <section class="seccion-crear-usuario">
-            <h2 class="titulo-secundario">Crear nuevo usuario</h2>
+            <label for="form-nuevo-usuario" class="form-nuevo-usuario-titulo">Crear nuevo usuario</label>
             <form id="form-nuevo-usuario" class="form-nuevo-usuario">
                 <input type="email" id="nuevo-correo" placeholder="Correo electrónico" required>
-                <input type="submit" value="Crear usuario">
+                <input type="submit" value="Crear">
             </form>
         </section>
         <section class="seccion-administrar-usuarios">
-            <h2 class="titulo-secundario">Tabla de Usuarios</h2>
-            <table class="tabla-administrar-usuarios">
+            <label for="tabla-administrar-usuarios" class="form-nuevo-usuario-titulo">Tabla de Usuarios</label>
+            <table class="tabla-administrar-usuarios" id="tabla-administrar-usuarios">
                 <thead class="tabla-head">
                     <tr>
                         <th>Id</th>

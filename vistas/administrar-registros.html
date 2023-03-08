@@ -19,11 +19,11 @@
         <nav class="nav-bar" id="nav-bar"></nav>
     </header>
     <main>
-        <h1 class="titulo-principal">Administrar Registros</h1>
+        <h1 class="titulo-principal" id="titulo-principal">Administración de registros</h1>
         <section id="seccion-tabla-registros" class="seccion-tabla-registros">
-            <h2 class="titulo-secundario">Tabla de Registros</h2>
-            <div>
-                <table class="tabla-registros">
+            <div>   
+                <label for="t-registros" class="t-registros">Tabla de registros</label>             
+                <table class="tabla-registros" id="t-registros">
                     <thead class="tabla-head">
                         <tr>
                             <th>Id</th>
@@ -53,7 +53,7 @@
                 <p id="id-nuevo-registro"></p>
                 <label for="nombre-registro">Cambie el nombre</label>
                 <input type="text" id="nuevo-nombre-registro" placeholder="Nombre registro">
-                <input type="submit" value="Actualizar Registro">
+                <input type="submit" value="Actualizar">
             </form>
             <dialog id="dialogo-3" class="dialogo-general dialogo-3">
                 <p id="mensaje-3"></p>

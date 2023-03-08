@@ -40,10 +40,6 @@
     font-size: 1.5vw;
 }
 
-.form-iniciar-sesion input[type='submit'] {
-    font-family: 'Cinzel';
-}
-
 .form-iniciar-sesion input[type='submit']:hover {
     font-weight: bold;
 }
@@ -56,7 +52,6 @@
     margin-right: auto;
     text-align: center;
     font-size: 1.5vw;
-    font-family: 'Cinzel';
     text-decoration: none;
 }
 
@@ -81,19 +76,21 @@ dialog {
 dialog p {
     text-align: center;
     font-size: 1.5vw;
-    font-family: 'Cinzel';
 }
 
 dialog button {
     display: block;
     width: 70%;
     padding: 1%;
-    font-family: 'Cinzel';
     font-size: 1.5vw;
     margin-left: auto;
     margin-right: auto;
     margin-top: 5%;
     margin-bottom: 5%;
+}
+
+dialog button:hover {
+    font-weight: bold;
 }
 
 

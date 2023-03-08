@@ -87,7 +87,7 @@ const obtenerActosPorIdRegistro = async () => {
                     <td class="id-acto">${acto.id}</td>
                     <td class="nombre-acto">${acto.nombre}</td>
                
-                    <td>
+                    <td class="tareas-acto">
                         <button value="${acto.id}">Actualizar</button>
                         <button value="${acto.id}">Eliminar</button>
                     </td>
@@ -129,6 +129,7 @@ const eliminarActo = async (id) => {
 
 const abrirActualizarActo = async (id) => {
     document.getElementById('seccion-actos').style.display = 'none'
+    document.getElementById('titulo-principal').style.display = 'none'
     document.getElementById('seccion-modificar-acto').style.display = 'block'
     await obtenerActoPorId(id)
 

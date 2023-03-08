@@ -18,14 +18,14 @@
     <header>
         <nav class="nav-bar" id="nav-bar"></nav>
     </header>
-    <h1 class="titulo-principal">Administrar Actos</h1>
+    <h1 class="titulo-principal" id="titulo-principal">Administración de actos</h1>
     <main>
         <section id="seccion-actos" class="seccion-actos">
             <div>
-                <label for="registros-tabla">Seleccione registro</label>
+                <label for="registros-tabla" class="tabla-actos-titulos">Seleccione registro</label>
                 <select name="registros-tabla" id="registros-tabla" class="select-registro"></select>
             </div>
-            <h2 class="titulo-secundario">Tabla actos</h2>
+            <label for="tabla-actualizar-actos" class="tabla-actos-titulos">Tabla actos</label>
             <table class="tabla-actualizar-actos">
                 <thead class="tabla-head">
                     <tr>
@@ -53,6 +53,7 @@
             </dialog>
         </section>
         <section id="seccion-modificar-acto" class="seccion-modificar-acto">
+            <label for="form-modificar-acto" class="titulo-secundario">Actualizar Acto</label>
             <form id="form-modificar-acto" class="form-modificar-acto">
                 <div class="tributo-unico">
                     <label for="registros">Ingrese nombre de acto</label>
