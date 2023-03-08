@@ -14,5 +14,9 @@ class Caso {
         return await executePreparedStatement('CALL caso_buscar_por_nombre(?,?)', [usuarioId, nombre])
     }
 
+    async filtrarCasos(usuarioId, datoCaso) {
+        return await executePreparedStatement('CALL casos_filtrar(?,?)', [usuarioId, datoCaso])
+    }
+
 }
 module.exports = Caso

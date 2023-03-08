@@ -26,13 +26,13 @@ const crearCaso = async (req, res) => {
         throw new httpError(StatusCodes.BAD_REQUEST, 'POR FAVOR BRINDAR TODOS LOS DATOS!')
     }
 
+    if (typeof (usuarioId) !== 'number' || typeof (nombre, despacho, descripcion) !== 'string') {
+        throw new httpError(StatusCodes.BAD_REQUEST, 'POR FAVOR BRINDAR DATOS VALIDOS!')
+    }
+
     if (isNaN(estado) || isNaN(tipoProceso) || isNaN(lugarEstadoProceso)) {
         throw new httpError(StatusCodes.BAD_REQUEST, 'POR FAVOR BRINDAR DATOS VALIDOS numeros!')
     }
-
-    // if (typeof (usuarioId, estado, tipoProceso, lugarEstadoProceso) !== 'number' || typeof (nombre, despacho, descripcion) !== 'string') {
-    //     throw new httpError(StatusCodes.BAD_REQUEST, 'POR FAVOR BRINDAR DATOS VALIDOS!')
-    // }
 
     const caso = new Caso()
 
@@ -47,4 +47,26 @@ const crearCaso = async (req, res) => {
     }
 }
 
-module.exports = { obtenerCasos, crearCaso }
+const filtrarCasos = async (req, res) => {
+
+    const usuarioId = req.user.id
+    const datoCaso = req.query.datoCaso
+
+    if (!usuarioId || !datoCaso) {
+        throw new httpError(StatusCodes.BAD_REQUEST, 'POR FAVOR BRINDAR TODOS LOS VALORES!')
+    }
+
+    const caso = new Caso()
+
+    const resultado = await caso.filtrarCasos(usuarioId, datoCaso)
+
+    if (resultado[0].length === 0) {
+        throw new httpError(StatusCodes.NOT_FOUND, `${datoCaso} no coincide con ningún caso!`)
+    }
+
+    res.status(StatusCodes.OK).json({
+        mensaje: resultado[0]
+    })
+}
+
+module.exports = { obtenerCasos, crearCaso, filtrarCasos }
