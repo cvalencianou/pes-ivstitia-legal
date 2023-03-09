@@ -299,16 +299,16 @@ const obtenerActoPorId = async (id) => {
             document.getElementById('timbre-municipal').value = datos['tributosHonorarios'].municipal
             : document.getElementById('check-municipal').checked = false
 
-        datos['tributosHonorarios'].parquesNacionales ?
-            document.getElementById('timbre-parques-nacionales').value = datos['tributosHonorarios'].parquesNacionales
+        datos['tributosHonorarios']['parques_nacionales'] ?
+            document.getElementById('timbre-parques-nacionales').value = datos['tributosHonorarios']['parques_nacionales']
             : document.getElementById('check-parques-nacionales').checked = false
 
-        datos['tributosHonorarios'].faunaSilvestre ?
-            document.getElementById('timbre-fauna-silvestre').value = datos['tributosHonorarios'].faunaSilvestre
+        datos['tributosHonorarios']['fauna_silvestre'] ?
+            document.getElementById('timbre-fauna-silvestre').value = datos['tributosHonorarios']['fauna_silvestre']
             : document.getElementById('check-fauna-silvestre').checked = false
 
-        datos['tributosHonorarios'].cruzRoja ?
-            document.getElementById('timbre-cruz-roja').value = datos['tributosHonorarios'].cruzRoja
+        datos['tributosHonorarios']['cruz_roja'] ?
+            document.getElementById('timbre-cruz-roja').value = datos['tributosHonorarios']['cruz_roja']
             : document.getElementById('check-cruz-roja').checked = false
 
         datos['tributosHonorarios'].traspaso ?
@@ -331,8 +331,8 @@ const obtenerActoPorId = async (id) => {
             document.getElementById('honorarios-mitad').value = datos['tributosHonorarios'].honorarios[5].porcentaje
             : document.getElementById('check-honorarios-mitad').checked = false
 
-        datos['tributosHonorarios'].adicionalPlacas ?
-            document.getElementById('adicional-placas').value = datos['tributosHonorarios'].adicionalPlacas
+        datos['tributosHonorarios']['adicional_placas'] ?
+            document.getElementById('adicional-placas').value = datos['tributosHonorarios']['adicional_placas']
             : document.getElementById('check-adicional-placas').checked = false
     }
     else {
