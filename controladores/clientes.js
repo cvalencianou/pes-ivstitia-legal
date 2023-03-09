@@ -11,12 +11,8 @@ const crearCliente = async (req, res) => {
         throw new httpError(StatusCodes.BAD_REQUEST, 'POR FAVOR BRINDAR TODOS LOS DATOS!')
     }
 
-    if (typeof usuarioId !== 'number' || typeof (nombre, cedula, telefonoFisico, telefonoMovil, correo, direccion )!== 'string') {
-        throw new httpError(StatusCodes.BAD_REQUEST, 'POR FAVOR BRINDAR DATOS VALIDOS 1!')
-    }
-
-    if (isNaN(cedula) || isNaN(telefonoFisico) || isNaN(telefonoMovil)) {
-        throw new httpError(StatusCodes.BAD_REQUEST, 'POR FAVOR BRINDAR DATOS VALIDOS numeros!')
+    if (typeof usuarioId !== 'number' || typeof (nombre, cedula, telefonoMovil, telefonoFisico, correo, direccion) !== 'string' || isNaN(cedula, telefonoMovil, telefonoFisico)) {
+        throw new httpError(StatusCodes.BAD_REQUEST, 'POR FAVOR BRINDAR DATOS VALIDOS!')
     }
 
     if (correo.length < 6 || correo.length > 45 || !correo.match(/[^\s@]+@[^\s@]+\.[^\s@]+/)) {
@@ -76,29 +72,66 @@ const filtrarClientes = async (req, res) => {
 
 const actualizarCliente = async (req, res) => {
     const usuarioId = req.user.id
-    //const clienteId = req.
-    const { nombre, cedula, tipoCedula, correo, numeroFisico, numeroMovil, direccion } = req.body
+    const { clienteId, nombre, cedula, tipoCedula, correo, telefonoMovil, telefonoFisico, direccion } = req.body
 
-    if (!usuarioId || !nombre || !cedula || !tipoCedula || !correo || !numeroMovil || !direccion) {
+    if (!usuarioId || !clienteId || !nombre || !cedula || !tipoCedula || !correo || !telefonoMovil || !direccion) {
         throw new httpError(StatusCodes.BAD_REQUEST, 'POR FAVOR BRINDAR TODOS LOS DATOS!')
     }
 
-    if (typeof usuarioId !== 'number' || typeof nombre !== 'string' || typeof cedula !== 'string' || typeof numeroFisico !== 'string' /*typeof tipoCedula !== ''*/ || typeof correo !== 'string' || typeof numeroMovil !== 'string' || typeof direccion !== 'string') {
-        throw new httpError(StatusCodes.BAD_REQUEST, 'POR FAVOR BRINDAR DATOS VALIDOS 1!')
+    if (typeof usuarioId !== 'number' || typeof (nombre, cedula, telefonoMovil, telefonoFisico, correo, direccion) !== 'string' || isNaN(clienteId, cedula, telefonoMovil, telefonoFisico)) {
+        throw new httpError(StatusCodes.BAD_REQUEST, 'POR FAVOR BRINDAR DATOS VALIDOS  !')
     }
 
-    if (isNaN(cedula) || isNaN(numeroFisico) || isNaN(numeroMovil)) {
-        throw new httpError(StatusCodes.BAD_REQUEST, 'POR FAVOR BRINDAR DATOS VALIDOS numeros!')
-    }
-
-    if (correo.length < 7 || correo.length > 45 || !correo.match(/[^\s@]+@[^\s@]+\.[^\s@]+/)) {
+    if (correo.length < 6 || correo.length > 45 || !correo.match(/[^\s@]+@[^\s@]+\.[^\s@]+/)) {
         throw new httpError(StatusCodes.BAD_REQUEST, 'POR FAVOR BRINDAR UN CORREO VÁLIDO')
     }
-    if ((await cliente.crearCliente(usuarioId, nombre, cedula, correo, numeroFisico, numeroMovil, direccion, tipoCedula)).affectedRows === 1) {
+
+    const cliente = new Cliente()
+
+    if ((await cliente.buscarPorId(usuarioId, clienteId))[0].length === 0) {
+        throw new httpError(StatusCodes.NOT_FOUND, 'NO EXISTE CLIENTE')
+    }
+
+    if ((await cliente.actualizarCliente(clienteId, usuarioId, nombre, cedula, correo, telefonoMovil, telefonoFisico, direccion, tipoCedula)).affectedRows === 1) {
         res.status(StatusCodes.CREATED).json({
-            mesanje: `CLIENTE ACTUALIZADO`
+            mensaje: `CLIENTE ACTUALIZADO!`
         })
     }
+    else {
+        throw new httpError(StatusCodes.CONFLICT, 'CLIENTE NO ACTUALIZADO')
+    }
+
 }
 
-module.exports = { obtenerClientes, filtrarClientes, crearCliente, actualizarCliente }
+const eliminarCliente = async (req, res) => {
+    const usuarioId = req.user.id
+    const clienteId = req.query.clienteId
+
+    if (!usuarioId || !clienteId ) {
+        throw new httpError(StatusCodes.BAD_REQUEST, 'POR FAVOR BRINDAR TODOS LOS DATOS!')
+    }
+
+    if (typeof usuarioId !== 'number' || isNaN(clienteId)) {
+        throw new httpError(StatusCodes.BAD_REQUEST, 'POR FAVOR BRINDAR DATOS VALIDOS  !')
+    }
+
+    const cliente = new Cliente()
+
+    if ((await cliente.buscarPorId(usuarioId, clienteId))[0].length === 0) {
+        throw new httpError(StatusCodes.NOT_FOUND, 'NO EXISTE CLIENTE')
+    }
+
+    if ((await cliente.eliminarCliente(clienteId, usuarioId)).affectedRows === 1) {
+        res.status(StatusCodes.CREATED).json({
+            mensaje: `CLIENTE ELIMINADO!`
+        })
+    }
+    else {
+        throw new httpError(StatusCodes.CONFLICT, 'CLIENTE NO ELIMINADO')
+    }
+
+
+
+}
+
+module.exports = { obtenerClientes, filtrarClientes, crearCliente, actualizarCliente, eliminarCliente }
