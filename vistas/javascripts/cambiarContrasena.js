@@ -10,6 +10,7 @@ window.onpageshow = async () => {
     })
 }
 
+//Función para establecer una nueva contraseña
 const cambiarContrasena = async () => {
 
     const correo = sessionStorage.getItem('correo')

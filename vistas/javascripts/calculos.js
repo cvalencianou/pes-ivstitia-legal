@@ -22,6 +22,7 @@ window.onpageshow = async () => {
     obtenerRegistros()
 }
 
+//Función para obtener registros y cargarlos en select
 const obtenerRegistros = async () => {
 
     const resultado = await fetch('/api/v1/registros')
@@ -49,6 +50,7 @@ const obtenerRegistros = async () => {
     }
 }
 
+//Función para obtener los actos de un registro en específico
 const obtenerActosPorIdRegistro = async () => {
 
     const resultado = await fetch(`/api/v1/actos/registro/${document.getElementById('registros').value}`)
@@ -75,6 +77,7 @@ const obtenerActosPorIdRegistro = async () => {
     }
 }
 
+//Función para realizar cálculos con valores brindados por el usuario
 const realizarCalculo = async () => {
 
     const acto = document.getElementById('actos').value

@@ -15,6 +15,7 @@ window.onpageshow = async () => {
     })
 }
 
+//Función para iniciar sesión con credenciales
 const iniciarSesion = async () => {
 
     const correo = document.getElementById('correo').value

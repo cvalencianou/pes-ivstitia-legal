@@ -6,6 +6,7 @@ window.onpageshow = () => {
     })
 }
 
+//Función para solicitar restablecimiento de contraseña
 const restablecerContrasena = async () => {
 
     const correo = document.getElementById('correo').value

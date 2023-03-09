@@ -5,6 +5,7 @@ window.onpageshow = async () => {
     })
 }
 
+//Función para crear un nuevo registro
 const crearRegistro = async () => {
     const nombre = document.getElementById('nuevo-registro').value
 

@@ -27,6 +27,7 @@ window.onpageshow = async () => {
     obtenerRegistros();
 }
 
+//Función para obtener lista de registros y cargarlos en tabla
 const obtenerRegistros = async () => {
 
     const resultado = await fetch('/api/v1/registros')
@@ -61,6 +62,7 @@ const obtenerRegistros = async () => {
     }
 }
 
+//Función previa a actualizar para mostrar sección de actualizar
 const abrirActualizarRegistro = async (id) => {
     document.getElementById('seccion-tabla-registros').style.display = 'none'
     document.getElementById('titulo-principal').style.display = 'none'
@@ -74,6 +76,7 @@ const abrirActualizarRegistro = async (id) => {
     })
 }
 
+//Función para actualizar un registro con nuevos datos
 const actualizarRegistro = async (id) => {
 
     const nombre = document.getElementById('nuevo-nombre-registro').value
@@ -107,6 +110,7 @@ const actualizarRegistro = async (id) => {
     }
 }
 
+//Función para eliminar un registro
 const eliminarRegistro = async (id) => {
 
     document.getElementById('dialogo-2').close()

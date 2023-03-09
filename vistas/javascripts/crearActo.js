@@ -8,6 +8,7 @@ window.onpageshow = async () => {
     obtenerRegistros()
 }
 
+//Función para crear un nuevo acto
 const crearActo = async () => {
 
     const nombre = document.getElementById('nuevo-acto').value
@@ -118,6 +119,7 @@ const crearActo = async () => {
     }
 }
 
+//Función para obtener lista de registros utilizados para poder crear un acto
 const obtenerRegistros = async () => {
 
     const resultado = await fetch('/api/v1/registros')

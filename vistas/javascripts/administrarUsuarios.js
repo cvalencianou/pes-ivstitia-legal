@@ -37,6 +37,7 @@ window.onpageshow = async () => {
     obtenerUsuarios()
 }
 
+//Función para invitar un nuevo usuario
 const registrarUsuario = async () => {
 
     const correo = document.getElementById('nuevo-correo').value
@@ -68,6 +69,7 @@ const registrarUsuario = async () => {
     }
 }
 
+//Función para obtener lista de usuarios y cargarlo en tabla
 const obtenerUsuarios = async () => {
 
     const resultado = await fetch('/api/v1/usuarios')
@@ -107,6 +109,7 @@ const obtenerUsuarios = async () => {
     }
 }
 
+//Función previa a actualizar para mostrar sección de actualizar
 const abrirActualizarUsuario = async (id) => {
 
     document.getElementById('main-administrar-usuarios').style.display = 'none'
@@ -121,6 +124,7 @@ const abrirActualizarUsuario = async (id) => {
     })
 }
 
+//Función para actualizar usuario con nuevos datos
 const actualizarUsuario = async (id) => {
 
 
@@ -157,6 +161,7 @@ const actualizarUsuario = async (id) => {
     }
 }
 
+//Función para eliminar un usuario
 const eliminarUsuario = async (id) => {
 
     const resultado = await fetch(`/api/v1/usuarios/${id}`, {

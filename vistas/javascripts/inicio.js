@@ -16,6 +16,7 @@ window.onunload = async () => {
     validarSesion()
 }
 
+//Función para cerrar sesión desde menú de opciones
 const cerrarSesion = async () => {
 
     sessionStorage.removeItem('autenticado')
@@ -28,6 +29,7 @@ const cerrarSesion = async () => {
     window.location.replace('iniciar-sesion')
 }
 
+//Función para validar que la sesión del usuario es válida desde menú de opciones
 const validarSesion = async () => {
 
     if (!sessionStorage.getItem('autenticado') || sessionStorage.getItem('autenticado') != 'true') {
@@ -35,6 +37,7 @@ const validarSesion = async () => {
     }
 }
 
+//Función para validar rol de usuario y mostrar opciones en navegación desde menú de opciones
 const validarRol = async () => {
 
     const tipoUsuario = sessionStorage.getItem('administrador')

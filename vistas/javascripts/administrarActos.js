@@ -41,6 +41,7 @@ window.onpageshow = async () => {
 
 }
 
+//Función para obtener lista de registros
 const obtenerRegistros = async () => {
 
     const resultado = await fetch('/api/v1/registros')
@@ -70,6 +71,7 @@ const obtenerRegistros = async () => {
     }
 }
 
+//Función para obtener lista de acto de un registro específico
 const obtenerActosPorIdRegistro = async () => {
 
     const resultado = await fetch(`/api/v1/actos/registro/${document.getElementById('registros-tabla').value}`)
@@ -104,6 +106,7 @@ const obtenerActosPorIdRegistro = async () => {
     }
 }
 
+//Función para eliminar un acto
 const eliminarActo = async (id) => {
 
     document.getElementById('dialogo-2').close()
@@ -127,6 +130,7 @@ const eliminarActo = async (id) => {
     }
 }
 
+//Función previa a actualizar para mostrar sección de actualizar
 const abrirActualizarActo = async (id) => {
     document.getElementById('seccion-actos').style.display = 'none'
     document.getElementById('titulo-principal').style.display = 'none'
@@ -139,6 +143,7 @@ const abrirActualizarActo = async (id) => {
     })
 }
 
+//Función para actualizar acto con nuevos valores
 const actualizarActo = async (id) => {
     const nombre = document.getElementById('nombre-acto').value
 
@@ -243,6 +248,7 @@ const actualizarActo = async (id) => {
     }
 }
 
+//Función para obtener datos de acto que se va a actualizar
 const obtenerActoPorId = async (id) => {
 
     const resultado = await fetch(`/api/v1/actos/${id}`)
