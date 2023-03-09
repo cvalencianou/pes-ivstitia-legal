@@ -114,9 +114,9 @@ const realizarCalculo = async () => {
             ${datos.mensaje.adicionalPlacas ? `ADICIONAL PLACAS: ${datos.mensaje.adicionalPlacas}<br>` : ''}
             <h2>Totales</h2>
             ${datos.mensaje.totalTributos ? `TOTAL TRIBUTOS: ${Math.round(datos.mensaje.totalTributos * 100) / 100}<br>` : ''}
-            ${datos.mensaje.totalTributosConDescuento ? `TOTAL TRIBUTOS CON DESCUENTO: ${Math.round(datos.mensaje.totalTributosConDescuento * 100) / 100}<br>` : ''}
             ${datos.mensaje.totalHonorarios ? `TOTAL HONORARIOS: ${Math.round(datos.mensaje.totalHonorarios * 100) / 100}<br>` : ''}
             ${datos.mensaje.totalHonorariosConIVA ? `TOTAL HONORARIOS CON IVA: ${Math.round(datos.mensaje.totalHonorariosConIVA * 100) / 100}<br>` : ''}
+            ${datos.mensaje.totalTributos ? `TOTAL: ${Math.round(datos.mensaje.total * 100) / 100}<br>` : ''}
               
         `
 

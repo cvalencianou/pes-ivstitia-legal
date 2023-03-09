@@ -55,7 +55,7 @@ class Acto {
         const tributosHonorarios = (await new TributosHonorarios().obtenerPorIdActo(id))[0][0]
 
         let respuesta = {}
-        
+
         //Se obtienen montos de tributos y honorarios para realizar cálculos de montos
         respuesta['registro'] = Number(await this.calcularRegistro(montoConsulta, tributosHonorarios.registro))
         respuesta['agrario'] = Number(await this.calcularAgrario(montoConsulta, tributosHonorarios.agrario))
@@ -70,23 +70,15 @@ class Acto {
         respuesta['honorarios'] = Number(await this.calcularHonorarios(montoConsulta, tributosHonorarios.honorarios))
         respuesta['adicionalPlacas'] = Number(await this.calcularAdicionalPlacas(tributosHonorarios['adicional_placas']))
 
-        respuesta['timbresSinDescuento'] = Number(((respuesta['registro'] || 0) + (respuesta['fiscal'] || 0)
+        respuesta['totalTributos'] = Number(((respuesta['registro'] || 0) + (respuesta['fiscal'] || 0)
             + (respuesta['archivo'] || 0) + (respuesta['abogado'] || 0) + (respuesta['municipal'] || 0)
             + (respuesta['parquesNacionales'] || 0) + (respuesta['faunaSilvestre'] || 0) + (respuesta['cruzRoja'] || 0)
-            + (respuesta['adicionalPlacas'] || 0) + (respuesta['agrario'] || 0)))
-
-        respuesta['timbresConDescuento'] = Number(((respuesta['registro'] || 0) + (respuesta['fiscal'] || 0)
-            + (respuesta['archivo'] || 0) + (respuesta['abogado'] || 0) + (respuesta['municipal'] || 0)
-            + (respuesta['parquesNacionales'] || 0) + (respuesta['faunaSilvestre'] || 0) + (respuesta['cruzRoja'] || 0)
-            + (respuesta['adicionalPlacas'] || 0)))
-
-        respuesta['totalTributos'] = Number((respuesta['timbresSinDescuento'] + (respuesta['traspaso'] || 0)))
-
-        respuesta['totalTributosConDescuento'] = Number((respuesta['timbresSinDescuento'] -
-            (respuesta['timbresConDescuento'] * 0.06) + (respuesta['traspaso'] || 0)))
+            + (respuesta['adicionalPlacas'] || 0) + (respuesta['agrario'] || 0) + (respuesta['traspaso'] || 0)))
 
         respuesta['totalHonorarios'] = Number(respuesta['honorarios'])
         respuesta['totalHonorariosConIVA'] = (respuesta['honorarios'] * 1.13)
+
+        respuesta['total'] = respuesta['totalTributos'] + respuesta['totalHonorariosConIVA']
 
         //Eliminar tributos u honorarios si montos son 0 o nulos
         for (const valor in respuesta) {
