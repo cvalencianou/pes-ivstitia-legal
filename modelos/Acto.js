@@ -1,6 +1,7 @@
 const { executePreparedStatement } = require('../utilidades/baseDeDatos')
 const TributosHonorarios = require('./TributosHonorarios')
 
+//Clase de acto con atributos y métodos identicos a tablas y procedimientos en SQL
 class Acto {
 
     id
@@ -8,10 +9,10 @@ class Acto {
     idRegistro
 
     crear = async (nombre, idRegistro, tributosHonorarios) => {
-
+        //Crea el acto
         const acto = (await executePreparedStatement('CALL actos_crear(?,?)',
             [nombre, idRegistro]))[0][0]
-
+        //Crea tributos y honorarios con el ID del acto creado
         return await new TributosHonorarios()
             .crearPorIdActo(acto['LAST_INSERT_ID()'], tributosHonorarios)
     }
@@ -24,23 +25,23 @@ class Acto {
 
         const tributosHonorarios = (await new TributosHonorarios().obtenerPorIdActo(id))[0][0]
         const acto = (await executePreparedStatement('CALL actos_obtener_por_id(?)', [id]))[0][0]
-
+        //Agrega objeto de tributos y honorarios al objeto de actos
         acto['tributosHonorarios'] = tributosHonorarios
 
         return acto
     }
 
     actualizarPorId = async (id, nombre, tributosHonorarios) => {
-
+        //Actualiza montos de tributos y honorarios
         await new TributosHonorarios().actualizarPorIdActo(id, tributosHonorarios)
-
+        //Actualiza datos de acto en tabla
         return await executePreparedStatement('CALL actos_actualizar_por_id(?,?)', [id, nombre])
     }
 
     eliminarPorId = async (id) => {
-
+        //Elimina tributos y honorarios
         await new TributosHonorarios().eliminarPorIdActo(id)
-
+        //Elimina acto sin ningún constraint
         return await executePreparedStatement('CALL actos_eliminar_por_id(?)', [id])
     }
 
@@ -48,24 +49,26 @@ class Acto {
         return await executePreparedStatement('CALL actos_buscar_por_nombre_id_registro(?,?)', [nombre, idRegistro])
     }
 
+    //Método para realizar cálculo
     realizarCalculo = async (id, montoConsulta) => {
 
         const tributosHonorarios = (await new TributosHonorarios().obtenerPorIdActo(id))[0][0]
 
         let respuesta = {}
-
+        
+        //Se obtienen montos de tributos y honorarios para realizar cálculos de montos
         respuesta['registro'] = Number(await this.calcularRegistro(montoConsulta, tributosHonorarios.registro))
         respuesta['agrario'] = Number(await this.calcularAgrario(montoConsulta, tributosHonorarios.agrario))
         respuesta['fiscal'] = Number(await this.calcularFiscal(montoConsulta, tributosHonorarios.fiscal))
         respuesta['archivo'] = Number(await this.calcularArchivo(montoConsulta, tributosHonorarios.archivo))
         respuesta['abogado'] = Number(await this.calcularAbogado(montoConsulta, tributosHonorarios.abogado))
         respuesta['municipal'] = Number(await this.calcularMunicipal(montoConsulta, tributosHonorarios.municipal))
-        respuesta['parquesNacionales'] = Number(await this.calcularParquesNacionales(montoConsulta, tributosHonorarios.parquesNacionales))
-        respuesta['faunaSilvestre'] = Number(await this.calcularFaunaSilvestre(montoConsulta, tributosHonorarios.faunaSilvestre))
-        respuesta['cruzRoja'] = Number(await this.calcularCruzRoja(montoConsulta, tributosHonorarios.cruzRoja))
+        respuesta['parquesNacionales'] = Number(await this.calcularParquesNacionales(tributosHonorarios['parques_nacionales']))
+        respuesta['faunaSilvestre'] = Number(await this.calcularFaunaSilvestre(tributosHonorarios['fauna_silvestre']))
+        respuesta['cruzRoja'] = Number(await this.calcularCruzRoja(tributosHonorarios['cruz_roja']))
         respuesta['traspaso'] = Number(await this.calcularTraspaso(montoConsulta, tributosHonorarios.traspaso))
         respuesta['honorarios'] = Number(await this.calcularHonorarios(montoConsulta, tributosHonorarios.honorarios))
-        respuesta['adicionalPlacas'] = Number(await this.calcularAdicionalPlacas(montoConsulta, tributosHonorarios.adicionalPlacas))
+        respuesta['adicionalPlacas'] = Number(await this.calcularAdicionalPlacas(tributosHonorarios['adicional_placas']))
 
         respuesta['timbresSinDescuento'] = Number(((respuesta['registro'] || 0) + (respuesta['fiscal'] || 0)
             + (respuesta['archivo'] || 0) + (respuesta['abogado'] || 0) + (respuesta['municipal'] || 0)
@@ -85,6 +88,7 @@ class Acto {
         respuesta['totalHonorarios'] = Number(respuesta['honorarios'])
         respuesta['totalHonorariosConIVA'] = (respuesta['honorarios'] * 1.13)
 
+        //Eliminar tributos u honorarios si montos son 0 o nulos
         for (const valor in respuesta) {
             if (!respuesta[valor]) {
                 delete respuesta[valor]
@@ -94,6 +98,7 @@ class Acto {
         return respuesta
     }
 
+    //Método para calcular timbre de registro
     calcularRegistro = async (montoConsulta, timbre) => {
 
         const monto = (montoConsulta / 1000) * timbre
@@ -106,11 +111,13 @@ class Acto {
         }
     }
 
+    //Método para calcular timbre agrario
     calcularAgrario = async (montoConsulta, timbre) => {
 
         return (montoConsulta / 1000) * timbre
     }
 
+    //Método para calcular timbre fiscal
     calcularFiscal = async (montoConsulta, timbre) => {
 
         if (!timbre) {
@@ -128,6 +135,7 @@ class Acto {
         }
     }
 
+    //Método para calcular timbre de archivo
     calcularArchivo = async (montoConsulta, timbre) => {
 
         if (!timbre) {
@@ -145,6 +153,7 @@ class Acto {
         }
     }
 
+    //Método para calcular timbre de abogado
     calcularAbogado = async (montoConsulta, timbre) => {
 
         if (!timbre) {
@@ -162,26 +171,32 @@ class Acto {
         }
     }
 
+    //Método para calcular timbre municipal
     calcularMunicipal = async (montoConsulta, timbre) => {
         return (montoConsulta / 1000) * timbre
     }
 
-    calcularParquesNacionales = async (montoConsulta, timbre) => {
+    //Método para calcular timbre de parques nacionales
+    calcularParquesNacionales = async (timbre) => {
         return timbre
     }
 
-    calcularFaunaSilvestre = async (montoConsulta, timbre) => {
+    //Método para calcular timbre de fauna silvestre
+    calcularFaunaSilvestre = async (timbre) => {
         return timbre
     }
 
-    calcularCruzRoja = async (montoConsulta, timbre) => {
+    //Método para calcular timbre de cruz roja
+    calcularCruzRoja = async (timbre) => {
         return timbre
     }
 
+    //Método para calcular impuesto de traspaso
     calcularTraspaso = async (montoConsulta, porcentaje) => {
         return (porcentaje * montoConsulta) / 100
     }
 
+    //Método para calcular honorarios
     calcularHonorarios = async (montoConsulta, honorario) => {
 
         if (!honorario) {
@@ -225,7 +240,8 @@ class Acto {
         return totalHonorarios > 60500 ? totalHonorarios : 60500
     }
 
-    calcularAdicionalPlacas = async (montoConsulta, monto) => {
+    //Método para calcular adicional placas
+    calcularAdicionalPlacas = async (monto) => {
         return monto
     }
 }

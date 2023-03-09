@@ -1,5 +1,6 @@
 const { executePreparedStatement } = require('../utilidades/baseDeDatos')
 
+//Clase de tributos honorarios con atributos y métodos identicos a tablas y procedimientos en SQL
 class TributosHonorarios {
 
     id
@@ -22,7 +23,7 @@ class TributosHonorarios {
     }
 
     crearPorIdActo = async (idActo, tributosHonorarios) => {
-
+        //Se asignan valores nulos si el dato no fue proporcionado por usuario
         const registro = tributosHonorarios.registro || null
         const agrario = tributosHonorarios.agrario || null
         const fiscal = tributosHonorarios.fiscal || null
@@ -43,7 +44,7 @@ class TributosHonorarios {
     }
 
     actualizarPorIdActo = async (idActo, tributosHonorarios) => {
-
+        //Se asignan valores nulos si el dato no fue proporcionado por usuario
         const registro = tributosHonorarios.registro || null
         const agrario = tributosHonorarios.agrario || null
         const fiscal = tributosHonorarios.fiscal || null

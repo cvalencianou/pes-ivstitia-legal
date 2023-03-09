@@ -2,6 +2,7 @@ const Registro = require('../modelos/Registro')
 const httpError = require('http-errors')
 const { StatusCodes } = require('http-status-codes')
 
+//Función para crear un nuevo registro
 const crearRegistro = async (req, res) => {
 
     const { nombre } = req.body
@@ -12,6 +13,7 @@ const crearRegistro = async (req, res) => {
 
     const registro = new Registro()
 
+    //Valida que nombre de registro no exista
     if ((await registro.buscarPorNombre(nombre))[0].length > 0) {
         throw new httpError(StatusCodes.CONFLICT, 'NOMBRE REGISTRO YA EXISTE')
     }
@@ -26,6 +28,7 @@ const crearRegistro = async (req, res) => {
     }
 }
 
+//Función para obtener lista de todos los registros
 const obtenerRegistros = async (req, res) => {
 
     const registros = (await new Registro().obtenerTodos())[0]
@@ -40,6 +43,7 @@ const obtenerRegistros = async (req, res) => {
     }
 }
 
+//Función para actualizar un registro
 const actualizarRegistro = async (req, res) => {
 
     const { id } = req.params
@@ -51,12 +55,14 @@ const actualizarRegistro = async (req, res) => {
 
     const registro = new Registro()
 
+    //Valida que id de registro exista
     if ((await registro.buscarPorId(id))[0].length === 0) {
         throw new httpError(StatusCodes.NOT_FOUND, 'ID REGISTRO NO EXISTE')
     }
 
     const resultado = (await registro.buscarPorNombre(nombre))[0]
 
+    //Valida que nombre de registro no exista
     if (resultado.length === 1 && resultado[0].id !== Number(id)) {
         throw new httpError(StatusCodes.CONFLICT, 'NOMBRE REGISTRO YA EXISTE')
     }
@@ -71,7 +77,7 @@ const actualizarRegistro = async (req, res) => {
     }
 }
 
-
+//Función para eliminar un registro
 const eliminarRegistro = async (req, res) => {
 
     const { id } = req.params
@@ -82,6 +88,7 @@ const eliminarRegistro = async (req, res) => {
 
     const registro = new Registro()
 
+    //Valida que registro a eliminar exista
     if ((await registro.buscarPorId(id))[0].length === 0) {
         throw new httpError(StatusCodes.NOT_FOUND, 'ID REGISTRO NO EXISTE')
     }

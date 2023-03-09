@@ -3,6 +3,7 @@ const Registro = require('../modelos/Registro')
 const httpError = require('http-errors')
 const { StatusCodes } = require('http-status-codes')
 
+//Función para crear un nuevo acto
 const crearActo = async (req, res) => {
 
     const { nombre, idRegistro, tributosHonorarios } = req.body
@@ -12,18 +13,21 @@ const crearActo = async (req, res) => {
         throw new httpError(StatusCodes.BAD_REQUEST, 'POR FAVOR BRINDAR VALORES VÁLIDOS')
     }
 
+    //Valida que tributos y honorarios vengan en formato JSON válido
     try {
         JSON.parse(tributosHonorarios)
     } catch (error) {
         throw new httpError(StatusCodes.BAD_REQUEST, 'POR FAVOR BRINDAR VALORES VÁLIDOS')
     }
 
+    //Valida que id de registro para acto exista
     if ((await new Registro().buscarPorId(idRegistro))[0].length === 0) {
         throw new httpError(StatusCodes.NOT_FOUND, 'ID REGISTRO NO EXISTE')
     }
 
     const acto = new Acto()
 
+    //Valida que nombre de acto no exista dentro de los acto para ese registro
     if ((await acto.buscarPorNombreIdRegistro(nombre, idRegistro))[0].length > 0) {
         throw new httpError(StatusCodes.CONFLICT, 'ACTO YA EXISTE PARA REGISTRO')
     }
@@ -39,6 +43,7 @@ const crearActo = async (req, res) => {
     }
 }
 
+//Función para obtener los actos de un registro en específico
 const obtenerActosPorIdRegistro = async (req, res) => {
 
     const { idRegistro } = req.params
@@ -59,6 +64,7 @@ const obtenerActosPorIdRegistro = async (req, res) => {
     }
 }
 
+//Función para obtener información de un acto en específico
 const obtenerPorId = async (req, res) => {
 
     const { id } = req.params
@@ -79,6 +85,7 @@ const obtenerPorId = async (req, res) => {
     }
 }
 
+//Función para actualizar un acto
 const actualizarActo = async (req, res) => {
 
     const { id } = req.params
@@ -88,6 +95,7 @@ const actualizarActo = async (req, res) => {
         throw new httpError(StatusCodes.BAD_REQUEST, 'POR FAVOR BRINDAR VALORES VÁLIDOS')
     }
 
+    //Valida que tributos y honorarios vengan en formato JSON válido
     try {
         JSON.parse(tributosHonorarios)
     } catch (error) {
@@ -101,9 +109,10 @@ const actualizarActo = async (req, res) => {
     if (!resultado) {
         throw new httpError(StatusCodes.NOT_FOUND, 'ACTO NO EXISTE')
     }
-
+    
     const resultadoNombre = (await acto.buscarPorNombreIdRegistro(nombre, resultado['id_registro']))[0]
 
+    //Valida que nombre de acto no exista dentro de los acto para ese registro
     if (resultadoNombre.length === 1 && resultado.id !== resultadoNombre[0].id) {
         throw new httpError(StatusCodes.CONFLICT, 'NOMBRE ACTO PARA REGISTRO YA EXISTE')
     }
@@ -118,6 +127,7 @@ const actualizarActo = async (req, res) => {
     }
 }
 
+//Función para eliminar un acto en específico
 const eliminarActo = async (req, res) => {
 
     const { id } = req.params
@@ -128,6 +138,7 @@ const eliminarActo = async (req, res) => {
 
     const acto = new Acto()
 
+    //Valida que el id de acto exista
     if (!(await acto.obtenerPorId(id))) {
         throw new httpError(StatusCodes.NOT_FOUND, 'ACTO NO EXISTE')
     }
@@ -142,6 +153,7 @@ const eliminarActo = async (req, res) => {
     }
 }
 
+//Función para realizar el cálculo de un acto específico
 const calcularActo = async (req, res) => {
 
     const { id } = req.params
@@ -153,6 +165,7 @@ const calcularActo = async (req, res) => {
 
     const acto = new Acto()
 
+    //Valida que acto exista
     if (!await acto.obtenerPorId(id)) {
         throw new httpError(StatusCodes.NOT_FOUND, 'ACTO NO EXISTE')
     }

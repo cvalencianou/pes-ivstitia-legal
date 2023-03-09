@@ -1,5 +1,6 @@
 const { executePreparedStatement } = require('../utilidades/baseDeDatos')
 
+//Clase de usuario con atributos y métodos identicos a tablas y procedimientos en SQL
 class Usuario {
 
     id
