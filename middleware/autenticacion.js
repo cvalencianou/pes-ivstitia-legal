@@ -3,6 +3,7 @@ const { StatusCodes } = require('http-status-codes')
 const jsonwebtoken = require('jsonwebtoken')
 const Usuario = require('../modelos/Usuario')
 
+//Función para crear token JWT solo al iniciar sesión
 const crearJWT = async (payload) => {
 
     return jsonwebtoken.sign(payload, process.env.JWT_SECRET,
@@ -12,6 +13,7 @@ const crearJWT = async (payload) => {
         })
 }
 
+//Función para verificar token JWT que viene en cookie firmada
 const verificarJWT = async (req, res, next) => {
 
     if (!req.signedCookies.jwt) {
@@ -32,6 +34,7 @@ const verificarJWT = async (req, res, next) => {
     })
 }
 
+//Función para verificar que usuario validado en el JWT sea administrador
 const verificarAdministrador = async (req, res, next) => {
 
     const usuario = new Usuario()

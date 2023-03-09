@@ -1,3 +1,4 @@
+//Función para el manejo de errores generador dentro de la aplicación
 const manejoErrores = async (err, req, res, next) => {
 
     console.log(err)
@@ -12,4 +13,4 @@ const manejoErrores = async (err, req, res, next) => {
     }
 }
 
-module.exports = manejoErrores
+module.exports = manejoErrores 
