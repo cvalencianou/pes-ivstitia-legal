@@ -21,7 +21,7 @@ class Cliente {
         return await executePreparedStatement('CALL clientes_actualizar(?,?,?,?,?,?,?,?,?)', [clienteId, usuarioId, nombre, cedula, correo, telefonoMovil, telefonoFisico, direccion, tipoCedula])
     }
     async eliminarCliente(clienteId, usuarioId) {
-        return await executePreparedStatement('CALL cliente_eliminar_por_id(?,?)', [usuarioId, clienteId])
+        return await executePreparedStatement('CALL cliente_eliminar_por_id(?,?)', [clienteId, usuarioId])
     }
 }
 module.exports = Cliente
