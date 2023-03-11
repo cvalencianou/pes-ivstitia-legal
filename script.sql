@@ -2,7 +2,7 @@ CREATE DATABASE  IF NOT EXISTS `ivstitia_legal` /*!40100 DEFAULT CHARACTER SET u
 USE `ivstitia_legal`;
 -- MySQL dump 10.13  Distrib 8.0.31, for Win64 (x86_64)
 --
--- Host: 10.0.0.72    Database: ivstitia_legal
+-- Host: 192.168.100.157    Database: ivstitia_legal
 -- ------------------------------------------------------
 -- Server version	8.0.32
 
@@ -87,19 +87,16 @@ CREATE TABLE `casos` (
   `descripcion` varchar(300) NOT NULL,
   `tipo_proceso_id` int NOT NULL,
   `estado_id` int NOT NULL,
-  `lugar_estado_proceso_id` int NOT NULL,
   `usuario_id` int NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   KEY `tipo_proceso_id_idx` (`tipo_proceso_id`),
   KEY `estado_id_idx` (`estado_id`),
-  KEY `lugar_estado_proceso_id_idx` (`lugar_estado_proceso_id`),
   KEY `id_usuario_idx` (`usuario_id`),
   CONSTRAINT `estado_id` FOREIGN KEY (`estado_id`) REFERENCES `estado` (`id`),
   CONSTRAINT `id_usuario` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`),
-  CONSTRAINT `lugar_estado_proceso_id` FOREIGN KEY (`lugar_estado_proceso_id`) REFERENCES `lugar_estado_proceso` (`id`),
   CONSTRAINT `tipo_proceso_id` FOREIGN KEY (`tipo_proceso_id`) REFERENCES `tipo_proceso` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -108,7 +105,7 @@ CREATE TABLE `casos` (
 
 LOCK TABLES `casos` WRITE;
 /*!40000 ALTER TABLE `casos` DISABLE KEYS */;
-INSERT INTO `casos` VALUES (6,'Traspaso Marta','Oficina','Trapaso de propiedad heredada',1,1,1,2);
+INSERT INTO `casos` VALUES (6,'Traspaso Marta','Oficina','Trapaso de propiedad heredada',1,1,2);
 /*!40000 ALTER TABLE `casos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -173,32 +170,6 @@ LOCK TABLES `estado` WRITE;
 /*!40000 ALTER TABLE `estado` DISABLE KEYS */;
 INSERT INTO `estado` VALUES (3,'Con sentencia'),(4,'Con sentencia firme'),(2,'En espera que ocurra una situación'),(1,'En tramite');
 /*!40000 ALTER TABLE `estado` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `lugar_estado_proceso`
---
-
-DROP TABLE IF EXISTS `lugar_estado_proceso`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `lugar_estado_proceso` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(45) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `nombre_UNIQUE` (`nombre`),
-  UNIQUE KEY `id_UNIQUE` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `lugar_estado_proceso`
---
-
-LOCK TABLES `lugar_estado_proceso` WRITE;
-/*!40000 ALTER TABLE `lugar_estado_proceso` DISABLE KEYS */;
-INSERT INTO `lugar_estado_proceso` VALUES (3,'Juez del lugar de casación'),(1,'Juez normal'),(2,'Juez superior');
-/*!40000 ALTER TABLE `lugar_estado_proceso` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -373,6 +344,10 @@ INSERT INTO `usuarios` VALUES (1,'cvalencianou@gmail.com','$2b$10$NJ4p.vKUYRrsRr
 UNLOCK TABLES;
 
 --
+-- Dumping events for database 'ivstitia_legal'
+--
+
+--
 -- Dumping routines for database 'ivstitia_legal'
 --
 /*!50003 DROP PROCEDURE IF EXISTS `actos_actualizar_por_id` */;
@@ -493,6 +468,25 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `casos_buscar_por_id` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`%` PROCEDURE `casos_buscar_por_id`(par_caso_id INT, par_usuario_id INT)
+BEGIN
+	SELECT id, nombre FROM casos WHERE id = par_caso_id && usuario_id = par_usuario_id;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `casos_crear` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -503,10 +497,31 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`%` PROCEDURE `casos_crear`(par_nombre varchar (100), par_despacho varchar (100), par_descripcion varchar (300), par_tipo_proceso_id INT, par_estado_id INT, par_lugar_estado_proceso_id INT, par_usuario_id INT)
+CREATE DEFINER=`root`@`%` PROCEDURE `casos_crear`(par_nombre varchar (100), par_despacho varchar (100), par_descripcion varchar (300), par_tipo_proceso_id INT, par_estado_id INT, par_usuario_id INT)
 BEGIN
-	INSERT INTO casos (nombre, despacho, descripcion, estado_id, tipo_proceso_id, lugar_estado_proceso_id, usuario_id) 
-    VALUES (par_nombre, par_despacho, par_descripcion, par_tipo_proceso_id, par_estado_id, par_lugar_estado_proceso_id, par_usuario_id);
+	INSERT INTO casos (nombre, despacho, descripcion, estado_id, tipo_proceso_id, usuario_id) 
+    VALUES (par_nombre, par_despacho, par_descripcion, par_tipo_proceso_id, par_estado_id, par_usuario_id);
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `casos_eliminar_por_id` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`%` PROCEDURE `casos_eliminar_por_id`(par_caso_id int, par_usuario_id int)
+BEGIN
+	DELETE FROM caso_cliente WHERE caso_id = par_caso_id;
+    DELETE FROM notas_casos WHERE caso_id = par_caso_id;
+    DELETE FROM casos WHERE id = par_caso_id && usuario_id = par_usuario_id;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -525,11 +540,30 @@ DELIMITER ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`%` PROCEDURE `casos_obtener`(par_usuario_id int)
 BEGIN
-	SELECT casos.id, casos.nombre, casos.despacho, tipo_proceso.nombre AS tipo_proceso, estado.nombre AS estado, lugar_estado_proceso.nombre AS lugar_estado_proceso, usuario_id FROM casos
+	SELECT casos.id, casos.nombre, casos.despacho, tipo_proceso.nombre AS tipo_proceso, estado.nombre AS estado, usuario_id FROM casos
     INNER JOIN tipo_proceso ON casos.tipo_proceso_id = tipo_proceso.id
     INNER JOIN estado ON casos.estado_id = estado.id
-    INNER JOIN lugar_estado_proceso ON casos.lugar_estado_proceso_id = lugar_estado_proceso.id
     WHERE usuario_id = par_usuario_id;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `caso_actualizar` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`%` PROCEDURE `caso_actualizar`(par_caso_id INT, par_nombre varchar (100), par_despacho varchar (100), par_descripcion varchar (300), par_tipo_proceso_id INT, par_estado_id INT, par_usuario_id INT)
+BEGIN
+	UPDATE casos SET nombre = par_nombre, despacho = par_despacho, descripcion = par_descripcion, tipo_proceso_id = par_tipo_proceso_id, estado_id = par_estado_id
+    WHERE id = par_caso_id && usuario_id = par_usuario_id;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -565,11 +599,12 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`%` PROCEDURE `clientes_actualizar`(par_cliente_id int, par_usuario_id int, par_nombre varchar(100), par_cedula varchar(15), par_correo varchar(45), par_numero_fisico varchar(15), par_numero_movil varchar(15), par_direccion varchar(200), par_tipo_cedula_id int)
+CREATE DEFINER=`root`@`%` PROCEDURE `clientes_actualizar`(par_cliente_id int, par_usuario_id int, par_nombre varchar(100), par_cedula varchar(15), par_correo varchar(45), 
+par_telefono_movil varchar(15), par_telefono_fisico varchar(15), par_direccion varchar(200), par_tipo_cedula_id int)
 BEGIN
-UPDATE clientes
-SET usuario_id = par_usuario_id, nombre = par_nombre, cedula = par_cedula, correo = par_correo, numero_fisico = par_numero_fisico, numero_movil = par_numero_movil, direccion = par_direccion, usuario_id = par_usuario_id, tipo_cedula_id = par_tipo_cedula_id
-WHERE id = par_cliente_id;
+UPDATE clientes SET nombre = par_nombre, cedula = par_cedula, correo = par_correo, telefono_movil = par_telefono_movil, telefono_fisico = par_telefono_fisico, direccion = par_direccion, 
+tipo_cedula_id = par_tipo_cedula_id
+WHERE id = par_cliente_id && usuario_id = par_usuario_id;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -637,6 +672,25 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `cliente_buscar_por_id` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`%` PROCEDURE `cliente_buscar_por_id`(par_cliente_id int, par_usuario_id int)
+BEGIN
+	SELECT id, nombre FROM clientes WHERE id = par_cliente_id && usuario_id = par_usuario_id;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `cliente_crear` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -650,6 +704,26 @@ DELIMITER ;;
 CREATE DEFINER=`root`@`%` PROCEDURE `cliente_crear`(par_nombre varchar(100), par_cedula varchar(15), par_correo varchar(45), par_telefono_movil varchar(15), par_telefono_fisico varchar(15), par_direccion varchar(200), par_usuario_id int, par_tipo_cedula_id int)
 BEGIN
 INSERT INTO clientes(nombre, cedula, correo, telefono_movil, telefono_fisico, direccion, usuario_id, tipo_cedula_id) VALUES (par_nombre, par_cedula, par_correo, par_telefono_movil, par_telefono_fisico, par_direccion, par_usuario_id, par_tipo_cedula_id);
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `cliente_eliminar_por_id` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`%` PROCEDURE `cliente_eliminar_por_id`(par_cliente_id int, par_usuario_id int)
+BEGIN
+	DELETE FROM caso_cliente WHERE cliente_id = par_cliente_id;
+    DELETE FROM clientes WHERE id = par_cliente_id && usuario_id = par_usuario_id;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1092,4 +1166,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-03-08 20:27:07
+-- Dump completed on 2023-03-10 18:04:00
