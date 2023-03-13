@@ -26,6 +26,11 @@ app.use('/api/v1/actos', actos)
 app.use('/api/v1/clientes', clientes)
 app.use('/api/v1/casos', casos)
 
+//Ruta para cualquier otra no existente
+app.use((req, res, next) => {
+   res.status(404).sendFile('vistas/no-encontrado.html', { root: __dirname })
+})
+
 //Middleware para el manejo de errores y respuestas
 app.use(manejoErrores)
 
