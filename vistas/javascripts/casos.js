@@ -27,7 +27,10 @@ const obtenerCasos = async () => {
                 Desripción: ${caso.descripcion}  <br><br>
                 Tipo proceso: ${caso.tipo_proceso} <br><br>
                 Estado: ${caso.estado} <br><br>
-                Lugar de estado proceso: ${caso.lugar_estado_proceso} 
+                <a href="actualizar-caso" id="btnActualizarCaso"><button>ACTUALIZAR CASO</button></a>
+                <a href="eliminar-caso" id="btnEliminarCaso"><button>ELIMINAR CASO</button></a>
+                <a href="agregar-nota" id="btnAgregarNotaCaso"><button>Agregar Nota</button></a>
+                <a href="agregar-cliente" id="btnAgregarCliente"><button>Agregar Cliente</button></a>
                 </li>
                 `
             });

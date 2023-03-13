@@ -107,7 +107,7 @@ const eliminarCliente = async (req, res) => {
     const usuarioId = req.user.id
     const clienteId = req.query.clienteId
 
-    if (!usuarioId || !clienteId ) {
+    if (!usuarioId || !clienteId) {
         throw new httpError(StatusCodes.BAD_REQUEST, 'POR FAVOR BRINDAR TODOS LOS DATOS!')
     }
 
@@ -129,9 +129,6 @@ const eliminarCliente = async (req, res) => {
     else {
         throw new httpError(StatusCodes.CONFLICT, 'CLIENTE NO ELIMINADO')
     }
-
-
-
 }
 
 module.exports = { obtenerClientes, filtrarClientes, crearCliente, actualizarCliente, eliminarCliente }

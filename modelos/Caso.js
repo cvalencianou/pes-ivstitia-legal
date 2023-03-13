@@ -6,8 +6,8 @@ class Caso {
         return await executePreparedStatement('CALL casos_obtener(?)', [usuarioId])
     }
 
-    async crearCaso(usuarioId, nombre, despacho, descripcion, estado, tipoProceso, lugarEstadoProceso) {
-        return await executePreparedStatement('CALL casos_crear(?,?,?,?,?,?,?)', [nombre, despacho, descripcion, tipoProceso, estado, lugarEstadoProceso, usuarioId])
+    async crearCaso(usuarioId, nombre, despacho, descripcion, estado, tipoProceso ) {
+        return await executePreparedStatement('CALL casos_crear(?,?,?,?,?,?)', [nombre, despacho, descripcion, tipoProceso, estado, usuarioId])
     }
 
     async buscarPorNombre(usuarioId, nombre) {
@@ -16,6 +16,18 @@ class Caso {
 
     async filtrarCasos(usuarioId, datoCaso) {
         return await executePreparedStatement('CALL casos_filtrar(?,?)', [usuarioId, datoCaso])
+    }
+
+    async actualizarCaso(casoId, usuarioId, nombre, despacho, descripcion, estado, tipoProceso ) {
+        return await executePreparedStatement('CALL caso_actualizar(?,?,?,?,?,?,?)', [casoId, nombre, despacho, descripcion, tipoProceso, estado, usuarioId])
+    }
+
+    async eliminarCaso(casoId, usuarioId) {
+        return await executePreparedStatement('CALL casos_eliminar_por_id(?,?)', [casoId, usuarioId])
+    }
+
+    async buscarPorIdCaso(casoId, usuarioId){
+        return await executePreparedStatement('CALL casos_buscar_por_id(?,?)', [casoId, usuarioId])
     }
 
 }
