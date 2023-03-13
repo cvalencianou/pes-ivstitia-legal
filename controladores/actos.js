@@ -15,7 +15,11 @@ const crearActo = async (req, res) => {
 
     //Valida que tributos y honorarios vengan en formato JSON válido
     try {
-        JSON.parse(tributosHonorarios)
+        const json = JSON.parse(tributosHonorarios)
+
+        if (Object.keys(json).length > 12 || Object.keys(json).length < 3) {
+            throw new httpError(StatusCodes.BAD_REQUEST, 'POR FAVOR BRINDAR VALORES VÁLIDOS')
+        }
     } catch (error) {
         throw new httpError(StatusCodes.BAD_REQUEST, 'POR FAVOR BRINDAR VALORES VÁLIDOS')
     }
@@ -97,7 +101,11 @@ const actualizarActo = async (req, res) => {
 
     //Valida que tributos y honorarios vengan en formato JSON válido
     try {
-        JSON.parse(tributosHonorarios)
+        const json = JSON.parse(tributosHonorarios)
+
+        if (Object.keys(json).length > 12 || Object.keys(json).length < 3) {
+            throw new httpError(StatusCodes.BAD_REQUEST, 'POR FAVOR BRINDAR VALORES VÁLIDOS')
+        }
     } catch (error) {
         throw new httpError(StatusCodes.BAD_REQUEST, 'POR FAVOR BRINDAR VALORES VÁLIDOS')
     }
@@ -109,7 +117,7 @@ const actualizarActo = async (req, res) => {
     if (!resultado) {
         throw new httpError(StatusCodes.NOT_FOUND, 'ACTO NO EXISTE')
     }
-    
+
     const resultadoNombre = (await acto.buscarPorNombreIdRegistro(nombre, resultado['id_registro']))[0]
 
     //Valida que nombre de acto no exista dentro de los acto para ese registro
@@ -117,7 +125,7 @@ const actualizarActo = async (req, res) => {
         throw new httpError(StatusCodes.CONFLICT, 'NOMBRE ACTO PARA REGISTRO YA EXISTE')
     }
 
-    if ((await acto.actualizarPorId(id, nombre,  JSON.parse(tributosHonorarios))).affectedRows === 1) {
+    if ((await acto.actualizarPorId(id, nombre, JSON.parse(tributosHonorarios))).affectedRows === 1) {
         res.status(StatusCodes.OK).json({
             mensaje: 'ACTO ACTUALIZADO'
         })
