@@ -92,6 +92,9 @@ class Acto {
 
     //Método para calcular timbre de registro
     calcularRegistro = async (montoConsulta, timbre) => {
+        if (!timbre) {
+            return 0
+        }
 
         const monto = (montoConsulta / 1000) * timbre
 

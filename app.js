@@ -15,7 +15,9 @@ const httpError = require('http-errors')
 const { StatusCodes } = require('http-status-codes')
 
 // Middleware para asegurar headers http aplicación Express
-app.use(helmet())
+app.use(helmet({
+    contentSecurityPolicy: false,
+}))
 //Se comparten vistas con y sin extensión html
 app.use(express.static('./vistas', {
     extensions: ['html']

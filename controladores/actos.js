@@ -16,8 +16,8 @@ const crearActo = async (req, res) => {
     //Valida que tributos y honorarios vengan en formato JSON válido
     try {
         const json = JSON.parse(tributosHonorarios)
-
-        if (Object.keys(json).length > 12 || Object.keys(json).length < 3) {
+        console.log("2")
+        if (Object.keys(json).length > 12 || Object.keys(json).length < 2) {
             throw new httpError(StatusCodes.BAD_REQUEST, 'POR FAVOR BRINDAR VALORES VÁLIDOS')
         }
     } catch (error) {
@@ -103,7 +103,7 @@ const actualizarActo = async (req, res) => {
     try {
         const json = JSON.parse(tributosHonorarios)
 
-        if (Object.keys(json).length > 12 || Object.keys(json).length < 3) {
+        if (Object.keys(json).length > 12 || Object.keys(json).length < 2) {
             throw new httpError(StatusCodes.BAD_REQUEST, 'POR FAVOR BRINDAR VALORES VÁLIDOS')
         }
     } catch (error) {

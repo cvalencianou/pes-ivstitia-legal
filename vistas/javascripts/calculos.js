@@ -100,26 +100,26 @@ const realizarCalculo = async () => {
         document.getElementById('resultado-calculo').innerHTML =
             `
             <h2>Tributos</h2>
-            ${datos.mensaje.registro ? `TIMBRE DE REGISTRO: ${datos.mensaje.registro}<br>` : ''}
-            ${datos.mensaje.agrario ? `TIMBRE AGRARIO: ${datos.mensaje.agrario}<br>` : ''}
-            ${datos.mensaje.fiscal ? `TIMBRE FISCAL: ${datos.mensaje.fiscal}<br>` : ''}
-            ${datos.mensaje.archivo ? `TIMBRE DE ARCHIVO: ${datos.mensaje.archivo}<br>` : ''}
-            ${datos.mensaje.abogado ? `TIMBRE DE ABOGADO: ${datos.mensaje.abogado}<br>` : ''}
-            ${datos.mensaje.municipal ? `TIMBRE MUNICIPAL: ${datos.mensaje.municipal}<br>` : ''}
-            ${datos.mensaje.parquesNacionales ? `TIMBRE DE PARQUES NACIONALES: ${datos.mensaje.parquesNacionales}<br>` : ''}
-            ${datos.mensaje.faunaSilvestre ? `TIMBRE DE FAUNA SILVESTRE: ${datos.mensaje.faunaSilvestre}<br>` : ''}
-            ${datos.mensaje.cruzRoja ? `TIMBRE DE CRUZ ROJA: ${datos.mensaje.cruzRoja}<br>` : ''}
+            ${datos.mensaje.registro ? `TIMBRE DE REGISTRO: ₡${datos.mensaje.registro}<br>` : ''}
+            ${datos.mensaje.agrario ? `TIMBRE AGRARIO: ₡${datos.mensaje.agrario}<br>` : ''}
+            ${datos.mensaje.fiscal ? `TIMBRE FISCAL: ₡${datos.mensaje.fiscal}<br>` : ''}
+            ${datos.mensaje.archivo ? `TIMBRE DE ARCHIVO: ₡${datos.mensaje.archivo}<br>` : ''}
+            ${datos.mensaje.abogado ? `TIMBRE DE ABOGADO: ₡${datos.mensaje.abogado}<br>` : ''}
+            ${datos.mensaje.municipal ? `TIMBRE MUNICIPAL: ₡${datos.mensaje.municipal}<br>` : ''}
+            ${datos.mensaje.parquesNacionales ? `TIMBRE DE PARQUES NACIONALES: ₡${datos.mensaje.parquesNacionales}<br>` : ''}
+            ${datos.mensaje.faunaSilvestre ? `TIMBRE DE FAUNA SILVESTRE: ₡${datos.mensaje.faunaSilvestre}<br>` : ''}
+            ${datos.mensaje.cruzRoja ? `TIMBRE DE CRUZ ROJA: ₡${datos.mensaje.cruzRoja}<br>` : ''}
             <h2>Impuestos</h2>
-            ${datos.mensaje.traspaso ? `IMPUESTO TRASPASO: ${datos.mensaje.traspaso}<br>` : ''}
+            ${datos.mensaje.traspaso ? `IMPUESTO TRASPASO: ₡${datos.mensaje.traspaso}<br>` : ''}
             <h2>Honorarios</h2>
-            ${datos.mensaje.honorarios ? `HONORARIOS: ${datos.mensaje.honorarios}<br>` : ''}
+            ${datos.mensaje.honorarios ? `HONORARIOS: ₡${datos.mensaje.honorarios}<br>` : ''}
             <h2>Montos Adicionales</h2>
-            ${datos.mensaje.adicionalPlacas ? `ADICIONAL PLACAS: ${datos.mensaje.adicionalPlacas}<br>` : ''}
+            ${datos.mensaje.adicionalPlacas ? `ADICIONAL PLACAS: ₡${datos.mensaje.adicionalPlacas}<br>` : ''}
             <h2>Totales</h2>
-            ${datos.mensaje.totalTributos ? `TOTAL TRIBUTOS: ${Math.round(datos.mensaje.totalTributos * 100) / 100}<br>` : ''}
-            ${datos.mensaje.totalHonorarios ? `TOTAL HONORARIOS: ${Math.round(datos.mensaje.totalHonorarios * 100) / 100}<br>` : ''}
-            ${datos.mensaje.totalHonorariosConIVA ? `TOTAL HONORARIOS CON IVA: ${Math.round(datos.mensaje.totalHonorariosConIVA * 100) / 100}<br>` : ''}
-            ${datos.mensaje.totalTributos ? `TOTAL: ${Math.round(datos.mensaje.total * 100) / 100}<br>` : ''}
+            ${datos.mensaje.totalTributos ? `TOTAL TRIBUTOS: ₡${Math.round(datos.mensaje.totalTributos * 100) / 100}<br>` : ''}
+            ${datos.mensaje.totalHonorarios ? `TOTAL HONORARIOS: ₡${Math.round(datos.mensaje.totalHonorarios * 100) / 100}<br>` : ''}
+            ${datos.mensaje.totalHonorariosConIVA ? `TOTAL HONORARIOS CON IVA: ₡${Math.round(datos.mensaje.totalHonorariosConIVA * 100) / 100}<br>` : ''}
+            ${datos.mensaje.totalTributos ? `TOTAL: ₡${Math.round(datos.mensaje.total * 100) / 100}<br>` : ''}
               
         `
 
