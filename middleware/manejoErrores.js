@@ -9,7 +9,7 @@ const manejoErrores = async (err, req, res, next) => {
         })
     }
     else {
-        res.status(500).json({ mensaje: 'ERROR INESPERADO' })
+        res.status(500).json({ mensaje: 'Error inesperado' })
     }
 }
 

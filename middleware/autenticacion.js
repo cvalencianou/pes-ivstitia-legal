@@ -17,7 +17,7 @@ const crearJWT = async (payload) => {
 const verificarJWT = async (req, res, next) => {
 
     if (!req.signedCookies.jwt) {
-        throw new httpError(StatusCodes.UNAUTHORIZED, 'JWT NO VÁLIDO')
+        throw new httpError(StatusCodes.UNAUTHORIZED, 'JWT no válido')
     }
 
     jsonwebtoken.verify(req.signedCookies.jwt, process.env.JWT_SECRET, (err, decoded) => {
@@ -29,7 +29,7 @@ const verificarJWT = async (req, res, next) => {
             next()
         }
         else {
-            throw new httpError(StatusCodes.UNAUTHORIZED, 'JWT NO VÁLIDO')
+            throw new httpError(StatusCodes.UNAUTHORIZED, 'JWT no válido')
         }
     })
 }
@@ -43,7 +43,7 @@ const verificarAdministrador = async (req, res, next) => {
         next()
     }
     else {
-        throw new httpError(StatusCodes.UNAUTHORIZED, 'SOLO ADMINISTRADORES')
+        throw new httpError(StatusCodes.UNAUTHORIZED, 'Solo administradores')
     }
 }
 

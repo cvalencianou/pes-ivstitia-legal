@@ -13,25 +13,25 @@ const crearUsuario = async (req, res) => {
 
     if (!correo || correo.length < 4 || correo.length > 45
         || !correo.match(/[^\s@]+@[^\s@]+\.[^\s@]+/)) {
-        throw new httpError(StatusCodes.BAD_REQUEST, 'POR FAVOR BRINDAR VALORES VÁLIDOS')
+        throw new httpError(StatusCodes.BAD_REQUEST, 'Por favor brindar valores válidos')
     }
 
     const usuario = new Usuario()
     //Se valida que correo electrónico no esté en uso
     if ((await usuario.buscarPorCorreo(correo))[0].length === 1) {
-        throw new httpError(StatusCodes.CONFLICT, 'USUARIO YA EXISTE')
+        throw new httpError(StatusCodes.CONFLICT, 'Usuario ya existe')
     }
 
     const contrasena = generator.generate({
         length: 10,
         numbers: true
     })
-    
+
     //Registra usuario con contraseña autogenerada y la encripta
     if ((await usuario.registrar(correo, await bcrypt.hash(contrasena, Number(process.env.BCRYPT_SALT_ROUNDS)))).affectedRows === 1) {
 
         res.status(StatusCodes.CREATED).json({
-            mensaje: `USUARIO CREADO`
+            mensaje: `Usuario creado`
         })
 
         //Envío de correo con nuevas credenciales de usuario
@@ -50,7 +50,7 @@ const crearUsuario = async (req, res) => {
         })
     }
     else {
-        throw new httpError(StatusCodes.CONFLICT, 'USUARIO NO CREADO')
+        throw new httpError(StatusCodes.CONFLICT, 'Usuario no creado')
     }
 }
 
@@ -61,7 +61,7 @@ const iniciarSesion = async (req, res) => {
 
     if (!correo || !contrasena || correo.length < 4 || correo.length > 45 || contrasena.length < 8
         || contrasena.length > 60 || !correo.match(/[^\s@]+@[^\s@]+\.[^\s@]+/)) {
-        throw new httpError(StatusCodes.BAD_REQUEST, 'POR FAVOR BRINDAR VALORES VÁLIDOS')
+        throw new httpError(StatusCodes.BAD_REQUEST, 'Por favor brindar valores válidos')
     }
 
     const usuario = new Usuario()
@@ -70,17 +70,17 @@ const iniciarSesion = async (req, res) => {
     const resultado = await usuario.validarCredenciales(correo)
 
     if (resultado[0].length === 0) {
-        throw new httpError(StatusCodes.NOT_FOUND, 'NO EXISTE USUARIO')
+        throw new httpError(StatusCodes.NOT_FOUND, 'No existe usuario')
     }
-    
+
     //Se compara contraseña almacenada con contraseña brindada
     if (!await bcrypt.compare(contrasena, resultado[0][0]['contrasena'])) {
-        throw new httpError(StatusCodes.UNAUTHORIZED, 'CREDENCIALES INCORRECTAS')
+        throw new httpError(StatusCodes.UNAUTHORIZED, 'Credenciales incorrectas')
     }
 
     if (resultado[0][0]['contrasena_configurada'] === 0) {
         return res.status(StatusCodes.TEMPORARY_REDIRECT).json({
-            mensaje: 'DEBE CAMBIAR CONTRASEÑA'
+            mensaje: 'Debe cambiar contraseña'
         })
     }
     else {
@@ -98,7 +98,7 @@ const iniciarSesion = async (req, res) => {
             })
 
         res.status(StatusCodes.OK).json({
-            mensaje: 'CREDENCIALES CORRECTAS',
+            mensaje: 'Credenciales correctas',
             autenticado: true,
             administrador: resultado[0][0]['administrador']
         })
@@ -116,7 +116,7 @@ const cerrarSesion = async (req, res) => {
     })
 
     res.status(StatusCodes.OK).json({
-        mensaje: 'CERRÓ SESIÓN'
+        mensaje: 'Cerró sesión'
     })
 }
 
@@ -130,7 +130,7 @@ const obtenerUsuarios = async (req, res) => {
             mensaje: resultado[0]
         })
     } else {
-        throw new httpError(StatusCodes.NOT_FOUND, 'NO HAY USUARIOS')
+        throw new httpError(StatusCodes.NOT_FOUND, 'No hay usuarios')
     }
 }
 
@@ -142,31 +142,31 @@ const actualizarUsuario = async (req, res) => {
 
     if (!id || !correo || administrador < 0 || administrador > 1 || correo.length < 4 || correo.length > 45
         || !correo.match(/[^\s@]+@[^\s@]+\.[^\s@]+/) || isNaN(id) || isNaN(administrador)) {
-        throw new httpError(StatusCodes.BAD_REQUEST, 'POR FAVOR BRINDAR VALORES VÁLIDOS')
+        throw new httpError(StatusCodes.BAD_REQUEST, 'Por favor brindar valores válidos')
     }
 
     const usuario = new Usuario()
 
     //Valida que usuario exista antes de actualizar
     if ((await usuario.buscarPorId(id))[0].length === 0) {
-        throw new httpError(StatusCodes.NOT_FOUND, 'NO EXISTE USUARIO')
+        throw new httpError(StatusCodes.NOT_FOUND, 'No existe usuario')
     }
 
     const resultado = await usuario.buscarPorCorreo(correo)
 
     //Valida que correo actualizado no esté utilizado
     if (resultado[0].length === 1 && resultado[0][0]['id'] !== Number(id)) {
-        throw new httpError(StatusCodes.CONFLICT, 'CORREO YA ESTÁ EN USO')
+        throw new httpError(StatusCodes.CONFLICT, 'Correo ya está en uso')
     }
 
 
     if ((await usuario.actualizar(id, correo, administrador)).affectedRows === 1) {
         res.status(StatusCodes.OK).json({
-            mensaje: "USUARIO ACTUALIZADO"
+            mensaje: "Usuario actualizado"
         })
     }
     else {
-        throw new httpError(StatusCodes.CONFLICT, 'USUARIO NO ACTUALIZADO')
+        throw new httpError(StatusCodes.CONFLICT, 'Usuario no actualizado')
     }
 }
 
@@ -176,7 +176,7 @@ const restablecerContrasena = async (req, res) => {
     const { correo } = req.body
 
     if (!correo || correo.length < 4 || correo.length > 45 || !correo.match(/[^\s@]+@[^\s@]+\.[^\s@]+/)) {
-        throw new httpError(StatusCodes.BAD_REQUEST, 'POR FAVOR BRINDAR VALORES VÁLIDOS')
+        throw new httpError(StatusCodes.BAD_REQUEST, 'Por favor brindar valores válidos')
     }
 
     const usuario = new Usuario()
@@ -184,7 +184,7 @@ const restablecerContrasena = async (req, res) => {
     const resultado = await usuario.buscarPorCorreo(correo)
     //Valida que usuario exista
     if (resultado[0].length === 0) {
-        throw new httpError(StatusCodes.NOT_FOUND, 'NO EXISTE USUARIO')
+        throw new httpError(StatusCodes.NOT_FOUND, 'No existe usuario')
     }
 
     const contrasena = generator.generate({
@@ -195,7 +195,7 @@ const restablecerContrasena = async (req, res) => {
     if ((await usuario.restablecerContrasena(resultado[0][0]['id'], await bcrypt.hash(contrasena, Number(process.env.BCRYPT_SALT_ROUNDS)))).affectedRows === 1) {
 
         res.status(StatusCodes.OK).json({
-            mensaje: `CREDENCIALES RECUPERADAS`
+            mensaje: `Credenciales recuperadas`
         })
         //Envía correo con credenciales temporales
         enviarCorreo({
@@ -213,7 +213,7 @@ const restablecerContrasena = async (req, res) => {
         })
     }
     else {
-        throw new httpError(StatusCodes.CONFLICT, 'CREDENCIALES NO RECUPERADAS')
+        throw new httpError(StatusCodes.CONFLICT, 'Credenciales no recuperadas')
     }
 }
 
@@ -225,7 +225,7 @@ const cambiarContrasena = async (req, res) => {
     if (!correo || !contrasenaActual || !contrasenaNueva || correo.length < 4 || correo.length > 45 ||
         !correo.match(/[^\s@]+@[^\s@]+\.[^\s@]+/) || contrasenaActual.length < 8 || contrasenaActual.length > 60
         || contrasenaNueva.length < 8 || contrasenaNueva > 60) {
-        throw new httpError(StatusCodes.BAD_REQUEST, 'POR FAVOR BRINDAR VALORES VÁLIDOS')
+        throw new httpError(StatusCodes.BAD_REQUEST, 'Por favor brindar valores válidos')
     }
 
     const usuario = new Usuario()
@@ -233,21 +233,21 @@ const cambiarContrasena = async (req, res) => {
     const resultado = await usuario.validarCredenciales(correo)
 
     if (resultado[0].length === 0) {
-        throw new httpError(StatusCodes.NOT_FOUND, 'NO EXISTE USUARIO')
+        throw new httpError(StatusCodes.NOT_FOUND, 'No existe usuario')
     }
     //Valida que contraseña temporal almacenada sea correcta
     if (!await bcrypt.compare(contrasenaActual, resultado[0][0]['contrasena'])) {
-        throw new httpError(StatusCodes.UNAUTHORIZED, 'CREDENCIALES INCORRECTAS')
+        throw new httpError(StatusCodes.UNAUTHORIZED, 'Credenciales incorrectas')
     }
 
     //Cambia a la contraseña nueva y la encripta
     if ((await usuario.cambiarContrasena(resultado[0][0]['id'], await bcrypt.hash(contrasenaNueva, Number(process.env.BCRYPT_SALT_ROUNDS)))).affectedRows === 1) {
         res.status(StatusCodes.OK).json({
-            mensaje: 'CONTRASEÑA CAMBIADA'
+            mensaje: 'Contraseña cambiada'
         })
     }
     else {
-        throw new httpError(StatusCodes.CONFLICT, 'CONTRASEÑA NO CAMBIADA')
+        throw new httpError(StatusCodes.CONFLICT, 'Contraseña no cambiada')
     }
 }
 
@@ -257,23 +257,23 @@ const eliminarUsuario = async (req, res) => {
     const { id } = req.params
 
     if (!id || isNaN(id)) {
-        throw new httpError(StatusCodes.BAD_REQUEST, 'POR FAVOR BRINDAR VALORES VÁLIDOS')
+        throw new httpError(StatusCodes.BAD_REQUEST, 'Por favor brindar valores válidos')
     }
 
     const usuario = new Usuario()
-    
+
     //Valida que el id de usuario a eliminar exista
     if ((await usuario.buscarPorId(id))[0].length !== 1) {
-        throw new httpError(StatusCodes.NOT_FOUND, 'NO EXISTE USUARIO')
+        throw new httpError(StatusCodes.NOT_FOUND, 'No existe usuario')
     }
 
     if ((await usuario.eliminarPorId(id)).affectedRows === 1) {
         res.status(StatusCodes.OK).json({
-            mensaje: 'USUARIO ELIMINADO'
+            mensaje: 'Usuario eliminado'
         })
     }
     else {
-        throw new httpError(StatusCodes.CONFLICT, 'USUARIO NO ELIMINADO')
+        throw new httpError(StatusCodes.CONFLICT, 'Usuario no eliminado')
     }
 }
 
