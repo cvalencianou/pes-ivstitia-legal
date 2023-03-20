@@ -27,7 +27,7 @@ window.onpageshow = async () => {
             })
 
             document.getElementById('eliminar-cancelar-tabla-usuarios').addEventListener('click', () => {
-                document.getElementById('dialogo-eliminar-tabla-usuarios').close()
+                window.location.assign('administrar-usuarios')
             })
 
             document.getElementById('dialogo-eliminar-tabla-usuarios').showModal()

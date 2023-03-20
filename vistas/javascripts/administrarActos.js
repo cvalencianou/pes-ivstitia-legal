@@ -32,7 +32,7 @@ window.onpageshow = async () => {
             })
 
             document.getElementById('cancelar-2').addEventListener('click', () => {
-                document.getElementById('dialogo-2').close()
+                window.location.assign('administrar-actos')
             })
         }
     })
