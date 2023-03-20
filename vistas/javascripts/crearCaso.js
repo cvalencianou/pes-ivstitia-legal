@@ -14,7 +14,6 @@ const crearCaso = async () => {
     const descripcion = document.getElementById('descripcion').value
     const tipoProceso = document.getElementById('tipo-proceso').value
     const estado = document.getElementById('estado').value
-    const lugarEstadoProceso = document.getElementById('lugar-estado-proceso').value
 
     const resultado = await fetch('/api/v1/casos', {
         method: 'POST',
@@ -26,9 +25,7 @@ const crearCaso = async () => {
             despacho: despacho,
             descripcion: descripcion,
             tipoProceso: tipoProceso,
-            estado: estado,
-            lugarEstadoProceso: lugarEstadoProceso
-
+            estado: estado
         })
     })
 
