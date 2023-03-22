@@ -5,7 +5,7 @@ class Cliente {
     async obtenerClientes(usuarioId) {
         return await executePreparedStatement('CALL clientes_obtener(?)', [usuarioId])
     }
-    
+
     async filtrarClientes(usuarioId, datoCliente) {
         return await executePreparedStatement('CALL clientes_filtrar(?,?)', [usuarioId, datoCliente])
     }
@@ -28,6 +28,18 @@ class Cliente {
 
     async eliminarCliente(clienteId, usuarioId) {
         return await executePreparedStatement('CALL cliente_eliminar_por_id(?,?)', [clienteId, usuarioId])
+    }
+
+    async obtenerClientesPorIdCaso(casoId) {
+        return await executePreparedStatement('CALL casos_obtener_clientes(?)', [casoId])
+    }
+
+    async agregarClientePorCasoId(casoId, clienteId) {
+        return await executePreparedStatement('CALL casos_agregar_clientes(?,?)', [clienteId, casoId])
+    }
+
+    async eliminarClientePorCasoId(casoId, clienteId) {
+        return await executePreparedStatement('CALL casos_eliminar_cliente(?,?)', [casoId, clienteId])
     }
 }
 module.exports = Cliente
