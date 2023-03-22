@@ -1,10 +1,10 @@
 CREATE DATABASE  IF NOT EXISTS `ivstitia_legal` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `ivstitia_legal`;
--- MySQL dump 10.13  Distrib 8.0.31, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.32, for Win64 (x86_64)
 --
--- Host: 192.168.100.157    Database: ivstitia_legal
+-- Host: 10.0.0.105    Database: ivstitia_legal
 -- ------------------------------------------------------
--- Server version	8.0.32
+-- Server version	8.0.32-0ubuntu0.22.04.2
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -342,10 +342,6 @@ LOCK TABLES `usuarios` WRITE;
 INSERT INTO `usuarios` VALUES (1,'cvalencianou@gmail.com','$2b$10$NJ4p.vKUYRrsRrdBBO6GK.mMqR/LibooPZl7OLDgm4kdnjFM.Hg1i',1,1),(2,'pfallas99@gmail.com','$2b$10$cAX98n8RSKxU7BS6fFBzQOSzsz.aHkLyHapgLEcaX0e2ZqiMPyihO',1,1);
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Dumping events for database 'ivstitia_legal'
---
 
 --
 -- Dumping routines for database 'ivstitia_legal'
@@ -1074,6 +1070,9 @@ DELIMITER ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`%` PROCEDURE `usuarios_eliminar_por_id`(par_id INT)
 BEGIN
+DELETE FROM caso_cliente WHERE caso_id IN (SELECT id FROM casos WHERE usuario_id = par_id);
+DELETE FROM notas_casos WHERE caso_id IN (SELECT id FROM casos WHERE usuario_id = par_id);
+DELETE FROM casos WHERE usuario_id = par_id;
 DELETE FROM clientes WHERE usuario_id = par_id;
 DELETE FROM usuarios WHERE id = par_id;
 END ;;
@@ -1187,4 +1186,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-03-20 12:31:25
+-- Dump completed on 2023-03-22  9:57:17
