@@ -18,7 +18,7 @@
     <header>
         <nav class="nav-bar" id="nav-bar"></nav>
     </header>
-    
+    <h1 class="titulo-principal">Cliente</h1>
     <form class="buscarCliente" id="buscarCliente">
         <input type="text" id="datoCliente" placeholder="Buscar" required> 
         <input type="submit" value="Buscar">
@@ -28,7 +28,16 @@
     <main>
         <ul id="lista-clientes">
         </ul>
+        <dialog id="dialogo-eliminar-tabla-usuarios" class="dialogo-tabla-usuarios">
+            <p>¿Está seguro que desea eliminar usuario?</p>
+            <button id="eliminar-tabla-usuarios">ELIMINAR</button>
+            <button id="eliminar-cancelar-tabla-usuarios">CANCELAR</button>
+        </dialog>
     </main>
+    <dialog id="dialogo-1" class="dialogo-1">
+        <p id="mensaje-1"></p>
+        <button id="cerrar-1">CERRAR</button>
+    </dialog>
 </body>
 
 </html>

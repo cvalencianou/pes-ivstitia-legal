@@ -18,7 +18,7 @@ class Cliente {
         return await executePreparedStatement('CALL cliente_buscar_por_cedula(?,?)', [usuarioId, cedula])
     }
 
-    async buscarPorId(usuarioId, clienteId) {
+    async obtenerClientePorId(usuarioId, clienteId) {
         return await executePreparedStatement('CALL cliente_buscar_por_id(?,?)', [clienteId, usuarioId])
     }
 

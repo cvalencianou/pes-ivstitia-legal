@@ -2,6 +2,23 @@ const httpError = require('http-errors')
 const { StatusCodes } = require('http-status-codes')
 const Cliente = require('../modelos/Cliente')
 
+const obtenerClientes = async (req, res) => {
+
+    const usuarioId = req.user.id
+    const cliente = new Cliente()
+
+    const resultado = await cliente.obtenerClientes(usuarioId)
+
+    if (resultado[0].length === 0) {
+        throw new httpError(StatusCodes.NOT_FOUND, `No existe ningún cliente!`)
+    }
+
+    res.status(StatusCodes.OK).json({
+        mensaje: resultado[0]
+    })
+
+}
+
 const crearCliente = async (req, res) => {
 
     const usuarioId = req.user.id
@@ -31,23 +48,6 @@ const crearCliente = async (req, res) => {
     }
 }
 
-const obtenerClientes = async (req, res) => {
-
-    const usuarioId = req.user.id
-    const cliente = new Cliente()
-
-    const resultado = await cliente.obtenerClientes(usuarioId)
-
-    if (resultado[0].length === 0) {
-        throw new httpError(StatusCodes.NOT_FOUND, `No existe ningún cliente!`)
-    }
-
-    res.status(StatusCodes.OK).json({
-        mensaje: resultado[0]
-    })
-
-}
-
 const filtrarClientes = async (req, res) => {
 
     const usuarioId = req.user.id
@@ -72,7 +72,8 @@ const filtrarClientes = async (req, res) => {
 
 const actualizarCliente = async (req, res) => {
     const usuarioId = req.user.id
-    const { clienteId, nombre, cedula, tipoCedula, correo, telefonoMovil, telefonoFisico, direccion } = req.body
+    const clienteId = req.params.clienteId
+    const { nombre, cedula, tipoCedula, correo, telefonoMovil, telefonoFisico, direccion } = req.body
 
     if (!usuarioId || !clienteId || !nombre || !cedula || !tipoCedula || !correo || !telefonoMovil || !direccion) {
         throw new httpError(StatusCodes.BAD_REQUEST, 'POR FAVOR BRINDAR TODOS LOS DATOS!')
@@ -88,7 +89,7 @@ const actualizarCliente = async (req, res) => {
 
     const cliente = new Cliente()
 
-    if ((await cliente.buscarPorId(usuarioId, clienteId))[0].length === 0) {
+    if ((await cliente.obtenerClientePorId(usuarioId, clienteId))[0].length === 0) {
         throw new httpError(StatusCodes.NOT_FOUND, 'NO EXISTE CLIENTE')
     }
 
@@ -105,7 +106,7 @@ const actualizarCliente = async (req, res) => {
 
 const eliminarCliente = async (req, res) => {
     const usuarioId = req.user.id
-    const clienteId = req.query.clienteId
+    const clienteId = req.params.clienteId
 
     if (!usuarioId || !clienteId) {
         throw new httpError(StatusCodes.BAD_REQUEST, 'POR FAVOR BRINDAR TODOS LOS DATOS!')
@@ -117,7 +118,7 @@ const eliminarCliente = async (req, res) => {
 
     const cliente = new Cliente()
 
-    if ((await cliente.buscarPorId(usuarioId, clienteId))[0].length === 0) {
+    if ((await cliente.obtenerClientePorId(usuarioId, clienteId))[0].length === 0) {
         throw new httpError(StatusCodes.NOT_FOUND, 'NO EXISTE CLIENTE')
     }
 
@@ -131,4 +132,31 @@ const eliminarCliente = async (req, res) => {
     }
 }
 
-module.exports = { obtenerClientes, filtrarClientes, crearCliente, actualizarCliente, eliminarCliente }
+const obtenerCliente = async (req, res) => {
+
+    const usuarioId = req.user.id
+    const clienteId = req.params.clienteId
+
+    if (!usuarioId || !clienteId) {
+        throw new httpError(StatusCodes.BAD_REQUEST, 'POR FAVOR BRINDAR TODOS LOS DATOS!')
+    }
+
+    if (typeof usuarioId !== 'number' || isNaN(clienteId)) {
+        throw new httpError(StatusCodes.BAD_REQUEST, 'POR FAVOR BRINDAR DATOS VALIDOS  !')
+    }
+
+    const cliente = new Cliente()
+
+    if ((await cliente.obtenerClientePorId(usuarioId, clienteId))[0].length === 0) {
+        throw new httpError(StatusCodes.NOT_FOUND, 'NO EXISTE CLIENTE')
+    }
+
+    if ((await cliente.obtenerClientePorId(clienteId, usuarioId)).affectedRows === 1) {
+        res.status(StatusCodes.CREATED).json({
+            mensaje: resultado[0]
+        })
+    }
+
+}
+
+module.exports = { obtenerClientes, obtenerCliente, filtrarClientes, crearCliente, actualizarCliente, eliminarCliente }
