@@ -14,7 +14,7 @@ const limiter = rateLimit({
     standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
     legacyHeaders: false, // Disable the `X-RateLimit-*` headers,
     handler: (req, res, next, options) => {
-        throw new httpError(StatusCodes.TOO_MANY_REQUESTS, 'HA EXCEDIDO LAS SOLICITUDES. INTENTE DE NUEVO EN 15 MINUTOS')
+        throw new httpError(StatusCodes.TOO_MANY_REQUESTS, 'Ha excedido las solicitudes. Intente de nuevo en 15 minutos')
     }
 })
 
