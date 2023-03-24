@@ -2,9 +2,12 @@ window.onpageshow = async () => {
 
     document.getElementById('form-crear-cliente').addEventListener('submit', (event) =>{
         event.preventDefault()
-
         crearCliente()
+        window.location.assign('clientes')
+    })
 
+    document.getElementById('cerrar-1').addEventListener('click', () => {
+        document.getElementById('dialogo-1').close()
     })
 }
 
@@ -17,7 +20,7 @@ const crearCliente = async() =>{
     const telefonoMovil = document.getElementById('telefonoMovil').value
     const direccion = document.getElementById('direccion').value
 
-    const resultado = await fetch('/api/v1/clientes', {
+    const resultado = await fetch(`/api/v1/clientes/`, {
         method:'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -33,12 +36,17 @@ const crearCliente = async() =>{
         })
     })
 
-    const data = await resultado.json()
+    const datos = await resultado.json()
 
-    if (resultado.status === 201) {
-        alert(data.mensaje)
-    }
-    else{
-        alert(data.mensaje)
+    switch (resultado.status) {
+        case 201:
+            document.getElementById('mensaje-1').innerHTML = datos.mensaje
+            document.getElementById('dialogo-1').showModal()
+            break;
+    
+        default:
+            document.getElementById('mensaje-1').innerHTML = datos.mensaje
+            document.getElementById('dialogo-1').showModal()
+            break;
     }
 }
