@@ -89,13 +89,9 @@ const actualizarCliente = async (req, res) => {
 
     const cliente = new Cliente()
 
-    if ((await cliente.obtenerClientePorId(usuarioId, clienteId))[0].length === 0) {
-        throw new httpError(StatusCodes.NOT_FOUND, 'NO EXISTE CLIENTE')
-    }
-
     if ((await cliente.actualizarCliente(clienteId, usuarioId, nombre, cedula, correo, telefonoMovil, telefonoFisico, direccion, tipoCedula)).affectedRows === 1) {
-        res.status(StatusCodes.CREATED).json({
-            mensaje: `CLIENTE ACTUALIZADO!`
+        res.status(StatusCodes.OK).json({
+            mensaje: `Cliente actualizado!`
         })
     }
     else {
@@ -118,7 +114,7 @@ const eliminarCliente = async (req, res) => {
 
     const cliente = new Cliente()
 
-    if ((await cliente.obtenerClientePorId(usuarioId, clienteId))[0].length === 0) {
+    if ((await cliente.obtenerClientePorId(clienteId, usuarioId))[0].length === 0) {
         throw new httpError(StatusCodes.NOT_FOUND, 'NO EXISTE CLIENTE')
     }
 
@@ -147,16 +143,15 @@ const obtenerCliente = async (req, res) => {
 
     const cliente = new Cliente()
 
-    if ((await cliente.obtenerClientePorId(usuarioId, clienteId))[0].length === 0) {
-        throw new httpError(StatusCodes.NOT_FOUND, 'NO EXISTE CLIENTE')
+    const resultado = await cliente.obtenerClientePorId(clienteId, usuarioId)
+
+    if (resultado[0].length === 0) {
+        throw new httpError(StatusCodes.NOT_FOUND, `No existe cliente`)
     }
 
-    if ((await cliente.obtenerClientePorId(clienteId, usuarioId)).affectedRows === 1) {
-        res.status(StatusCodes.CREATED).json({
-            mensaje: resultado[0]
-        })
-    }
-
+    res.status(StatusCodes.OK).json({
+        mensaje: resultado[0]
+    })
 }
 
 module.exports = { obtenerClientes, obtenerCliente, filtrarClientes, crearCliente, actualizarCliente, eliminarCliente }
