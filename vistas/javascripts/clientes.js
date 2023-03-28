@@ -63,9 +63,7 @@ const obtenerClientes = async () => {
                 </li>
                 `
             });
-
-
-
+            
             document.getElementById('lista-clientes').innerHTML = listaClientes
 
             break;
