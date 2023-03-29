@@ -71,6 +71,7 @@ const obtenerClientes = async () => {
         default:
             document.getElementById('mensaje1').innerHTML = data.mensaje
             document.getElementById('dialogo-1').showModal()
+            break;
     }
 }
 
@@ -92,7 +93,7 @@ const filtrarClientes = async () => {
                 Nombre: ${cliente.nombre}  Cedula: ${cliente.cedula}  <br><br>
                 Teléfono movil: ${cliente.telefonoMovil} Teléfono físico: ${cliente.telefonoFisico} <br><br>
                 Correo: ${cliente.correo}    Dirección: ${cliente.direccion} 
-                <a href="actualizar-cliente" id="btnActualizar"><button value="${cliente.id}">Actualizar</button>
+                <button value="${cliente.id}">Actualizar</button>
                 <button value="${cliente.id}">Eliminar</button>
                 </li>
                 `
@@ -113,6 +114,7 @@ const cargarActualizarCliente = async (clienteId) => {
 
     document.getElementById('main-clientes').style.display = 'none'
     document.getElementById('seccion-actualizar-cliente').style.display = 'block'
+    
     await obtenerCliente(clienteId)
 
     document.getElementById('form-actualizar-cliente').addEventListener('submit', (event) => {
@@ -128,8 +130,6 @@ const obtenerCliente = async (clienteId) => {
     const data = ((await resultado.json()).mensaje)[0]
 
     //fetch de opciones
-
-
 
     switch (resultado.status) {
         case 200:
@@ -184,7 +184,6 @@ const actualizarCliente = async (clienteId) => {
             document.getElementById('cerrar-1').addEventListener('click', () => {
                 window.location.assign('clientes')
             })
-            console.log(resultado.status)
             break;
 
         default:
