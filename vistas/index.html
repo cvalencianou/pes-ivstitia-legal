@@ -1,18 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IvstitiaLegal</title>
+    <link rel="stylesheet" href="stylesheets/general.css">
     <link rel="stylesheet" href="stylesheets/index.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cinzel">
 </head>
+
 <body>
     <header>
-        <nav>
-            <img src="images/logo_ivstitia_legal.jpg" alt="">
-            <button onclick="window.location.href = 'iniciar-sesion'">INICIAR SESIÓN</button>
+        <nav class="nav-bar" id="nav-bar">
+        </nav>
+        <script>
+            const enlaces =
+                ` 
+            <a href="/" class="logo">IL</a>          
+            <a href="iniciar-sesion">INICIAR SESIÓN</a>
+            <a href="javascript:void(0);" class="icon" onclick="barraResponsive()">
+                <i class="fa fa-bars"></i>
+            </a>
+        `
+            document.getElementById('nav-bar').innerHTML = enlaces
+        </script>
     </header>
     <br>
     <h1>Bienvenidos a IvstitiaLegal!</h1>
@@ -21,7 +34,5 @@
         calculo de timbres e impuestos que permite al usuario mantener el control <br>
         de sus clientes y casos legales que este trabajando.</p>
 </body>
+
 </html>
-
-
-
