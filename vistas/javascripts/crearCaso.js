@@ -2,9 +2,7 @@ window.onpageshow = async () => {
 
     document.getElementById('form-crear-caso').addEventListener('submit', (event) => {
         event.preventDefault()
-
         crearCaso()
-
     })
 }
 
@@ -29,12 +27,15 @@ const crearCaso = async () => {
         })
     })
 
-    const data = await resultado.json()
-
-    if (resultado.status === 201) {
-        alert(data.mensaje)
-    }
-    else {
-        alert(data.mensaje)
+    switch (resultado.status) {
+        case 201:
+            document.getElementById('mensaje-1').innerHTML = datos.mensaje
+            document.getElementById('dialogo-1').showModal()
+            break;
+    
+        default:
+            document.getElementById('mensaje-1').innerHTML = datos.mensaje
+            document.getElementById('dialogo-1').showModal()
+            break;
     }
 }

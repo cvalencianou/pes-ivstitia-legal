@@ -11,7 +11,7 @@ const obtenerCasos = async (req, res) => {
     const resultado = await caso.obtenerCasos(usuarioId)
 
     if (resultado[0].length === 0) {
-        throw new httpError(StatusCodes.NOT_FOUND, `No existe ningún caso!`)
+        throw new httpError(StatusCodes.NOT_FOUND, `No existen casos registrados.`)
     }
 
     res.status(StatusCodes.OK).json({
@@ -25,22 +25,22 @@ const crearCaso = async (req, res) => {
     const { nombre, despacho, descripcion, estado, tipoProceso } = req.body
 
     if (!usuarioId || !nombre || !despacho || !descripcion || !estado || !tipoProceso) {
-        throw new httpError(StatusCodes.BAD_REQUEST, 'POR FAVOR BRINDAR TODOS LOS DATOS!')
+        throw new httpError(StatusCodes.BAD_REQUEST, 'Por favor brindar todos los datos.')
     }
 
     if (typeof (usuarioId) !== 'number' || typeof (nombre, despacho, descripcion) !== 'string' || isNaN(estado, tipoProceso)) {
-        throw new httpError(StatusCodes.BAD_REQUEST, 'POR FAVOR BRINDAR DATOS VALIDOS!')
+        throw new httpError(StatusCodes.BAD_REQUEST, 'Por favor brindar datos válidos.')
     }
 
     const caso = new Caso()
 
     if ((await caso.buscarPorNombre(usuarioId, nombre))[0].length === 1) {
-        throw new httpError(StatusCodes.CONFLICT, 'YA EXISTE CASO')
+        throw new httpError(StatusCodes.CONFLICT, 'Caso ya registrado!')
     }
 
     if ((await caso.crearCaso(usuarioId, nombre, despacho, descripcion, estado, tipoProceso)).affectedRows === 1) {
         res.status(StatusCodes.CREATED).json({
-            mensaje: `CASO CREADO`
+            mensaje: `Caso creado correctamente.`
         })
     }
 }
@@ -51,7 +51,7 @@ const filtrarCasos = async (req, res) => {
     const datoCaso = req.query.datoCaso
 
     if (!usuarioId || !datoCaso) {
-        throw new httpError(StatusCodes.BAD_REQUEST, 'POR FAVOR BRINDAR TODOS LOS VALORES!')
+        throw new httpError(StatusCodes.BAD_REQUEST, 'Por favor brindar todos los datos.')
     }
 
     const caso = new Caso()
@@ -59,7 +59,7 @@ const filtrarCasos = async (req, res) => {
     const resultado = await caso.filtrarCasos(usuarioId, datoCaso)
 
     if (resultado[0].length === 0) {
-        throw new httpError(StatusCodes.NOT_FOUND, `${datoCaso} no coincide con ningún caso!`)
+        throw new httpError(StatusCodes.NOT_FOUND, `${datoCaso} no coincide con ningún caso.`)
     }
 
     res.status(StatusCodes.OK).json({
@@ -69,29 +69,30 @@ const filtrarCasos = async (req, res) => {
 
 const actualizarCaso = async (req, res) => {
     const usuarioId = req.user.id
-    const { casoId, nombre, despacho, descripcion, estado, tipoProceso } = req.body
+    const casoId = req.params.casoId
+    const { nombre, despacho, descripcion, estado, tipoProceso } = req.body
 
     if (!usuarioId || !casoId || !nombre || !despacho || !descripcion || !estado || !tipoProceso) {
-        throw new httpError(StatusCodes.BAD_REQUEST, 'POR FAVOR BRINDAR TODOS LOS DATOS!')
+        throw new httpError(StatusCodes.BAD_REQUEST, 'Por favor brindar todos los datos.')
     }
 
     if (typeof (usuarioId) !== 'number' || typeof (nombre, despacho, descripcion) !== 'string' || isNaN(estado, tipoProceso, casoId)) {
-        throw new httpError(StatusCodes.BAD_REQUEST, 'POR FAVOR BRINDAR DATOS VALIDOS!')
+        throw new httpError(StatusCodes.BAD_REQUEST, 'Por favor brindar datos válidos.')
     }
 
     const caso = new Caso()
 
     if ((await caso.buscarPorIdCaso(casoId, usuarioId))[0].length === 0) {
-        throw new httpError(StatusCodes.NOT_FOUND, 'NO EXISTE CASO')
+        throw new httpError(StatusCodes.NOT_FOUND, 'Caso no registrado.')
     }
 
     if ((await caso.actualizarCaso(casoId, usuarioId, nombre, despacho, descripcion, estado, tipoProceso)).affectedRows === 1) {
         res.status(StatusCodes.OK).json({
-            mensaje: `CASO ACTUALIZADO`
+            mensaje: `Caso actualizado correctamente.`
         })
     }
     else {
-        throw new httpError(StatusCodes.CONFLICT, 'CASO NO ACTUALIZADO')
+        throw new httpError(StatusCodes.CONFLICT, 'No se puede actualizar los datos del caso.')
     }
 
 }
@@ -102,26 +103,26 @@ const eliminarCaso = async (req, res) => {
     const casoId = req.params.casoId
 
     if (!usuarioId || !casoId) {
-        throw new httpError(StatusCodes.BAD_REQUEST, 'POR FAVOR BRINDAR TODOS LOS DATOS!')
+        throw new httpError(StatusCodes.BAD_REQUEST, 'Por favor brindar todos los datos.')
     }
 
     if (typeof usuarioId !== 'number' || isNaN(casoId)) {
-        throw new httpError(StatusCodes.BAD_REQUEST, 'POR FAVOR BRINDAR DATOS VALIDOS  !')
+        throw new httpError(StatusCodes.BAD_REQUEST, 'Por favor brindar datos válidos.')
     }
 
     const caso = new Caso()
 
     if ((await caso.buscarPorIdCaso(casoId, usuarioId))[0].length === 0) {
-        throw new httpError(StatusCodes.NOT_FOUND, 'NO EXISTE CASO')
+        throw new httpError(StatusCodes.NOT_FOUND, 'Caso no registrado.')
     }
 
     if ((await caso.eliminarCaso(casoId, usuarioId)).affectedRows === 1) {
         res.status(StatusCodes.OK).json({
-            mensaje: `CASO ELIMINADO!`
+            mensaje: `Caso eliminado correctamente!`
         })
     }
     else {
-        throw new httpError(StatusCodes.CONFLICT, 'CASO NO ELIMINADO')
+        throw new httpError(StatusCodes.CONFLICT, 'No se puede eliminar el caso.')
     }
 }
 
@@ -131,11 +132,11 @@ const obtenerCaso = async (req, res) => {
     const casoId = req.params.casoId
 
     if (!usuarioId || !casoId) {
-        throw new httpError(StatusCodes.BAD_REQUEST, 'POR FAVOR BRINDAR TODOS LOS VALORES!')
+        throw new httpError(StatusCodes.BAD_REQUEST, 'Por favor brindar todos los datos.')
     }
 
     if (typeof usuarioId !== 'number' || isNaN(casoId)) {
-        throw new httpError(StatusCodes.BAD_REQUEST, 'POR FAVOR BRINDAR DATOS VALIDOS!')
+        throw new httpError(StatusCodes.BAD_REQUEST, 'Por favor brindar datos válidos.')
     }
 
     const caso = new Caso()
@@ -147,7 +148,7 @@ const obtenerCaso = async (req, res) => {
     const resultado = await caso.obtenerCaso(casoId, usuarioId)
 
     if (resultado[0].length === 0) {
-        throw new httpError(StatusCodes.NOT_FOUND, `No coincide ningún caso!`)
+        throw new httpError(StatusCodes.NOT_FOUND, `Caso no registrado.`)
     }
 
     res.status(StatusCodes.OK).json({
@@ -165,23 +166,23 @@ const agregarNota = async (req, res) => {
     const {nota} = req.body
 
     if (!casoId || !nota) {
-        throw new httpError(StatusCodes.BAD_REQUEST, 'POR FAVOR BRINDAR TODOS LOS DATOS!')
+        throw new httpError(StatusCodes.BAD_REQUEST, 'Por favor brindar todos los datos.')
     }
 
     if (typeof (nota) !== 'string' || isNaN(casoId)) {
-        throw new httpError(StatusCodes.BAD_REQUEST, 'POR FAVOR BRINDAR DATOS VALIDOS!')
+        throw new httpError(StatusCodes.BAD_REQUEST, 'Por favor brindar datos válidos.')
     }
 
     const caso = new Caso()
     const notaCaso = new NotaCaso()
 
     if ((await caso.buscarPorIdCaso(casoId, usuarioId))[0].length === 0) {
-        throw new httpError(StatusCodes.NOT_FOUND, 'NO EXISTE CASO')
+        throw new httpError(StatusCodes.NOT_FOUND, 'Caso no registrado.')
     }
 
     if ((await notaCaso.agregarNota(casoId, nota)).affectedRows === 1) {
         res.status(StatusCodes.CREATED).json({
-            mensaje: `Nota agregada`
+            mensaje: `Nota agregada correctamente.`
         })
     }
 
@@ -194,23 +195,23 @@ const agregarCliente = async (req, res) => {
     const { clienteId } = req.body
 
     if (!casoId || !clienteId) {
-        throw new httpError(StatusCodes.BAD_REQUEST, 'POR FAVOR BRINDAR TODOS LOS DATOS!')
+        throw new httpError(StatusCodes.BAD_REQUEST, 'Por favor brindar todos los datos.')
     }
 
     if (isNaN(casoId, clienteId)) {
-        throw new httpError(StatusCodes.BAD_REQUEST, 'POR FAVOR BRINDAR DATOS VALIDOS!')
+        throw new httpError(StatusCodes.BAD_REQUEST, 'Por favor brindar datos válidos.')
     }
 
     const caso = new Caso()
     const cliente = new Cliente()    
 
     if ((await caso.buscarPorIdCaso(casoId, usuarioId))[0].length === 0) {
-        throw new httpError(StatusCodes.NOT_FOUND, 'NO EXISTE CASO')
+        throw new httpError(StatusCodes.NOT_FOUND, 'Caso no registrado.')
     }
 
     if ((await cliente.agregarClientePorCasoId(casoId, clienteId)).affectedRows === 1) {
         res.status(StatusCodes.CREATED).json({
-            mensaje: `Cliente agregado`
+            mensaje: `Cliente(s) agregado(s) correctamente.`
         })
     }
 
@@ -223,28 +224,28 @@ const eliminarNota = async (req, res) => {
     const notaId = req.params.notaId
 
     if (!casoId || !notaId) {
-        throw new httpError(StatusCodes.BAD_REQUEST, 'POR FAVOR BRINDAR TODOS LOS DATOS!')
+        throw new httpError(StatusCodes.BAD_REQUEST, 'Por favor brindar todos los datos.')
     }
 
     if (typeof usuarioId !== 'number' || isNaN(casoId, notaId)) {
-        throw new httpError(StatusCodes.BAD_REQUEST, 'POR FAVOR BRINDAR DATOS VALIDOS!')
+        throw new httpError(StatusCodes.BAD_REQUEST, 'Por favor brindar datos válidos.')
     }
 
     const caso = new Caso()
     const notaCaso = new NotaCaso()
 
     if ((await caso.buscarPorIdCaso(casoId, usuarioId))[0].length === 0) {
-        throw new httpError(StatusCodes.NOT_FOUND, 'NO EXISTE CASO')
+        throw new httpError(StatusCodes.NOT_FOUND, 'Caso no registrado.')
     }
 
     if ((await notaCaso.eliminarNota(casoId, notaId)).affectedRows === 1) {
         res.status(StatusCodes.OK).json({
-            mensaje: `Nota eliminada!`
+            mensaje: `Nota eliminada correctamente.`
         })
     }
 
     else {
-        throw new httpError(StatusCodes.CONFLICT, 'Nota no eliminada')
+        throw new httpError(StatusCodes.CONFLICT, 'No se puede eliminar nota.')
     }
 }
 
@@ -255,28 +256,28 @@ const eliminarCliente = async (req, res) => {
     const clienteId = req.params.clienteId
 
     if (!casoId || !clienteId) {
-        throw new httpError(StatusCodes.BAD_REQUEST, 'POR FAVOR BRINDAR TODOS LOS DATOS!')
+        throw new httpError(StatusCodes.BAD_REQUEST, 'Por favor brindar todos los datos.')
     }
 
     if (isNaN(casoId, clienteId)) {
-        throw new httpError(StatusCodes.BAD_REQUEST, 'POR FAVOR BRINDAR DATOS VALIDOS!')
+        throw new httpError(StatusCodes.BAD_REQUEST, 'Por favor brindar datos válidos.')
     }
 
     const caso = new Caso()
     const cliente = new Cliente()
 
     if ((await caso.buscarPorIdCaso(casoId, usuarioId))[0].length === 0) {
-        throw new httpError(StatusCodes.NOT_FOUND, 'NO EXISTE CASO')
+        throw new httpError(StatusCodes.NOT_FOUND, 'Caso no registrado')
     }
 
     if ((await cliente.eliminarClientePorCasoId(casoId, clienteId)).affectedRows === 1) {
         res.status(StatusCodes.OK).json({
-            mensaje: `Cliente eliminado!`
+            mensaje: `Cliente eliminado correctamente.`
         })
     }
 
     else {
-        throw new httpError(StatusCodes.CONFLICT, 'Cliente no eliminado')
+        throw new httpError(StatusCodes.CONFLICT, 'No se puede eliminar cliente.')
     }
 
 }

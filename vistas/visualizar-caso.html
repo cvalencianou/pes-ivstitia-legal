@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caso - IvstitiaLegal</title>
+    <link rel="stylesheet" href="stylesheets/casos.css">
+    <link rel="stylesheet" href="stylesheets/general.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cinzel">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="javascripts/visualizarCasos.js"></script>
+    <script src="javascripts/general.js"></script>
+</head>
+
+<body>
+    <header>
+        <nav class="nav-bar" id="nav-bar"></nav>
+    </header>
+
+    <main id="main-visualizar-caso">
+        <section class="seccion-información-caso">
+            <h1 class="titulo-principal" id="nombre-caso"></h1>
+            <nav id="opciones-caso"> </nav>
+            <label for="despacho">Despacho:</label>
+            <label for="despacho" id="despacho"></label><br>
+
+            <label for="tipo-proceso">Tipo proceso:</label>
+            <label for="tipo-proceso" id="tipo-proceso"></label><br>
+
+            <label for="descripcion">Descripción:</label>
+            <label for="descripcion" id="descripcion"></label><br>
+
+            <label for="estado">Estado:</label>
+            <label for="estado" id="estado"></label><br><br><br>
+
+            <dialog id="dialogo-eliminar-caso" class="dialogo-caso">
+                <p>¿Está seguro que desea eliminar caso?</p>
+                <button id="eliminar-caso">ELIMINAR</button>
+                <button id="eliminar-cancelar-caso">CANCELAR</button>
+            </dialog>
+        </section>
+
+        <section class="seccion-notas-caso">
+            <br><br><label for="tabla-notas-caso" class="form-nuevo-usuario-titulo">Notas del caso</label>
+            <table class="tabla-notas-caso" id="tabla-notas-caso">
+                <thead class="tabla-head">
+                    <tr>
+                        <th>Nota</th>
+                        <th>Opcion</th>
+                    </tr>
+                </thead>
+                <tbody id="tabla-notas" class="tabla-cuerpo"></tbody>
+            </table>
+            <dialog id="dialogo-eliminar-notas" class="dialogo-notas">
+                <p>¿Está seguro que desea eliminar nota?</p>
+                <button id="eliminar-notas">Eliminar</button>
+                <button id="eliminar-cancelar-notas">Cancelar</button>
+            </dialog>
+        </section>
+
+        <section class="seccion-clientes-caso">
+            <br><br><label for="tabla-clientes-caso" class="form-nuevo-usuario-titulo">Clientes del caso</label>
+            <table class="tabla-clientes-caso" id="tabla-clientes-caso">
+                <thead class="tabla-head">
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Opcion</th>
+                    </tr>
+                </thead>
+                <tbody id="tabla-clientes" class="tabla-cuerpo"></tbody>
+            </table>
+            <dialog id="dialogo-eliminar-clientes" class="dialogo-clientes">
+                <p>¿Está seguro que desea eliminar cliente?</p>
+                <button id="eliminar-clientes">ELIMINAR</button>
+                <button id="eliminar-cancelar-clientes">CANCELAR</button>
+            </dialog>
+        </section>
+    </main>
+
+    <section id="seccion-agregar-nota" class="seccion-agregar-nota">
+        <h2 class="titulo-secundario">Agregar Cliente</h2>
+        <form id="form-agregar-nota" class="form-agregar-nota">
+            <label for="nota">Ingrese la nota que desea agregar.</label> <br>
+            <input type="nota" name="nota" id="nota" placeholder="Escriba aquí la nota" required>
+            <input type="submit" value="Agregar">
+        </form>
+    </section>
+
+    <section id="seccion-agregar-cliente" class="seccion-agregar-cliente">
+        <h2 class="titulo-secundario">Agregar Cliente</h2>
+        <form id="form-agregar-cliente" class="form-agregar-cliente"></form>
+    </section>
+
+    <section id="seccion-actualizar-caso" class="seccion-actualizar-cliente">
+        <h1 class="titulo-principal">Actualizar Caso</h1> <br>
+        <p>Por favor ingresar la información que desee actualizar:</p> <br>
+        <form id="form-actualizar-caso">
+
+            <label for="nombre-caso-">Nombre caso:</label>
+            <input type="text" id="nombre-caso-actualizar" required> <br>
+
+            <label for="descripcion">Descripción:</label>
+            <input type="text" id="descripcion-actualizar" required> <br>
+
+            <label for="Despacho">Despacho:</label>
+            <input type="text" id="despacho-actualizar" required> <br>
+
+            <label for="tipo-proceso">Tipo proceso:</label>
+            <select name="tipo-proceso" id="tipo-proceso-actualizar" required>
+                <option value="1">Traspaso de propiedad</option>
+                <option value="2">Divorcio</option>
+                <option value="3">Matrimonio</option>
+            </select> <br>
+
+            <label for="estado">Estado: </label>
+            <select name="estado" id="estado-actualizar" required>
+                <option value="1">En tramite</option>
+                <option value="2">En espera que ocurra una situación</option>
+                <option value="3">Con sentencia</option>
+                <option value="4">Con sentncia firme</option>
+            </select> <br><br>
+
+            <input type="submit" value="Actualizar">
+
+        </form>
+
+    </section>
+
+    <dialog id="dialogo-1" class="dialogo-1">
+        <p id="mensaje-1"></p>
+        <button id="cerrar-1">Cerrar</button>
+    </dialog>
+
+</body>
+
+</html>
