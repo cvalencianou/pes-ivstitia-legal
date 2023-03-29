@@ -10,7 +10,7 @@ const obtenerClientes = async (req, res) => {
     const resultado = await cliente.obtenerClientes(usuarioId)
 
     if (resultado[0].length === 0) {
-        throw new httpError(StatusCodes.NOT_FOUND, `No existe ningún cliente!`)
+        throw new httpError(StatusCodes.NOT_FOUND, `No existen clientes registrados.`)
     }
 
     res.status(StatusCodes.OK).json({
@@ -25,25 +25,25 @@ const crearCliente = async (req, res) => {
     const { nombre, cedula, tipoCedula, correo, telefonoMovil, telefonoFisico, direccion } = req.body
 
     if (!usuarioId || !nombre || !cedula || !tipoCedula || !correo || !telefonoMovil || !direccion) {
-        throw new httpError(StatusCodes.BAD_REQUEST, 'POR FAVOR BRINDAR TODOS LOS DATOS!')
+        throw new httpError(StatusCodes.BAD_REQUEST, 'Por favor brindar todos los datos.')
     }
 
     if (typeof usuarioId !== 'number' || typeof (nombre, cedula, telefonoMovil, telefonoFisico, correo, direccion) !== 'string' || isNaN(cedula, telefonoMovil, telefonoFisico)) {
-        throw new httpError(StatusCodes.BAD_REQUEST, 'POR FAVOR BRINDAR DATOS VALIDOS!')
+        throw new httpError(StatusCodes.BAD_REQUEST, 'Por favor brindar datos válidos.')
     }
 
     if (correo.length < 6 || correo.length > 45 || !correo.match(/[^\s@]+@[^\s@]+\.[^\s@]+/)) {
-        throw new httpError(StatusCodes.BAD_REQUEST, 'POR FAVOR BRINDAR UN CORREO VÁLIDO')
+        throw new httpError(StatusCodes.BAD_REQUEST, 'Por favor brindar un correo válido.')
     }
     const cliente = new Cliente()
 
     if ((await cliente.buscarPorCedula(usuarioId, cedula))[0].length === 1) {
-        throw new httpError(StatusCodes.CONFLICT, 'YA EXISTE USUARIO')
+        throw new httpError(StatusCodes.CONFLICT, 'Usuario ya registrado.')
     }
 
     if ((await cliente.crearCliente(usuarioId, nombre, cedula, correo, telefonoMovil, telefonoFisico, direccion, tipoCedula)).affectedRows === 1) {
         res.status(StatusCodes.CREATED).json({
-            mensaje: `CLIENTE CREADO`
+            mensaje: `Cliente creado correctamente.`
         })
     }
 }
@@ -54,7 +54,7 @@ const filtrarClientes = async (req, res) => {
     const datoCliente = req.query.datoCliente
 
     if (!usuarioId || !datoCliente) {
-        throw new httpError(StatusCodes.BAD_REQUEST, 'POR FAVOR BRINDAR TODOS LOS VALORES!')
+        throw new httpError(StatusCodes.BAD_REQUEST, 'Por favor brindar todos los datos.')
     }
 
     const cliente = new Cliente()
@@ -62,7 +62,7 @@ const filtrarClientes = async (req, res) => {
     const resultado = await cliente.filtrarClientes(usuarioId, datoCliente)
 
     if (resultado[0].length === 0) {
-        throw new httpError(StatusCodes.NOT_FOUND, `${datoCliente} no coincide con ningún cliente!`)
+        throw new httpError(StatusCodes.NOT_FOUND, `${datoCliente} no coincide con ningún cliente.`)
     }
 
     res.status(StatusCodes.OK).json({
@@ -76,26 +76,26 @@ const actualizarCliente = async (req, res) => {
     const { nombre, cedula, tipoCedula, correo, telefonoMovil, telefonoFisico, direccion } = req.body
 
     if (!usuarioId || !clienteId || !nombre || !cedula || !tipoCedula || !correo || !telefonoMovil || !direccion) {
-        throw new httpError(StatusCodes.BAD_REQUEST, 'POR FAVOR BRINDAR TODOS LOS DATOS!')
+        throw new httpError(StatusCodes.BAD_REQUEST, 'Por favor brindar todos los datos.')
     }
 
     if (typeof usuarioId !== 'number' || typeof (nombre, cedula, telefonoMovil, telefonoFisico, correo, direccion) !== 'string' || isNaN(clienteId, cedula, telefonoMovil, telefonoFisico)) {
-        throw new httpError(StatusCodes.BAD_REQUEST, 'POR FAVOR BRINDAR DATOS VALIDOS  !')
+        throw new httpError(StatusCodes.BAD_REQUEST, 'Por favor brindar datos válidos.')
     }
 
     if (correo.length < 6 || correo.length > 45 || !correo.match(/[^\s@]+@[^\s@]+\.[^\s@]+/)) {
-        throw new httpError(StatusCodes.BAD_REQUEST, 'POR FAVOR BRINDAR UN CORREO VÁLIDO')
+        throw new httpError(StatusCodes.BAD_REQUEST, 'Por favor brindar un correo válido.')
     }
 
     const cliente = new Cliente()
 
     if ((await cliente.actualizarCliente(clienteId, usuarioId, nombre, cedula, correo, telefonoMovil, telefonoFisico, direccion, tipoCedula)).affectedRows === 1) {
         res.status(StatusCodes.OK).json({
-            mensaje: `Cliente actualizado!`
+            mensaje: `Cliente actualizado correctamente.`
         })
     }
     else {
-        throw new httpError(StatusCodes.CONFLICT, 'CLIENTE NO ACTUALIZADO')
+        throw new httpError(StatusCodes.CONFLICT, 'No se puede actualizar los datos del cliente.')
     }
 
 }
@@ -105,26 +105,26 @@ const eliminarCliente = async (req, res) => {
     const clienteId = req.params.clienteId
 
     if (!usuarioId || !clienteId) {
-        throw new httpError(StatusCodes.BAD_REQUEST, 'POR FAVOR BRINDAR TODOS LOS DATOS!')
+        throw new httpError(StatusCodes.BAD_REQUEST, 'Por favor brindar todos los datos.')
     }
 
     if (typeof usuarioId !== 'number' || isNaN(clienteId)) {
-        throw new httpError(StatusCodes.BAD_REQUEST, 'POR FAVOR BRINDAR DATOS VALIDOS  !')
+        throw new httpError(StatusCodes.BAD_REQUEST, 'Por favor brindar datos válidos.')
     }
 
     const cliente = new Cliente()
 
     if ((await cliente.obtenerClientePorId(clienteId, usuarioId))[0].length === 0) {
-        throw new httpError(StatusCodes.NOT_FOUND, 'NO EXISTE CLIENTE')
+        throw new httpError(StatusCodes.NOT_FOUND, 'Cliente no registrado')
     }
 
     if ((await cliente.eliminarCliente(clienteId, usuarioId)).affectedRows === 1) {
         res.status(StatusCodes.CREATED).json({
-            mensaje: `CLIENTE ELIMINADO!`
+            mensaje: `Cliente eliminado correctamente.`
         })
     }
     else {
-        throw new httpError(StatusCodes.CONFLICT, 'CLIENTE NO ELIMINADO')
+        throw new httpError(StatusCodes.CONFLICT, 'No se puede eliminar el cliente.')
     }
 }
 
@@ -134,11 +134,11 @@ const obtenerCliente = async (req, res) => {
     const clienteId = req.params.clienteId
 
     if (!usuarioId || !clienteId) {
-        throw new httpError(StatusCodes.BAD_REQUEST, 'POR FAVOR BRINDAR TODOS LOS DATOS!')
+        throw new httpError(StatusCodes.BAD_REQUEST, 'Por favor brindar todos los datos.')
     }
 
     if (typeof usuarioId !== 'number' || isNaN(clienteId)) {
-        throw new httpError(StatusCodes.BAD_REQUEST, 'POR FAVOR BRINDAR DATOS VALIDOS  !')
+        throw new httpError(StatusCodes.BAD_REQUEST, 'Por favor brindar datos válidos.')
     }
 
     const cliente = new Cliente()
@@ -146,7 +146,7 @@ const obtenerCliente = async (req, res) => {
     const resultado = await cliente.obtenerClientePorId(clienteId, usuarioId)
 
     if (resultado[0].length === 0) {
-        throw new httpError(StatusCodes.NOT_FOUND, `No existe cliente`)
+        throw new httpError(StatusCodes.NOT_FOUND, `Cliente no registrado.`)
     }
 
     res.status(StatusCodes.OK).json({
