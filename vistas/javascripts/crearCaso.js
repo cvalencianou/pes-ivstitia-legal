@@ -27,15 +27,24 @@ const crearCaso = async () => {
         })
     })
 
+    const datos = await resultado.json()
+
     switch (resultado.status) {
         case 201:
             document.getElementById('mensaje-1').innerHTML = datos.mensaje
             document.getElementById('dialogo-1').showModal()
+            document.getElementById('cerrar-1').addEventListener('click', () => {
+                window.location.assign('casos')
+            })
+
             break;
-    
+
         default:
             document.getElementById('mensaje-1').innerHTML = datos.mensaje
             document.getElementById('dialogo-1').showModal()
+            document.getElementById('cerrar-1').addEventListener('click', () => {
+                document.getElementById('dialogo-1').close()
+            })
             break;
     }
 }

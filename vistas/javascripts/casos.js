@@ -17,7 +17,7 @@ window.onpageshow = async () => {
 
         if (event.target.innerHTML === 'Ver') {
             sessionStorage.removeItem("casoId")
-            sessionStorage.setItem("casoId",event.target.value)
+            sessionStorage.setItem("casoId", event.target.value)
             window.location.assign('visualizar-caso')
         }
 
@@ -47,6 +47,8 @@ const obtenerCasos = async () => {
 
     const data = await resultado.json()
 
+    console.log(resultado.status)
+
     switch (resultado.status) {
         case 200:
             let listaCasos = ''
@@ -67,12 +69,15 @@ const obtenerCasos = async () => {
             });
 
             document.getElementById('lista-casos').innerHTML = listaCasos
-        
+
             break;
 
         default:
-            document.getElementById('mensaje1').innerHTML = data.mensaje
+            document.getElementById('mensaje-1').innerHTML = data.mensaje
             document.getElementById('dialogo-1').showModal()
+            document.getElementById('cerrar-1').addEventListener('click', () => {
+                document.getElementById('dialogo-1').close()
+            })
             break;
     }
 

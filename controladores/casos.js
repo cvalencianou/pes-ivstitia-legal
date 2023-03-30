@@ -6,18 +6,16 @@ const NotaCaso = require('../modelos/NotaCaso')
 
 const obtenerCasos = async (req, res) => {
     const usuarioId = req.user.id
-    const caso = new Caso()
 
-    const resultado = await caso.obtenerCasos(usuarioId)
+    const resultado = await new Caso().obtenerCasos(usuarioId)
 
-    if (resultado[0].length === 0) {
+    if (resultado[0].length > 0) {
+        res.status(StatusCodes.OK).json({
+            mensaje: resultado[0]
+        })
+    } else {
         throw new httpError(StatusCodes.NOT_FOUND, `No existen casos registrados.`)
     }
-
-    res.status(StatusCodes.OK).json({
-        mensaje: resultado[0]
-    })
-
 }
 
 const crearCaso = async (req, res) => {

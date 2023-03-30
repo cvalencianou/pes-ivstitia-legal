@@ -55,9 +55,12 @@ const obtenerClientes = async () => {
                 listaClientes +=
                     `
                 <li id="informacion-clientes">
-                Nombre: ${cliente.nombre}  Cedula: ${cliente.cedula}  <br><br>
-                Teléfono movil: ${cliente.telefono_movil} Teléfono físico: ${cliente.telefono_fisico} <br><br>
-                Correo: ${cliente.correo}    Dirección: ${cliente.direccion} <br><br>
+                <b>Nombre:</b> ${cliente.nombre} <br><br>
+                <b>Cedula:</b> ${cliente.cedula}  <br><br>
+                <b>Teléfono movil:</b> ${cliente.telefono_movil} <br><br>
+                <b>Teléfono físico:</b> ${cliente.telefono_fisico} <br><br>
+                <b>Correo:</b> ${cliente.correo}  <br><br>  
+                <b>Dirección:</b> ${cliente.direccion} <br><br>
                 <button value="${cliente.id}">Actualizar</button>
                 <button value="${cliente.id}">Eliminar</button>
                 </li>
@@ -69,8 +72,11 @@ const obtenerClientes = async () => {
             break;
 
         default:
-            document.getElementById('mensaje1').innerHTML = data.mensaje
+            document.getElementById('mensaje-1').innerHTML = data.mensaje
             document.getElementById('dialogo-1').showModal()
+            document.getElementById('cerrar-1').addEventListener('click', () => {
+                document.getElementById('dialogo-1').close()
+            })
             break;
     }
 }
