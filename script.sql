@@ -1,10 +1,10 @@
 CREATE DATABASE  IF NOT EXISTS `ivstitia_legal` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `ivstitia_legal`;
--- MySQL dump 10.13  Distrib 8.0.32, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.31, for Win64 (x86_64)
 --
--- Host: 10.0.0.105    Database: ivstitia_legal
+-- Host: 192.168.100.157    Database: ivstitia_legal
 -- ------------------------------------------------------
--- Server version	8.0.32-0ubuntu0.22.04.2
+-- Server version	8.0.32
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -61,7 +61,7 @@ CREATE TABLE `caso_cliente` (
   KEY `cliente_id_idx` (`cliente_id`),
   CONSTRAINT `cliente_id` FOREIGN KEY (`cliente_id`) REFERENCES `clientes` (`id`),
   CONSTRAINT `id_caso` FOREIGN KEY (`caso_id`) REFERENCES `casos` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=90 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -70,6 +70,7 @@ CREATE TABLE `caso_cliente` (
 
 LOCK TABLES `caso_cliente` WRITE;
 /*!40000 ALTER TABLE `caso_cliente` DISABLE KEYS */;
+INSERT INTO `caso_cliente` VALUES (6,11,2);
 /*!40000 ALTER TABLE `caso_cliente` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -96,7 +97,7 @@ CREATE TABLE `casos` (
   CONSTRAINT `estado_id` FOREIGN KEY (`estado_id`) REFERENCES `estado` (`id`),
   CONSTRAINT `id_usuario` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`),
   CONSTRAINT `tipo_proceso_id` FOREIGN KEY (`tipo_proceso_id`) REFERENCES `tipo_proceso` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -105,7 +106,7 @@ CREATE TABLE `casos` (
 
 LOCK TABLES `casos` WRITE;
 /*!40000 ALTER TABLE `casos` DISABLE KEYS */;
-INSERT INTO `casos` VALUES (6,'Traspaso Marta','Oficina','Trapaso de propiedad heredada',1,1,2);
+INSERT INTO `casos` VALUES (6,'Traspaso Marta','Oficina','Trapaso de propiedad heredada',1,1,2),(11,'Traspaso Juana','oficina','terreno familiar',1,2,2);
 /*!40000 ALTER TABLE `casos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -133,7 +134,7 @@ CREATE TABLE `clientes` (
   KEY `tipo_cedula_id_idx` (`tipo_cedula_id`),
   CONSTRAINT `tipo_cedula_id` FOREIGN KEY (`tipo_cedula_id`) REFERENCES `tipo_cedula` (`id`),
   CONSTRAINT `usuario_id` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -142,7 +143,7 @@ CREATE TABLE `clientes` (
 
 LOCK TABLES `clientes` WRITE;
 /*!40000 ALTER TABLE `clientes` DISABLE KEYS */;
-INSERT INTO `clientes` VALUES (1,'Marta León','101110111','user@email.com','88888881','22222221','av Limon',2,1);
+INSERT INTO `clientes` VALUES (1,'Marta León','101110111','user@email.com','88888881','22222221','av Limon',2,1),(2,'Juana Escobar','100010001','user@email.com','88888881','','av Mango',2,1),(17,'Pablo Escobar','85458468','juana@email.com','86543654','12345678','calle 41, jamon',2,2),(18,'Paolo Vega','9283981281','user@email.com','88888881','','av jocote',2,1),(19,'a','87889212','user@email.com','88888884','22222221','gd',2,1);
 /*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -187,7 +188,7 @@ CREATE TABLE `notas_casos` (
   UNIQUE KEY `id_UNIQUE` (`id`),
   KEY `caso_id_idx` (`caso_id`),
   CONSTRAINT `caso_id` FOREIGN KEY (`caso_id`) REFERENCES `casos` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -196,6 +197,7 @@ CREATE TABLE `notas_casos` (
 
 LOCK TABLES `notas_casos` WRITE;
 /*!40000 ALTER TABLE `notas_casos` DISABLE KEYS */;
+INSERT INTO `notas_casos` VALUES (4,'Nota 1',11),(5,'Nota 2',11),(6,'Nota 3',11);
 /*!40000 ALTER TABLE `notas_casos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -344,6 +346,10 @@ INSERT INTO `usuarios` VALUES (1,'cvalencianou@gmail.com','$2b$10$NJ4p.vKUYRrsRr
 UNLOCK TABLES;
 
 --
+-- Dumping events for database 'ivstitia_legal'
+--
+
+--
 -- Dumping routines for database 'ivstitia_legal'
 --
 /*!50003 DROP PROCEDURE IF EXISTS `actos_actualizar_por_id` */;
@@ -464,6 +470,25 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `casos_agregar_clientes` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`%` PROCEDURE `casos_agregar_clientes`(par_cliente_id INT, par_caso_id INT)
+BEGIN
+	INSERT INTO caso_cliente (caso_id, cliente_id) VALUES (par_caso_id, par_cliente_id);
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `casos_agregar_notas` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -522,6 +547,44 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `casos_eliminar_cliente` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`%` PROCEDURE `casos_eliminar_cliente`(par_caso_id INT, par_cliente_id INT)
+BEGIN
+	DELETE FROM caso_cliente WHERE caso_id = par_caso_id && cliente_id = par_cliente_id; 
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `casos_eliminar_nota` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`%` PROCEDURE `casos_eliminar_nota`(par_caso_id INT, par_nota_id INT)
+BEGIN
+	DELETE FROM notas_casos WHERE caso_id = par_caso_id && id = par_nota_id; 
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `casos_eliminar_por_id` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -543,6 +606,30 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `casos_filtrar` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`%` PROCEDURE `casos_filtrar`(par_usuario_id INT, par_dato_caso varchar(300))
+BEGIN
+	SELECT casos.id, casos.nombre, casos.despacho, casos.descripcion, tipo_proceso.nombre AS tipo_proceso, estado.nombre AS estado, usuario_id FROM casos
+    INNER JOIN tipo_proceso ON casos.tipo_proceso_id = tipo_proceso.id
+    INNER JOIN estado ON casos.estado_id = estado.id
+	WHERE usuario_id = par_usuario_id && (casos.nombre LIKE CONCAT('%', par_dato_caso, '%') || despacho LIKE CONCAT('%', par_dato_caso, '%') || 
+	tipo_proceso.nombre LIKE CONCAT('%', par_dato_caso, '%') || estado.nombre LIKE CONCAT('%', par_dato_caso, '%'));
+
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `casos_obtener` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -555,10 +642,73 @@ DELIMITER ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`%` PROCEDURE `casos_obtener`(par_usuario_id int)
 BEGIN
-	SELECT casos.id, casos.nombre, casos.despacho, tipo_proceso.nombre AS tipo_proceso, estado.nombre AS estado, usuario_id FROM casos
+	SELECT casos.id, casos.nombre, casos.despacho, casos.descripcion, tipo_proceso.nombre AS tipo_proceso, estado.nombre AS estado, usuario_id FROM casos
     INNER JOIN tipo_proceso ON casos.tipo_proceso_id = tipo_proceso.id
     INNER JOIN estado ON casos.estado_id = estado.id
     WHERE usuario_id = par_usuario_id;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `casos_obtener_clientes` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`%` PROCEDURE `casos_obtener_clientes`(par_caso_id INT)
+BEGIN
+	SELECT cliente_id, clientes.nombre FROM caso_cliente
+    INNER JOIN clientes ON caso_cliente.cliente_id = clientes.id
+    WHERE caso_cliente.caso_id = par_caso_id; 
+
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `casos_obtener_notas` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`%` PROCEDURE `casos_obtener_notas`(par_caso_id INT)
+BEGIN
+	SELECT id, nota FROM notas_casos WHERE caso_id = par_caso_id;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `casos_obtener_por_id` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`%` PROCEDURE `casos_obtener_por_id`(par_caso_id INT, par_usuario_id INT)
+BEGIN
+	SELECT casos.id, casos.nombre, casos.despacho, casos.descripcion, casos.tipo_proceso_id, tipo_proceso.nombre AS tipo_proceso, casos.estado_id, estado.nombre AS estado FROM casos
+    INNER JOIN tipo_proceso ON casos.tipo_proceso_id = tipo_proceso.id
+    INNER JOIN estado ON casos.estado_id = estado.id
+    WHERE casos.usuario_id = par_usuario_id && casos.id = par_caso_id;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -701,7 +851,7 @@ CREATE DEFINER=`root`@`%` PROCEDURE `cliente_buscar_por_id`(par_cliente_id int, 
 BEGIN
 	SELECT clientes.id, nombre, cedula, correo, telefono_movil, telefono_fisico, direccion, tipo_cedula_id, tipo FROM clientes 
 	INNER JOIN tipo_cedula ON clientes.tipo_cedula_id = tipo_cedula.id
-	WHERE id = par_cliente_id && usuario_id = par_usuario_id;
+	WHERE clientes.id = par_cliente_id && usuario_id = par_usuario_id;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -739,8 +889,8 @@ DELIMITER ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`%` PROCEDURE `cliente_eliminar_por_id`(par_cliente_id int, par_usuario_id int)
 BEGIN
-	DELETE FROM caso_cliente WHERE cliente_id = par_cliente_id;
-    DELETE FROM clientes WHERE id = par_cliente_id && usuario_id = par_usuario_id;
+	DELETE FROM caso_cliente WHERE caso_cliente.cliente_id = par_cliente_id;
+    DELETE FROM clientes WHERE clientes.id = par_cliente_id && usuario_id = par_usuario_id;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1074,7 +1224,7 @@ DELETE FROM caso_cliente WHERE caso_id IN (SELECT id FROM casos WHERE usuario_id
 DELETE FROM notas_casos WHERE caso_id IN (SELECT id FROM casos WHERE usuario_id = par_id);
 DELETE FROM casos WHERE usuario_id = par_id;
 DELETE FROM clientes WHERE usuario_id = par_id;
-DELETE FROM usuarios WHERE id = par_id;
+DELETE FROM usuarios WHERE id = par_id;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1186,4 +1336,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-03-22  9:57:17
+-- Dump completed on 2023-03-29 19:32:28
