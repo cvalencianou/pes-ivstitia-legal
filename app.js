@@ -14,6 +14,9 @@ const casos = require('./rutas/casos')
 const httpError = require('http-errors')
 const { StatusCodes } = require('http-status-codes')
 
+//Habilitar aplicacion detrás de proxy o balanceador de carga X-Forwarded-*
+//app.set('trust proxy', 1)
+
 // Middleware para asegurar headers http aplicación Express
 app.use(helmet.crossOriginEmbedderPolicy())
 app.use(helmet.crossOriginOpenerPolicy())
