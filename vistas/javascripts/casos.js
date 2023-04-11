@@ -114,7 +114,7 @@ const filtrarCasos = async () => {
             break;
 
         default:
-            adocument.getElementById('mensaje1').innerHTML = data.mensaje
+            document.getElementById('mensaje-1').innerHTML = data.mensaje
             document.getElementById('dialogo-1').showModal()
             break;
     }

@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="stylesheets/general.css">
     <link rel="stylesheet" href="stylesheets/index.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cinzel">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -16,6 +17,14 @@
         <nav class="nav-bar" id="nav-bar">
         </nav>
         <script>
+            barraResponsive = async () => {
+                var navBar = document.getElementById("nav-bar");
+                if (navBar.className === "nav-bar") {
+                    navBar.className += " responsive";
+                } else {
+                    navBar.className = "nav-bar";
+                }
+            }
             const enlaces =
                 ` 
             <a href="/" class="logo">IL</a>          

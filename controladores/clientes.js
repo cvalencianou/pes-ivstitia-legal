@@ -35,6 +35,11 @@ const crearCliente = async (req, res) => {
     if (correo.length < 6 || correo.length > 45 || !correo.match(/[^\s@]+@[^\s@]+\.[^\s@]+/)) {
         throw new httpError(StatusCodes.BAD_REQUEST, 'Por favor brindar un correo válido.')
     }
+
+    if ( nombre.length > 100 || cedula.length > 15 || telefonoMovil.length > 15 || telefonoFisico.length > 15 || direccion.length > 200){
+        throw new httpError(StatusCodes.BAD_REQUEST, 'Por favor brindar datos más pequeños.')
+    }
+
     const cliente = new Cliente()
 
     if ((await cliente.buscarPorCedula(usuarioId, cedula))[0].length === 1) {
@@ -85,6 +90,10 @@ const actualizarCliente = async (req, res) => {
 
     if (correo.length < 6 || correo.length > 45 || !correo.match(/[^\s@]+@[^\s@]+\.[^\s@]+/)) {
         throw new httpError(StatusCodes.BAD_REQUEST, 'Por favor brindar un correo válido.')
+    }
+
+    if ( nombre.length > 100 || cedula.length > 15 || telefonoMovil.length > 15 || telefonoFisico.length > 15 || direccion.length > 200){
+        throw new httpError(StatusCodes.BAD_REQUEST, 'Por favor brindar datos más pequeños.')
     }
 
     const cliente = new Cliente()

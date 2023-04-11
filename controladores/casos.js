@@ -30,6 +30,10 @@ const crearCaso = async (req, res) => {
         throw new httpError(StatusCodes.BAD_REQUEST, 'Por favor brindar datos válidos.')
     }
 
+    if ( nombre.length > 100 || despacho.length > 100 || descripcion.length > 300){
+        throw new httpError(StatusCodes.BAD_REQUEST, 'Por favor brindar datos más pequeños.')
+    }
+
     const caso = new Caso()
 
     if ((await caso.buscarPorNombre(usuarioId, nombre))[0].length === 1) {
@@ -76,6 +80,10 @@ const actualizarCaso = async (req, res) => {
 
     if (typeof (usuarioId) !== 'number' || typeof (nombre, despacho, descripcion) !== 'string' || isNaN(estado, tipoProceso, casoId)) {
         throw new httpError(StatusCodes.BAD_REQUEST, 'Por favor brindar datos válidos.')
+    }
+
+    if ( nombre.length > 100 || despacho.length > 100 || descripcion.length > 300){
+        throw new httpError(StatusCodes.BAD_REQUEST, 'Por favor brindar datos más pequeños.')
     }
 
     const caso = new Caso()
