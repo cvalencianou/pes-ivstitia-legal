@@ -41,5 +41,9 @@ class Cliente {
     async eliminarClientePorCasoId(casoId, clienteId) {
         return await executePreparedStatement('CALL casos_eliminar_cliente(?,?)', [casoId, clienteId])
     }
+
+    async obtenerClientePorCasoId(casoId, usuarioId){
+        return await executePreparedStatement('CALL clientes_obtener_por_caso_id(?,?)', [casoId, usuarioId])
+    }
 }
 module.exports = Cliente

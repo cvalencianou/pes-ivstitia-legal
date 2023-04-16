@@ -20,20 +20,21 @@
     </header>
 
     <main id="main-visualizar-caso">
-        <section class="seccion-información-caso">
+        <section class="seccion-informacion-caso">
             <h1 class="titulo-principal" id="nombre-caso"></h1>
             <nav id="opciones-caso"> </nav>
-            <label for="despacho">Despacho:</label>
-            <label for="despacho" id="despacho"></label><br>
+            
+            <label for="despacho"><b>Despacho:</b></label>
+            <label for="despacho" id="despacho"></label><br><br>
 
-            <label for="tipo-proceso">Tipo proceso:</label>
-            <label for="tipo-proceso" id="tipo-proceso"></label><br>
+            <label for="tipo-proceso"><b>Tipo proceso:</b></label>
+            <label for="tipo-proceso" id="tipo-proceso"></label><br><br>
 
-            <label for="descripcion">Descripción:</label>
-            <label for="descripcion" id="descripcion"></label><br>
+            <label for="descripcion"><b>Descripción:</b></label>
+            <label for="descripcion" id="descripcion"></label><br><br>
 
-            <label for="estado">Estado:</label>
-            <label for="estado" id="estado"></label><br><br><br>
+            <label for="estado"><b>Estado:</b></label>
+            <label for="estado" id="estado"></label>
 
             <dialog id="dialogo-eliminar-caso" class="dialogo-caso">
                 <p>¿Está seguro que desea eliminar caso?</p>
@@ -61,7 +62,7 @@
         </section>
 
         <section class="seccion-clientes-caso">
-            <br><br><label for="tabla-clientes-caso" class="form-nuevo-usuario-titulo">Clientes del caso</label>
+            <label for="tabla-clientes-caso" class="form-nuevo-usuario-titulo">Clientes del caso</label>
             <table class="tabla-clientes-caso" id="tabla-clientes-caso">
                 <thead class="tabla-head">
                     <tr>
@@ -83,7 +84,7 @@
         <h1 class="titulo-principal">Agregar Cliente</h1>
         <form id="form-agregar-nota" class="form-agregar-nota">
             <label for="nota">Ingrese la nota que desea agregar.</label> <br>
-            <input type="nota" name="nota" id="nota" placeholder="Escriba aquí la nota" required>
+            <input type="nota" name="nota" id="nota" placeholder="Escriba aquí la nota" required> <br>
             <input type="submit" value="Agregar">
         </form>
     </section>

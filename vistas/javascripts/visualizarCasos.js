@@ -99,11 +99,11 @@ window.onpageshow = async () => {
 const cargarOpciones = async (casoId) => {
     const opciones =
         `
-            <button value="${casoId}">Actualizar</button>
-            <button value="${casoId}">Agregar nota</button>
-            <button value="${casoId}">Agregar cliente</button>
-            <button value="${casoId}">Eliminar</button>
-            <button value="${casoId}">Volver</button> <br><br> <br><br>
+            <button class="botones-opcion" value="${casoId}">Actualizar</button>
+            <button class="botones-opcion" value="${casoId}">Agregar nota</button>
+            <button class="botones-opcion" value="${casoId}">Agregar cliente</button>
+            <button class="botones-opcion" value="${casoId}">Eliminar</button>
+            <button class="botones-opcion" value="${casoId}">Volver</button> <br><br> 
         `
 
     document.getElementById('opciones-caso').innerHTML = opciones
@@ -344,10 +344,12 @@ const cargarAgregarCliente = async (casoId) => {
 
 }
 
-const cargarClientes = async () => {
+const cargarClientes = async (casoId) => {
 
-    const resultado = await fetch('/api/v1/clientes')
+    const resultado = await fetch(`/api/v1/clientes/caso/${casoId}`)
     const dataCliente = await resultado.json()
+
+    console.log(dataCliente)
 
     switch (resultado.status) {
         case 200:
@@ -362,7 +364,7 @@ const cargarClientes = async () => {
                     `
             });
 
-            document.getElementById('form-agregar-cliente').innerHTML = listaClientes + `<input type="submit" value="Agregar"></input>`
+            document.getElementById('form-agregar-cliente').innerHTML = listaClientes + `<input type="submit" id="boton-agregar" value="Agregar"></input>`
 
             break;
 

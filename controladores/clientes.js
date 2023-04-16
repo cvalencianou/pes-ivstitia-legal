@@ -163,4 +163,31 @@ const obtenerCliente = async (req, res) => {
     })
 }
 
-module.exports = { obtenerClientes, obtenerCliente, filtrarClientes, crearCliente, actualizarCliente, eliminarCliente }
+const obtenerClientesPorCasoId = async (req, res) => {
+    const usuarioId = req.user.id
+    const casoId = req.params.casoId 
+
+    if (!usuarioId || !casoId) {
+        throw new httpError(StatusCodes.BAD_REQUEST, 'Por favor brindar todos los datos.')
+    }
+
+    if (typeof usuarioId !== 'number' || isNaN(casoId)) {
+        throw new httpError(StatusCodes.BAD_REQUEST, 'Por favor brindar datos válidos.')
+    }
+
+    const cliente = new Cliente()
+
+    const resultado = await cliente.obtenerClientePorCasoId(casoId, usuarioId)
+
+    if (resultado[0].length === 0) {
+        throw new httpError(StatusCodes.NOT_FOUND, `No hay clientes para agregar.`)
+    }
+
+    res.status(StatusCodes.OK).json({
+        mensaje: resultado[0]
+    })
+
+
+}
+
+module.exports = { obtenerClientes, obtenerCliente, filtrarClientes, obtenerClientesPorCasoId, crearCliente, actualizarCliente, eliminarCliente }
