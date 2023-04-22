@@ -57,13 +57,13 @@ const obtenerCasos = async () => {
                 listaCasos +=
                     `
                 <li>
-                Nombre caso: ${caso.nombre}  <br><br>
-                Despacho: ${caso.despacho}  <br><br>
-                Desripción: ${caso.descripcion}  <br><br>
-                Tipo proceso: ${caso.tipo_proceso} <br><br>
-                Estado: ${caso.estado} <br><br>
-                <button value="${caso.id}">Ver</button>
-                <button value="${caso.id}">Eliminar</button>
+                <b>Nombre caso:</b> ${caso.nombre}  <br><br>
+                <b>Despacho:</b> ${caso.despacho}  <br><br>
+                <b>Desripción:</b> ${caso.descripcion}  <br><br>
+                <b>Tipo proceso:</b> ${caso.tipo_proceso} <br><br>
+                <b>Estado:</b> ${caso.estado} <br><br>
+                <button class="boton" id="boton" value="${caso.id}">Ver</button>
+                <button class="boton" id="boton" value="${caso.id}">Eliminar</button>
                 </li>
                 `
             });

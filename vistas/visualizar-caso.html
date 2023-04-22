@@ -23,19 +23,19 @@
         <section class="seccion-informacion-caso">
             <h1 class="titulo-principal" id="nombre-caso"></h1>
             <nav id="opciones-caso"> </nav>
-            
-            <label for="despacho"><b>Despacho:</b></label>
-            <label for="despacho" id="despacho"></label><br><br>
+            <section class="datos-caso">
+                <label for="despacho"><b>Despacho:</b></label>
+                <label for="despacho" id="despacho"></label><br><br>
 
-            <label for="tipo-proceso"><b>Tipo proceso:</b></label>
-            <label for="tipo-proceso" id="tipo-proceso"></label><br><br>
+                <label for="tipo-proceso"><b>Tipo proceso:</b></label>
+                <label for="tipo-proceso" id="tipo-proceso"></label><br><br>
 
-            <label for="descripcion"><b>Descripción:</b></label>
-            <label for="descripcion" id="descripcion"></label><br><br>
+                <label for="descripcion"><b>Descripción:</b></label>
+                <label for="descripcion" id="descripcion"></label><br><br>
 
-            <label for="estado"><b>Estado:</b></label>
-            <label for="estado" id="estado"></label>
-
+                <label for="estado"><b>Estado:</b></label>
+                <label for="estado" id="estado"></label>
+            </section>
             <dialog id="dialogo-eliminar-caso" class="dialogo-caso">
                 <p>¿Está seguro que desea eliminar caso?</p>
                 <button id="eliminar-caso">ELIMINAR</button>
@@ -44,7 +44,7 @@
         </section>
 
         <section class="seccion-notas-caso">
-            <br><br><label for="tabla-notas-caso" class="form-nuevo-usuario-titulo">Notas del caso</label>
+            <br><label for="tabla-notas-caso" class="form-tablas-titulo">Notas del caso</label>
             <table class="tabla-notas-caso" id="tabla-notas-caso">
                 <thead class="tabla-head">
                     <tr>
@@ -62,11 +62,11 @@
         </section>
 
         <section class="seccion-clientes-caso">
-            <label for="tabla-clientes-caso" class="form-nuevo-usuario-titulo">Clientes del caso</label>
+            <label for="tabla-clientes-caso" class="form-tablas-titulo">Clientes del caso</label>
             <table class="tabla-clientes-caso" id="tabla-clientes-caso">
                 <thead class="tabla-head">
                     <tr>
-                        <th>Nombre de los clientes del caso</th>
+                        <th>Clientes del caso</th>
                         <th>Opción</th>
                     </tr>
                 </thead>
@@ -99,23 +99,23 @@
         <p>Por favor ingresar la información que desee actualizar:</p> <br>
         <form id="form-actualizar-caso">
 
-            <label for="nombre-caso">Nombre caso:</label>
+            <label for="nombre-caso"><b>Nombre caso:</b></label>
             <input type="text" id="nombre-caso-actualizar" required> <br>
 
-            <label for="descripcion">Descripción:</label>
+            <label for="descripcion"><b>Descripción:</b></label>
             <input type="text" id="descripcion-actualizar" required> <br>
 
-            <label for="Despacho">Despacho:</label>
+            <label for="Despacho"><b>Despacho:</b></label>
             <input type="text" id="despacho-actualizar" required> <br>
 
-            <label for="tipo-proceso">Tipo proceso:</label>
+            <label for="tipo-proceso"><b>Tipo proceso:</b></label>
             <select name="tipo-proceso" id="tipo-proceso-actualizar" required>
                 <option value="1">Traspaso de propiedad</option>
                 <option value="2">Divorcio</option>
                 <option value="3">Matrimonio</option>
             </select> <br>
 
-            <label for="estado">Estado: </label>
+            <label for="estado"><b>Estado:</b> </label>
             <select name="estado" id="estado-actualizar" required>
                 <option value="1">En tramite</option>
                 <option value="2">En espera que ocurra una situación</option>

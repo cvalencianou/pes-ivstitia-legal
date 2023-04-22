@@ -19,11 +19,12 @@
         <nav class="nav-bar" id="nav-bar"></nav>
     </header>
     <h1 class="titulo-principal">Casos</h1>
-    <form class="buscarCasos" id="buscarCasos">
-        <input type="text" id="datoCaso" placeholder="Buscar" required>
-        <input type="submit" value="Buscar">
-    </form>
-    <a href="crear-caso" id="btnCrearCaso"><button>Crear caso</button></a>
+    <nav id="busqueda">
+        <form class="buscarCasos" id="buscarCasos">
+            <input type="text" id="dato" placeholder="Buscar" required>
+            <input type="submit" class="boton" value="Buscar">
+        </form><a href="crear-caso"><button class="boton" id="boton-crear">Registrar caso</button></a>
+    </nav>
 
     <main id="main-casos">
         <ul id="lista-casos">
@@ -34,12 +35,12 @@
             <button id="eliminar-cancelar-caso">CANCELAR</button>
         </dialog>
     </main>
-    
+
     <dialog id="dialogo-1" class="dialogo-1">
         <p id="mensaje-1"></p>
         <button id="cerrar-1">CERRAR</button>
     </dialog>
-    
+
 </body>
 
 </html>

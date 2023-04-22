@@ -1,7 +1,9 @@
 * {
+    font-size: 1.2vw;
     margin: 0;
     padding: 0;
     font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
 }
 
 .titulo-principal {
@@ -14,22 +16,35 @@
     margin-bottom: 2%;
 }
 
-#btnCrearCliente {
-    margin-top: 1.5%;
+.dato{
+    width: 100%;
+}
+
+#boton-crear {
+    margin-top: 1%;
     margin-right: 1%;
-    float: right;
+    padding: 0.2%;
+    width: 20%;
 }
 
 .main-clientes{
     align-items: center;
 }
 
+.boton{
+    padding: 1%;
+}
+
+.boton:hover{
+    font-weight: bold;
+}
+
 li {
     list-style-type: none;
     background: #e7e6e6 ;
-    padding: 2%;
+    padding: 1%;
     margin-top: 2%;
-    margin-left: 35px;
+    margin-left: 2%;
     text-align: left;
     display:inline-block;
 }
@@ -38,6 +53,7 @@ li {
     margin-top: 1.5%;
     margin-right: 1%;
     align-items: center;
+    width: 100%;
 }
 
 .buscarCliente {
@@ -61,9 +77,10 @@ select {
     margin-top: 30px;
 }
 
-input{
+.informacion{
     margin-left: 2%;
-    margin-top: 30px;
+    margin-top: 1%;
+    margin-bottom: 1%;
 }
 
 dialog {
@@ -95,15 +112,18 @@ dialog button:hover {
 
 
 @media only screen and (max-width: 960px) {
+    * {
+        font-size: 3vw;
+        margin: 0;
+        padding: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        text-align: center;
+    }
+
     .titulo-principal {
         font-size: 6vw;
         margin-top: 4%;
-        margin-bottom: 4%;
-    }
-
-    .titulo-secundario {
-        font-size: 4vw;
-        margin: 7.5%;
+        margin-bottom: 2%;
     }
 
     .seccion-crear-usuario {
@@ -200,15 +220,17 @@ dialog button:hover {
     }
 }
 @media only screen and (max-width: 500px) {
-    .titulo-principal {
-        font-size: 9vw;
-        margin-top: 6%;
-        margin-bottom: 6%;
+    * {
+        font-size: 4vw;
+        margin: 0;
+        padding: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        text-align: center;
     }
-
-    .titulo-secundario {
-        font-size: 6vw;
-        margin: 10%;
+    .titulo-principal {
+        font-size: 8vw;
+        margin-top: 4%;
+        margin-bottom: 2%;
     }
 
     .seccion-crear-usuario {

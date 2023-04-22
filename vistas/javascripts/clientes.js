@@ -61,8 +61,8 @@ const obtenerClientes = async () => {
                 <b>Teléfono físico:</b> ${cliente.telefono_fisico} <br><br>
                 <b>Correo:</b> ${cliente.correo}  <br><br>  
                 <b>Dirección:</b> ${cliente.direccion} <br><br>
-                <button value="${cliente.id}">Actualizar</button>
-                <button value="${cliente.id}">Eliminar</button>
+                <button class="boton" value="${cliente.id}">Actualizar</button>
+                <button class="boton" value="${cliente.id}">Eliminar</button>
                 </li>
                 `
             });
@@ -99,8 +99,8 @@ const filtrarClientes = async () => {
                 Nombre: ${cliente.nombre}  Cedula: ${cliente.cedula}  <br><br>
                 Teléfono movil: ${cliente.telefonoMovil} Teléfono físico: ${cliente.telefonoFisico} <br><br>
                 Correo: ${cliente.correo}    Dirección: ${cliente.direccion} 
-                <button value="${cliente.id}">Actualizar</button>
-                <button value="${cliente.id}">Eliminar</button>
+                <button class="boton" value="${cliente.id}">Actualizar</button>
+                <button class="boton" value="${cliente.id}">Eliminar</button>
                 </li>
                 `
             });

@@ -21,12 +21,13 @@
     <main id="main-clientes">
         <h1 class="titulo-principal">Cliente</h1>
         <section class="seccion-clientes">
-            <form class="buscarCliente" id="buscarCliente">
-                <input type="text" id="datoCliente" placeholder="Buscar" required>
-                <input type="submit" value="Buscar">
-            </form>
-            <a href="crear-cliente" id="btnCrearCliente"><button>Crear cliente</button></a>
-
+            <nav id="busqueda">
+                <form class="buscarCliente" id="buscarCliente">
+                    <input type="text" id="dato" placeholder="Buscar" required>
+                    <input type="submit"  value="Buscar">
+                </form>
+                <a href="crear-cliente"><button class="boton" id="boton-crear">Registrar cliente</button></a>
+            </nav>
             <ul id="lista-clientes">
             </ul>
             <dialog id="dialogo-eliminar-cliente" class="dialogo-cliente">
@@ -49,15 +50,15 @@
                 <option value="2">Jurídica</option>
             </select> <br>
             <label for="cedula">Número de cédula:</label>
-            <input type="number" id="cedula" required> <br>
+            <input type="number" class="informacion" id="cedula" required> <br>
             <label for="correo">Correo electrónico:</label>
-            <input type="email" id="correo" required><br>
+            <input type="email" class="informacion" id="correo" required><br>
             <label for="telefonoMovil">Teléfono móvil:</label>
-            <input type="text" id="telefonoMovil"required><br>
+            <input type="text" class="informacion" id="telefonoMovil" required><br>
             <label for="telefonoFisico">Teléfono físico:</label>
-            <input type="tel" id="telefonoFisico" > <br>
+            <input type="tel" class="informacion" id="telefonoFisico"> <br>
             <label for="direccion">Dirección postal:</label>
-            <input type="text" id="direccion" required><br>
+            <input type="text" class="informacion" id="direccion" required><br>
             <input type="submit" value="Actualizar">
         </form>
     </section>
