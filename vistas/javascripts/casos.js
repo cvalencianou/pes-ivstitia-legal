@@ -84,7 +84,7 @@ const obtenerCasos = async () => {
 }
 
 const filtrarCasos = async () => {
-    const datoCaso = document.getElementById('datoCaso').value
+    const datoCaso = document.getElementById('dato').value
 
     const resultado = await fetch(`/api/v1/casos/filtro?datoCaso=${datoCaso}`)
 

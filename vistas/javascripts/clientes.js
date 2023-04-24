@@ -82,7 +82,7 @@ const obtenerClientes = async () => {
 }
 
 const filtrarClientes = async () => {
-    const datoCliente = document.getElementById('datoCliente').value
+    const datoCliente = document.getElementById('dato').value
 
     const resultado = await fetch(`/api/v1/clientes/filtro?datoCliente=${datoCliente}`)
 
