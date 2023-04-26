@@ -22,24 +22,24 @@
         <h1 class="titulo-principal">Registrar Cliente</h1> <br>
         <p>Por favor ingresar la información que se le solicita acontinuación:</p> <br>
         <form id="form-crear-cliente">
-            <label for="nombre">Nombre completo:</label>
+            <label class="titulo-secundario" for="nombre">Nombre completo</label> <br>
             <input type="text" id="nombre" placeholder="Nombre Completo" required> <br>
-            <label for="tipo-cedula">Tipo cédula:</label>
+            <label class="titulo-secundario" for="tipo-cedula">Tipo cédula</label> <br>
             <select name="tipo-cedula" id="tipo-cedula">
                 <option value="1">Física</option>
                 <option value="2">Jurídica</option>
             </select> <br>
-            <label for="cedula">Número de cédula:</label>
+            <label class="titulo-secundario" for="cedula">Número de cédula</label> <br>
             <input type="number" id="cedula" placeholder="101110111" required> <br>
-            <label for="correo">Correo electrónico:</label>
+            <label class="titulo-secundario" for="correo">Correo electrónico</label> <br>
             <input type="email" id="correo" placeholder="abc@abc.com" required><br>
-            <label for="telefonoMovil">Teléfono móvil:</label>
+            <label class="titulo-secundario" for="telefonoMovil">Teléfono móvil</label> <br>
             <input type="text" id="telefonoMovil" placeholder="88888888" required><br>
-            <label for="telefonoFisico">Teléfono físico:</label>
+            <label class="titulo-secundario" for="telefonoFisico">Teléfono físico</label><br>
             <input type="tel" id="telefonoFisico" placeholder="22222222" > <br>
-            <label for="direccion">Dirección postal:</label>
+            <label class="titulo-secundario" for="direccion">Dirección postal</label><br>
             <input type="text" id="direccion" placeholder="Dirección postal" required><br>
-            <input type="submit" value="Crear cliente">
+            <input id="boton-crear" type="submit" value="Crear cliente"><br><br>
         </form>
     </main>
     <dialog id="dialogo-1" class="dialogo-1">

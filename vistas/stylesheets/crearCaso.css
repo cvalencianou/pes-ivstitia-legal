@@ -1,5 +1,5 @@
 * {
-    font-size: 1.2vw;
+    font-size: 1.5vw;
     margin: 0;
     padding: 0;
     font-family: Arial, Helvetica, sans-serif;
@@ -17,30 +17,36 @@
     margin-bottom: 2%;
 }
 
-select {
-    margin-top: 3.5%;
+.titulo-secundario {
+    font-size: 1.7vw;
 }
 
-
 main {
-    width: 40%;
+    width: 100%;
     text-align: center;
     margin-left: auto;
     margin-right: auto;
     margin-top: 2%;
 }
 
+
 #boton-crear {
-    margin-top: 3%;
-    margin-right: 1%;
     padding: 0.5%;
-    width: 15%;
-    align-self: right;
+    width: 30%;
 }
 
 input{
-    margin-left: 3%;
-    margin-top: 4%;
+    margin-top: 2%;
+    margin-bottom: 1%;
+    width: 30%;
+    padding: 1%;
+}
+
+select{
+    margin-top: 2%;
+    margin-bottom: 1%;
+    width: 30%;
+    padding: 1%;
 }
 
 dialog {
@@ -86,6 +92,10 @@ dialog button:hover {
         width: 100%;
     }
 
+    .titulo-secundario {
+        font-size: 4.2vw;
+    }  
+
     main {
         width: 100%;
         text-align: center;
@@ -95,14 +105,21 @@ dialog button:hover {
     }
     
     #boton-crear {
-        margin-top: 3%;
         margin-right: 1%;
-        padding: 0.5%;
-        width: 30%;
+        padding: 2%;
+        width: 50%;
     }
     
     input{
         margin-top: 4%;
+        width: 50%;
+        padding: 2%;
+    }
+
+    select{
+        margin-top: 4%;
+        width: 50%;
+        padding: 2%;
     }
 
     dialog {
@@ -124,7 +141,7 @@ dialog button:hover {
 }
 @media only screen and (max-width: 500px) {
     * {
-        font-size: 4vw;
+        font-size: 6vw;
         margin: 0;
         padding: 0;
         font-family: Arial, Helvetica, sans-serif;
@@ -133,14 +150,13 @@ dialog button:hover {
 
     .titulo-principal {
         font-size: 9vw;
-        margin-top: 6%;
-        margin-bottom: 6%;
+        margin-top: 4%;
+        margin-bottom: 2%;
     }
 
-    select {
-        margin-top: 3.5%;
-    }
-    
+    .titulo-secundario {
+        font-size: 6.2vw;
+    }      
     
     main {
         width: 100%;
@@ -153,14 +169,20 @@ dialog button:hover {
     #boton-crear {
         margin-top: 3%;
         margin-right: 1%;
-        padding: 0.5%;
-        width: 15%;
-        align-self: right;
+        padding: 2%;
+        width: 80%;
     }
     
     input{
-        margin-left: 3%;
         margin-top: 4%;
+        width: 80%;
+        padding: 2%;
+    }
+
+    select{
+        margin-top: 4%;
+        width: 80%;
+        padding: 2%;
     }
 
     dialog {
