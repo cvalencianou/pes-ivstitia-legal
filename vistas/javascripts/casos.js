@@ -62,8 +62,10 @@ const obtenerCasos = async () => {
                 <b>Desripción:</b> ${caso.descripcion}  <br><br>
                 <b>Tipo proceso:</b> ${caso.tipo_proceso} <br><br>
                 <b>Estado:</b> ${caso.estado} <br><br>
+                <div id="botones-casos">
                 <button class="boton" id="boton" value="${caso.id}">Ver</button>
                 <button class="boton" id="boton" value="${caso.id}">Eliminar</button>
+                </div>
                 </li>
                 `
             });
