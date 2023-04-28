@@ -148,7 +148,7 @@ const obtenerNotasCaso = async (casoId) => {
                 <tr id="${nota.id}">
                     <td class="nota-caso">${nota.nota}</td>
                     <td class="opcion-nota" id="opcion-nota">
-                        <button value="${nota.id}">Eliminar</button>
+                        <button class="boton-tabla" value="${nota.id}">Eliminar</button>
                     </td>
                 </tr>
                 `
@@ -182,7 +182,7 @@ const obtenerClientesCaso = async (casoId) => {
         <tr id="${cliente.cliente_id}">
             <td class="cliente-caso">${cliente.nombre}</td>
             <td class="opcion-nota">
-                <button value="${cliente.cliente_id}">Eliminar</button>
+                <button class="boton-tabla" value="${cliente.cliente_id}">Eliminar</button>
             </td>
         </tr>
         `

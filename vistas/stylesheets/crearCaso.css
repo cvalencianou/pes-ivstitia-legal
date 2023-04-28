@@ -1,5 +1,5 @@
 * {
-    font-size: 1.5vw;
+    font-size: 1.2vw;
     margin: 0;
     padding: 0;
     font-family: Arial, Helvetica, sans-serif;
@@ -18,7 +18,7 @@
 }
 
 .titulo-secundario {
-    font-size: 1.7vw;
+    font-size: 1.5vw;
 }
 
 main {
@@ -29,27 +29,23 @@ main {
     margin-top: 2%;
 }
 
-#botones-casos{
-    align-items: center;
-}
-
 #boton-crear {
     padding: 0.5%;
     width: 30%;
 }
 
 input{
-    margin-top: 2%;
+    margin-top: 1%;
     margin-bottom: 1%;
     width: 30%;
-    padding: 1%;
+    padding: 0.2%;
 }
 
 select{
-    margin-top: 2%;
+    margin-top: 1%;
     margin-bottom: 1%;
     width: 30%;
-    padding: 1%;
+    padding: 0.2%;
 }
 
 dialog {

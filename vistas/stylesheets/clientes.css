@@ -16,6 +16,10 @@
     margin-bottom: 2%;
 }
 
+.titulo-secundario {
+    font-size: 1.5vw;
+}
+
 .buscarCliente input[type='text'] {
     width: 20%;
 }
@@ -68,17 +72,17 @@ li {
 }
 
 .seccion-actualizar-cliente select {
-    margin-top: 2%;
+    margin-top: 1%;
     margin-bottom: 1%;
     width: 30%;
-    padding: 1%;
+    padding: 0.2%;
 }
 
 .seccion-actualizar-cliente input {
-    margin-top: 2%;
+    margin-top: 1%;
     margin-bottom: 1%;
     width: 30%;
-    padding: 1%;
+    padding: 0.2%;
 }
 
 
