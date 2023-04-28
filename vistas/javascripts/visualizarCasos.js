@@ -360,7 +360,7 @@ const cargarClientes = async (casoId) => {
                 listaClientes +=
                     `
                     <input type="checkbox" name="checkbox" id="check-cliente" value=${cliente.id}>
-                    <label for=${cliente.id}>${cliente.nombre}</label><br> 
+                    <label for=${cliente.id}>${cliente.nombre}</label><br> <br> 
                     `
             });
 

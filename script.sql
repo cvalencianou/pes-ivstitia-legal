@@ -645,7 +645,8 @@ BEGIN
 	SELECT casos.id, casos.nombre, casos.despacho, casos.descripcion, tipo_proceso.nombre AS tipo_proceso, estado.nombre AS estado, usuario_id FROM casos
     INNER JOIN tipo_proceso ON casos.tipo_proceso_id = tipo_proceso.id
     INNER JOIN estado ON casos.estado_id = estado.id
-    WHERE usuario_id = par_usuario_id;
+    WHERE usuario_id = par_usuario_id
+    ORDER BY casos.id DESC;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -666,7 +667,8 @@ CREATE DEFINER=`root`@`%` PROCEDURE `casos_obtener_clientes`(par_caso_id INT)
 BEGIN
 	SELECT cliente_id, clientes.nombre FROM caso_cliente
     INNER JOIN clientes ON caso_cliente.cliente_id = clientes.id
-    WHERE caso_cliente.caso_id = par_caso_id; 
+    WHERE caso_cliente.caso_id = par_caso_id
+    ORDER BY clientes.nombre ASC; 
 
 END ;;
 DELIMITER ;
@@ -686,7 +688,8 @@ DELIMITER ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`%` PROCEDURE `casos_obtener_notas`(par_caso_id INT)
 BEGIN
-	SELECT id, nota FROM notas_casos WHERE caso_id = par_caso_id;
+	SELECT id, nota FROM notas_casos WHERE caso_id = par_caso_id
+    ORDER BY id ASC;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -708,7 +711,8 @@ BEGIN
 	SELECT casos.id, casos.nombre, casos.despacho, casos.descripcion, casos.tipo_proceso_id, tipo_proceso.nombre AS tipo_proceso, casos.estado_id, estado.nombre AS estado FROM casos
     INNER JOIN tipo_proceso ON casos.tipo_proceso_id = tipo_proceso.id
     INNER JOIN estado ON casos.estado_id = estado.id
-    WHERE casos.usuario_id = par_usuario_id && casos.id = par_caso_id;
+    WHERE casos.usuario_id = par_usuario_id && casos.id = par_caso_id
+    ORDER BY casos.id DESC;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -811,7 +815,28 @@ CREATE DEFINER=`root`@`%` PROCEDURE `clientes_obtener`(par_usuario_id int)
 BEGIN
 SELECT clientes.id, nombre, cedula, correo, telefono_movil, telefono_fisico, direccion, tipo_cedula_id, tipo FROM clientes 
 INNER JOIN tipo_cedula ON clientes.tipo_cedula_id = tipo_cedula.id
-WHERE usuario_id = par_usuario_id;
+WHERE usuario_id = par_usuario_id
+ORDER BY nombre ASC;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `clientes_obtener_por_caso_id` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`%` PROCEDURE `clientes_obtener_por_caso_id`(par_caso_id INT, par_usuario_id INT)
+BEGIN
+	SELECT id, nombre FROM clientes WHERE usuario_id = par_usuario_id;
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1336,4 +1361,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-03-29 19:32:28
+-- Dump completed on 2023-04-28 14:33:25

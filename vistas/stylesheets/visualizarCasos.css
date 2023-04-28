@@ -26,17 +26,17 @@
     width: 100%;
 }
 
-.botones-opcion{
+.botones-opcion {
     padding: 0.3%;
     width: 10%;
 }
 
-.boton-tabla{
+.boton-tabla {
     width: 100%;
     padding: 0.5%;
 }
 
-.botones-opcion:hover{
+.botones-opcion:hover {
     font-weight: bold;
 }
 
@@ -44,8 +44,8 @@
     align-items: center;
 }
 
-.datos-caso{
-    margin-top: 0% ;
+.datos-caso {
+    margin-top: 0%;
 }
 
 #form-agregar-cliente {
@@ -53,18 +53,11 @@
     margin-left: 40%;
 }
 
-#nota {
-    width: 50%;
-}
-
-li {
-    list-style-type: none;
-    background: #e7e6e6;
-    padding: 5px;
-    margin-top: 2%;
-    margin-left: 35px;
-    text-align: left;
-    display: inline-block;
+.form-agregar-cliente input[type='submit'] {
+    margin-top: 1%;
+    margin-bottom: 1%;
+    width: 25%;
+    padding: 0.2%;
 }
 
 .form-tablas-titulo {
@@ -121,6 +114,24 @@ li {
     padding: 0.2%;
 }
 
+.form-agregar-nota input[type='text'] {
+    margin-top: 1%;
+    margin-bottom: 1%;
+    width: 30%;
+    padding: 0.2%;
+}
+
+.form-agregar-nota input[type='submit'] {
+    margin-top: 1%;
+    margin-bottom: 1%;
+    width: 20%;
+    padding: 0.2%;
+}
+
+.form-agregar-nota input[type='submit']:hover {
+    font-weight: bold;
+}
+
 dialog {
     width: 30%;
     margin: auto;
@@ -174,40 +185,66 @@ dialog button:hover {
         width: 100%;
     }
 
-    .botones-opcion{
-        padding: 0.3%;
+    .botones-opcion {
+        margin-top: 2%;
+        padding: 1%;
+        width: 25%;
     }
 
-    #form-agregar-cliente{
+    .boton-tabla {
+        width: 100%;
+        padding: 2%;
+    }
+
+    .datos-caso {
+        margin-top: 0%;
+    }
+
+    #form-agregar-cliente {
         text-align: left;
-        margin-left:30%;
+        margin-left: 40%;
     }
 
-    .datos-caso{
-        margin-top: 0% ;
+    .form-agregar-cliente input[type='submit'] {
+        margin-top: 1%;
+        margin-bottom: 1%;
+        width: 40%;
+        padding: 2%;
     }
 
-    #nota {
-        width: 50%;
-    }
-    
     .form-tablas-titulo {
         font-size: 4vw;
         margin-top: 6%;
         margin-bottom: 4%;
     }
 
-    .form-nuevo-usuario label {
-        font-size: 4vw;
+    .seccion-notas-caso{
+        width: 100%;
     }
 
-    .form-nuevo-usuario input[type='submit'] {
-        font-size: 3vw;
-        margin-bottom: 6%;
+    .tabla-notas-caso {
+        width: 80%;
+        border-collapse: collapse;
+        margin-bottom: 5%;
+        align-items: center;
+        margin-left: 10%;
     }
 
-    .seccion-administrar-usuarios {
-        width: 60%;
+    .tabla-clientes-caso {
+        width: 80%;
+        border-collapse: collapse;
+        margin-bottom: 5%;
+        align-items: center;
+        margin-left: 10%;
+    }
+
+    .tabla-head tr th {
+        border-style: solid;
+        border-color: #20344d;
+    }
+
+    .tabla-cuerpo tr {
+        border-bottom: 1px solid #20344d;
     }
 
     .tabla-head {
@@ -221,44 +258,36 @@ dialog button:hover {
         padding: 4%;
     }
 
-    .seccion-actualizar-usuario {
-        width: 60%;
-    }
-
-    .form-actualizar-usuario input {
-        width: 80%;
-        margin-top: 7.5%;
-        margin-bottom: 7.5%;
+    .seccion-actualizar-caso input[type='text'] {
+        margin-top: 4%;
+        width: 50%;
         padding: 2%;
-        font-size: 3vw;
     }
 
-    .form-actualizar-usuario label {
-        font-size: 4vw;
+    .seccion-actualizar-caso select {
+        margin-top: 4%;
+        width: 50%;
+        padding: 2%;
     }
 
-    .form-actualizar-usuario select {
-        width: 80%;
-        font-size: 3vw;
+    .seccion-actualizar-caso input[type='submit'] {
+        margin-right: 1%;
+        padding: 2%;
+        width: 50%;
     }
 
-    .form-actualizar-usuario input[type='submit'] {
-        font-size: 3vw;
-        margin-bottom: 6%;
-    }
-
-    .seccion-actualizar-caso input {
-        margin-top: 1%;
+    .form-agregar-nota input[type='text']{
+        margin-top: 2%;
         margin-bottom: 1%;
-        width: 30%;
-        padding: 0.2%;
+        width: 60%;
+        padding: 2%;
     }
     
-    .seccion-actualizar-caso select {
+    .form-agregar-nota input[type='submit']{
         margin-top: 1%;
         margin-bottom: 1%;
-        width: 30%;
-        padding: 0.2%;
+        width: 40%;
+        padding: 1%;
     }
 
     dialog {
@@ -281,97 +310,129 @@ dialog button:hover {
 
 @media only screen and (max-width: 500px) {
     * {
-        font-size: 4vw;
+        font-size: 6vw;
         margin: 0;
         padding: 0;
         font-family: Arial, Helvetica, sans-serif;
         text-align: center;
     }
+
     .titulo-principal {
-        font-size: 8vw;
+        font-size: 9vw;
         margin-top: 4%;
         margin-bottom: 2%;
     }
 
+    .titulo-secundario {
+        font-size: 6.2vw;
+    }
+
     #opciones-caso {
-        font-size: 3vw;
+        font-size: 6vw;
         margin-top: 3%;
         margin-bottom: 2%;
         width: 100%;
     }
 
-    .botones-opcion{
-        padding: 0.3%;
+    .botones-opcion {
         margin-top: 2%;
-    }
-
-    #form-agregar-cliente{
-        text-align: left;
-        margin-left:30%;
-    }
-
-    .datos-caso{
-        margin-top: 0% ;
-    }
-
-    #nota {
-        width: 50%;
-    }
-    
-    .form-tablas-titulo {
-        font-size: 4vw;
-        margin-top: 6%;
-        margin-bottom: 4%;
-    }
-
-    .form-nuevo-usuario label {
-        font-size: 4vw;
-    }
-
-    .form-nuevo-usuario input[type='submit'] {
-        font-size: 6vw;
-        margin-bottom: 6%;
-    }
-
-    .seccion-administrar-usuarios {
+        padding: 1%;
         width: 60%;
     }
 
-    .tabla-head {
-        font-size: 3vw;
+    .boton-tabla {
+        width: 100%;
         padding: 2%;
+        font-size: 6vw;
+    }
+
+    .datos-caso {
+        margin-top: 0%;
+    }
+
+    #form-agregar-cliente {
+        text-align: left;
+        margin-left: 30%;
+    }
+
+    .form-agregar-cliente input[type='submit'] {
+        margin-top: 1%;
+        margin-bottom: 1%;
+        width: 50%;
+        padding: 2%;
+    }
+
+    .form-tablas-titulo {
+        font-size: 6vw;
+        margin-top: 9%;
+        margin-bottom: 6%;
+    }
+
+    .seccion-notas-caso{
+        width: 100%;
+    }
+
+    .tabla-notas-caso {
+        width: 80%;
+        border-collapse: collapse;
+        margin-bottom: 5%;
+        align-items: center;
+        margin-left: 10%;
+    }
+
+    .tabla-clientes-caso {
+        width: 80%;
+        border-collapse: collapse;
+        margin-bottom: 5%;
+        align-items: center;
+        margin-left: 10%;
+    }
+
+    .tabla-head tr th {
+        border-style: solid;
+        border-color: #20344d;
+    }
+
+    .tabla-cuerpo tr {
+        border-bottom: 1px solid #20344d;
     }
 
     .tabla-cuerpo td button {
         width: 100%;
-        font-size: 3vw;
+        font-size: 6vw;
         padding: 4%;
     }
 
-    .seccion-actualizar-usuario {
-        width: 60%;
-    }
-
-    .form-actualizar-usuario input {
+    .seccion-actualizar-caso input[type='text'] {
+        margin-top: 4%;
         width: 80%;
-        margin-top: 7.5%;
-        margin-bottom: 7.5%;
         padding: 2%;
-        font-size: 3vw;
     }
 
-    .form-actualizar-usuario label {
-        font-size: 4vw;
-    }
-
-    .form-actualizar-usuario select {
+    .seccion-actualizar-caso select {
+        margin-top: 4%;
         width: 80%;
-        font-size: 3vw;
+        padding: 2%;
     }
 
-    .form-actualizar-usuario input[type='submit'] {
-        font-size: 3vw;
-        margin-bottom: 6%;
+    .seccion-actualizar-caso input[type='submit'] {
+        margin-right: 1%;
+        padding: 2%;
+        width: 80%;
+    }
+
+    .form-agregar-nota input[type='text']{
+        margin-top: 2%;
+        margin-bottom: 1%;
+        width: 80%;
+        padding: 2%;
+    }
+    
+    .form-agregar-nota input[type='submit']{
+        margin-top: 2%;
+        margin-bottom: 2%;
+        width: 70%;
+        padding: 2%;
     }
 
     dialog {
