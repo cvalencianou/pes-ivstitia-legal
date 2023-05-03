@@ -56,8 +56,8 @@ const obtenerClientes = async () => {
                     `
                 <li id="informacion-clientes">
                 <b>Nombre:</b> ${cliente.nombre} <br><br>
-                <b>Cedula:</b> ${cliente.cedula}  <br><br>
-                <b>Teléfono movil:</b> ${cliente.telefono_movil} <br><br>
+                <b>Cédula:</b> ${cliente.cedula}  <br><br>
+                <b>Teléfono móvil:</b> ${cliente.telefono_movil} <br><br>
                 <b>Teléfono físico:</b> ${cliente.telefono_fisico} <br><br>
                 <b>Correo:</b> ${cliente.correo}  <br><br>  
                 <b>Dirección:</b> ${cliente.direccion} <br><br>
