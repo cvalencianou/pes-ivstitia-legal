@@ -835,7 +835,8 @@ DELIMITER ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`%` PROCEDURE `clientes_obtener_por_caso_id`(par_caso_id INT, par_usuario_id INT)
 BEGIN
-	SELECT id, nombre FROM clientes WHERE usuario_id = par_usuario_id;
+	SELECT id, nombre FROM clientes WHERE id 
+    NOT IN (SELECT cliente_id FROM caso_cliente WHERE caso_id = par_caso_id) && usuario_id = par_usuario_id; 
 
 END ;;
 DELIMITER ;
@@ -1361,4 +1362,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-04-28 14:33:25
+-- Dump completed on 2023-05-03 11:03:12

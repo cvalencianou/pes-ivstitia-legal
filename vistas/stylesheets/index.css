@@ -22,9 +22,36 @@ button {
 }
 
 h1 {
+    font-size: 3vw;
     text-align: center;
 }
 
 p {
+    font-size: 1.5vw;
     text-align: center;
+}
+
+@media only screen and (max-width: 960px) {
+    p {
+        font-size: 3vw;
+        text-align: center;
+    }
+    h1 {
+        font-size: 6vw;
+        text-align: center;
+    }
+
+}
+
+@media only screen and (max-width: 500px) {
+    p {
+        font-size: 6wv;
+        text-align: center;
+    }
+
+    h1 {
+        font-size: 8vw;
+        text-align: center;
+    }
+
 }
