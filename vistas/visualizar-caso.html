@@ -81,10 +81,10 @@
     </main>
 
     <section id="seccion-agregar-nota" class="seccion-agregar-nota">
-        <h1 class="titulo-principal">Agregar Cliente</h1>
+        <h1 class="titulo-principal">Agregar Nota</h1>
         <form id="form-agregar-nota" class="form-agregar-nota">
             <label for="nota">Ingrese la nota que desea agregar.</label> <br>
-            <input type="text" name="nota" id="nota" placeholder="Escriba aquí la nota" required> <br>
+            <input type="text" name="nota" id="nota" placeholder="Escriba aquí la nota" maxlength="5000" required> <br>
             <input type="submit" value="Agregar">
         </form>
     </section>
@@ -100,13 +100,13 @@
         <form id="form-actualizar-caso">
 
             <label class="titulo-secundario" for="nombre-caso">Nombre caso</label> <br>
-            <input type="text" id="nombre-caso-actualizar" required> <br>
+            <input type="text" id="nombre-caso-actualizar" maxlength="100" required> <br>
 
             <label class="titulo-secundario" for="descripcion">Descripción</label> <br>
-            <input type="text" id="descripcion-actualizar" required> <br>
+            <input type="text" id="descripcion-actualizar" maxlength="100" required> <br>
 
             <label class="titulo-secundario" for="Despacho">Despacho</label><br>
-            <input type="text" id="despacho-actualizar" required> <br>
+            <input type="text" id="despacho-actualizar" maxlength="300" required> <br>
 
             <label class="titulo-secundario" for="tipo-proceso">Tipo proceso</label><br>
             <select name="tipo-proceso" id="tipo-proceso-actualizar" required>
@@ -120,8 +120,6 @@
                 <option value="8">Laboral</option>
                 <option value="9">Custodia</option>
                 <option value="10">Manutención</option>
-                
-
             </select> <br>
 
             <label class="titulo-secundario" for="estado">Estado</label><br>

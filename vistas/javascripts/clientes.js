@@ -97,18 +97,18 @@ const filtrarClientes = async () => {
             data.mensaje.forEach(cliente => {
                 listaClientes +=
                     `
-                <li>
-                Nombre: ${cliente.nombre} <br> 
-                Cedula: ${cliente.cedula}  <br>
-                Teléfono movil: ${cliente.telefonoMovil} <br>
-                Teléfono físico: ${cliente.telefonoFisico} <br>
-                Correo: ${cliente.correo} <br> 
-                Dirección: ${cliente.direccion} <br>
-                <div class="botones">
-                <button class="boton" value="${cliente.id}">Actualizar</button>
-                <button class="boton" value="${cliente.id}">Eliminar</button>
-                </div>
-                </li>
+                    <li id="informacion-clientes">
+                    <b>Nombre:</b> ${cliente.nombre} <br><br>
+                    <b>Cédula:</b> ${cliente.cedula}  <br><br>
+                    <b>Teléfono móvil:</b> ${cliente.telefono_movil} <br><br>
+                    <b>Teléfono físico:</b> ${cliente.telefono_fisico} <br><br>
+                    <b>Correo:</b> ${cliente.correo}  <br><br>  
+                    <b>Dirección:</b> ${cliente.direccion} <br><br>
+                    <div class="botones">
+                    <button class="boton" value="${cliente.id}">Actualizar</button>
+                    <button class="boton" value="${cliente.id}">Eliminar</button>
+                    </div>
+                    </li>
                 `
             });
 
@@ -141,8 +141,6 @@ const obtenerCliente = async (clienteId) => {
     const resultado = await fetch(`/api/v1/clientes/${clienteId}`)
 
     const data = ((await resultado.json()).mensaje)[0]
-
-    //fetch de opciones
 
     switch (resultado.status) {
         case 200:

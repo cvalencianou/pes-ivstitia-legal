@@ -23,22 +23,29 @@
         <p>Por favor ingresar la información que se le solicita acontinuación:</p> <br>
         <form id="form-crear-cliente">
             <label class="titulo-secundario" for="nombre">Nombre completo</label> <br>
-            <input type="text" id="nombre" placeholder="Nombre Completo" required> <br>
+            <input type="text" id="nombre" placeholder="Nombre Completo" maxlength="100" required> <br>
+
             <label class="titulo-secundario" for="tipo-cedula">Tipo cédula</label> <br>
             <select name="tipo-cedula" id="tipo-cedula">
                 <option value="1">Física</option>
                 <option value="2">Jurídica</option>
             </select> <br>
+
             <label class="titulo-secundario" for="cedula">Número de cédula</label> <br>
-            <input type="number" id="cedula" placeholder="101110111" required> <br>
+            <input type="number" id="cedula" placeholder="101110111" maxlength="15" required> <br>
+
             <label class="titulo-secundario" for="correo">Correo electrónico</label> <br>
-            <input type="email" id="correo" placeholder="abc@abc.com" required><br>
+            <input type="email" id="correo" placeholder="abc@abc.com" maxlength="100" required><br>
+
             <label class="titulo-secundario" for="telefonoMovil">Teléfono móvil</label> <br>
-            <input type="text" id="telefonoMovil" placeholder="88888888" required><br>
+            <input type="text" id="telefonoMovil" placeholder="88888888" maxlength="8" required><br>
+
             <label class="titulo-secundario" for="telefonoFisico">Teléfono físico</label><br>
-            <input type="tel" id="telefonoFisico" placeholder="22222222" > <br>
+            <input type="tel" id="telefonoFisico" placeholder="22222222" maxlength="8" > <br>
+
             <label class="titulo-secundario" for="direccion">Dirección postal</label><br>
-            <input type="text" id="direccion" placeholder="Dirección postal" required><br>
+            <input type="text" id="direccion" placeholder="Dirección postal" maxlength="200" required><br>
+            
             <input id="boton-crear" type="submit" value="Crear cliente"><br><br>
         </form>
     </main>

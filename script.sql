@@ -32,7 +32,7 @@ CREATE TABLE `actos` (
   UNIQUE KEY `id_UNIQUE` (`id`),
   KEY `fk_acto_registro_idx` (`id_registro`),
   CONSTRAINT `fk_acto_registro` FOREIGN KEY (`id_registro`) REFERENCES `registros` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,6 +41,7 @@ CREATE TABLE `actos` (
 
 LOCK TABLES `actos` WRITE;
 /*!40000 ALTER TABLE `actos` DISABLE KEYS */;
+INSERT INTO `actos` VALUES (1,'fweferf',1),(2,'ckdccds',1);
 /*!40000 ALTER TABLE `actos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -61,7 +62,7 @@ CREATE TABLE `caso_cliente` (
   KEY `cliente_id_idx` (`cliente_id`),
   CONSTRAINT `cliente_id` FOREIGN KEY (`cliente_id`) REFERENCES `clientes` (`id`),
   CONSTRAINT `id_caso` FOREIGN KEY (`caso_id`) REFERENCES `casos` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=90 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=93 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -70,7 +71,7 @@ CREATE TABLE `caso_cliente` (
 
 LOCK TABLES `caso_cliente` WRITE;
 /*!40000 ALTER TABLE `caso_cliente` DISABLE KEYS */;
-INSERT INTO `caso_cliente` VALUES (6,11,2);
+INSERT INTO `caso_cliente` VALUES (6,11,2),(90,11,1),(91,11,17),(92,11,18);
 /*!40000 ALTER TABLE `caso_cliente` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -83,8 +84,8 @@ DROP TABLE IF EXISTS `casos`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `casos` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(45) NOT NULL,
-  `despacho` varchar(45) NOT NULL,
+  `nombre` varchar(100) NOT NULL,
+  `despacho` varchar(100) NOT NULL,
   `descripcion` varchar(300) NOT NULL,
   `tipo_proceso_id` int NOT NULL,
   `estado_id` int NOT NULL,
@@ -121,9 +122,9 @@ CREATE TABLE `clientes` (
   `id` int NOT NULL AUTO_INCREMENT,
   `nombre` varchar(100) NOT NULL,
   `cedula` varchar(15) NOT NULL,
-  `correo` varchar(45) NOT NULL,
-  `telefono_movil` varchar(15) NOT NULL,
-  `telefono_fisico` varchar(15) DEFAULT NULL,
+  `correo` varchar(100) NOT NULL,
+  `telefono_movil` varchar(8) NOT NULL,
+  `telefono_fisico` varchar(8) DEFAULT NULL,
   `direccion` varchar(200) NOT NULL,
   `usuario_id` int NOT NULL,
   `tipo_cedula_id` int NOT NULL,
@@ -143,7 +144,7 @@ CREATE TABLE `clientes` (
 
 LOCK TABLES `clientes` WRITE;
 /*!40000 ALTER TABLE `clientes` DISABLE KEYS */;
-INSERT INTO `clientes` VALUES (1,'Marta León','101110111','user@email.com','88888881','22222221','av Limon',2,1),(2,'Juana Escobar','100010001','user@email.com','88888881','','av Mango',2,1),(17,'Pablo Escobar','85458468','juana@email.com','86543654','12345678','calle 41, jamon',2,2),(18,'Paolo Vega','9283981281','user@email.com','88888881','','av jocote',2,1),(19,'a','87889212','user@email.com','88888884','22222221','gd',2,1);
+INSERT INTO `clientes` VALUES (1,'Marta León ','101110222','user@email.com','88888881','22222221','av Limon',2,2),(2,'Juana Escobar','100010001','user@email.com','88888881','','av Mango',2,1),(17,'Pablo Escobar','85458468','juana@email.com','86543654','12345678','calle 41, jamon',2,2),(18,'Paolo Vega','9283981281','user@email.com','88888881','','av jocote',2,1);
 /*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -169,7 +170,7 @@ CREATE TABLE `estado` (
 
 LOCK TABLES `estado` WRITE;
 /*!40000 ALTER TABLE `estado` DISABLE KEYS */;
-INSERT INTO `estado` VALUES (3,'Con sentencia'),(4,'Con sentencia firme'),(2,'En espera que ocurra una situación'),(1,'En tramite');
+INSERT INTO `estado` VALUES (3,'Con sentencia'),(4,'Con sentencia firme'),(2,'En espera que ocurra una situación'),(1,'En trámite');
 /*!40000 ALTER TABLE `estado` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -182,13 +183,13 @@ DROP TABLE IF EXISTS `notas_casos`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `notas_casos` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `nota` varchar(1000) NOT NULL,
+  `nota` varchar(5000) NOT NULL,
   `caso_id` int NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   KEY `caso_id_idx` (`caso_id`),
   CONSTRAINT `caso_id` FOREIGN KEY (`caso_id`) REFERENCES `casos` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -197,7 +198,7 @@ CREATE TABLE `notas_casos` (
 
 LOCK TABLES `notas_casos` WRITE;
 /*!40000 ALTER TABLE `notas_casos` DISABLE KEYS */;
-INSERT INTO `notas_casos` VALUES (4,'Nota 1',11),(5,'Nota 2',11),(6,'Nota 3',11);
+INSERT INTO `notas_casos` VALUES (4,'Nota 1',11);
 /*!40000 ALTER TABLE `notas_casos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -214,7 +215,7 @@ CREATE TABLE `registros` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `nombre_UNIQUE` (`nombre`),
   UNIQUE KEY `id_UNIQUE` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -223,6 +224,7 @@ CREATE TABLE `registros` (
 
 LOCK TABLES `registros` WRITE;
 /*!40000 ALTER TABLE `registros` DISABLE KEYS */;
+INSERT INTO `registros` VALUES (1,'djkewnkew');
 /*!40000 ALTER TABLE `registros` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -265,7 +267,7 @@ CREATE TABLE `tipo_proceso` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `nombre_UNIQUE` (`nombre`),
   UNIQUE KEY `id_UNIQUE` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -274,7 +276,7 @@ CREATE TABLE `tipo_proceso` (
 
 LOCK TABLES `tipo_proceso` WRITE;
 /*!40000 ALTER TABLE `tipo_proceso` DISABLE KEYS */;
-INSERT INTO `tipo_proceso` VALUES (2,'Divorcio'),(3,'Matrimonio'),(1,'Traspaso de propiedad');
+INSERT INTO `tipo_proceso` VALUES (5,'Civil'),(7,'Contencioso-administrativo'),(9,'Custodia'),(2,'Divorcio'),(8,'Laboral'),(10,'Manutención'),(3,'Matrimonio'),(6,'Penal'),(1,'Traspaso de propiedad'),(4,'Traspaso de vehículo');
 /*!40000 ALTER TABLE `tipo_proceso` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -304,7 +306,7 @@ CREATE TABLE `tributos_honorarios` (
   UNIQUE KEY `id_acto_UNIQUE` (`id_acto`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   CONSTRAINT `fk_tributos_honorarios_actos` FOREIGN KEY (`id_acto`) REFERENCES `actos` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -313,6 +315,7 @@ CREATE TABLE `tributos_honorarios` (
 
 LOCK TABLES `tributos_honorarios` WRITE;
 /*!40000 ALTER TABLE `tributos_honorarios` DISABLE KEYS */;
+INSERT INTO `tributos_honorarios` VALUES (1,5.00,3.00,'[{\"id\": 1, \"hasta\": 25000, \"monto\": 12.5}, {\"id\": 2, \"hasta\": 75000, \"monto\": 25}, {\"id\": 3, \"hasta\": 100000, \"monto\": 31.25}, {\"id\": 4, \"hasta\": 250000, \"monto\": 62.5}, {\"id\": 5, \"hasta\": 500000, \"monto\": 125}, {\"id\": 6, \"hasta\": 1000000, \"monto\": 156.25}, {\"id\": 7, \"hasta\": 1500000, \"monto\": 312.5}, {\"id\": 8, \"hasta\": 0, \"monto\": 625}]','[{\"id\": 1, \"hasta\": 100000, \"monto\": 10}, {\"id\": 2, \"hasta\": 0, \"monto\": 20}]','[{\"id\": 1, \"hasta\": 250000, \"monto\": 0}, {\"id\": 2, \"hasta\": 1000000, \"monto\": 1100}, {\"id\": 3, \"hasta\": 5000000, \"monto\": 2200}, {\"id\": 4, \"hasta\": 25000000, \"monto\": 5500}, {\"id\": 5, \"hasta\": 50000000, \"monto\": 11000}, {\"id\": 6, \"hasta\": 100000000, \"monto\": 16500}, {\"id\": 7, \"hasta\": 500000000, \"monto\": 27500}, {\"id\": 8, \"hasta\": 0, \"monto\": 55000}]',2.00,500.00,1125.50,500.00,1.50,'[{\"id\": 1, \"monto\": 60500, \"porcentaje\": 0}, {\"id\": 2, \"monto\": 11000000, \"porcentaje\": 2}, {\"id\": 3, \"monto\": 16500000, \"porcentaje\": 1.5}, {\"id\": 4, \"monto\": 33000000, \"porcentaje\": 1.25}, {\"id\": 5, \"monto\": 0, \"porcentaje\": 1}, {\"id\": 6, \"porcentaje\": 0.5}]',17600.00,1),(2,5.00,3.00,'[{\"id\": 1, \"hasta\": 25000, \"monto\": 12.5}, {\"id\": 2, \"hasta\": 75000, \"monto\": 25}, {\"id\": 3, \"hasta\": 100000, \"monto\": 31.25}, {\"id\": 4, \"hasta\": 250000, \"monto\": 62.5}, {\"id\": 5, \"hasta\": 500000, \"monto\": 125}, {\"id\": 6, \"hasta\": 1000000, \"monto\": 156.25}, {\"id\": 7, \"hasta\": 1500004, \"monto\": 312.5}, {\"id\": 8, \"hasta\": 3, \"monto\": 625}]','[{\"id\": 1, \"hasta\": 100000, \"monto\": 10}, {\"id\": 2, \"hasta\": 0, \"monto\": 20}]','[{\"id\": 1, \"hasta\": 250000, \"monto\": 0}, {\"id\": 2, \"hasta\": 1000000, \"monto\": 1100}, {\"id\": 3, \"hasta\": 5000000, \"monto\": 2200}, {\"id\": 4, \"hasta\": 25000000, \"monto\": 5500}, {\"id\": 5, \"hasta\": 50000000, \"monto\": 11000}, {\"id\": 6, \"hasta\": 100000000, \"monto\": 16500}, {\"id\": 7, \"hasta\": 500000000, \"monto\": 27500}, {\"id\": 8, \"hasta\": 0, \"monto\": 55000}]',2.00,500.00,1125.50,500.00,1.50,'[{\"id\": 1, \"monto\": 60500, \"porcentaje\": 0}, {\"id\": 2, \"monto\": 11000000, \"porcentaje\": 2}, {\"id\": 3, \"monto\": 16500000, \"porcentaje\": 1.5}, {\"id\": 4, \"monto\": 33000000, \"porcentaje\": 1.25}, {\"id\": 5, \"monto\": 0, \"porcentaje\": 1}, {\"id\": 6, \"porcentaje\": 0.5}]',17600.00,2);
 /*!40000 ALTER TABLE `tributos_honorarios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -341,7 +344,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES (1,'cvalencianou@gmail.com','$2b$10$NJ4p.vKUYRrsRrdBBO6GK.mMqR/LibooPZl7OLDgm4kdnjFM.Hg1i',1,1),(2,'pfallas99@gmail.com','$2b$10$cAX98n8RSKxU7BS6fFBzQOSzsz.aHkLyHapgLEcaX0e2ZqiMPyihO',1,1);
+INSERT INTO `usuarios` VALUES (1,'cvalencianou@gmail.com','$2b$10$pXWfIGs4S8Lnyuaeb5leIO3FBjtUKnuJuQx//8n/TNZFiAVmCvKXC',1,1),(2,'pfallas99@gmail.com','$2b$10$cAX98n8RSKxU7BS6fFBzQOSzsz.aHkLyHapgLEcaX0e2ZqiMPyihO',1,1);
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -792,9 +795,9 @@ DELIMITER ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`%` PROCEDURE `clientes_filtrar`(par_usuario_id int, par_dato_cliente varchar(200))
 BEGIN
-SELECT clientes.id, nombre, cedula, correo, telefono_movil, telefono_fisico, direccion, tipo_cedula_id FROM clientes 
+SELECT clientes.id, nombre, cedula, correo, telefono_movil, telefono_fisico, direccion, tipo_cedula_id, tipo FROM clientes 
 INNER JOIN tipo_cedula ON clientes.tipo_cedula_id = tipo_cedula.id
-WHERE usuario_id = par_usuario_id && (correo LIKE CONCAT('%', par_dato_cliente, '%') || cedula LIKE CONCAT('%', par_dato_cliente, '%') || nombre LIKE CONCAT('%', par_dato_cliente, '%') || telefono_movil LIKE CONCAT('%', par_dato_cliente, '%') || telefono_fisico LIKE CONCAT('%', par_dato_cliente, '%') || direccion LIKE CONCAT('%', par_dato_cliente, '%') || tipo_cedula_id LIKE CONCAT('%', par_dato_cliente, '%'));
+WHERE usuario_id = par_usuario_id && (correo LIKE CONCAT('%', par_dato_cliente, '%') || cedula LIKE CONCAT('%', par_dato_cliente, '%') || nombre LIKE CONCAT('%', par_dato_cliente, '%') || telefono_movil LIKE CONCAT('%', par_dato_cliente, '%') || telefono_fisico LIKE CONCAT('%', par_dato_cliente, '%') || direccion LIKE CONCAT('%', par_dato_cliente, '%') || tipo LIKE CONCAT('%', par_dato_cliente, '%'));
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1362,4 +1365,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-05-03 11:03:12
+-- Dump completed on 2023-05-03 18:02:05
