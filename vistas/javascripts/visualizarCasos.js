@@ -349,8 +349,6 @@ const cargarClientes = async (casoId) => {
     const resultado = await fetch(`/api/v1/clientes/caso/${casoId}`)
     const dataCliente = await resultado.json()
 
-    console.log(dataCliente)
-
     switch (resultado.status) {
         case 200:
 
@@ -381,16 +379,52 @@ const agregarCliente = async (casoId) => {
 
     let clientesChecked = 0
 
-    for (let i = 0; i < clientes.length; i++) {
+    for (let i = 0; i <= clientes.length; i++) {
 
         if (clientes[i].checked) {
             clientesChecked++
         }
     }
 
+    if (clientes.length === undefined && clientes.checked) {
+
+        const resultado = await fetch(`/api/v1/casos/cliente/${casoId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                clienteId: clientes.value
+            })
+        })
+
+        const dataCliente = await resultado.json()
+
+        switch (resultado.status) {
+            case 201:
+                document.getElementById('mensaje-1').innerHTML = dataCliente.mensaje
+
+                document.getElementById('dialogo-1').showModal()
+                document.getElementById('cerrar-1').addEventListener('click', () => {
+                    window.location.assign('visualizar-caso')
+                })
+                break;
+
+            default:
+                document.getElementById('mensaje-1').innerHTML = dataCliente.mensaje
+                document.getElementById('dialogo-1').showModal()
+                document.getElementById('cerrar-1').addEventListener('click', () => {
+                    document.getElementById('dialogo-1').close()
+                })
+                break;
+        }
+
+        return;
+    }
+
     let contador = 0
 
-    for (let i = 0; i < clientes.length; i++) {
+    for (let i = 0; i <= clientes.length; i++) {
 
         if (clientes[i].checked) {
 
