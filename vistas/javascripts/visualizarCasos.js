@@ -379,7 +379,7 @@ const agregarCliente = async (casoId) => {
 
     let clientesChecked = 0
 
-    for (let i = 0; i <= clientes.length; i++) {
+    for (let i = 0; i < clientes.length; i++) {
 
         if (clientes[i].checked) {
             clientesChecked++
@@ -424,7 +424,7 @@ const agregarCliente = async (casoId) => {
 
     let contador = 0
 
-    for (let i = 0; i <= clientes.length; i++) {
+    for (let i = 0; i < clientes.length; i++) {
 
         if (clientes[i].checked) {
 

@@ -135,7 +135,7 @@ CREATE TABLE `clientes` (
   KEY `tipo_cedula_id_idx` (`tipo_cedula_id`),
   CONSTRAINT `tipo_cedula_id` FOREIGN KEY (`tipo_cedula_id`) REFERENCES `tipo_cedula` (`id`),
   CONSTRAINT `usuario_id` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -144,7 +144,7 @@ CREATE TABLE `clientes` (
 
 LOCK TABLES `clientes` WRITE;
 /*!40000 ALTER TABLE `clientes` DISABLE KEYS */;
-INSERT INTO `clientes` VALUES (2,'Juana Escobar','101110111','juana@gmail.com','88888888','','40102',1,1),(3,'Juanito Mora','202220222','juanito@gmail.com','12345678','','40205',1,2);
+INSERT INTO `clientes` VALUES (1,'Juana Escobar','101110111','juana@gmail.com','88888888','','40102',1,1),(2,'Juanito Mora','202220222','juanito@gmail.com','12345678','','40205',1,2);
 /*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
 UNLOCK TABLES;
 
