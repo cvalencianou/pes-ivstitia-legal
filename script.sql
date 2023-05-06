@@ -335,7 +335,7 @@ CREATE TABLE `usuarios` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   UNIQUE KEY `correo_electronico_UNIQUE` (`correo`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -344,7 +344,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES (1,'pfallas99@gmail.com','$2b$10$pXWfIGs4S8Lnyuaeb5leIO3FBjtUKnuJuQx//8n/TNZFiAVmCvKXC',1,1),(2,'cvalencianou@gmail.com','$2b$10$pXWfIGs4S8Lnyuaeb5leIO3FBjtUKnuJuQx//8n/TNZFiAVmCvKXC',1,1);
+INSERT INTO `usuarios` VALUES (1,'pfallas99@gmail.com','$2b$10$pXWfIGs4S8Lnyuaeb5leIO3FBjtUKnuJuQx//8n/TNZFiAVmCvKXC',1,1);
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -361,7 +361,7 @@ UNLOCK TABLES;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`%` PROCEDURE `actos_actualizar_por_id`(par_id INT,par_nombre VARCHAR(45))
+CREATE  PROCEDURE `actos_actualizar_por_id`(par_id INT,par_nombre VARCHAR(45))
 BEGIN
 UPDATE actos SET nombre = par_nombre WHERE id = par_id;
 END ;;
@@ -380,7 +380,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`%` PROCEDURE `actos_buscar_por_nombre_id_registro`(par_nombre VARCHAR(45), par_id_registro INT)
+CREATE  PROCEDURE `actos_buscar_por_nombre_id_registro`(par_nombre VARCHAR(45), par_id_registro INT)
 BEGIN
 SELECT id, nombre FROM actos WHERE id_registro =  par_id_registro AND nombre = par_nombre;
 END ;;
@@ -399,7 +399,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`%` PROCEDURE `actos_crear`(
+CREATE  PROCEDURE `actos_crear`(
 par_nombre VARCHAR(45), 
 par_id_registro INT
 )
@@ -422,7 +422,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`%` PROCEDURE `actos_eliminar_por_id`(par_id INT)
+CREATE  PROCEDURE `actos_eliminar_por_id`(par_id INT)
 BEGIN
 DELETE FROM actos WHERE id = par_id;
 END ;;
@@ -441,7 +441,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`%` PROCEDURE `actos_obtener_por_id`(par_id INT)
+CREATE  PROCEDURE `actos_obtener_por_id`(par_id INT)
 BEGIN
 SELECT id, nombre, id_registro FROM actos WHERE id = par_id ORDER BY id;
 END ;;
@@ -460,7 +460,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`%` PROCEDURE `actos_obtener_por_id_registro`(par_id INT)
+CREATE  PROCEDURE `actos_obtener_por_id_registro`(par_id INT)
 BEGIN
 SELECT id, nombre FROM actos WHERE id_registro = par_id ORDER BY id;
 END ;;
@@ -479,7 +479,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`%` PROCEDURE `casos_agregar_clientes`(par_cliente_id INT, par_caso_id INT)
+CREATE  PROCEDURE `casos_agregar_clientes`(par_cliente_id INT, par_caso_id INT)
 BEGIN
 	INSERT INTO caso_cliente (caso_id, cliente_id) VALUES (par_caso_id, par_cliente_id);
 END ;;
@@ -498,7 +498,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`%` PROCEDURE `casos_agregar_notas`(par_caso_id INT, par_nota varchar(1000))
+CREATE  PROCEDURE `casos_agregar_notas`(par_caso_id INT, par_nota varchar(1000))
 BEGIN
 	INSERT INTO notas_casos (nota, caso_id) VALUES (par_nota, par_caso_id);
 END ;;
@@ -517,7 +517,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`%` PROCEDURE `casos_buscar_por_id`(par_caso_id INT, par_usuario_id INT)
+CREATE  PROCEDURE `casos_buscar_por_id`(par_caso_id INT, par_usuario_id INT)
 BEGIN
 	SELECT id, nombre FROM casos WHERE id = par_caso_id && usuario_id = par_usuario_id;
 END ;;
@@ -536,7 +536,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`%` PROCEDURE `casos_crear`(par_nombre varchar (100), par_despacho varchar (100), par_descripcion varchar (300), par_tipo_proceso_id INT, par_estado_id INT, par_usuario_id INT)
+CREATE  PROCEDURE `casos_crear`(par_nombre varchar (100), par_despacho varchar (100), par_descripcion varchar (300), par_tipo_proceso_id INT, par_estado_id INT, par_usuario_id INT)
 BEGIN
 	INSERT INTO casos (nombre, despacho, descripcion, estado_id, tipo_proceso_id, usuario_id) 
     VALUES (par_nombre, par_despacho, par_descripcion, par_tipo_proceso_id, par_estado_id, par_usuario_id);
@@ -556,7 +556,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`%` PROCEDURE `casos_eliminar_cliente`(par_caso_id INT, par_cliente_id INT)
+CREATE  PROCEDURE `casos_eliminar_cliente`(par_caso_id INT, par_cliente_id INT)
 BEGIN
 	DELETE FROM caso_cliente WHERE caso_id = par_caso_id && cliente_id = par_cliente_id; 
 END ;;
@@ -575,7 +575,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`%` PROCEDURE `casos_eliminar_nota`(par_caso_id INT, par_nota_id INT)
+CREATE  PROCEDURE `casos_eliminar_nota`(par_caso_id INT, par_nota_id INT)
 BEGIN
 	DELETE FROM notas_casos WHERE caso_id = par_caso_id && id = par_nota_id; 
 END ;;
@@ -594,7 +594,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`%` PROCEDURE `casos_eliminar_por_id`(par_caso_id int, par_usuario_id int)
+CREATE  PROCEDURE `casos_eliminar_por_id`(par_caso_id int, par_usuario_id int)
 BEGIN
 	DELETE FROM caso_cliente WHERE caso_id = par_caso_id;
     DELETE FROM notas_casos WHERE caso_id = par_caso_id;
@@ -615,7 +615,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`%` PROCEDURE `casos_filtrar`(par_usuario_id INT, par_dato_caso varchar(300))
+CREATE  PROCEDURE `casos_filtrar`(par_usuario_id INT, par_dato_caso varchar(300))
 BEGIN
 	SELECT casos.id, casos.nombre, casos.despacho, casos.descripcion, tipo_proceso.nombre AS tipo_proceso, estado.nombre AS estado, usuario_id FROM casos
     INNER JOIN tipo_proceso ON casos.tipo_proceso_id = tipo_proceso.id
@@ -639,7 +639,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`%` PROCEDURE `casos_obtener`(par_usuario_id int)
+CREATE  PROCEDURE `casos_obtener`(par_usuario_id int)
 BEGIN
 	SELECT casos.id, casos.nombre, casos.despacho, casos.descripcion, tipo_proceso.nombre AS tipo_proceso, estado.nombre AS estado, usuario_id FROM casos
     INNER JOIN tipo_proceso ON casos.tipo_proceso_id = tipo_proceso.id
@@ -662,7 +662,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`%` PROCEDURE `casos_obtener_clientes`(par_caso_id INT)
+CREATE  PROCEDURE `casos_obtener_clientes`(par_caso_id INT)
 BEGIN
 	SELECT cliente_id, clientes.nombre FROM caso_cliente
     INNER JOIN clientes ON caso_cliente.cliente_id = clientes.id
@@ -685,7 +685,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`%` PROCEDURE `casos_obtener_notas`(par_caso_id INT)
+CREATE  PROCEDURE `casos_obtener_notas`(par_caso_id INT)
 BEGIN
 	SELECT id, nota FROM notas_casos WHERE caso_id = par_caso_id
     ORDER BY id ASC;
@@ -705,7 +705,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`%` PROCEDURE `casos_obtener_por_id`(par_caso_id INT, par_usuario_id INT)
+CREATE  PROCEDURE `casos_obtener_por_id`(par_caso_id INT, par_usuario_id INT)
 BEGIN
 	SELECT casos.id, casos.nombre, casos.despacho, casos.descripcion, casos.tipo_proceso_id, tipo_proceso.nombre AS tipo_proceso, casos.estado_id, estado.nombre AS estado FROM casos
     INNER JOIN tipo_proceso ON casos.tipo_proceso_id = tipo_proceso.id
@@ -728,7 +728,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`%` PROCEDURE `caso_actualizar`(par_caso_id INT, par_nombre varchar (100), par_despacho varchar (100), par_descripcion varchar (300), par_tipo_proceso_id INT, par_estado_id INT, par_usuario_id INT)
+CREATE  PROCEDURE `caso_actualizar`(par_caso_id INT, par_nombre varchar (100), par_despacho varchar (100), par_descripcion varchar (300), par_tipo_proceso_id INT, par_estado_id INT, par_usuario_id INT)
 BEGIN
 	UPDATE casos SET nombre = par_nombre, despacho = par_despacho, descripcion = par_descripcion, tipo_proceso_id = par_tipo_proceso_id, estado_id = par_estado_id
     WHERE id = par_caso_id && usuario_id = par_usuario_id;
@@ -748,7 +748,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`%` PROCEDURE `caso_buscar_por_nombre`(par_usuario_id INT, par_nombre varchar (45))
+CREATE  PROCEDURE `caso_buscar_por_nombre`(par_usuario_id INT, par_nombre varchar (45))
 BEGIN
 	SELECT id, nombre FROM casos WHERE usuario_id = par_usuario_id && nombre = par_nombre;
 END ;;
@@ -767,7 +767,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`%` PROCEDURE `clientes_actualizar`(par_cliente_id int, par_usuario_id int, par_nombre varchar(100), par_cedula varchar(15), par_correo varchar(45), 
+CREATE  PROCEDURE `clientes_actualizar`(par_cliente_id int, par_usuario_id int, par_nombre varchar(100), par_cedula varchar(15), par_correo varchar(45), 
 par_telefono_movil varchar(15), par_telefono_fisico varchar(15), par_direccion varchar(200), par_tipo_cedula_id int)
 BEGIN
 UPDATE clientes SET nombre = par_nombre, cedula = par_cedula, correo = par_correo, telefono_movil = par_telefono_movil, telefono_fisico = par_telefono_fisico, direccion = par_direccion, 
@@ -789,7 +789,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`%` PROCEDURE `clientes_filtrar`(par_usuario_id int, par_dato_cliente varchar(200))
+CREATE  PROCEDURE `clientes_filtrar`(par_usuario_id int, par_dato_cliente varchar(200))
 BEGIN
 SELECT clientes.id, nombre, cedula, correo, telefono_movil, telefono_fisico, direccion, tipo_cedula_id, tipo FROM clientes 
 INNER JOIN tipo_cedula ON clientes.tipo_cedula_id = tipo_cedula.id
@@ -810,7 +810,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`%` PROCEDURE `clientes_obtener`(par_usuario_id int)
+CREATE  PROCEDURE `clientes_obtener`(par_usuario_id int)
 BEGIN
 SELECT clientes.id, nombre, cedula, correo, telefono_movil, telefono_fisico, direccion, tipo_cedula_id, tipo FROM clientes 
 INNER JOIN tipo_cedula ON clientes.tipo_cedula_id = tipo_cedula.id
@@ -832,7 +832,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`%` PROCEDURE `clientes_obtener_por_caso_id`(par_caso_id INT, par_usuario_id INT)
+CREATE  PROCEDURE `clientes_obtener_por_caso_id`(par_caso_id INT, par_usuario_id INT)
 BEGIN
 	SELECT id, nombre FROM clientes WHERE id 
     NOT IN (SELECT cliente_id FROM caso_cliente WHERE caso_id = par_caso_id) && usuario_id = par_usuario_id; 
@@ -853,7 +853,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`%` PROCEDURE `cliente_buscar_por_cedula`(par_usuario_id int, par_cedula varchar(15))
+CREATE  PROCEDURE `cliente_buscar_por_cedula`(par_usuario_id int, par_cedula varchar(15))
 BEGIN
 	SELECT id, cedula FROM clientes WHERE usuario_id = par_usuario_id && cedula = par_cedula;
 END ;;
@@ -872,7 +872,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`%` PROCEDURE `cliente_buscar_por_id`(par_cliente_id int, par_usuario_id int)
+CREATE  PROCEDURE `cliente_buscar_por_id`(par_cliente_id int, par_usuario_id int)
 BEGIN
 	SELECT clientes.id, nombre, cedula, correo, telefono_movil, telefono_fisico, direccion, tipo_cedula_id, tipo FROM clientes 
 	INNER JOIN tipo_cedula ON clientes.tipo_cedula_id = tipo_cedula.id
@@ -893,7 +893,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`%` PROCEDURE `cliente_crear`(par_nombre varchar(100), par_cedula varchar(15), par_correo varchar(45), par_telefono_movil varchar(15), par_telefono_fisico varchar(15), par_direccion varchar(200), par_usuario_id int, par_tipo_cedula_id int)
+CREATE  PROCEDURE `cliente_crear`(par_nombre varchar(100), par_cedula varchar(15), par_correo varchar(45), par_telefono_movil varchar(15), par_telefono_fisico varchar(15), par_direccion varchar(200), par_usuario_id int, par_tipo_cedula_id int)
 BEGIN
 INSERT INTO clientes(nombre, cedula, correo, telefono_movil, telefono_fisico, direccion, usuario_id, tipo_cedula_id) VALUES (par_nombre, par_cedula, par_correo, par_telefono_movil, par_telefono_fisico, par_direccion, par_usuario_id, par_tipo_cedula_id);
 END ;;
@@ -912,7 +912,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`%` PROCEDURE `cliente_eliminar_por_id`(par_cliente_id int, par_usuario_id int)
+CREATE  PROCEDURE `cliente_eliminar_por_id`(par_cliente_id int, par_usuario_id int)
 BEGIN
 	DELETE FROM caso_cliente WHERE caso_cliente.cliente_id = par_cliente_id;
     DELETE FROM clientes WHERE clientes.id = par_cliente_id && usuario_id = par_usuario_id;
@@ -932,7 +932,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`%` PROCEDURE `registros_actualizar_por_id`(par_id INT, par_nombre VARCHAR(45))
+CREATE  PROCEDURE `registros_actualizar_por_id`(par_id INT, par_nombre VARCHAR(45))
 BEGIN
 UPDATE registros SET nombre = par_nombre WHERE id = par_id;
 END ;;
@@ -951,7 +951,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`%` PROCEDURE `registros_buscar_por_id`(par_id INT)
+CREATE  PROCEDURE `registros_buscar_por_id`(par_id INT)
 BEGIN
 SELECT id, nombre FROM registros WHERE id = par_id;
 END ;;
@@ -970,7 +970,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`%` PROCEDURE `registros_buscar_por_nombre`(par_nombre VARCHAR(45))
+CREATE  PROCEDURE `registros_buscar_por_nombre`(par_nombre VARCHAR(45))
 BEGIN
 SELECT id, nombre FROM registros WHERE nombre = par_nombre;
 END ;;
@@ -989,7 +989,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`%` PROCEDURE `registros_crear`(par_nombre VARCHAR(45))
+CREATE  PROCEDURE `registros_crear`(par_nombre VARCHAR(45))
 BEGIN
 INSERT INTO registros (nombre) VALUES (par_nombre);
 END ;;
@@ -1008,7 +1008,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`%` PROCEDURE `registros_eliminar_por_id`(par_id INT)
+CREATE  PROCEDURE `registros_eliminar_por_id`(par_id INT)
 BEGIN
 SET @id = (SELECT id FROM actos WHERE id_registro = par_id);
 DELETE FROM tributos_honorarios WHERE id_acto = @id;
@@ -1030,7 +1030,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`%` PROCEDURE `registros_obtener_todos`()
+CREATE  PROCEDURE `registros_obtener_todos`()
 BEGIN
 SELECT id, nombre FROM registros ORDER BY id;
 END ;;
@@ -1049,7 +1049,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`%` PROCEDURE `tributos_honorarios_actualizar_por_id_acto`(
+CREATE  PROCEDURE `tributos_honorarios_actualizar_por_id_acto`(
 par_id_acto INT,
 par_registro DECIMAL(8,2), 
 par_agrario DECIMAL(8,2), 
@@ -1094,7 +1094,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`%` PROCEDURE `tributos_honorarios_crear_por_id_acto`(
+CREATE  PROCEDURE `tributos_honorarios_crear_por_id_acto`(
 par_id_acto INT,
 par_registro DECIMAL(8,2), 
 par_agrario DECIMAL(8,2), 
@@ -1128,7 +1128,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`%` PROCEDURE `tributos_honorarios_eliminar_por_id_acto`(par_id_acto INT)
+CREATE  PROCEDURE `tributos_honorarios_eliminar_por_id_acto`(par_id_acto INT)
 BEGIN
 DELETE FROM tributos_honorarios WHERE id_acto = par_id_acto;
 END ;;
@@ -1147,7 +1147,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`%` PROCEDURE `tributos_honorarios_obtener_por_id_acto`(par_id_acto INT)
+CREATE  PROCEDURE `tributos_honorarios_obtener_por_id_acto`(par_id_acto INT)
 BEGIN
 SELECT registro, agrario, fiscal, archivo, abogado, municipal, parques_nacionales, fauna_silvestre, cruz_roja, traspaso, honorarios, adicional_placas FROM tributos_honorarios
 WHERE id_acto = par_id_acto;
@@ -1167,7 +1167,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`%` PROCEDURE `usuarios_actualizar`(par_id INT, par_correo VARCHAR(45), par_administrador INT)
+CREATE  PROCEDURE `usuarios_actualizar`(par_id INT, par_correo VARCHAR(45), par_administrador INT)
 BEGIN
 UPDATE usuarios SET correo = par_correo, administrador = par_administrador WHERE id = par_id;
 END ;;
@@ -1186,7 +1186,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`%` PROCEDURE `usuarios_buscar_por_correo`(par_correo VARCHAR(45))
+CREATE  PROCEDURE `usuarios_buscar_por_correo`(par_correo VARCHAR(45))
 BEGIN
 SELECT id, correo FROM usuarios WHERE correo = par_correo;
 END ;;
@@ -1205,7 +1205,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`%` PROCEDURE `usuarios_buscar_por_id`(par_id INT)
+CREATE  PROCEDURE `usuarios_buscar_por_id`(par_id INT)
 BEGIN
 SELECT id FROM usuarios WHERE id = par_id;
 END ;;
@@ -1224,7 +1224,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`%` PROCEDURE `usuarios_cambiar_contrasena`(par_id INT, par_contrasena VARCHAR(60))
+CREATE  PROCEDURE `usuarios_cambiar_contrasena`(par_id INT, par_contrasena VARCHAR(60))
 BEGIN
 UPDATE usuarios SET contrasena = par_contrasena, contrasena_configurada = 1 WHERE id = par_id;
 END ;;
@@ -1243,13 +1243,13 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`%` PROCEDURE `usuarios_eliminar_por_id`(par_id INT)
+CREATE  PROCEDURE `usuarios_eliminar_por_id`(par_id INT)
 BEGIN
 DELETE FROM caso_cliente WHERE caso_id IN (SELECT id FROM casos WHERE usuario_id = par_id);
 DELETE FROM notas_casos WHERE caso_id IN (SELECT id FROM casos WHERE usuario_id = par_id);
 DELETE FROM casos WHERE usuario_id = par_id;
 DELETE FROM clientes WHERE usuario_id = par_id;
-DELETE FROM usuarios WHERE id = par_id;
+DELETE FROM usuarios WHERE id=par_id;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1266,7 +1266,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`%` PROCEDURE `usuarios_obtener_todos`()
+CREATE  PROCEDURE `usuarios_obtener_todos`()
 BEGIN
 SELECT id, correo, administrador FROM usuarios ORDER BY id;
 END ;;
@@ -1285,7 +1285,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`%` PROCEDURE `usuarios_registrar`(par_correo VARCHAR(45), par_contrasena VARCHAR(60))
+CREATE  PROCEDURE `usuarios_registrar`(par_correo VARCHAR(45), par_contrasena VARCHAR(60))
 BEGIN
 INSERT INTO usuarios (correo, contrasena) VALUES (par_correo, par_contrasena);
 END ;;
@@ -1304,7 +1304,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`%` PROCEDURE `usuarios_restablecer_contrasena`(par_id INT, par_contrasena VARCHAR(60))
+CREATE  PROCEDURE `usuarios_restablecer_contrasena`(par_id INT, par_contrasena VARCHAR(60))
 BEGIN
 	UPDATE usuarios SET contrasena = par_contrasena, contrasena_configurada = 0 WHERE id = par_id;
 END ;;
@@ -1323,7 +1323,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`%` PROCEDURE `usuarios_validar_credenciales`(par_correo VARCHAR(45))
+CREATE  PROCEDURE `usuarios_validar_credenciales`(par_correo VARCHAR(45))
 BEGIN
 SELECT id, contrasena, administrador, contrasena_configurada FROM usuarios WHERE correo = par_correo;
 END ;;
@@ -1342,7 +1342,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`%` PROCEDURE `usuarios_verificar_administrador`(par_id INT)
+CREATE  PROCEDURE `usuarios_verificar_administrador`(par_id INT)
 BEGIN
 SELECT administrador FROM usuarios WHERE id = par_id;
 END ;;
@@ -1361,4 +1361,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-05-03 19:08:13
+-- Dump completed on 2023-05-05 18:58:46
