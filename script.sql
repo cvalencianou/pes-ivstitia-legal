@@ -4,7 +4,7 @@ USE `ivstitia_legal`;
 --
 -- Host: 10.0.0.116    Database: ivstitia_legal
 -- ------------------------------------------------------
--- Server version	8.0.32-0ubuntu0.22.04.2
+-- Server version	8.0.33-0ubuntu0.22.04.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -1010,8 +1010,7 @@ DELIMITER ;
 DELIMITER ;;
 CREATE  PROCEDURE `registros_eliminar_por_id`(par_id INT)
 BEGIN
-SET @id = (SELECT id FROM actos WHERE id_registro = par_id);
-DELETE FROM tributos_honorarios WHERE id_acto = @id;
+DELETE FROM tributos_honorarios WHERE id_acto IN (SELECT id FROM actos WHERE id_registro = par_id);
 DELETE FROM actos WHERE id_registro = par_id;
 DELETE FROM registros WHERE id = par_id;
 END ;;
@@ -1361,4 +1360,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-05-05 18:58:46
+-- Dump completed on 2023-05-09 11:20:18
