@@ -43,7 +43,7 @@ const crearCliente = async (req, res) => {
     const cliente = new Cliente()
 
     if ((await cliente.buscarPorCedula(usuarioId, cedula))[0].length === 1) {
-        throw new httpError(StatusCodes.CONFLICT, 'Usuario ya registrado.')
+        throw new httpError(StatusCodes.CONFLICT, 'Ya hay un cliente registrado con el mismo número de cédula.')
     }
 
     if ((await cliente.crearCliente(usuarioId, nombre, cedula, correo, telefonoMovil, telefonoFisico, direccion, tipoCedula)).affectedRows === 1) {
