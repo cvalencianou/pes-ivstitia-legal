@@ -34,7 +34,7 @@ window.onpageshow = async () => {
         else if (event.target.innerHTML === 'Eliminar') {
 
             document.getElementById('eliminar-caso').addEventListener('click', () => {
-                eliminarNota(event.target.value)
+                eliminarCaso(event.target.value)
                 document.getElementById('dialogo-eliminar-caso').close()
                 window.location.assign('casos')
             })
