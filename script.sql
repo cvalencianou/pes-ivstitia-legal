@@ -144,7 +144,7 @@ CREATE TABLE `clientes` (
 
 LOCK TABLES `clientes` WRITE;
 /*!40000 ALTER TABLE `clientes` DISABLE KEYS */;
-INSERT INTO `clientes` VALUES (1,'Juana Escobar','101110111','juana@gmail.com','88888888','','40102',1,1),(2,'Juanito Mora','202220222','juanito@gmail.com','12345678','','40205',1,2),(3,'Marta León','39283928','marta@email.com','88888888','22222222','40501',1,2);
+INSERT INTO `clientes` VALUES (1,'Juana Escobar','101110111','juana@gmail.com','88888888','','40102',1,1),(2,'Juanito Mora','202220222','juanito@gmail.com','12345678','','40205',1,2),(3,'Marta León','39283928','marta@email.com','88888888','22222222','40501',1,2),(4,'Alfonso Vega','101230123','alfonso@email.com','88881234','22222221','20102',1,1);
 /*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
 UNLOCK TABLES;
 
