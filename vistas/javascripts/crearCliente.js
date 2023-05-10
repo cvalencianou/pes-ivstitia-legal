@@ -3,11 +3,6 @@ window.onpageshow = async () => {
     document.getElementById('form-crear-cliente').addEventListener('submit', (event) =>{
         event.preventDefault()
         crearCliente()
-        window.location.assign('clientes')
-    })
-
-    document.getElementById('cerrar-1').addEventListener('click', () => {
-        document.getElementById('dialogo-1').close()
     })
 }
 
@@ -40,7 +35,7 @@ const crearCliente = async() =>{
 
     switch (resultado.status) {
         case 201:
-            document.getElementById('mensaje-1').innerHTML = dataCaso.mensaje
+            document.getElementById('mensaje-1').innerHTML = datos.mensaje
             document.getElementById('dialogo-1').showModal()
             document.getElementById('cerrar-1').addEventListener('click', () => {
                 window.location.assign('clientes')
@@ -49,7 +44,7 @@ const crearCliente = async() =>{
             break;
 
         default:
-            document.getElementById('mensaje-1').innerHTML = dataCaso.mensaje
+            document.getElementById('mensaje-1').innerHTML = datos.mensaje
             document.getElementById('dialogo-1').showModal()
             document.getElementById('cerrar-1').addEventListener('click', () => {
                 document.getElementById('dialogo-1').close()
